@@ -24098,12 +24098,12 @@
       1,
       1200
     ],
-    "valid_public_cedulas": 141,
+    "valid_public_cedulas": 0,
     "summary": {
       "Veteranos 50+": {
-        "cedulas": 27,
+        "cedulas": 0,
         "public_names": 132,
-        "kept_previous": false
+        "kept_previous": true
       },
       "Veteranos 35+": {
         "cedulas": 0,
@@ -24111,19 +24111,19 @@
         "kept_previous": true
       },
       "Primera Fuerza": {
-        "cedulas": 35,
+        "cedulas": 0,
         "public_names": 292,
-        "kept_previous": false
+        "kept_previous": true
       },
       "Segunda Fuerza": {
-        "cedulas": 37,
+        "cedulas": 0,
         "public_names": 332,
-        "kept_previous": false
+        "kept_previous": true
       },
       "Intermedia": {
-        "cedulas": 42,
+        "cedulas": 0,
         "public_names": 341,
-        "kept_previous": false
+        "kept_previous": true
       }
     },
     "privacy": "public sports data only; no CURP/INE/address/document images"
