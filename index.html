@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#06150e" />
   <title>DT Manager Pro · Club América Veteranos &amp; Atlético La Luz</title>
-  <meta name="description" content="Centro de Mando Técnico para Club América Veteranos y Atlético La Luz: asistencia, bajas, convocatorias WhatsApp y pizarra táctica 2D/3D." />
+  <meta name="description" content="Centro de Mando Técnico para Club América Veteranos y Atlético La Luz: ingeniería inversa completa de easy2coach, squadi, Attendance Register, Spond y TeamSnap." />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,7 @@
   <style>
     :root {
       --bg-deep: #040d08;
-      --bg-card: rgba(10, 29, 20, 0.9);
+      --bg-card: rgba(10, 29, 20, 0.92);
       --green-electric: #22e07a;
       --green-neon: #45ed91;
       --green-emerald: #10b981;
@@ -43,7 +43,7 @@
     }
     .topbar {
       position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(16px); background: rgba(4, 15, 10, 0.9);
+      backdrop-filter: blur(16px); background: rgba(4, 15, 10, 0.92);
       border-bottom: 1px solid var(--border-green); padding: 10px 16px;
     }
     .topbar-inner {
@@ -102,7 +102,7 @@
     .quorum-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; margin-bottom: 6px; }
     .quorum-bar { height: 9px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; }
     .quorum-fill { height: 100%; background: linear-gradient(90deg, #10b981, #22e07a); transition: width 0.25s ease; }
-    .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 10px; margin-top: 14px; }
+    .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin-top: 14px; }
     .kpi { background: rgba(5, 16, 11, 0.8); border: 1px solid var(--border-green); border-radius: 14px; padding: 10px 12px; }
     .kpi small { display: block; font-size: 10.5px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); }
     .kpi strong { display: block; font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 800; color: #fff; margin-top: 2px; }
@@ -177,8 +177,14 @@
     .slot-item { display: flex; align-items: center; gap: 7px; background: rgba(5, 16, 11, 0.88); border: 1px solid var(--border-green); padding: 7px 9px; border-radius: 10px; }
     .slot-badge { min-width: 42px; text-align: center; padding: 3px 5px; border-radius: 6px; background: rgba(34, 224, 122, 0.18); color: var(--green-neon); font-family: 'Sora', sans-serif; font-size: 10.5px; font-weight: 800; }
     .slot-item select { flex: 1; min-width: 0; padding: 5px 7px; border-radius: 7px; border: 1px solid rgba(255,255,255,0.14); background: #04110b; color: #fff; font-size: 12px; }
+    .bench-box { margin-top: 16px; padding: 14px; border-radius: 16px; border: 1px dashed var(--border-green); background: rgba(4, 15, 10, 0.72); }
+    .bench-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .bench-chip { padding: 6px 11px; border-radius: 999px; background: rgba(34, 224, 122, 0.12); border: 1px solid var(--border-green); font-size: 12px; font-weight: 700; color: #e2f8ec; }
     .frame-3d { width: 100%; height: 560px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-green); background: #040d08; }
     .frame-3d iframe { width: 100%; height: 100%; border: 0; }
+    .rsvp-modal { position: fixed; inset: 0; z-index: 300; background: rgba(2, 8, 5, 0.88); backdrop-filter: blur(12px); display: none; place-items: center; padding: 16px; }
+    .rsvp-modal.open { display: grid; }
+    .rsvp-dialog { width: 100%; max-width: 480px; background: #071d13; border: 2px solid var(--green-electric); border-radius: 22px; padding: 22px; box-shadow: var(--shadow); }
     .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 120; background: rgba(4, 14, 9, 0.95); backdrop-filter: blur(14px); border-top: 1px solid var(--border-green); display: flex; justify-content: space-around; padding: 7px 8px; }
     .bottom-nav button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 5px; background: transparent; border: 0; color: var(--text-muted); font-family: 'Sora', sans-serif; font-size: 11px; font-weight: 700; cursor: pointer; }
     .bottom-nav button.active { color: var(--green-electric); }
@@ -188,6 +194,28 @@
   </style>
 </head>
 <body>
+
+  <!-- MODAL DE CONFIRMACIÓN RÁPIDA EN 1 TOQUE (MODO SPOND / SQUADI / EASY2COACH) -->
+  <div id="rsvpModal" class="rsvp-modal" role="dialog" aria-modal="true" aria-labelledby="rsvpTitle">
+    <div class="rsvp-dialog">
+      <span class="badge-coach">📲 CONFIRMACIÓN EN 1 TOQUE (SPOND / SQUADI)</span>
+      <h3 id="rsvpTitle" style="font-family:'Sora',sans-serif;font-size:20px;margin:10px 0 6px;color:#fff">Confirmar Asistencia al Partido</h3>
+      <p id="rsvpSubtitle" style="font-size:13px;color:var(--text-muted);margin-bottom:14px">Selecciona tu nombre y confirma con un toque si asistirás o no al encuentro.</p>
+      <div class="field" style="margin-bottom:12px">
+        <label for="rsvpPlayerSelect">Selecciona Jugador</label>
+        <select id="rsvpPlayerSelect"></select>
+      </div>
+      <div class="field" style="margin-bottom:14px">
+        <label for="rsvpReasonInput">Motivo (si no puedes ir) o comentario</label>
+        <input id="rsvpReasonInput" type="text" placeholder="Ej. Voy directo al campo / No puedo por trabajo..." />
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+        <button type="button" class="btn-green" id="btnRsvpYes">✅ SÍ VOY A JUGAR</button>
+        <button type="button" class="btn-danger" id="btnRsvpNo" style="justify-content:center;padding:11px;font-size:12.5px">❌ NO PUEDO IR</button>
+      </div>
+      <button type="button" class="btn-ghost" id="btnCloseRsvp" style="width:100%">Cerrar ventana</button>
+    </div>
+  </div>
 
   <header class="topbar">
     <div class="topbar-inner">
@@ -229,6 +257,7 @@
             <span class="pill" id="pillField">📍 Cancha: Campo #1</span>
             <span class="pill" id="pillFormation">📋 Sistema: 4-3-3</span>
             <span class="pill" id="pillCaptain">©️ Capitán: Por asignar</span>
+            <span class="pill" id="pillFeeTotal">💲 Arbitraje reunido: 0 pagados</span>
           </div>
 
           <!-- Semáforo de Quórum squadi / TeamSnap -->
@@ -253,7 +282,8 @@
           <div id="mgrBallStage" class="ball-stage"></div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
             <button type="button" class="btn-green" id="btnShareWa">📲 Convocar por WhatsApp</button>
-            <button type="button" class="btn-ghost" id="btnCopyRsvpLink">🔗 Link Confirmación</button>
+            <button type="button" class="btn-ghost" id="btnOpenRsvpModal">✋ Confirmación 1-Toque</button>
+            <button type="button" class="btn-ghost" id="btnCopyRsvpLink">🔗 Copiar Link Spond</button>
           </div>
         </div>
       </div>
@@ -261,19 +291,19 @@
 
     <nav class="tabs">
       <button type="button" class="tab-btn active" data-nav-view="attendance">📋 Asistencia, Eventos y Bajas</button>
-      <button type="button" class="tab-btn" data-nav-view="tactics">⚽ Pizarra Táctica 2D y 3D</button>
+      <button type="button" class="tab-btn" data-nav-view="tactics">⚽ Pizarra Táctica 2D, Banca y 3D</button>
       <button type="button" class="tab-btn" data-nav-view="squad">👥 Plantilla y Estadísticas (%)</button>
       <button type="button" class="tab-btn" data-nav-view="settings">⚙️ Personalizar Equipo y Respaldo</button>
     </nav>
 
-    <!-- VISTA 1: CALENDARIO SQUADI + ASISTENCIA ATTENDANCE REGISTER + CONVOCATORIA SPOND -->
+    <!-- VISTA 1: CALENDARIO SQUADI + ASISTENCIA ATTENDANCE REGISTER + CONVOCATORIA SPOND / TEAMSNAP -->
     <section id="view-attendance" class="view active">
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow">CALENDARIO DE EVENTOS (MODO SQUADI &amp; EASY2COACH)</div>
-            <h2>Partidos, Entrenamientos y Convocatorias</h2>
-            <p>Selecciona un evento o crea uno nuevo. Cada evento guarda su propia lista de quiénes fueron y quiénes faltaron.</p>
+            <div class="eyebrow">CALENDARIO Y LOGÍSTICA (SQUADI · EASY2COACH · TEAMSNAP)</div>
+            <h2>Partidos, Entrenamientos y Tareas del Día de Juego</h2>
+            <p>Programa partidos o entrenamientos, asigna quién lleva balones/hidratación y toma lista de quiénes asistieron y quiénes faltaron.</p>
           </div>
           <button type="button" class="btn-green" id="btnNewEvent">➕ Nuevo Partido / Entrenamiento</button>
         </div>
@@ -290,7 +320,7 @@
             </select>
           </div>
           <div class="field">
-            <label for="matchOpponent">Rival / Nombre de Sesión</label>
+            <label for="matchOpponent">Rival / Sesión</label>
             <input id="matchOpponent" type="text" placeholder="Nombre del rival..." />
           </div>
           <div class="field">
@@ -304,6 +334,14 @@
           <div class="field">
             <label for="matchField">Cancha / Campo</label>
             <input id="matchField" type="text" placeholder="Ej. Campo Empastado 1" />
+          </div>
+          <div class="field">
+            <label for="dutyBalls">⚽ Encargado de Balones y Casacas (TeamSnap)</label>
+            <input id="dutyBalls" type="text" placeholder="Ej. Jairo Franco" />
+          </div>
+          <div class="field">
+            <label for="dutyWater">💧 Encargado de Hidratación / Botiquín</label>
+            <input id="dutyWater" type="text" placeholder="Ej. Capitán / Delegado" />
           </div>
           <div class="field" style="grid-column: 1 / -1;">
             <label for="matchCoachNotes">Charla Técnica / Notas del Manager</label>
@@ -367,14 +405,14 @@
       </div>
     </section>
 
-    <!-- VISTA 2: PIZARRA TÁCTICA 2D + ESPECIALISTAS + SIMULADOR 3D -->
+    <!-- VISTA 2: PIZARRA TÁCTICA 2D + BANCA DE SUPLENTES + SIMULADOR 3D -->
     <section id="view-tactics" class="view">
       <div class="panel">
         <div class="panel-head">
           <div>
             <div class="eyebrow">PIZARRA TÁCTICA INTERACTIVA (MODO EASY2COACH)</div>
-            <h2>Alineación Titular, Roles y Movimiento en Cancha</h2>
-            <p>Arrastra las fichas con el dedo o mouse. El selector prioriza a quienes sí asistieron y marca con alerta a las bajas.</p>
+            <h2>Alineación Titular, Suplentes Disponibles y Movimiento en Cancha</h2>
+            <p>Arrastra las fichas con el dedo o mouse. El selector prioriza a quienes sí asistieron y calcula automáticamente tu banca disponible.</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button type="button" class="btn-ghost" id="btnAutoFillPresent">⚡ Armar 11 con Presentes</button>
@@ -410,6 +448,13 @@
 
             <h3 style="font-family:'Sora',sans-serif;font-size:15px;margin:10px 0 6px;color:var(--green-neon)">Once Titular por Posición</h3>
             <div id="tacticsLineupSlots" class="slots-list"></div>
+
+            <!-- Banca de Suplentes Disponibles (easy2coach) -->
+            <div class="bench-box">
+              <div class="eyebrow">BANCO DE SUPLENTES Y CAMBIOS DISPONIBLES</div>
+              <p style="font-size:12px;color:var(--text-muted)">Jugadores que sí fueron hoy al partido y están listos para entrar de cambio:</p>
+              <div id="benchPlayersList" class="bench-chips"></div>
+            </div>
           </div>
 
           <div class="pitch-card">
@@ -518,7 +563,7 @@
     import { computePitchMarkings } from './vendor/campos/pitch.js';
     import formations from './vendor/campos/formations.js';
 
-    const STORAGE_KEY = 'dt_manager_coach_green_v2';
+    const STORAGE_KEY = 'dt_manager_coach_green_v3';
     const NS = 'http://www.w3.org/2000/svg';
     const TODAY = new Date().toISOString().slice(0, 10);
 
@@ -555,7 +600,7 @@
           roles: { captain: 'am3', penalty: 'am8', freekick: 'am6' },
           activeEventId: 'ev_am_1',
           events: [
-            { id: 'ev_am_1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '16:00', field: 'Campo Empastado #1', coachNotes: 'Confirmar asistencia 30 min antes. Cuidar coberturas.' }
+            { id: 'ev_am_1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '16:00', field: 'Campo Empastado #1', dutyBalls: 'Alfredo Tena', dutyWater: 'Pável Pardo', coachNotes: 'Confirmar asistencia 30 min antes. Cuidar coberturas.' }
           ],
           lineupSlots: {},
           customCoords: {},
@@ -589,7 +634,7 @@
           roles: { captain: 'll7', penalty: 'll10', freekick: 'll7' },
           activeEventId: 'ev_ll_1',
           events: [
-            { id: 'ev_ll_1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '10:00', field: 'Campo La Luz', coachNotes: 'Mantener líneas juntas y aprovechar tiros libres.' }
+            { id: 'ev_ll_1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '10:00', field: 'Campo La Luz', dutyBalls: 'Jairo Franco', dutyWater: 'Martín Franco', coachNotes: 'Mantener líneas juntas y aprovechar tiros libres.' }
           ],
           lineupSlots: {},
           customCoords: {},
@@ -632,7 +677,7 @@
     function activeTeam() { return state.teams[state.activeTeamId] || state.teams.america_vet; }
     function activeEvent(team = activeTeam()) {
       if (!team.events || !team.events.length) {
-        team.events = [{ id: 'ev_' + Date.now(), type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '16:00', field: 'Campo #1', coachNotes: '' }];
+        team.events = [{ id: 'ev_' + Date.now(), type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '16:00', field: 'Campo #1', dutyBalls: '', dutyWater: '', coachNotes: '' }];
       }
       return team.events.find(e => e.id === team.activeEventId) || team.events[0];
     }
@@ -670,18 +715,20 @@
       document.getElementById('heroTeamSubtitle').textContent = `${team.subtitle} · DT: ${team.coachName}`;
       document.getElementById('heroEventBadge').textContent = `${ev.type.toUpperCase()} ACTIVO · ${ev.date}`;
 
-      const capPlayer = (team.players || []).find(p => p.id === team.roles?.captain);
-      document.getElementById('pillOpponent').textContent = `🆚 ${ev.type}: ${ev.opponent || 'Por definir'}`;
-      document.getElementById('pillField').textContent = `📍 ${ev.field || 'Por definir'} (${ev.time || ''})`;
-      document.getElementById('pillFormation').textContent = `📋 Sistema: ${team.formation.split('').join('-')}`;
-      document.getElementById('pillCaptain').textContent = `©️ Capitán: ${capPlayer ? capPlayer.name : 'Por asignar'}`;
-
       const players = team.players || [];
       const present = players.filter(p => p.status === 'present');
       const late = players.filter(p => p.status === 'late');
       const absent = players.filter(p => p.status === 'absent');
       const doubt = players.filter(p => p.status === 'doubt');
       const available = [...present, ...late];
+      const paidCount = players.filter(p => p.feePaid).length;
+
+      const capPlayer = players.find(p => p.id === team.roles?.captain);
+      document.getElementById('pillOpponent').textContent = `🆚 ${ev.type}: ${ev.opponent || 'Por definir'}`;
+      document.getElementById('pillField').textContent = `📍 ${ev.field || 'Por definir'} (${ev.time || ''})`;
+      document.getElementById('pillFormation').textContent = `📋 Sistema: ${team.formation.split('').join('-')}`;
+      document.getElementById('pillCaptain').textContent = `©️ Capitán: ${capPlayer ? capPlayer.name : 'Por asignar'}`;
+      document.getElementById('pillFeeTotal').textContent = `💲 Arbitraje: ${paidCount}/${players.length} pagados`;
 
       document.getElementById('kpiTotal').textContent = String(players.length);
       document.getElementById('kpiPresent').textContent = String(present.length);
@@ -692,8 +739,13 @@
       const pct = Math.min(100, Math.round((available.length / 11) * 100));
       document.getElementById('quorumFill').style.width = `${pct}%`;
       document.getElementById('quorumCount').textContent = available.length >= 11
-        ? `✅ ${available.length} disponibles (Quórum completo)`
+        ? `✅ ${available.length} disponibles (Quórum completo + ${available.length - 11} cambios)`
         : `⚠️ ${available.length} / 11 disponibles (Faltan ${11 - available.length})`;
+
+      const rsvpSel = document.getElementById('rsvpPlayerSelect');
+      if (rsvpSel) {
+        rsvpSel.innerHTML = players.map(p => `<option value="${esc(p.id)}">#${esc(p.number)} ${esc(p.name)} (${esc(p.position)})</option>`).join('');
+      }
 
       renderAttendanceView(team, ev, present, late, absent, doubt);
       renderTacticsView(team, available);
@@ -717,6 +769,8 @@
         ['matchDate', ev.date || ''],
         ['matchTime', ev.time || ''],
         ['matchField', ev.field || ''],
+        ['dutyBalls', ev.dutyBalls || ''],
+        ['dutyWater', ev.dutyWater || ''],
         ['matchCoachNotes', ev.coachNotes || '']
       ];
       fields.forEach(([id, val]) => {
@@ -890,8 +944,11 @@
 
       const coords = ALL_FORMATIONS[team.formation] || ALL_FORMATIONS['433'];
       const all = team.players || [];
+      const starterIds = new Set();
+
       document.getElementById('tacticsLineupSlots').innerHTML = coords.map((pos, idx) => {
         const cur = team.lineupSlots?.[idx] || available[idx]?.id || '';
+        if (cur) starterIds.add(cur);
         return `
           <div class="slot-item">
             <span class="slot-badge">${idx + 1}·${esc(pos.code)}</span>
@@ -907,6 +964,14 @@
           </div>
         `;
       }).join('');
+
+      const bench = available.filter(p => !starterIds.has(p.id));
+      const benchBox = document.getElementById('benchPlayersList');
+      if (benchBox) {
+        benchBox.innerHTML = bench.length
+          ? bench.map(p => `<span class="bench-chip">🔄 #${esc(p.number)} ${esc(p.name)} (${esc(p.position)})</span>`).join('')
+          : `<span style="font-size:12px;color:var(--text-muted)">No hay suplentes adicionales marcados como presentes.</span>`;
+      }
     }
 
     function renderSquadView(team) {
@@ -962,6 +1027,7 @@
         `📌 *${ev.type}:* vs ${ev.opponent || 'Por definir'}`,
         `📅 *Fecha:* ${ev.date} · 🕒 ${ev.time} · 📍 ${ev.field}`,
         `📋 *Sistema:* ${team.formation.split('').join('-')}`,
+        ...(ev.dutyBalls || ev.dutyWater ? [`🎒 *Logística:* Balones: ${ev.dutyBalls || '-'} · Hidratación: ${ev.dutyWater || '-'}`] : []),
         ``,
         `✅ *ASISTIERON A JUGAR (${present.length + late.length}):*`,
         ...present.map(p => `  • #${p.number} ${p.name} (${p.position})`),
@@ -1012,7 +1078,8 @@
         const team = activeTeam(); const ev = activeEvent(team);
         const p = (team.players || []).find(x => x.id === ping.dataset.pingPlayer);
         if (p) {
-          const msg = `Hola *${p.name}* (#${p.number}), te escribimos de *${team.name}*. ¿Confirmas tu asistencia para el ${ev.type} vs *${ev.opponent}* el ${ev.date} a las ${ev.time} en ${ev.field}? Responde ✅ SÍ o ❌ NO.`;
+          const rsvpUrl = `${location.origin}${location.pathname}?team=${team.id}&rsvp=1`;
+          const msg = `Hola *${p.name}* (#${p.number}), convocatoria de *${team.name}* para el ${ev.type} vs *${ev.opponent}* (${ev.date} · ${ev.time} en ${ev.field}). Confirma en 1 toque aquí: ${rsvpUrl}`;
           window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank', 'noopener');
         }
         return;
@@ -1080,7 +1147,7 @@
       }
     });
 
-    ['evType', 'matchOpponent', 'matchDate', 'matchTime', 'matchField', 'matchCoachNotes'].forEach(id => {
+    ['evType', 'matchOpponent', 'matchDate', 'matchTime', 'matchField', 'dutyBalls', 'dutyWater', 'matchCoachNotes'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', e => {
         const ev = activeEvent();
         if (id === 'evType') ev.type = e.target.value;
@@ -1088,6 +1155,8 @@
         if (id === 'matchDate') ev.date = e.target.value;
         if (id === 'matchTime') ev.time = e.target.value;
         if (id === 'matchField') ev.field = e.target.value;
+        if (id === 'dutyBalls') ev.dutyBalls = e.target.value;
+        if (id === 'dutyWater') ev.dutyWater = e.target.value;
         if (id === 'matchCoachNotes') ev.coachNotes = e.target.value;
         saveState(); renderAll();
       });
@@ -1097,7 +1166,7 @@
 
     document.getElementById('btnNewEvent')?.addEventListener('click', () => {
       const team = activeTeam();
-      const newEv = { id: 'ev_' + Date.now(), type: 'Partido', opponent: 'Nuevo Rival', date: TODAY, time: '16:00', field: 'Campo #1', coachNotes: '' };
+      const newEv = { id: 'ev_' + Date.now(), type: 'Partido', opponent: 'Nuevo Rival', date: TODAY, time: '16:00', field: 'Campo #1', dutyBalls: '', dutyWater: '', coachNotes: '' };
       team.events.unshift(newEv);
       team.activeEventId = newEv.id;
       (team.players || []).forEach(p => { p.totalEvents = Number(p.totalEvents || 10) + 1; });
@@ -1136,8 +1205,33 @@
 
     document.getElementById('btnCopyRsvpLink')?.addEventListener('click', async () => {
       const team = activeTeam(); const ev = activeEvent(team);
-      const url = `${location.origin}${location.pathname}?team=${team.id}&event=${ev.id}`;
-      try { await navigator.clipboard.writeText(url); showToast('Link de convocatoria copiado'); } catch (_) {}
+      const url = `${location.origin}${location.pathname}?team=${team.id}&event=${ev.id}&rsvp=1`;
+      try { await navigator.clipboard.writeText(url); showToast('Link de confirmación 1-toque copiado'); } catch (_) {}
+    });
+
+    // Modal de Confirmación en 1 Toque (Spond / squadi)
+    const rsvpModal = document.getElementById('rsvpModal');
+    document.getElementById('btnOpenRsvpModal')?.addEventListener('click', () => rsvpModal?.classList.add('open'));
+    document.getElementById('btnCloseRsvp')?.addEventListener('click', () => rsvpModal?.classList.remove('open'));
+    document.getElementById('btnRsvpYes')?.addEventListener('click', () => {
+      const id = document.getElementById('rsvpPlayerSelect')?.value;
+      const note = document.getElementById('rsvpReasonInput')?.value.trim();
+      const p = (activeTeam().players || []).find(x => x.id === id);
+      if (p) {
+        p.status = 'present'; p.absenceReason = ''; if (note) p.note = note;
+        saveState(`✅ ${p.name} confirmó que SÍ asiste`);
+        rsvpModal?.classList.remove('open'); renderAll();
+      }
+    });
+    document.getElementById('btnRsvpNo')?.addEventListener('click', () => {
+      const id = document.getElementById('rsvpPlayerSelect')?.value;
+      const reason = document.getElementById('rsvpReasonInput')?.value.trim() || 'Confirmó baja';
+      const p = (activeTeam().players || []).find(x => x.id === id);
+      if (p) {
+        p.status = 'absent'; p.absenceReason = 'Personal / Familia'; p.note = reason;
+        saveState(`❌ ${p.name} avisó que NO asiste`);
+        rsvpModal?.classList.remove('open'); renderAll();
+      }
     });
 
     document.getElementById('btnAutoFillPresent')?.addEventListener('click', () => {
@@ -1204,42 +1298,24 @@
       }
     });
 
+    function checkUrlParams() {
+      const params = new URLSearchParams(location.search);
+      const t = params.get('team');
+      if (t && state.teams[t]) state.activeTeamId = t;
+      if (params.get('rsvp') === '1') {
+        setTimeout(() => rsvpModal?.classList.add('open'), 300);
+      }
+    }
+
     function init3DBall() {
       const stage = document.getElementById('mgrBallStage');
       if (!stage || !window.JRBallModelV38?.fallback) return;
       try { const fb = window.JRBallModelV38.fallback(stage); window.addEventListener('resize', () => fb.draw()); } catch (_) {}
     }
 
+    checkUrlParams();
     renderAll();
     init3DBall();
   </script>
-
-<!-- JR_V38_FIX43_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix43-category-row.css?v=38-43-r2">
-<script defer src="./assets/jr-v38-fix43-category-row.js?v=38-43-r2"></script>
-
-
-<!-- JR_V38_FIX44_DIRECT -->
-<script defer src="./assets/jr-v38-fix44-category-replace.js?v=38-44-r1"></script>
-
-
-<!-- JR_V38_FIX45_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix45-stability.css?v=38-48-r1">
-<script defer src="./assets/jr-v38-fix45-stability.js?v=38-48-r1"></script>
-
-
-<!-- JR_V38_FIX48_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix48-america-card.css?v=38-51-r1">
-<script defer src="./assets/jr-v38-fix48-america-card.js?v=38-54"></script>
-
-
-<!-- JR_V38_FIX50_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix50-buttons.css?v=38-50-r1">
-<script defer src="./assets/jr-v38-fix50-buttons.js?v=38-50-r1"></script>
-
-
-<!-- JR_V38_FIX59_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix59.css?v=38-59">
-<script defer src="./assets/jr-v38-fix59.js?v=38-59"></script>
 </body>
 </html>
