@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#06150e" />
   <title>DT Manager Pro · Club América Veteranos &amp; Atlético La Luz</title>
-  <meta name="description" content="Centro de Mando Técnico para Club América Veteranos y Atlético La Luz: ingeniería inversa completa de easy2coach, squadi, Attendance Register, Spond y TeamSnap." />
+  <meta name="description" content="Suite completa de Director Técnico para Club América Veteranos y Atlético La Luz: ingeniería inversa total de easy2coach, squadi, Attendance Register, Spond y TeamSnap." />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,7 +39,7 @@
       color: var(--text-main);
       font-family: 'Manrope', system-ui, sans-serif;
       line-height: 1.45;
-      padding-bottom: 92px;
+      padding-bottom: 96px;
     }
     .topbar {
       position: sticky; top: 0; z-index: 100;
@@ -137,7 +137,7 @@
     .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 10px; margin-bottom: 14px; }
     .field { display: flex; flex-direction: column; gap: 5px; }
     .field label { font-size: 11.5px; font-weight: 700; color: var(--text-muted); }
-    .field input, .field select { padding: 9px 12px; border-radius: 10px; border: 1px solid var(--border-green); background: rgba(4, 13, 8, 0.92); color: #fff; font-family: inherit; font-size: 13.5px; }
+    .field input, .field select, .field textarea { padding: 9px 12px; border-radius: 10px; border: 1px solid var(--border-green); background: rgba(4, 13, 8, 0.92); color: #fff; font-family: inherit; font-size: 13.5px; }
     .absent-banner { background: rgba(45, 12, 20, 0.8); border: 1px solid rgba(244, 63, 94, 0.45); border-radius: 16px; padding: 14px 16px; margin-bottom: 16px; }
     .absent-banner h4 { color: #fda4af; font-family: 'Sora', sans-serif; font-size: 14px; margin-bottom: 8px; }
     .absent-tags { display: flex; flex-wrap: wrap; gap: 7px; }
@@ -182,15 +182,24 @@
     .bench-chip { padding: 6px 11px; border-radius: 999px; background: rgba(34, 224, 122, 0.12); border: 1px solid var(--border-green); font-size: 12px; font-weight: 700; color: #e2f8ec; }
     .frame-3d { width: 100%; height: 560px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-green); background: #040d08; }
     .frame-3d iframe { width: 100%; height: 100%; border: 0; }
+    /* Match Center Live & Drills */
+    .scoreboard-box { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; text-align: center; background: rgba(4, 14, 9, 0.9); border: 1px solid var(--border-green); border-radius: 20px; padding: 20px; margin-bottom: 18px; }
+    .score-num { font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: var(--green-electric); line-height: 1; }
+    .timer-display { font-family: 'Sora', monospace; font-size: 32px; font-weight: 800; color: #fff; background: rgba(34, 224, 122, 0.12); border: 1px solid var(--border-green); padding: 8px 18px; border-radius: 14px; display: inline-block; margin-bottom: 8px; }
+    .timeline-list { display: flex; flex-direction: column; gap: 8px; max-height: 280px; overflow-y: auto; margin-top: 12px; }
+    .timeline-item { display: flex; justify-content: space-between; align-items: center; padding: 9px 12px; border-radius: 10px; background: rgba(5, 18, 12, 0.9); border-left: 4px solid var(--green-electric); font-size: 13px; }
+    .drills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .drill-card { padding: 14px; border-radius: 15px; border: 1px solid var(--border-green); background: rgba(5, 18, 12, 0.88); display: flex; flex-direction: column; gap: 8px; }
+    .drill-card.done { border-color: var(--green-electric); background: rgba(34, 224, 122, 0.12); }
     .rsvp-modal { position: fixed; inset: 0; z-index: 300; background: rgba(2, 8, 5, 0.88); backdrop-filter: blur(12px); display: none; place-items: center; padding: 16px; }
     .rsvp-modal.open { display: grid; }
     .rsvp-dialog { width: 100%; max-width: 480px; background: #071d13; border: 2px solid var(--green-electric); border-radius: 22px; padding: 22px; box-shadow: var(--shadow); }
-    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 120; background: rgba(4, 14, 9, 0.95); backdrop-filter: blur(14px); border-top: 1px solid var(--border-green); display: flex; justify-content: space-around; padding: 7px 8px; }
-    .bottom-nav button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 5px; background: transparent; border: 0; color: var(--text-muted); font-family: 'Sora', sans-serif; font-size: 11px; font-weight: 700; cursor: pointer; }
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 120; background: rgba(4, 14, 9, 0.95); backdrop-filter: blur(14px); border-top: 1px solid var(--border-green); display: flex; justify-content: space-around; padding: 7px 6px; }
+    .bottom-nav button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px; background: transparent; border: 0; color: var(--text-muted); font-family: 'Sora', sans-serif; font-size: 10.5px; font-weight: 700; cursor: pointer; }
     .bottom-nav button.active { color: var(--green-electric); }
     .toast { position: fixed; bottom: 80px; right: 16px; z-index: 200; background: #0b2e1d; border: 1px solid var(--green-electric); color: #fff; padding: 11px 16px; border-radius: 12px; font-size: 12.5px; font-weight: 700; opacity: 0; pointer-events: none; transition: 0.2s; }
     .toast.show { opacity: 1; }
-    @media (max-width: 860px) { .hero-grid, .tactics-layout { grid-template-columns: 1fr; } }
+    @media (max-width: 860px) { .hero-grid, .tactics-layout, .scoreboard-box { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -222,7 +231,7 @@
       <div>
         <span class="badge-coach">⚽ DT MANAGER &amp; COACH PRO</span>
         <div class="brand-title" style="margin-top:3px">Centro de Mando Técnico · Mis 2 Equipos</div>
-        <div class="brand-sub">Ingeniería inversa: easy2coach · squadi · Attendance Register · Spond · TeamSnap</div>
+        <div class="brand-sub">Ingeniería inversa total: easy2coach · squadi · Attendance Register · Spond · TeamSnap</div>
       </div>
       <div class="team-switcher" role="tablist" aria-label="Cambiar entre mis 2 equipos">
         <button type="button" class="team-btn active" data-switch-team="america_vet">
@@ -257,7 +266,7 @@
             <span class="pill" id="pillField">📍 Cancha: Campo #1</span>
             <span class="pill" id="pillFormation">📋 Sistema: 4-3-3</span>
             <span class="pill" id="pillCaptain">©️ Capitán: Por asignar</span>
-            <span class="pill" id="pillFeeTotal">💲 Arbitraje reunido: 0 pagados</span>
+            <span class="pill" id="pillFeeTotal">💲 Arbitraje: 0 pagados</span>
           </div>
 
           <!-- Semáforo de Quórum squadi / TeamSnap -->
@@ -281,9 +290,9 @@
         <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
           <div id="mgrBallStage" class="ball-stage"></div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-            <button type="button" class="btn-green" id="btnShareWa">📲 Convocar por WhatsApp</button>
+            <button type="button" class="btn-green" id="btnShareWa">📲 Convocar Grupo WhatsApp</button>
             <button type="button" class="btn-ghost" id="btnOpenRsvpModal">✋ Confirmación 1-Toque</button>
-            <button type="button" class="btn-ghost" id="btnCopyRsvpLink">🔗 Copiar Link Spond</button>
+            <button type="button" class="btn-ghost" id="btnRemindDoubtWa">🔔 Cobrar Confirmación a Dudas</button>
           </div>
         </div>
       </div>
@@ -291,8 +300,9 @@
 
     <nav class="tabs">
       <button type="button" class="tab-btn active" data-nav-view="attendance">📋 Asistencia, Eventos y Bajas</button>
-      <button type="button" class="tab-btn" data-nav-view="tactics">⚽ Pizarra Táctica 2D, Banca y 3D</button>
-      <button type="button" class="tab-btn" data-nav-view="squad">👥 Plantilla y Estadísticas (%)</button>
+      <button type="button" class="tab-btn" data-nav-view="tactics">⚽ Pizarra 2D, Banca y 3D</button>
+      <button type="button" class="tab-btn" data-nav-view="matchlive">⏱️ Partido en Vivo y Entrenamientos</button>
+      <button type="button" class="tab-btn" data-nav-view="squad">👥 Plantilla, CSV y Estadísticas (%)</button>
       <button type="button" class="tab-btn" data-nav-view="settings">⚙️ Personalizar Equipo y Respaldo</button>
     </nav>
 
@@ -305,7 +315,10 @@
             <h2>Partidos, Entrenamientos y Tareas del Día de Juego</h2>
             <p>Programa partidos o entrenamientos, asigna quién lleva balones/hidratación y toma lista de quiénes asistieron y quiénes faltaron.</p>
           </div>
-          <button type="button" class="btn-green" id="btnNewEvent">➕ Nuevo Partido / Entrenamiento</button>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button type="button" class="btn-ghost" id="btnCopyRsvpLink">🔗 Copiar Link Spond</button>
+            <button type="button" class="btn-green" id="btnNewEvent">➕ Nuevo Partido / Entrenamiento</button>
+          </div>
         </div>
 
         <div id="eventsStrip" class="events-strip"></div>
@@ -352,6 +365,7 @@
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
           <button type="button" class="btn-ghost" id="btnMarkAllPresent">✅ Marcar Todos Presentes</button>
           <button type="button" class="btn-green" id="btnCopyReport">📋 Copiar Reporte DT</button>
+          <button type="button" class="btn-ghost" id="btnExportCsv">📊 Descargar Excel / CSV (Attendance Register)</button>
         </div>
 
         <div id="absentSummaryBanner" class="absent-banner"></div>
@@ -449,7 +463,6 @@
             <h3 style="font-family:'Sora',sans-serif;font-size:15px;margin:10px 0 6px;color:var(--green-neon)">Once Titular por Posición</h3>
             <div id="tacticsLineupSlots" class="slots-list"></div>
 
-            <!-- Banca de Suplentes Disponibles (easy2coach) -->
             <div class="bench-box">
               <div class="eyebrow">BANCO DE SUPLENTES Y CAMBIOS DISPONIBLES</div>
               <p style="font-size:12px;color:var(--text-muted)">Jugadores que sí fueron hoy al partido y están listos para entrar de cambio:</p>
@@ -481,7 +494,93 @@
       </div>
     </section>
 
-    <!-- VISTA 3: PLANTILLA COMPLETA Y ESTADÍSTICAS DE ASISTENCIA -->
+    <!-- VISTA 3: CRONÓMETRO EN VIVO, CAMBIOS, MVP Y RUTINAS DE ENTRENAMIENTO (EASY2COACH + TEAMSNAP) -->
+    <section id="view-matchlive" class="view">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">CONSOLA DE PARTIDO EN VIVO (TEAMSNAP LIVE &amp; EASY2COACH)</div>
+            <h2>Cronómetro, Marcador, Sustituciones y Jugador MVP</h2>
+            <p>Lleva el tiempo del partido en la banda, registra goles, tarjetas o cambios y compártelos por WhatsApp al terminar.</p>
+          </div>
+          <button type="button" class="btn-green" id="btnShareLiveWa">📲 Mandar Crónica por WhatsApp</button>
+        </div>
+
+        <div class="scoreboard-box">
+          <div>
+            <div class="eyebrow" id="liveMyTeamLabel">MI EQUIPO</div>
+            <div class="score-num" id="scoreHome">0</div>
+            <div style="display:flex;gap:6px;justify-content:center;margin-top:6px">
+              <button type="button" class="btn-green" id="btnHomePlus">+1 Gol</button>
+              <button type="button" class="btn-ghost" id="btnHomeMinus">-1</button>
+            </div>
+          </div>
+
+          <div>
+            <div class="timer-display" id="matchTimerDisplay">00:00</div>
+            <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
+              <button type="button" class="btn-green" id="btnTimerToggle">▶️ Iniciar / Pausar</button>
+              <button type="button" class="btn-ghost" id="btnTimerHalf">⏱️ 2º Tiempo (45')</button>
+              <button type="button" class="btn-danger" id="btnTimerReset">Reiniciar</button>
+            </div>
+          </div>
+
+          <div>
+            <div class="eyebrow" id="liveOpponentLabel">RIVAL</div>
+            <div class="score-num" id="scoreAway" style="color:#f8fafc">0</div>
+            <div style="display:flex;gap:6px;justify-content:center;margin-top:6px">
+              <button type="button" class="btn-ghost" id="btnAwayPlus">+1 Gol Rival</button>
+              <button type="button" class="btn-ghost" id="btnAwayMinus">-1</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Registro de Sustituciones, Goles, Tarjetas y MVP -->
+        <form id="liveActionForm" class="form-grid">
+          <div class="field">
+            <label for="liveActionType">Acción en Cancha</label>
+            <select id="liveActionType">
+              <option value="⚽ Gol">⚽ Gol a favor</option>
+              <option value="🔄 Cambio (Entra / Sale)">🔄 Sustitución / Cambio</option>
+              <option value="🟨 Tarjeta Amarilla">🟨 Tarjeta Amarilla</option>
+              <option value="🟥 Tarjeta Roja">🟥 Tarjeta Roja</option>
+              <option value="⭐ MVP del Partido">⭐ Elegir MVP del Partido</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="livePlayerPrimary">Jugador Principal (Anota / Entra)</label>
+            <select id="livePlayerPrimary"></select>
+          </div>
+          <div class="field">
+            <label for="livePlayerSecondary">Asistencia o Jugador que Sale</label>
+            <select id="livePlayerSecondary"></select>
+          </div>
+          <div class="field">
+            <label for="liveMinuteInput">Minuto (' )</label>
+            <input id="liveMinuteInput" type="text" placeholder="Ej. 32'" />
+          </div>
+          <div class="field" style="justify-content:flex-end">
+            <button type="submit" class="btn-green" style="height:40px">➕ Registrar en Bitácora</button>
+          </div>
+        </form>
+
+        <div id="liveTimelineList" class="timeline-list"></div>
+      </div>
+
+      <!-- Catálogo de Ejercicios de Entrenamiento (easy2coach Drills) -->
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">PLANIFICADOR DE ENTRENAMIENTO (EASY2COACH DRILLS)</div>
+            <h2>Rutinas Tácticas y Físicas para tu Equipo</h2>
+            <p>Marca las sesiones completadas con tu plantel o agrega tus propios ejercicios tácticos.</p>
+          </div>
+        </div>
+        <div id="drillsGrid" class="drills-grid"></div>
+      </div>
+    </section>
+
+    <!-- VISTA 4: PLANTILLA COMPLETA Y ESTADÍSTICAS DE ASISTENCIA -->
     <section id="view-squad" class="view">
       <div class="panel">
         <div class="panel-head">
@@ -489,6 +588,7 @@
             <div class="eyebrow">REGISTRO DE PLANTILLA Y RENDIMIENTO (MODO ATTENDANCE REGISTER)</div>
             <h2>Editar Jugadores, Dorsales, Goles y % de Asistencia</h2>
           </div>
+          <button type="button" class="btn-green" id="btnExportCsvSquad">📊 Exportar Plantilla a Excel (CSV)</button>
         </div>
         <div style="overflow-x:auto">
           <table style="width:100%;border-collapse:collapse;font-size:13px">
@@ -510,7 +610,7 @@
       </div>
     </section>
 
-    <!-- VISTA 4: PERSONALIZACIÓN DEL EQUIPO Y RESPALDO JSON -->
+    <!-- VISTA 5: PERSONALIZACIÓN DEL EQUIPO Y RESPALDO JSON -->
     <section id="view-settings" class="view">
       <div class="panel">
         <div class="panel-head">
@@ -552,6 +652,7 @@
   <nav class="bottom-nav">
     <button type="button" class="active" data-nav-view="attendance"><span>📋</span><span>Asistencia</span></button>
     <button type="button" data-nav-view="tactics"><span>⚽</span><span>Tácticas</span></button>
+    <button type="button" data-nav-view="matchlive"><span>⏱️</span><span>En Vivo</span></button>
     <button type="button" data-nav-view="squad"><span>👥</span><span>Plantilla</span></button>
     <button type="button" data-nav-view="settings"><span>⚙️</span><span>Equipo</span></button>
   </nav>
@@ -563,7 +664,7 @@
     import { computePitchMarkings } from './vendor/campos/pitch.js';
     import formations from './vendor/campos/formations.js';
 
-    const STORAGE_KEY = 'dt_manager_coach_green_v3';
+    const STORAGE_KEY = 'dt_manager_coach_green_v4';
     const NS = 'http://www.w3.org/2000/svg';
     const TODAY = new Date().toISOString().slice(0, 10);
 
@@ -584,6 +685,13 @@
       ]
     };
 
+    const DEFAULT_DRILLS = [
+      { id: 'dr1', title: 'Rondo de Presión 4 vs 2', category: 'Posesión y Salida', duration: '15 min', desc: 'Toque rápido a 1-2 intenciones y presión inmediata tras pérdida.', done: true },
+      { id: 'dr2', title: 'Basculación Defensiva y Coberturas', category: 'Táctica Defensiva', duration: '20 min', desc: 'Trabajo de línea de 4 y volante central cerrando líneas de pase interiores.', done: false },
+      { id: 'dr3', title: 'Transición Rápida Banda-Centro', category: 'Ataque Directo', duration: '20 min', desc: 'Desborde de extremos y llegada de segunda línea al punto penal.', done: false },
+      { id: 'dr4', title: 'Laboratorio de Balón Parado', category: 'Táctica Fija', duration: '15 min', desc: 'Tiros de esquina al primer poste, tiros libres frontales y marcas en contra.', done: true }
+    ];
+
     const DEFAULT_STATE = {
       activeTeamId: 'america_vet',
       teams: {
@@ -602,6 +710,11 @@
           events: [
             { id: 'ev_am_1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '16:00', field: 'Campo Empastado #1', dutyBalls: 'Alfredo Tena', dutyWater: 'Pável Pardo', coachNotes: 'Confirmar asistencia 30 min antes. Cuidar coberturas.' }
           ],
+          liveMatch: { scoreHome: 2, scoreAway: 1, mvpId: 'am8', log: [
+            { id: 'lg1', min: "18'", text: '⚽ Gol de Salvador Cabañas (Asist: Cuauhtémoc Blanco)' },
+            { id: 'lg2', min: "54'", text: '🔄 Cambio: Entra Luis Roberto Alves por Reinaldo Navia' }
+          ]},
+          drills: JSON.parse(JSON.stringify(DEFAULT_DRILLS)),
           lineupSlots: {},
           customCoords: {},
           players: [
@@ -636,6 +749,11 @@
           events: [
             { id: 'ev_ll_1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '10:00', field: 'Campo La Luz', dutyBalls: 'Jairo Franco', dutyWater: 'Martín Franco', coachNotes: 'Mantener líneas juntas y aprovechar tiros libres.' }
           ],
+          liveMatch: { scoreHome: 3, scoreAway: 0, mvpId: 'll7', log: [
+            { id: 'lg_ll1', min: "22'", text: '⚽ Gol de Mateo Villagómez (Asist: Jairo Franco)' },
+            { id: 'lg_ll2', min: "61'", text: '⚽ Gol de Jairo Franco (Tiro libre directo)' }
+          ]},
+          drills: JSON.parse(JSON.stringify(DEFAULT_DRILLS)),
           lineupSlots: {},
           customCoords: {},
           players: [
@@ -661,6 +779,8 @@
     let state = loadState();
     let currentFilter = 'all';
     let draggingSlotIndex = null;
+    let timerSeconds = 0;
+    let timerInterval = null;
 
     function clone(o) { return JSON.parse(JSON.stringify(o)); }
     function loadState() {
@@ -749,6 +869,7 @@
 
       renderAttendanceView(team, ev, present, late, absent, doubt);
       renderTacticsView(team, available);
+      renderMatchLiveView(team, ev);
       renderSquadView(team);
       renderSettingsView(team);
     }
@@ -974,6 +1095,42 @@
       }
     }
 
+    function renderMatchLiveView(team, ev) {
+      if (!team.liveMatch) team.liveMatch = { scoreHome: 0, scoreAway: 0, log: [] };
+      if (!team.drills) team.drills = JSON.parse(JSON.stringify(DEFAULT_DRILLS));
+
+      document.getElementById('liveMyTeamLabel').textContent = team.name.toUpperCase();
+      document.getElementById('liveOpponentLabel').textContent = (ev.opponent || 'RIVAL').toUpperCase();
+      document.getElementById('scoreHome').textContent = String(team.liveMatch.scoreHome || 0);
+      document.getElementById('scoreAway').textContent = String(team.liveMatch.scoreAway || 0);
+
+      const pOpts = (team.players || []).map(p => `<option value="${esc(p.name)}">#${esc(p.number)} ${esc(p.name)}</option>`).join('');
+      document.getElementById('livePlayerPrimary').innerHTML = pOpts;
+      document.getElementById('livePlayerSecondary').innerHTML = `<option value="">-- Ninguno / Sin asistencia --</option>` + pOpts;
+
+      const tList = document.getElementById('liveTimelineList');
+      tList.innerHTML = (team.liveMatch.log || []).map(item => `
+        <div class="timeline-item">
+          <span><b style="color:var(--green-electric)">${esc(item.min)}</b> · ${esc(item.text)}</span>
+          <button type="button" class="btn-danger" data-del-log="${esc(item.id)}" style="padding:3px 7px">✕</button>
+        </div>
+      `).join('');
+
+      const dGrid = document.getElementById('drillsGrid');
+      dGrid.innerHTML = (team.drills || []).map(d => `
+        <article class="drill-card ${d.done ? 'done' : ''}">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="pos-badge">${esc(d.category)} · ${esc(d.duration)}</span>
+            <button type="button" class="fee-btn ${d.done ? 'paid' : ''}" data-toggle-drill="${esc(d.id)}">
+              ${d.done ? '✅ Completado' : '⏳ Pendiente'}
+            </button>
+          </div>
+          <h4 style="font-family:'Sora',sans-serif;font-size:14.5px;color:#fff">${esc(d.title)}</h4>
+          <p style="font-size:12px;color:var(--text-muted)">${esc(d.desc)}</p>
+        </article>
+      `).join('');
+    }
+
     function renderSquadView(team) {
       const positions = ['Portero', 'Defensa Central', 'Defensa Lateral', 'Defensa', 'Mediocampista', 'Enganche / 10', 'Extremo Derecho', 'Extremo Izquierdo', 'Delantero'];
       document.getElementById('squadTableBody').innerHTML = (team.players || []).map(p => `
@@ -1040,6 +1197,20 @@
       ].join('\n');
     }
 
+    function exportAttendanceCsv() {
+      const team = activeTeam();
+      const rows = [['Dorsal', 'Jugador', 'Posicion', 'Estado_Hoy', 'Motivo_Ausencia', 'Porcentaje_Asistencia', 'Goles', 'Asistencias', 'Arbitraje_Pagado']];
+      (team.players || []).forEach(p => {
+        rows.push([p.number, p.name, p.position, p.status, p.absenceReason || '', `${attRate(p)}%`, p.goals || 0, p.assists || 0, p.feePaid ? 'SI' : 'NO']);
+      });
+      const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+      const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = `asistencia-${team.id}-${TODAY}.csv`; a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      showToast('Archivo Excel/CSV descargado');
+    }
+
     document.addEventListener('click', e => {
       const sw = e.target.closest('[data-switch-team]');
       if (sw) { state.activeTeamId = sw.dataset.switchTeam; saveState(`Equipo activo: ${activeTeam().name}`); renderAll(); return; }
@@ -1071,6 +1242,20 @@
         const p = (activeTeam().players || []).find(x => x.id === fee.dataset.toggleFee);
         if (p) { p.feePaid = !p.feePaid; saveState(`Arbitraje de ${p.name}: ${p.feePaid ? 'Pagado' : 'Pendiente'}`); renderAll(); }
         return;
+      }
+
+      const drBtn = e.target.closest('[data-toggle-drill]');
+      if (drBtn) {
+        const d = (activeTeam().drills || []).find(x => x.id === drBtn.dataset.toggleDrill);
+        if (d) { d.done = !d.done; saveState(`Ejercicio: ${d.title}`); renderAll(); }
+        return;
+      }
+
+      const delLog = e.target.closest('[data-del-log]');
+      if (delLog) {
+        const team = activeTeam();
+        team.liveMatch.log = (team.liveMatch.log || []).filter(x => x.id !== delLog.dataset.delLog);
+        saveState('Evento borrado de bitácora'); renderAll(); return;
       }
 
       const ping = e.target.closest('[data-ping-player]');
@@ -1164,6 +1349,63 @@
 
     document.getElementById('tacticsStyleInput')?.addEventListener('input', e => { activeTeam().tacticalStyle = e.target.value; saveState(); });
 
+    // Controles de Cronómetro y Marcador en Vivo
+    function updateTimerDisplay() {
+      const m = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+      const s = String(timerSeconds % 60).padStart(2, '0');
+      document.getElementById('matchTimerDisplay').textContent = `${m}:${s}`;
+    }
+    document.getElementById('btnTimerToggle')?.addEventListener('click', () => {
+      if (timerInterval) { clearInterval(timerInterval); timerInterval = null; showToast('Cronómetro pausado'); }
+      else { timerInterval = setInterval(() => { timerSeconds++; updateTimerDisplay(); }, 1000); showToast('Cronómetro en marcha'); }
+    });
+    document.getElementById('btnTimerHalf')?.addEventListener('click', () => { timerSeconds = 45 * 60; updateTimerDisplay(); showToast('Reloj en 45:00 (2º Tiempo)'); });
+    document.getElementById('btnTimerReset')?.addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null; timerSeconds = 0; updateTimerDisplay(); });
+
+    document.getElementById('btnHomePlus')?.addEventListener('click', () => { activeTeam().liveMatch.scoreHome++; saveState('⚽ ¡Gol registrado!'); renderAll(); });
+    document.getElementById('btnHomeMinus')?.addEventListener('click', () => { activeTeam().liveMatch.scoreHome = Math.max(0, activeTeam().liveMatch.scoreHome - 1); saveState(); renderAll(); });
+    document.getElementById('btnAwayPlus')?.addEventListener('click', () => { activeTeam().liveMatch.scoreAway++; saveState('Gol rival registrado'); renderAll(); });
+    document.getElementById('btnAwayMinus')?.addEventListener('click', () => { activeTeam().liveMatch.scoreAway = Math.max(0, activeTeam().liveMatch.scoreAway - 1); saveState(); renderAll(); });
+
+    document.getElementById('liveActionForm')?.addEventListener('submit', e => {
+      e.preventDefault();
+      const team = activeTeam();
+      const type = document.getElementById('liveActionType').value;
+      const p1 = document.getElementById('livePlayerPrimary').value;
+      const p2 = document.getElementById('livePlayerSecondary').value;
+      const min = document.getElementById('liveMinuteInput').value.trim() || `${Math.floor(timerSeconds / 60)}'`;
+      const desc = `${type}: ${p1}${p2 ? ' (' + p2 + ')' : ''}`;
+      team.liveMatch.log.unshift({ id: 'lg_' + Date.now(), min, text: desc });
+      document.getElementById('liveMinuteInput').value = '';
+      saveState('Acción agregada al partido en vivo'); renderAll();
+    });
+
+    document.getElementById('btnShareLiveWa')?.addEventListener('click', () => {
+      const team = activeTeam(); const ev = activeEvent(team);
+      const lm = team.liveMatch || { scoreHome: 0, scoreAway: 0, log: [] };
+      const txt = [
+        `⏱️ *MARCADOR Y CRÓNICA EN VIVO — ${team.name.toUpperCase()}*`,
+        `⚽ *${team.name} ${lm.scoreHome} - ${lm.scoreAway} ${ev.opponent || 'Rival'}*`,
+        `📍 ${ev.field} · 📅 ${ev.date}`,
+        ``,
+        `📋 *ACCIONES DEL PARTIDO:*`,
+        ...(lm.log.length ? lm.log.map(l => `  • ${l.min} — ${l.text}`) : ['  • Sin incidencias registradas'])
+      ].join('\n');
+      window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
+    });
+
+    document.getElementById('btnRemindDoubtWa')?.addEventListener('click', () => {
+      const team = activeTeam(); const ev = activeEvent(team);
+      const doubts = (team.players || []).filter(p => p.status === 'doubt');
+      const rsvpUrl = `${location.origin}${location.pathname}?team=${team.id}&rsvp=1`;
+      const names = doubts.length ? doubts.map(p => `#${p.number} ${p.name}`).join(', ') : 'todos los pendientes';
+      const txt = `🔔 *RECORDATORIO DE CONFIRMACIÓN (${team.name})*\nAtención: ${names}.\nPor favor confirmen en 1 toque su asistencia para el ${ev.type} vs *${ev.opponent}* (${ev.date} · ${ev.time}):\n${rsvpUrl}`;
+      window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
+    });
+
+    document.getElementById('btnExportCsv')?.addEventListener('click', exportAttendanceCsv);
+    document.getElementById('btnExportCsvSquad')?.addEventListener('click', exportAttendanceCsv);
+
     document.getElementById('btnNewEvent')?.addEventListener('click', () => {
       const team = activeTeam();
       const newEv = { id: 'ev_' + Date.now(), type: 'Partido', opponent: 'Nuevo Rival', date: TODAY, time: '16:00', field: 'Campo #1', dutyBalls: '', dutyWater: '', coachNotes: '' };
@@ -1209,7 +1451,6 @@
       try { await navigator.clipboard.writeText(url); showToast('Link de confirmación 1-toque copiado'); } catch (_) {}
     });
 
-    // Modal de Confirmación en 1 Toque (Spond / squadi)
     const rsvpModal = document.getElementById('rsvpModal');
     document.getElementById('btnOpenRsvpModal')?.addEventListener('click', () => rsvpModal?.classList.add('open'));
     document.getElementById('btnCloseRsvp')?.addEventListener('click', () => rsvpModal?.classList.remove('open'));
@@ -1317,33 +1558,5 @@
     renderAll();
     init3DBall();
   </script>
-
-<!-- JR_V38_FIX43_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix43-category-row.css?v=38-43-r2">
-<script defer src="./assets/jr-v38-fix43-category-row.js?v=38-43-r2"></script>
-
-
-<!-- JR_V38_FIX44_DIRECT -->
-<script defer src="./assets/jr-v38-fix44-category-replace.js?v=38-44-r1"></script>
-
-
-<!-- JR_V38_FIX45_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix45-stability.css?v=38-48-r1">
-<script defer src="./assets/jr-v38-fix45-stability.js?v=38-48-r1"></script>
-
-
-<!-- JR_V38_FIX48_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix48-america-card.css?v=38-51-r1">
-<script defer src="./assets/jr-v38-fix48-america-card.js?v=38-54"></script>
-
-
-<!-- JR_V38_FIX50_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix50-buttons.css?v=38-50-r1">
-<script defer src="./assets/jr-v38-fix50-buttons.js?v=38-50-r1"></script>
-
-
-<!-- JR_V38_FIX59_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix59.css?v=38-59">
-<script defer src="./assets/jr-v38-fix59.js?v=38-59"></script>
 </body>
 </html>
