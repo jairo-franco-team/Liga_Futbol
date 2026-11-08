@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#071710" />
+  <meta name="theme-color" content="#06150e" />
   <title>DT Manager Pro · Club América Veteranos &amp; Atlético La Luz</title>
-  <meta name="description" content="Aplicación de Manager y Director Técnico para administrar Club América Veteranos y Atlético La Luz: control de asistencia, bajas, tácticas 2D/3D y edición de plantilla." />
+  <meta name="description" content="Centro de Mando Técnico para Club América Veteranos y Atlético La Luz: asistencia, bajas, convocatorias WhatsApp y pizarra táctica 2D/3D." />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,222 +14,1204 @@
   <style>
     :root {
       --bg-deep: #040d08;
-      --bg-main: #071710;
-      --bg-card: rgba(11, 31, 22, 0.88);
-      --bg-card-hover: rgba(16, 45, 32, 0.95);
+      --bg-card: rgba(10, 29, 20, 0.9);
       --green-electric: #22e07a;
       --green-neon: #45ed91;
       --green-emerald: #10b981;
-      --gold-accent: #f2c14e;
+      --gold: #f2c14e;
       --danger: #f43f5e;
       --warning: #f59e0b;
+      --info: #38bdf8;
       --text-main: #f3faf6;
       --text-muted: #9cb8a8;
-      --border-green: rgba(34, 224, 122, 0.24);
+      --border-green: rgba(34, 224, 122, 0.26);
       --border-subtle: rgba(255, 255, 255, 0.1);
-      --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.55);
-      --radius-xl: 24px;
+      --shadow: 0 18px 44px rgba(0, 0, 0, 0.55);
+      --radius-xl: 22px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       min-height: 100vh;
-      background-color: var(--bg-deep);
-      background-image:
-        radial-gradient(ellipse at 15% 10%, rgba(34, 224, 122, 0.14), transparent 45%),
-        radial-gradient(ellipse at 85% 25%, rgba(16, 185, 129, 0.12), transparent 50%),
-        linear-gradient(165deg, #040d08 0%, #071911 50%, #030a06 100%);
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(34, 224, 122, 0.15), transparent 45%),
+        radial-gradient(ellipse at 85% 20%, rgba(16, 185, 129, 0.12), transparent 50%),
+        linear-gradient(165deg, #040d08 0%, #071911 55%, #030a06 100%);
       color: var(--text-main);
-      font-family: 'Manrope', system-ui, -apple-system, sans-serif;
-      line-height: 1.5;
+      font-family: 'Manrope', system-ui, sans-serif;
+      line-height: 1.45;
       padding-bottom: 92px;
     }
-    .mgr-topbar {
+    .topbar {
       position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(18px); background: rgba(5, 16, 11, 0.88);
-      border-bottom: 1px solid var(--border-green); padding: 12px 20px;
+      backdrop-filter: blur(16px); background: rgba(4, 15, 10, 0.9);
+      border-bottom: 1px solid var(--border-green); padding: 10px 16px;
     }
-    .mgr-topbar-inner {
+    .topbar-inner {
       max-width: 1280px; margin: 0 auto; display: flex;
-      align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
     }
-    .mgr-brand { display: flex; align-items: center; gap: 12px; }
-    .mgr-badge-coach {
+    .badge-coach {
       display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
       border-radius: 999px; background: rgba(34, 224, 122, 0.14);
       border: 1px solid var(--border-green); color: var(--green-neon);
-      font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+      font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
     }
-    .mgr-brand-title { font-family: 'Sora', sans-serif; font-size: 17px; font-weight: 800; color: #fff; }
-    .mgr-brand-sub { font-size: 12px; color: var(--text-muted); }
+    .brand-title { font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 800; color: #fff; }
+    .brand-sub { font-size: 11.5px; color: var(--text-muted); }
     .team-switcher {
-      display: flex; align-items: center; gap: 8px;
-      background: rgba(4, 12, 8, 0.9); padding: 6px;
-      border-radius: 16px; border: 1px solid var(--border-green);
+      display: flex; gap: 6px; background: rgba(3, 10, 7, 0.92);
+      padding: 5px; border-radius: 14px; border: 1px solid var(--border-green);
     }
-    .team-switch-btn {
-      display: flex; align-items: center; gap: 10px; padding: 8px 16px;
-      border-radius: 12px; border: 1px solid transparent; background: transparent;
-      color: var(--text-muted); font-family: 'Sora', sans-serif; font-size: 13px;
-      font-weight: 700; cursor: pointer; transition: all 0.2s ease;
+    .team-btn {
+      display: flex; align-items: center; gap: 8px; padding: 7px 13px;
+      border-radius: 10px; border: 1px solid transparent; background: transparent;
+      color: var(--text-muted); font-family: 'Sora', sans-serif; font-size: 12.5px;
+      font-weight: 700; cursor: pointer; transition: 0.2s;
     }
-    .team-switch-btn img {
-      width: 30px; height: 30px; object-fit: contain; border-radius: 8px;
+    .team-btn img {
+      width: 28px; height: 28px; object-fit: contain; border-radius: 7px;
       background: #030906; padding: 2px; border: 1px solid rgba(255,255,255,0.12);
     }
-    .team-switch-btn.active {
+    .team-btn.active {
       background: linear-gradient(135deg, #22e07a 0%, #10b981 100%);
-      color: #041d10; border-color: #69f0a7; box-shadow: 0 6px 20px rgba(34, 224, 122, 0.3);
+      color: #041d10; border-color: #69f0a7; box-shadow: 0 5px 18px rgba(34, 224, 122, 0.3);
     }
-    .mgr-container { max-width: 1280px; margin: 0 auto; padding: 20px; }
-    .mgr-hero {
+    .container { max-width: 1280px; margin: 0 auto; padding: 16px; }
+    .hero {
       border-radius: var(--radius-xl); border: 1px solid var(--border-green);
-      background: radial-gradient(circle at 82% 28%, rgba(34, 224, 122, 0.22), transparent 48%),
+      background: radial-gradient(circle at 82% 28%, rgba(34, 224, 122, 0.2), transparent 48%),
                   linear-gradient(135deg, #0b2519 0%, #06130d 65%, #040c08 100%);
-      box-shadow: var(--shadow-lg); padding: clamp(22px, 4vw, 44px); margin-bottom: 24px;
+      box-shadow: var(--shadow); padding: clamp(18px, 3.5vw, 34px); margin-bottom: 18px;
     }
-    .mgr-hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr); gap: 24px; align-items: center; }
-    .mgr-hero-lockup { display: flex; align-items: center; gap: 16px; margin: 14px 0 18px; }
-    .mgr-hero-crest-wrap {
-      width: 84px; height: 84px; border-radius: 20px; border: 2px solid var(--green-electric);
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr); gap: 20px; align-items: center; }
+    .hero-lockup { display: flex; align-items: center; gap: 14px; margin: 10px 0 14px; }
+    .crest-box {
+      width: 78px; height: 78px; border-radius: 18px; border: 2px solid var(--green-electric);
       background: #030a06; display: grid; place-items: center; padding: 6px; flex-shrink: 0;
     }
-    .mgr-hero-crest-wrap img { width: 100%; height: 100%; object-fit: contain; }
-    .mgr-hero-title { font-family: 'Bebas Neue', 'Sora', sans-serif; font-size: clamp(34px, 5vw, 64px); line-height: 0.98; color: #fff; text-transform: uppercase; }
-    .mgr-hero-title .electric { color: var(--green-electric); }
-    .mgr-hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
-    .mgr-pill {
-      display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px;
+    .crest-box img { width: 100%; height: 100%; object-fit: contain; }
+    .hero-title { font-family: 'Bebas Neue', 'Sora', sans-serif; font-size: clamp(32px, 4.8vw, 58px); line-height: 0.98; color: #fff; text-transform: uppercase; }
+    .hero-title .electric { color: var(--green-electric); }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px;
       border-radius: 999px; background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border-subtle); font-size: 12px; font-weight: 700; color: #d8ece1;
+      border: 1px solid var(--border-subtle); font-size: 11.5px; font-weight: 700; color: #d8ece1;
     }
-    .mgr-kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 22px; }
-    .mgr-kpi-card { background: rgba(5, 16, 11, 0.78); border: 1px solid var(--border-green); border-radius: 16px; padding: 14px 16px; }
-    .mgr-kpi-card small { display: block; font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); }
-    .mgr-kpi-card strong { display: block; font-family: 'Sora', sans-serif; font-size: 26px; font-weight: 800; color: #fff; margin-top: 2px; }
-    .mgr-kpi-card.present strong { color: var(--green-electric); }
-    .mgr-kpi-card.absent strong { color: var(--danger); }
-    .mgr-kpi-card.doubt strong { color: var(--warning); }
-    .mgr-hero-stage { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    .mgr-ball-stage { width: 100%; height: 230px; border-radius: 22px; border: 1px solid var(--border-green); background: radial-gradient(circle, rgba(34, 224, 122, 0.18), transparent 70%); overflow: hidden; }
-    .mgr-tabs { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 22px; }
-    .mgr-tab-btn {
-      display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px;
-      border-radius: 14px; border: 1px solid var(--border-green); background: var(--bg-card);
-      color: var(--text-main); font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap;
+    .quorum-wrap { margin-top: 14px; background: rgba(4, 14, 9, 0.82); border: 1px solid var(--border-green); border-radius: 14px; padding: 10px 14px; }
+    .quorum-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; margin-bottom: 6px; }
+    .quorum-bar { height: 9px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; }
+    .quorum-fill { height: 100%; background: linear-gradient(90deg, #10b981, #22e07a); transition: width 0.25s ease; }
+    .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 10px; margin-top: 14px; }
+    .kpi { background: rgba(5, 16, 11, 0.8); border: 1px solid var(--border-green); border-radius: 14px; padding: 10px 12px; }
+    .kpi small { display: block; font-size: 10.5px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); }
+    .kpi strong { display: block; font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 800; color: #fff; margin-top: 2px; }
+    .kpi.present strong { color: var(--green-electric); }
+    .kpi.late strong { color: var(--info); }
+    .kpi.absent strong { color: var(--danger); }
+    .kpi.doubt strong { color: var(--warning); }
+    .ball-stage { width: 100%; height: 195px; border-radius: 18px; border: 1px solid var(--border-green); background: radial-gradient(circle, rgba(34, 224, 122, 0.18), transparent 70%); overflow: hidden; }
+    .tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 18px; }
+    .tab-btn {
+      display: inline-flex; align-items: center; gap: 7px; padding: 11px 16px;
+      border-radius: 12px; border: 1px solid var(--border-green); background: var(--bg-card);
+      color: var(--text-main); font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 700; cursor: pointer; white-space: nowrap;
     }
-    .mgr-tab-btn.active { background: var(--green-electric); color: #041d10; border-color: var(--green-neon); }
-    .mgr-view { display: none; }
-    .mgr-view.active { display: block; }
-    .mgr-panel { background: var(--bg-card); border: 1px solid var(--border-green); border-radius: var(--radius-xl); padding: clamp(18px, 3vw, 28px); margin-bottom: 22px; box-shadow: var(--shadow-lg); }
-    .mgr-panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border-subtle); }
-    .mgr-eyebrow { color: var(--green-electric); font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 4px; }
-    .mgr-panel-head h2, .mgr-panel-head h3 { font-family: 'Sora', sans-serif; font-size: clamp(20px, 2.5vw, 26px); color: #fff; }
-    .mgr-panel-head p { color: var(--text-muted); font-size: 13.5px; margin-top: 4px; }
-    .btn-green { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 18px; border-radius: 12px; border: 1px solid var(--green-electric); background: var(--green-electric); color: #042012; font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 800; cursor: pointer; text-decoration: none; }
-    .btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 16px; border-radius: 12px; border: 1px solid var(--border-green); background: rgba(15, 42, 29, 0.75); color: var(--text-main); font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none; }
-    .btn-danger { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(244, 63, 94, 0.4); background: rgba(244, 63, 94, 0.14); color: #fda4af; font-size: 12px; font-weight: 700; cursor: pointer; }
-    .mgr-form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 18px; }
-    .mgr-field { display: flex; flex-direction: column; gap: 6px; }
-    .mgr-field label { font-size: 12px; font-weight: 700; color: var(--text-muted); }
-    .mgr-field input, .mgr-field select, .mgr-field textarea { padding: 11px 14px; border-radius: 12px; border: 1px solid var(--border-green); background: rgba(4, 13, 8, 0.9); color: #fff; font-family: inherit; font-size: 14px; }
-    .attendance-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
-    .filter-chip { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border-green); background: rgba(6, 20, 13, 0.85); color: var(--text-muted); font-size: 12.5px; font-weight: 800; cursor: pointer; }
-    .filter-chip.active { background: var(--green-electric); color: #042012; border-color: var(--green-electric); }
-    .players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 14px; }
-    .player-card { background: rgba(6, 19, 13, 0.92); border: 1px solid var(--border-green); border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
-    .player-card.status-present { border-left: 5px solid var(--green-electric); }
-    .player-card.status-absent { border-left: 5px solid var(--danger); background: rgba(28, 11, 16, 0.72); border-color: rgba(244, 63, 94, 0.35); }
-    .player-card.status-doubt { border-left: 5px solid var(--warning); }
-    .player-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .player-identity { display: flex; align-items: center; gap: 12px; min-width: 0; }
-    .player-dorsal { width: 42px; height: 42px; border-radius: 12px; background: rgba(34, 224, 122, 0.18); border: 1px solid var(--green-electric); display: grid; place-items: center; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 16px; color: var(--green-electric); flex-shrink: 0; }
-    .player-name { font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 800; color: #fff; }
-    .player-pos-badge { display: inline-block; font-size: 11px; font-weight: 700; color: var(--green-neon); background: rgba(34, 224, 122, 0.12); padding: 2px 8px; border-radius: 6px; margin-top: 2px; }
-    .player-status-toggles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-    .status-btn { padding: 8px 6px; border-radius: 10px; border: 1px solid var(--border-subtle); background: rgba(255, 255, 255, 0.04); color: var(--text-muted); font-size: 11.5px; font-weight: 800; cursor: pointer; }
-    .status-btn.active-present { background: rgba(34, 224, 122, 0.22); border-color: var(--green-electric); color: var(--green-neon); }
-    .status-btn.active-absent { background: rgba(244, 63, 94, 0.25); border-color: var(--danger); color: #fecdd3; }
-    .status-btn.active-doubt { background: rgba(245, 158, 11, 0.24); border-color: var(--warning); color: #fde68a; }
-    .player-absence-row { display: grid; grid-template-columns: 1fr 1.2fr; gap: 8px; padding-top: 6px; border-top: 1px dashed rgba(255, 255, 255, 0.1); }
-    .player-absence-row select, .player-absence-row input { width: 100%; padding: 7px 10px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.14); background: rgba(3, 10, 7, 0.9); color: #e2f2ea; font-size: 12px; }
-    .player-stats-mini { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12px; color: var(--text-muted); }
-    .absent-alert-banner { background: rgba(45, 12, 20, 0.78); border: 1px solid rgba(244, 63, 94, 0.45); border-radius: 18px; padding: 16px 20px; margin-bottom: 20px; }
-    .absent-alert-banner h4 { color: #fda4af; font-family: 'Sora', sans-serif; font-size: 15px; margin-bottom: 8px; }
-    .absent-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .absent-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(244, 63, 94, 0.18); border: 1px solid rgba(244, 63, 94, 0.35); color: #ffe4e6; padding: 5px 11px; border-radius: 999px; font-size: 12px; font-weight: 700; }
-    .tactics-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 460px); gap: 24px; align-items: start; }
-    .tactics-pitch-card { background: #072215; border: 2px solid var(--border-green); border-radius: 22px; padding: 16px; }
-    .tactics-pitch-svg-wrap { width: 100%; max-width: 460px; margin: 0 auto; border-radius: 16px; overflow: hidden; touch-action: none; }
-    .tactics-pitch-svg-wrap svg { display: block; width: 100%; height: auto; user-select: none; }
-    .lineup-slots-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin-top: 14px; }
-    .lineup-slot-item { display: flex; align-items: center; gap: 8px; background: rgba(5, 16, 11, 0.85); border: 1px solid var(--border-green); padding: 8px 10px; border-radius: 12px; }
-    .lineup-slot-badge { min-width: 44px; text-align: center; padding: 4px 6px; border-radius: 8px; background: rgba(34, 224, 122, 0.18); color: var(--green-neon); font-family: 'Sora', sans-serif; font-size: 11px; font-weight: 800; }
-    .lineup-slot-item select { flex: 1; min-width: 0; padding: 6px 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.14); background: #04110b; color: #fff; font-size: 12.5px; }
-    .tactics-3d-frame-wrap { width: 100%; height: 620px; border-radius: 18px; overflow: hidden; border: 1px solid var(--border-green); background: #040d08; }
-    .tactics-3d-frame-wrap iframe { width: 100%; height: 100%; border: 0; }
-    .mgr-bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 120; background: rgba(4, 14, 9, 0.94); backdrop-filter: blur(16px); border-top: 1px solid var(--border-green); display: flex; justify-content: space-around; padding: 8px 10px; }
-    .mgr-bottom-nav button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 4px; background: transparent; border: 0; color: var(--text-muted); font-family: 'Sora', sans-serif; font-size: 11px; font-weight: 700; cursor: pointer; }
-    .mgr-bottom-nav button.active { color: var(--green-electric); }
-    .mgr-toast { position: fixed; bottom: 84px; right: 20px; z-index: 200; background: #0b2e1d; border: 1px solid var(--green-electric); color: #fff; padding: 12px 18px; border-radius: 14px; font-size: 13px; font-weight: 700; opacity: 0; pointer-events: none; transition: all 0.22s ease; }
-    .mgr-toast.show { opacity: 1; }
-    @media (max-width: 860px) { .mgr-hero-grid, .tactics-layout { grid-template-columns: 1fr; } }
+    .tab-btn.active { background: var(--green-electric); color: #041d10; border-color: var(--green-neon); }
+    .view { display: none; }
+    .view.active { display: block; }
+    .panel { background: var(--bg-card); border: 1px solid var(--border-green); border-radius: var(--radius-xl); padding: clamp(16px, 2.5vw, 24px); margin-bottom: 18px; box-shadow: var(--shadow); }
+    .panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle); }
+    .eyebrow { color: var(--green-electric); font-size: 10.5px; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 3px; }
+    .panel-head h2, .panel-head h3 { font-family: 'Sora', sans-serif; font-size: clamp(18px, 2.2vw, 23px); color: #fff; }
+    .panel-head p { color: var(--text-muted); font-size: 13px; margin-top: 3px; }
+    .btn-green { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 15px; border-radius: 11px; border: 1px solid var(--green-electric); background: var(--green-electric); color: #042012; font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 800; cursor: pointer; text-decoration: none; }
+    .btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 14px; border-radius: 11px; border: 1px solid var(--border-green); background: rgba(15, 42, 29, 0.78); color: var(--text-main); font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: none; }
+    .btn-danger { display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 11px; border-radius: 9px; border: 1px solid rgba(244, 63, 94, 0.4); background: rgba(244, 63, 94, 0.14); color: #fda4af; font-size: 11.5px; font-weight: 700; cursor: pointer; }
+    .events-strip { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; }
+    .event-card { min-width: 220px; padding: 11px 14px; border-radius: 14px; border: 1px solid var(--border-green); background: rgba(5, 16, 11, 0.85); cursor: pointer; text-align: left; color: var(--text-main); }
+    .event-card.active { background: rgba(34, 224, 122, 0.18); border-color: var(--green-electric); box-shadow: 0 6px 18px rgba(34, 224, 122, 0.18); }
+    .event-type { font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--green-neon); letter-spacing: 0.08em; }
+    .event-title { font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 800; color: #fff; margin: 2px 0; }
+    .event-meta { font-size: 11.5px; color: var(--text-muted); }
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 10px; margin-bottom: 14px; }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 11.5px; font-weight: 700; color: var(--text-muted); }
+    .field input, .field select { padding: 9px 12px; border-radius: 10px; border: 1px solid var(--border-green); background: rgba(4, 13, 8, 0.92); color: #fff; font-family: inherit; font-size: 13.5px; }
+    .absent-banner { background: rgba(45, 12, 20, 0.8); border: 1px solid rgba(244, 63, 94, 0.45); border-radius: 16px; padding: 14px 16px; margin-bottom: 16px; }
+    .absent-banner h4 { color: #fda4af; font-family: 'Sora', sans-serif; font-size: 14px; margin-bottom: 8px; }
+    .absent-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .absent-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(244, 63, 94, 0.18); border: 1px solid rgba(244, 63, 94, 0.35); color: #ffe4e6; padding: 4px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 700; }
+    .filters { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+    .chip { padding: 7px 13px; border-radius: 999px; border: 1px solid var(--border-green); background: rgba(6, 20, 13, 0.85); color: var(--text-muted); font-size: 12px; font-weight: 800; cursor: pointer; }
+    .chip.active { background: var(--green-electric); color: #042012; border-color: var(--green-electric); }
+    .players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(315px, 1fr)); gap: 12px; }
+    .p-card { background: rgba(6, 19, 13, 0.94); border: 1px solid var(--border-green); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+    .p-card.status-present { border-left: 5px solid var(--green-electric); }
+    .p-card.status-late { border-left: 5px solid var(--info); }
+    .p-card.status-absent { border-left: 5px solid var(--danger); background: rgba(28, 11, 16, 0.72); border-color: rgba(244, 63, 94, 0.35); }
+    .p-card.status-doubt { border-left: 5px solid var(--warning); }
+    .p-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .p-id { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .dorsal { width: 38px; height: 38px; border-radius: 10px; background: rgba(34, 224, 122, 0.18); border: 1px solid var(--green-electric); display: grid; place-items: center; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px; color: var(--green-electric); flex-shrink: 0; }
+    .p-name { font-family: 'Sora', sans-serif; font-size: 14.5px; font-weight: 800; color: #fff; }
+    .p-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }
+    .pos-badge { font-size: 10.5px; font-weight: 700; color: var(--green-neon); background: rgba(34, 224, 122, 0.12); padding: 2px 7px; border-radius: 5px; }
+    .rate-badge { font-size: 10.5px; font-weight: 800; color: #d8ece1; background: rgba(255, 255, 255, 0.08); padding: 2px 7px; border-radius: 5px; }
+    .status-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+    .st-btn { padding: 7px 4px; border-radius: 8px; border: 1px solid var(--border-subtle); background: rgba(255, 255, 255, 0.04); color: var(--text-muted); font-size: 11px; font-weight: 800; cursor: pointer; }
+    .st-btn.on-present { background: rgba(34, 224, 122, 0.22); border-color: var(--green-electric); color: var(--green-neon); }
+    .st-btn.on-late { background: rgba(56, 189, 248, 0.22); border-color: var(--info); color: #bae6fd; }
+    .st-btn.on-absent { background: rgba(244, 63, 94, 0.25); border-color: var(--danger); color: #fecdd3; }
+    .st-btn.on-doubt { background: rgba(245, 158, 11, 0.24); border-color: var(--warning); color: #fde68a; }
+    .absence-row { display: grid; grid-template-columns: 1fr 1.1fr; gap: 6px; padding-top: 6px; border-top: 1px dashed rgba(255, 255, 255, 0.1); }
+    .absence-row select, .absence-row input { width: 100%; padding: 6px 8px; border-radius: 7px; border: 1px solid rgba(255, 255, 255, 0.14); background: rgba(3, 10, 7, 0.9); color: #e2f2ea; font-size: 11.5px; }
+    .p-foot { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 11.5px; color: var(--text-muted); padding-top: 4px; flex-wrap: wrap; }
+    .fee-btn { padding: 3px 8px; border-radius: 6px; border: 1px solid var(--border-subtle); background: rgba(255,255,255,0.05); color: var(--text-muted); font-size: 11px; font-weight: 700; cursor: pointer; }
+    .fee-btn.paid { background: rgba(34, 224, 122, 0.2); border-color: var(--green-electric); color: var(--green-neon); }
+    .tactics-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 440px); gap: 20px; align-items: start; }
+    .pitch-card { background: #072215; border: 2px solid var(--border-green); border-radius: 20px; padding: 14px; }
+    .pitch-svg-wrap { width: 100%; max-width: 440px; margin: 0 auto; border-radius: 14px; overflow: hidden; touch-action: none; }
+    .pitch-svg-wrap svg { display: block; width: 100%; height: auto; user-select: none; }
+    .slots-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); gap: 8px; margin-top: 10px; }
+    .slot-item { display: flex; align-items: center; gap: 7px; background: rgba(5, 16, 11, 0.88); border: 1px solid var(--border-green); padding: 7px 9px; border-radius: 10px; }
+    .slot-badge { min-width: 42px; text-align: center; padding: 3px 5px; border-radius: 6px; background: rgba(34, 224, 122, 0.18); color: var(--green-neon); font-family: 'Sora', sans-serif; font-size: 10.5px; font-weight: 800; }
+    .slot-item select { flex: 1; min-width: 0; padding: 5px 7px; border-radius: 7px; border: 1px solid rgba(255,255,255,0.14); background: #04110b; color: #fff; font-size: 12px; }
+    .frame-3d { width: 100%; height: 560px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-green); background: #040d08; }
+    .frame-3d iframe { width: 100%; height: 100%; border: 0; }
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 120; background: rgba(4, 14, 9, 0.95); backdrop-filter: blur(14px); border-top: 1px solid var(--border-green); display: flex; justify-content: space-around; padding: 7px 8px; }
+    .bottom-nav button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 5px; background: transparent; border: 0; color: var(--text-muted); font-family: 'Sora', sans-serif; font-size: 11px; font-weight: 700; cursor: pointer; }
+    .bottom-nav button.active { color: var(--green-electric); }
+    .toast { position: fixed; bottom: 80px; right: 16px; z-index: 200; background: #0b2e1d; border: 1px solid var(--green-electric); color: #fff; padding: 11px 16px; border-radius: 12px; font-size: 12.5px; font-weight: 700; opacity: 0; pointer-events: none; transition: 0.2s; }
+    .toast.show { opacity: 1; }
+    @media (max-width: 860px) { .hero-grid, .tactics-layout { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-  <header class="mgr-topbar">
-    <div class="mgr-topbar-inner">
-      <div class="mgr-brand">
-        <span class="mgr-badge-coach">⚽ COACH &amp; MANAGER PRO</span>
-        <div>
-          <div class="mgr-brand-title">Centro de Mando Técnico</div>
-          <div class="mgr-brand-sub">Gestión exclusiva de mis 2 equipos · Sin funciones de liga</div>
-        </div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div>
+        <span class="badge-coach">⚽ DT MANAGER &amp; COACH PRO</span>
+        <div class="brand-title" style="margin-top:3px">Centro de Mando Técnico · Mis 2 Equipos</div>
+        <div class="brand-sub">Ingeniería inversa: easy2coach · squadi · Attendance Register · Spond · TeamSnap</div>
       </div>
-      <div class="team-switcher" role="tablist" aria-label="Seleccionar mi equipo">
-        <button type="button" class="team-switch-btn active" data-switch-team="america_vet">
-          <img src="./assets/branding/america-veteranos-35-user.png" alt="Escudo Club América Veteranos" />
+      <div class="team-switcher" role="tablist" aria-label="Cambiar entre mis 2 equipos">
+        <button type="button" class="team-btn active" data-switch-team="america_vet">
+          <img src="./assets/branding/america-veteranos-35-user.png" alt="Club América Veteranos" />
           <span>Club América Veteranos</span>
         </button>
-        <button type="button" class="team-switch-btn" data-switch-team="atletico_luz">
-          <img src="./assets/official-logos/dep-la-luz.png" alt="Escudo Atlético La Luz" />
+        <button type="button" class="team-btn" data-switch-team="atletico_luz">
+          <img src="./assets/official-logos/dep-la-luz.png" alt="Atlético La Luz" />
           <span>Atlético La Luz</span>
         </button>
       </div>
     </div>
   </header>
 
-  <main class="mgr-container">
-    <section class="mgr-hero">
-      <div class="mgr-hero-grid">
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
         <div>
-          <span class="mgr-badge-coach">DIRECCIÓN TÉCNICA ACTIVA</span>
-          <div class="mgr-hero-lockup">
-            <div class="mgr-hero-crest-wrap">
-              <img id="heroTeamLogo" src="./assets/branding/america-veteranos-35-user.png" alt="Escudo del equipo" />
+          <span class="badge-coach" id="heroEventBadge">CONVOCATORIA ACTIVA</span>
+          <div class="hero-lockup">
+            <div class="crest-box">
+              <img id="heroTeamLogo" src="./assets/branding/america-veteranos-35-user.png" alt="Escudo" />
             </div>
             <div>
-              <h1 id="heroTeamName" class="mgr-hero-title">CLUB AMÉRICA VETERANOS <span class="electric">MANAGER PRO</span></h1>
-              <p id="heroTeamSubtitle" style="color:var(--text-muted);font-size:14px;font-weight:600">Plantilla Veteranos · DT: Jairo Franco Garduño</p>
+              <h1 id="heroTeamName" class="hero-title">CLUB AMÉRICA VETERANOS <span class="electric">MANAGER PRO</span></h1>
+              <p id="heroTeamSubtitle" style="color:var(--text-muted);font-size:13.5px;font-weight:600">Dirección Técnica · Jairo Franco Garduño</p>
             </div>
           </div>
-          <div class="mgr-hero-meta">
-            <span class="mgr-pill" id="pillOpponent">🆚 Rival: Por definir</span>
-            <span class="mgr-pill" id="pillField">📍 Cancha: Campo #1</span>
-            <span class="mgr-pill" id="pillFormation">📋 Sistema: 4-3-3</span>
+
+          <div class="pill-row">
+            <span class="pill" id="pillOpponent">🆚 Rival: Por definir</span>
+            <span class="pill" id="pillField">📍 Cancha: Campo #1</span>
+            <span class="pill" id="pillFormation">📋 Sistema: 4-3-3</span>
+            <span class="pill" id="pillCaptain">©️ Capitán: Por asignar</span>
           </div>
-          <div class="mgr-kpi-row">
-            <div class="mgr-kpi-card"><small>Total Plantel</small><strong id="kpiTotal">14</strong></div>
-            <div class="mgr-kpi-card present"><small>✅ Sí Fueron a Jugar</small><strong id="kpiPresent">11</strong></div>
-            <div class="mgr-kpi-card absent"><small>❌ No Fueron a Jugar</small><strong id="kpiAbsent">2</strong></div>
-            <div class="mgr-kpi-card doubt"><small>⏳ En Duda</small><strong id="kpiDoubt">1</strong></div>
+
+          <!-- Semáforo de Quórum squadi / TeamSnap -->
+          <div class="quorum-wrap">
+            <div class="quorum-top">
+              <span id="quorumLabel">Quórum de Partido (Meta: 11 titulares disponibles)</span>
+              <span id="quorumCount" style="color:var(--green-electric)">11 / 11 listos</span>
+            </div>
+            <div class="quorum-bar"><div id="quorumFill" class="quorum-fill" style="width:100%"></div></div>
+          </div>
+
+          <div class="kpi-row">
+            <div class="kpi"><small>Plantel</small><strong id="kpiTotal">14</strong></div>
+            <div class="kpi present"><small>✅ Sí Fueron</small><strong id="kpiPresent">11</strong></div>
+            <div class="kpi late"><small>⏰ Retardo</small><strong id="kpiLate">0</strong></div>
+            <div class="kpi absent"><small>❌ No Fueron</small><strong id="kpiAbsent">2</strong></div>
+            <div class="kpi doubt"><small>⏳ En Duda</small><strong id="kpiDoubt">1</strong></div>
           </div>
         </div>
-        <div class="mgr-hero-stage">
-          <div id="mgrBallStage" class="mgr-ball-stage"></div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+          <div id="mgrBallStage" class="ball-stage"></div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-            <button type="button" class="btn-green" data-nav-view="tactics">📋 Abrir Pizarra Táctica</button>
-            <button type="button" class="btn-ghost" id="btnShareAttendanceWa">📲 Mandar Lista por WhatsApp</button>
+            <button type="button" class="btn-green" id="btnShareWa">📲 Convocar por WhatsApp</button>
+            <button type="button" class="btn-ghost" id="btnCopyRsvpLink">🔗 Link Confirmación</button>
           </div>
         </div>
       </div>
-    </section
+    </section>
+
+    <nav class="tabs">
+      <button type="button" class="tab-btn active" data-nav-view="attendance">📋 Asistencia, Eventos y Bajas</button>
+      <button type="button" class="tab-btn" data-nav-view="tactics">⚽ Pizarra Táctica 2D y 3D</button>
+      <button type="button" class="tab-btn" data-nav-view="squad">👥 Plantilla y Estadísticas (%)</button>
+      <button type="button" class="tab-btn" data-nav-view="settings">⚙️ Personalizar Equipo y Respaldo</button>
+    </nav>
+
+    <!-- VISTA 1: CALENDARIO SQUADI + ASISTENCIA ATTENDANCE REGISTER + CONVOCATORIA SPOND -->
+    <section id="view-attendance" class="view active">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">CALENDARIO DE EVENTOS (MODO SQUADI &amp; EASY2COACH)</div>
+            <h2>Partidos, Entrenamientos y Convocatorias</h2>
+            <p>Selecciona un evento o crea uno nuevo. Cada evento guarda su propia lista de quiénes fueron y quiénes faltaron.</p>
+          </div>
+          <button type="button" class="btn-green" id="btnNewEvent">➕ Nuevo Partido / Entrenamiento</button>
+        </div>
+
+        <div id="eventsStrip" class="events-strip"></div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="evType">Tipo de Evento</label>
+            <select id="evType">
+              <option value="Partido">⚽ Partido</option>
+              <option value="Entrenamiento">🏃 Entrenamiento</option>
+              <option value="Amistoso">🤝 Amistoso</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="matchOpponent">Rival / Nombre de Sesión</label>
+            <input id="matchOpponent" type="text" placeholder="Nombre del rival..." />
+          </div>
+          <div class="field">
+            <label for="matchDate">Fecha</label>
+            <input id="matchDate" type="date" />
+          </div>
+          <div class="field">
+            <label for="matchTime">Hora de cita</label>
+            <input id="matchTime" type="time" />
+          </div>
+          <div class="field">
+            <label for="matchField">Cancha / Campo</label>
+            <input id="matchField" type="text" placeholder="Ej. Campo Empastado 1" />
+          </div>
+          <div class="field" style="grid-column: 1 / -1;">
+            <label for="matchCoachNotes">Charla Técnica / Notas del Manager</label>
+            <input id="matchCoachNotes" type="text" placeholder="Indicaciones tácticas, uniforme o avisos..." />
+          </div>
+        </div>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+          <button type="button" class="btn-ghost" id="btnMarkAllPresent">✅ Marcar Todos Presentes</button>
+          <button type="button" class="btn-green" id="btnCopyReport">📋 Copiar Reporte DT</button>
+        </div>
+
+        <div id="absentSummaryBanner" class="absent-banner"></div>
+
+        <div class="filters">
+          <button type="button" class="chip active" data-att-filter="all">Todos</button>
+          <button type="button" class="chip" data-att-filter="present">✅ Sí fueron</button>
+          <button type="button" class="chip" data-att-filter="late">⏰ Retardo</button>
+          <button type="button" class="chip" data-att-filter="absent">❌ No fueron (Bajas)</button>
+          <button type="button" class="chip" data-att-filter="doubt">⏳ En duda</button>
+        </div>
+
+        <div id="attendancePlayersGrid" class="players-grid"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">ALTA RÁPIDA EN PLANTILLA</div>
+            <h3>Agregar Jugador al Equipo Activo</h3>
+          </div>
+        </div>
+        <form id="addPlayerForm" class="form-grid">
+          <div class="field"><label for="newPlayerNumber">Dorsal (#)</label><input id="newPlayerNumber" type="text" maxlength="4" placeholder="Ej. 12" /></div>
+          <div class="field"><label for="newPlayerName">Nombre del Jugador *</label><input id="newPlayerName" type="text" required placeholder="Nombre o apodo" /></div>
+          <div class="field">
+            <label for="newPlayerPos">Posición</label>
+            <select id="newPlayerPos">
+              <option value="Portero">Portero</option>
+              <option value="Defensa Central">Defensa Central</option>
+              <option value="Defensa Lateral">Defensa Lateral</option>
+              <option value="Mediocampista" selected>Mediocampista</option>
+              <option value="Enganche / 10">Enganche / 10</option>
+              <option value="Extremo Derecho">Extremo Derecho</option>
+              <option value="Extremo Izquierdo">Extremo Izquierdo</option>
+              <option value="Delantero">Delantero</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="newPlayerStatus">Asistencia Hoy</label>
+            <select id="newPlayerStatus">
+              <option value="present" selected>✅ Sí fue a jugar</option>
+              <option value="late">⏰ Llegó con retardo</option>
+              <option value="absent">❌ No fue a jugar</option>
+              <option value="doubt">⏳ En duda</option>
+            </select>
+          </div>
+          <div class="field"><label for="newPlayerReason">Motivo (si faltó) o Nota</label><input id="newPlayerReason" type="text" placeholder="Ej. Trabajo, lesión..." /></div>
+          <div class="field" style="justify-content:flex-end"><button type="submit" class="btn-green" style="height:40px">➕ Agregar Jugador</button></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- VISTA 2: PIZARRA TÁCTICA 2D + ESPECIALISTAS + SIMULADOR 3D -->
+    <section id="view-tactics" class="view">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">PIZARRA TÁCTICA INTERACTIVA (MODO EASY2COACH)</div>
+            <h2>Alineación Titular, Roles y Movimiento en Cancha</h2>
+            <p>Arrastra las fichas con el dedo o mouse. El selector prioriza a quienes sí asistieron y marca con alerta a las bajas.</p>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button type="button" class="btn-ghost" id="btnAutoFillPresent">⚡ Armar 11 con Presentes</button>
+            <button type="button" class="btn-ghost" id="btnResetPitchCoords">🔄 Centrar Formación</button>
+            <button type="button" class="btn-green" id="btnDownloadPitchSvg">⬇️ Descargar Pizarra SVG</button>
+          </div>
+        </div>
+
+        <div class="tactics-layout">
+          <div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="tacticsFormationSelect">Formación</label>
+                <select id="tacticsFormationSelect"></select>
+              </div>
+              <div class="field">
+                <label for="roleCaptainSelect">©️ Capitán del Equipo</label>
+                <select id="roleCaptainSelect"></select>
+              </div>
+              <div class="field">
+                <label for="rolePenaltySelect">🎯 Cobrador de Penales</label>
+                <select id="rolePenaltySelect"></select>
+              </div>
+              <div class="field">
+                <label for="roleFreekickSelect">⚡ Tiros Libres / Córners</label>
+                <select id="roleFreekickSelect"></select>
+              </div>
+              <div class="field" style="grid-column: 1 / -1;">
+                <label for="tacticsStyleInput">Instrucciones Tácticas del Partido</label>
+                <input id="tacticsStyleInput" type="text" placeholder="Ej. Presión alta, salida limpia por bandas..." />
+              </div>
+            </div>
+
+            <h3 style="font-family:'Sora',sans-serif;font-size:15px;margin:10px 0 6px;color:var(--green-neon)">Once Titular por Posición</h3>
+            <div id="tacticsLineupSlots" class="slots-list"></div>
+          </div>
+
+          <div class="pitch-card">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:11.5px;color:var(--text-muted)">
+              <span>🟢 Arrastra cualquier ficha en la cancha</span>
+              <span>Cancha 2D Oficial</span>
+            </div>
+            <div id="tacticsPitchContainer" class="pitch-svg-wrap"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">SIMULADOR EN TRES DIMENSIONES</div>
+            <h2>Laboratorio Táctico 3D en Cancha</h2>
+          </div>
+          <a href="./tools/tactics-3d/index.html" target="_blank" rel="noopener" class="btn-ghost">🔍 Abrir 3D en Pantalla Completa</a>
+        </div>
+        <div class="frame-3d">
+          <iframe src="./tools/tactics-3d/index.html" title="Simulador Táctico 3D" loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISTA 3: PLANTILLA COMPLETA Y ESTADÍSTICAS DE ASISTENCIA -->
+    <section id="view-squad" class="view">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">REGISTRO DE PLANTILLA Y RENDIMIENTO (MODO ATTENDANCE REGISTER)</div>
+            <h2>Editar Jugadores, Dorsales, Goles y % de Asistencia</h2>
+          </div>
+        </div>
+        <div style="overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;font-size:13px">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border-green);text-align:left;color:var(--green-neon)">
+                <th style="padding:9px 6px">#</th>
+                <th style="padding:9px 6px">Jugador</th>
+                <th style="padding:9px 6px">Posición</th>
+                <th style="padding:9px 6px">Estado Hoy</th>
+                <th style="padding:9px 6px">% Asist.</th>
+                <th style="padding:9px 6px">Goles</th>
+                <th style="padding:9px 6px">Asist.</th>
+                <th style="padding:9px 6px">Acción</th>
+              </tr>
+            </thead>
+            <tbody id="squadTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISTA 4: PERSONALIZACIÓN DEL EQUIPO Y RESPALDO JSON -->
+    <section id="view-settings" class="view">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">IDENTIDAD DEL CLUB</div>
+            <h2>Personalizar Nombre, Escudo y Colores del Equipo Activo</h2>
+          </div>
+        </div>
+        <form id="teamConfigForm" class="form-grid">
+          <div class="field"><label for="cfgTeamName">Nombre del Equipo</label><input id="cfgTeamName" type="text" required /></div>
+          <div class="field"><label for="cfgTeamSubtitle">Subtítulo / Categoría</label><input id="cfgTeamSubtitle" type="text" /></div>
+          <div class="field"><label for="cfgCoachName">Manager / DT</label><input id="cfgCoachName" type="text" /></div>
+          <div class="field"><label for="cfgKitPrimary">Color Ficha Titular</label><input id="cfgKitPrimary" type="color" style="height:40px;padding:3px" /></div>
+          <div class="field"><label for="cfgKitSecondary">Color Portero</label><input id="cfgKitSecondary" type="color" style="height:40px;padding:3px" /></div>
+          <div class="field"><label for="cfgLogoUpload">Subir Nuevo Escudo</label><input id="cfgLogoUpload" type="file" accept="image/*" /></div>
+          <div class="field" style="grid-column: 1 / -1;"><button type="submit" class="btn-green">💾 Guardar Cambios del Equipo</button></div>
+        </form>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">PORTABILIDAD Y RESPALDO</div>
+            <h3>Exportar o Importar tus Modificaciones (.JSON)</h3>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button type="button" class="btn-green" id="btnExportBackup">⬇️ Descargar Respaldo (.JSON)</button>
+          <label class="btn-ghost" style="cursor:pointer">
+            ⬆️ Cargar Respaldo (.JSON)
+            <input id="inputImportBackup" type="file" accept="application/json" style="display:none" />
+          </label>
+          <button type="button" class="btn-danger" id="btnResetFactory">Restaurar Datos Iniciales</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <button type="button" class="active" data-nav-view="attendance"><span>📋</span><span>Asistencia</span></button>
+    <button type="button" data-nav-view="tactics"><span>⚽</span><span>Tácticas</span></button>
+    <button type="button" data-nav-view="squad"><span>👥</span><span>Plantilla</span></button>
+    <button type="button" data-nav-view="settings"><span>⚙️</span><span>Equipo</span></button>
+  </nav>
+
+  <div id="mgrToast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="./assets/jr-ball-model-v38.js"></script>
+  <script type="module">
+    import { computePitchMarkings } from './vendor/campos/pitch.js';
+    import formations from './vendor/campos/formations.js';
+
+    const STORAGE_KEY = 'dt_manager_coach_green_v2';
+    const NS = 'http://www.w3.org/2000/svg';
+    const TODAY = new Date().toISOString().slice(0, 10);
+
+    const ALL_FORMATIONS = {
+      ...formations,
+      '4141': [
+        { code: 'GK', x: 10, y: 50 },
+        { code: 'RB', x: 26, y: 14 }, { code: 'RCB', x: 24, y: 38 }, { code: 'LCB', x: 24, y: 62 }, { code: 'LB', x: 26, y: 86 },
+        { code: 'CDM', x: 43, y: 50 },
+        { code: 'RM', x: 64, y: 12 }, { code: 'RCM', x: 62, y: 37 }, { code: 'LCM', x: 62, y: 63 }, { code: 'LM', x: 64, y: 88 },
+        { code: 'ST', x: 88, y: 50 }
+      ],
+      '532': [
+        { code: 'GK', x: 10, y: 50 },
+        { code: 'RWB', x: 30, y: 10 }, { code: 'RCB', x: 24, y: 30 }, { code: 'CB', x: 22, y: 50 }, { code: 'LCB', x: 24, y: 70 }, { code: 'LWB', x: 30, y: 90 },
+        { code: 'RCM', x: 56, y: 30 }, { code: 'CM', x: 54, y: 50 }, { code: 'LCM', x: 56, y: 70 },
+        { code: 'RCF', x: 86, y: 38 }, { code: 'LCF', x: 86, y: 62 }
+      ]
+    };
+
+    const DEFAULT_STATE = {
+      activeTeamId: 'america_vet',
+      teams: {
+        america_vet: {
+          id: 'america_vet',
+          name: 'Club América Veteranos',
+          subtitle: 'Plantilla Veteranos · Dirección Técnica',
+          coachName: 'Jairo Franco Garduño',
+          logo: './assets/branding/america-veteranos-35-user.png',
+          kitPrimary: '#22e07a',
+          kitSecondary: '#f2c14e',
+          formation: '433',
+          tacticalStyle: 'Presión alta, salida limpia por bandas y control de medio campo',
+          roles: { captain: 'am3', penalty: 'am8', freekick: 'am6' },
+          activeEventId: 'ev_am_1',
+          events: [
+            { id: 'ev_am_1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '16:00', field: 'Campo Empastado #1', coachNotes: 'Confirmar asistencia 30 min antes. Cuidar coberturas.' }
+          ],
+          lineupSlots: {},
+          customCoords: {},
+          players: [
+            { id: 'am1', number: '1', name: 'Guillermo Ochoa (POR)', position: 'Portero', status: 'present', absenceReason: '', note: 'Titular', goals: 0, assists: 0, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'am2', number: '2', name: 'Paul Aguilar', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: 'Banda derecha', goals: 1, assists: 2, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'am3', number: '4', name: 'Alfredo Tena', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Capitán', goals: 2, assists: 0, feePaid: true, attendedCount: 10, totalEvents: 10 },
+            { id: 'am4', number: '3', name: 'Aquivaldo Mosquera', position: 'Defensa Central', status: 'present', absenceReason: '', note: '', goals: 1, assists: 0, feePaid: true, attendedCount: 8, totalEvents: 10 },
+            { id: 'am5', number: '16', name: 'Carlos Ponce', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: '', goals: 0, assists: 1, feePaid: false, attendedCount: 8, totalEvents: 10 },
+            { id: 'am6', number: '5', name: 'Pável Pardo', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Balón parado', goals: 3, assists: 5, feePaid: true, attendedCount: 10, totalEvents: 10 },
+            { id: 'am7', number: '8', name: 'Reinaldo Navia', position: 'Mediocampista', status: 'present', absenceReason: '', note: '', goals: 4, assists: 2, feePaid: true, attendedCount: 8, totalEvents: 10 },
+            { id: 'am8', number: '10', name: 'Cuauhtémoc Blanco', position: 'Enganche / 10', status: 'present', absenceReason: '', note: 'Armador', goals: 8, assists: 9, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'am9', number: '7', name: 'Claudio López', position: 'Extremo Derecho', status: 'present', absenceReason: '', note: 'Velocidad', goals: 5, assists: 4, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'am10', number: '11', name: 'Christian Benítez', position: 'Extremo Izquierdo', status: 'present', absenceReason: '', note: '', goals: 6, assists: 3, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'am11', number: '9', name: 'Salvador Cabañas', position: 'Delantero', status: 'present', absenceReason: '', note: 'Definidor', goals: 10, assists: 3, feePaid: true, attendedCount: 10, totalEvents: 10 },
+            { id: 'am12', number: '14', name: 'Isaac Terrazas', position: 'Defensa', status: 'absent', absenceReason: 'Trabajo', note: 'Avisó turno laboral', goals: 0, assists: 1, feePaid: false, attendedCount: 6, totalEvents: 10 },
+            { id: 'am13', number: '18', name: 'Germán Villa', position: 'Mediocampista', status: 'absent', absenceReason: 'Lesión', note: 'Molestia muscular', goals: 1, assists: 1, feePaid: false, attendedCount: 7, totalEvents: 10 },
+            { id: 'am14', number: '19', name: 'Luis Roberto Alves', position: 'Delantero', status: 'doubt', absenceReason: 'En duda', note: 'Confirma 1h antes', goals: 3, assists: 1, feePaid: false, attendedCount: 7, totalEvents: 10 }
+          ]
+        },
+        atletico_luz: {
+          id: 'atletico_luz',
+          name: 'Atlético La Luz',
+          subtitle: 'Proyecto Deportivo · Dirección Técnica',
+          coachName: 'Jairo Franco Garduño',
+          logo: './assets/official-logos/dep-la-luz.png',
+          kitPrimary: '#10b981',
+          kitSecondary: '#f2c14e',
+          formation: '442',
+          tacticalStyle: 'Orden táctico, transiciones rápidas al ataque y solidez defensiva',
+          roles: { captain: 'll7', penalty: 'll10', freekick: 'll7' },
+          activeEventId: 'ev_ll_1',
+          events: [
+            { id: 'ev_ll_1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '10:00', field: 'Campo La Luz', coachNotes: 'Mantener líneas juntas y aprovechar tiros libres.' }
+          ],
+          lineupSlots: {},
+          customCoords: {},
+          players: [
+            { id: 'll1', number: '1', name: 'Martín Franco (POR)', position: 'Portero', status: 'present', absenceReason: '', note: 'Titular', goals: 0, assists: 0, feePaid: true, attendedCount: 10, totalEvents: 10 },
+            { id: 'll2', number: '2', name: 'Diego Garduño', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: '', goals: 0, assists: 2, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'll3', number: '3', name: 'Alejandro Mendoza', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Líder zaga', goals: 1, assists: 0, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'll4', number: '4', name: 'Roberto Ramírez', position: 'Defensa Central', status: 'present', absenceReason: '', note: '', goals: 1, assists: 0, feePaid: true, attendedCount: 8, totalEvents: 10 },
+            { id: 'll5', number: '6', name: 'Fernando Guerrero', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: '', goals: 0, assists: 1, feePaid: true, attendedCount: 8, totalEvents: 10 },
+            { id: 'll6', number: '5', name: 'Eduardo Morales', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Recuperador', goals: 2, assists: 3, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'll7', number: '8', name: 'Jairo Franco', position: 'Enganche / 10', status: 'present', absenceReason: '', note: 'Capitán y DT', goals: 6, assists: 7, feePaid: true, attendedCount: 10, totalEvents: 10 },
+            { id: 'll8', number: '7', name: 'Sebastián Ortega', position: 'Extremo Derecho', status: 'present', absenceReason: '', note: '', goals: 3, assists: 4, feePaid: true, attendedCount: 8, totalEvents: 10 },
+            { id: 'll9', number: '11', name: 'Daniel Cervantes', position: 'Extremo Izquierdo', status: 'present', absenceReason: '', note: '', goals: 4, assists: 3, feePaid: false, attendedCount: 8, totalEvents: 10 },
+            { id: 'll10', number: '9', name: 'Mateo Villagómez', position: 'Delantero', status: 'present', absenceReason: '', note: 'Goleador', goals: 9, assists: 2, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'll11', number: '10', name: 'Leonardo Silva', position: 'Delantero', status: 'present', absenceReason: '', note: '', goals: 5, assists: 5, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'll12', number: '15', name: 'Héctor Vázquez', position: 'Defensa', status: 'absent', absenceReason: 'Personal / Familia', note: 'No asistió hoy', goals: 0, assists: 0, feePaid: false, attendedCount: 5, totalEvents: 10 },
+            { id: 'll13', number: '17', name: 'Ricardo Gasca', position: 'Mediocampista', status: 'absent', absenceReason: 'Viaje', note: 'Fuera de la ciudad', goals: 1, assists: 2, feePaid: false, attendedCount: 6, totalEvents: 10 },
+            { id: 'll14', number: '20', name: 'Emiliano Rocha', position: 'Delantero', status: 'doubt', absenceReason: 'En duda', note: 'Por confirmar', goals: 2, assists: 1, feePaid: false, attendedCount: 7, totalEvents: 10 }
+          ]
+        }
+      }
+    };
+
+    let state = loadState();
+    let currentFilter = 'all';
+    let draggingSlotIndex = null;
+
+    function clone(o) { return JSON.parse(JSON.stringify(o)); }
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return clone(DEFAULT_STATE);
+        const p = JSON.parse(raw);
+        return (p && p.teams && p.teams.america_vet && p.teams.atletico_luz) ? p : clone(DEFAULT_STATE);
+      } catch (_) { return clone(DEFAULT_STATE); }
+    }
+    function saveState(msg = '') {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); if (msg) showToast(msg); } catch (_) {}
+    }
+    function activeTeam() { return state.teams[state.activeTeamId] || state.teams.america_vet; }
+    function activeEvent(team = activeTeam()) {
+      if (!team.events || !team.events.length) {
+        team.events = [{ id: 'ev_' + Date.now(), type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '16:00', field: 'Campo #1', coachNotes: '' }];
+      }
+      return team.events.find(e => e.id === team.activeEventId) || team.events[0];
+    }
+    function esc(v) {
+      return String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+    function showToast(txt) {
+      const t = document.getElementById('mgrToast');
+      if (!t) return;
+      t.textContent = txt; t.classList.add('show');
+      clearTimeout(window.__toastT);
+      window.__toastT = setTimeout(() => t.classList.remove('show'), 2500);
+    }
+    function svgEl(tag, attrs = {}) {
+      const el = document.createElementNS(NS, tag);
+      Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, String(v)));
+      return el;
+    }
+    function attRate(p) {
+      const tot = Math.max(1, Number(p.totalEvents || 10));
+      const att = Number(p.attendedCount ?? 8);
+      return Math.min(100, Math.round((att / tot) * 100));
+    }
+
+    function renderAll() {
+      const team = activeTeam();
+      const ev = activeEvent(team);
+
+      document.querySelectorAll('[data-switch-team]').forEach(b => {
+        b.classList.toggle('active', b.dataset.switchTeam === team.id);
+      });
+
+      document.getElementById('heroTeamLogo').src = team.logo;
+      document.getElementById('heroTeamName').innerHTML = `${esc(team.name)} <span class="electric">MANAGER PRO</span>`;
+      document.getElementById('heroTeamSubtitle').textContent = `${team.subtitle} · DT: ${team.coachName}`;
+      document.getElementById('heroEventBadge').textContent = `${ev.type.toUpperCase()} ACTIVO · ${ev.date}`;
+
+      const capPlayer = (team.players || []).find(p => p.id === team.roles?.captain);
+      document.getElementById('pillOpponent').textContent = `🆚 ${ev.type}: ${ev.opponent || 'Por definir'}`;
+      document.getElementById('pillField').textContent = `📍 ${ev.field || 'Por definir'} (${ev.time || ''})`;
+      document.getElementById('pillFormation').textContent = `📋 Sistema: ${team.formation.split('').join('-')}`;
+      document.getElementById('pillCaptain').textContent = `©️ Capitán: ${capPlayer ? capPlayer.name : 'Por asignar'}`;
+
+      const players = team.players || [];
+      const present = players.filter(p => p.status === 'present');
+      const late = players.filter(p => p.status === 'late');
+      const absent = players.filter(p => p.status === 'absent');
+      const doubt = players.filter(p => p.status === 'doubt');
+      const available = [...present, ...late];
+
+      document.getElementById('kpiTotal').textContent = String(players.length);
+      document.getElementById('kpiPresent').textContent = String(present.length);
+      document.getElementById('kpiLate').textContent = String(late.length);
+      document.getElementById('kpiAbsent').textContent = String(absent.length);
+      document.getElementById('kpiDoubt').textContent = String(doubt.length);
+
+      const pct = Math.min(100, Math.round((available.length / 11) * 100));
+      document.getElementById('quorumFill').style.width = `${pct}%`;
+      document.getElementById('quorumCount').textContent = available.length >= 11
+        ? `✅ ${available.length} disponibles (Quórum completo)`
+        : `⚠️ ${available.length} / 11 disponibles (Faltan ${11 - available.length})`;
+
+      renderAttendanceView(team, ev, present, late, absent, doubt);
+      renderTacticsView(team, available);
+      renderSquadView(team);
+      renderSettingsView(team);
+    }
+
+    function renderAttendanceView(team, ev, present, late, absent, doubt) {
+      const strip = document.getElementById('eventsStrip');
+      strip.innerHTML = (team.events || []).map(item => `
+        <button type="button" class="event-card ${item.id === ev.id ? 'active' : ''}" data-select-event="${esc(item.id)}">
+          <div class="event-type">${esc(item.type)}</div>
+          <div class="event-title">${esc(item.opponent || 'Sesión')}</div>
+          <div class="event-meta">📅 ${esc(item.date)} · 🕒 ${esc(item.time)} · 📍 ${esc(item.field)}</div>
+        </button>
+      `).join('');
+
+      const fields = [
+        ['evType', ev.type || 'Partido'],
+        ['matchOpponent', ev.opponent || ''],
+        ['matchDate', ev.date || ''],
+        ['matchTime', ev.time || ''],
+        ['matchField', ev.field || ''],
+        ['matchCoachNotes', ev.coachNotes || '']
+      ];
+      fields.forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        if (el && document.activeElement !== el) el.value = val;
+      });
+
+      const banner = document.getElementById('absentSummaryBanner');
+      if (!absent.length) {
+        banner.innerHTML = `<h4 style="color:var(--green-electric)">✅ Sin bajas registradas</h4><p style="font-size:12.5px;color:var(--text-muted)">Todos los jugadores de ${esc(team.name)} están disponibles o por confirmar.</p>`;
+      } else {
+        banner.innerHTML = `
+          <h4>🚫 Jugadores que NO fueron a jugar (${absent.length}) — ${esc(team.name)}</h4>
+          <div class="absent-tags">
+            ${absent.map(p => `<span class="absent-tag">#${esc(p.number)} ${esc(p.name)} <small>(${esc(p.absenceReason || 'Sin motivo')}${p.note ? ' · ' + esc(p.note) : ''})</small></span>`).join('')}
+          </div>
+        `;
+      }
+
+      document.querySelectorAll('[data-att-filter]').forEach(b => {
+        b.classList.toggle('active', b.dataset.attFilter === currentFilter);
+      });
+
+      let list = team.players || [];
+      if (currentFilter === 'present') list = present;
+      else if (currentFilter === 'late') list = late;
+      else if (currentFilter === 'absent') list = absent;
+      else if (currentFilter === 'doubt') list = doubt;
+
+      const reasons = ['', 'Trabajo', 'Lesión', 'Personal / Familia', 'Viaje', 'Sanción', 'Sin avisar', 'En duda'];
+      const grid = document.getElementById('attendancePlayersGrid');
+      grid.innerHTML = list.map(p => `
+        <article class="p-card status-${esc(p.status)}">
+          <div class="p-top">
+            <div class="p-id">
+              <div class="dorsal">#${esc(p.number)}</div>
+              <div>
+                <div class="p-name">${esc(p.name)}</div>
+                <div class="p-badges">
+                  <span class="pos-badge">${esc(p.position)}</span>
+                  <span class="rate-badge">📊 Asist: ${attRate(p)}%</span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;gap:5px">
+              <button type="button" class="btn-ghost" style="padding:5px 8px" data-ping-player="${esc(p.id)}" title="Recordar por WhatsApp">📲</button>
+              <button type="button" class="btn-danger" data-delete-player="${esc(p.id)}" title="Eliminar">✕</button>
+            </div>
+          </div>
+
+          <div class="status-grid">
+            <button type="button" class="st-btn ${p.status === 'present' ? 'on-present' : ''}" data-set-status="present" data-id="${esc(p.id)}">✅ Sí fue</button>
+            <button type="button" class="st-btn ${p.status === 'late' ? 'on-late' : ''}" data-set-status="late" data-id="${esc(p.id)}">⏰ Retardo</button>
+            <button type="button" class="st-btn ${p.status === 'absent' ? 'on-absent' : ''}" data-set-status="absent" data-id="${esc(p.id)}">❌ No fue</button>
+            <button type="button" class="st-btn ${p.status === 'doubt' ? 'on-doubt' : ''}" data-set-status="doubt" data-id="${esc(p.id)}">⏳ Duda</button>
+          </div>
+
+          <div class="absence-row">
+            <select data-absence-reason="${esc(p.id)}">
+              ${reasons.map(r => `<option value="${esc(r)}" ${p.absenceReason === r ? 'selected' : ''}>${r ? 'Motivo: ' + esc(r) : 'Motivo (si faltó)...'}</option>`).join('')}
+            </select>
+            <input type="text" data-player-note="${esc(p.id)}" value="${esc(p.note || '')}" placeholder="Nota del DT / rol..." />
+          </div>
+
+          <div class="p-foot">
+            <span>⚽ <b>${Number(p.goals || 0)}</b> <button type="button" class="btn-ghost" style="padding:2px 6px;font-size:10.5px" data-add-goal="${esc(p.id)}">+1</button></span>
+            <span>👟 <b>${Number(p.assists || 0)}</b> <button type="button" class="btn-ghost" style="padding:2px 6px;font-size:10.5px" data-add-assist="${esc(p.id)}">+1</button></span>
+            <button type="button" class="fee-btn ${p.feePaid ? 'paid' : ''}" data-toggle-fee="${esc(p.id)}">
+              ${p.feePaid ? '💲 Arbitraje Pagado' : '💲 Arbitraje Pend.'}
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function buildPitchSvg(team, available) {
+      const svg = svgEl('svg', { viewBox: '-3 -3 74 111', role: 'img' });
+      svg.appendChild(svgEl('rect', { x: -3, y: -3, width: 74, height: 111, fill: '#0b3822' }));
+      for (let i = 0; i < 10; i++) {
+        svg.appendChild(svgEl('rect', { x: 0, y: i * 10.5, width: 68, height: 5.25, fill: i % 2 === 0 ? 'rgba(34,224,122,0.05)' : 'rgba(0,0,0,0.08)' }));
+      }
+      const lines = svgEl('g', { stroke: '#a3e8c1', 'stroke-width': 0.32, fill: 'none' });
+      computePitchMarkings('full', 'vertical').forEach(m => {
+        const attrs = {}; let tag = m.type;
+        if (tag === 'arc') {
+          tag = 'path'; const a = m.startAngle, b = m.endAngle;
+          attrs.d = `M ${m.cx + m.r * Math.cos(a)} ${m.cy + m.r * Math.sin(a)} A ${m.r} ${m.r} 0 ${b - a > Math.PI ? 1 : 0} 1 ${m.cx + m.r * Math.cos(b)} ${m.cy + m.r * Math.sin(b)}`;
+        } else {
+          ['x', 'y', 'width', 'height', 'x2', 'y2', 'cx', 'cy', 'r'].forEach(k => {
+            if (m[k] !== undefined) attrs[tag === 'line' && k === 'x' ? 'x1' : tag === 'line' && k === 'y' ? 'y1' : k] = m[k];
+          });
+        }
+        if (m.filled) attrs.fill = '#a3e8c1';
+        if (m.thick) attrs['stroke-width'] = 0.65;
+        lines.appendChild(svgEl(tag, attrs));
+      });
+      svg.appendChild(lines);
+
+      const coords = ALL_FORMATIONS[team.formation] || ALL_FORMATIONS['433'];
+      const customMap = team.customCoords?.[team.formation] || {};
+
+      coords.forEach((p, idx) => {
+        const c = customMap[idx];
+        const x = c ? c.x : p.y * 0.68;
+        const y = c ? c.y : (100 - p.x) * 1.05;
+        const assignedId = team.lineupSlots?.[idx];
+        const pl = (team.players || []).find(item => item.id === assignedId) || available[idx] || null;
+        const isAbsent = pl && pl.status === 'absent';
+        const isCap = pl && team.roles?.captain === pl.id;
+
+        const g = svgEl('g', { transform: `translate(${x} ${y})`, style: 'cursor:grab', 'data-slot-idx': String(idx) });
+        g.appendChild(svgEl('circle', { r: 3.1, fill: isAbsent ? 'rgba(244,63,94,0.3)' : 'rgba(34,224,122,0.22)' }));
+        g.appendChild(svgEl('circle', { r: 2.45, fill: isAbsent ? '#f43f5e' : (idx === 0 ? (team.kitSecondary || '#f2c14e') : (team.kitPrimary || '#22e07a')), stroke: '#04140c', 'stroke-width': 0.38 }));
+
+        const num = svgEl('text', { 'text-anchor': 'middle', 'dominant-baseline': 'central', fill: '#04190e', 'font-family': 'Sora, sans-serif', 'font-size': 2.15, 'font-weight': 800 });
+        num.textContent = pl ? String(pl.number) : String(idx + 1);
+        g.appendChild(num);
+
+        const lbl = svgEl('text', { y: 4.5, 'text-anchor': 'middle', fill: '#fff', 'font-family': 'Manrope, sans-serif', 'font-size': 2.0, 'font-weight': 800, 'paint-order': 'stroke', stroke: '#04190e', 'stroke-width': 0.75 });
+        const clean = pl ? pl.name.replace(/\(POR\)/i, '').trim() : p.code;
+        lbl.textContent = (isCap ? '© ' : '') + (clean.length > 13 ? clean.slice(0, 12) + '…' : clean);
+        g.appendChild(lbl);
+        svg.appendChild(g);
+      });
+
+      const pt = svg.createSVGPoint();
+      function cursorPt(evt) {
+        const e = evt.touches ? evt.touches[0] : evt;
+        pt.x = e.clientX; pt.y = e.clientY;
+        return pt.matrixTransform(svg.getScreenCTM().inverse());
+      }
+      svg.addEventListener('pointerdown', e => {
+        const node = e.target.closest('[data-slot-idx]');
+        if (!node) return;
+        draggingSlotIndex = Number(node.getAttribute('data-slot-idx'));
+        e.preventDefault();
+      });
+      svg.addEventListener('pointermove', e => {
+        if (draggingSlotIndex === null) return;
+        const loc = cursorPt(e);
+        const cx = Math.max(2, Math.min(66, loc.x));
+        const cy = Math.max(4, Math.min(102, loc.y));
+        if (!team.customCoords) team.customCoords = {};
+        if (!team.customCoords[team.formation]) team.customCoords[team.formation] = {};
+        team.customCoords[team.formation][draggingSlotIndex] = { x: Number(cx.toFixed(2)), y: Number(cy.toFixed(2)) };
+        const node = svg.querySelector(`[data-slot-idx="${draggingSlotIndex}"]`);
+        if (node) node.setAttribute('transform', `translate(${cx} ${cy})`);
+      });
+      const stop = () => { if (draggingSlotIndex !== null) { draggingSlotIndex = null; saveState(); } };
+      svg.addEventListener('pointerup', stop);
+      svg.addEventListener('pointerleave', stop);
+      return svg;
+    }
+
+    function renderTacticsView(team, available) {
+      const fSel = document.getElementById('tacticsFormationSelect');
+      if (!fSel.options.length) {
+        Object.keys(ALL_FORMATIONS).forEach(k => fSel.add(new Option(k.split('').join('-'), k)));
+      }
+      fSel.value = team.formation || '433';
+
+      const stIn = document.getElementById('tacticsStyleInput');
+      if (document.activeElement !== stIn) stIn.value = team.tacticalStyle || '';
+
+      const optsHtml = (selectedId) => `<option value="">-- Seleccionar --</option>` + (team.players || []).map(p => `<option value="${esc(p.id)}" ${p.id === selectedId ? 'selected' : ''}>#${esc(p.number)} ${esc(p.name)}</option>`).join('');
+      document.getElementById('roleCaptainSelect').innerHTML = optsHtml(team.roles?.captain);
+      document.getElementById('rolePenaltySelect').innerHTML = optsHtml(team.roles?.penalty);
+      document.getElementById('roleFreekickSelect').innerHTML = optsHtml(team.roles?.freekick);
+
+      document.getElementById('tacticsPitchContainer').replaceChildren(buildPitchSvg(team, available));
+
+      const coords = ALL_FORMATIONS[team.formation] || ALL_FORMATIONS['433'];
+      const all = team.players || [];
+      document.getElementById('tacticsLineupSlots').innerHTML = coords.map((pos, idx) => {
+        const cur = team.lineupSlots?.[idx] || available[idx]?.id || '';
+        return `
+          <div class="slot-item">
+            <span class="slot-badge">${idx + 1}·${esc(pos.code)}</span>
+            <select data-lineup-slot="${idx}">
+              <option value="">-- Vacío --</option>
+              <optgroup label="✅ Disponibles (${available.length})">
+                ${all.filter(p => p.status === 'present' || p.status === 'late').map(p => `<option value="${esc(p.id)}" ${p.id === cur ? 'selected' : ''}>#${esc(p.number)} ${esc(p.name)}</option>`).join('')}
+              </optgroup>
+              <optgroup label="⏳ Duda / ❌ No fueron">
+                ${all.filter(p => p.status !== 'present' && p.status !== 'late').map(p => `<option value="${esc(p.id)}" ${p.id === cur ? 'selected' : ''}>${p.status === 'absent' ? '❌ [BAJA]' : '⏳ [DUDA]'} #${esc(p.number)} ${esc(p.name)}</option>`).join('')}
+              </optgroup>
+            </select>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderSquadView(team) {
+      const positions = ['Portero', 'Defensa Central', 'Defensa Lateral', 'Defensa', 'Mediocampista', 'Enganche / 10', 'Extremo Derecho', 'Extremo Izquierdo', 'Delantero'];
+      document.getElementById('squadTableBody').innerHTML = (team.players || []).map(p => `
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+          <td style="padding:7px"><input type="text" data-edit-field="number" data-id="${esc(p.id)}" value="${esc(p.number)}" style="width:48px;padding:5px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;text-align:center;font-weight:800" /></td>
+          <td style="padding:7px"><input type="text" data-edit-field="name" data-id="${esc(p.id)}" value="${esc(p.name)}" style="width:100%;min-width:150px;padding:6px 8px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;font-weight:700" /></td>
+          <td style="padding:7px">
+            <select data-edit-field="position" data-id="${esc(p.id)}" style="padding:6px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff">
+              ${positions.map(pos => `<option value="${esc(pos)}" ${p.position === pos ? 'selected' : ''}>${esc(pos)}</option>`).join('')}
+            </select>
+          </td>
+          <td style="padding:7px"><span class="pill">${p.status === 'present' ? '✅ Fue' : p.status === 'late' ? '⏰ Retardo' : p.status === 'absent' ? '❌ No fue' : '⏳ Duda'}</span></td>
+          <td style="padding:7px;font-weight:800;color:var(--green-neon)">${attRate(p)}%</td>
+          <td style="padding:7px"><input type="number" min="0" data-edit-field="goals" data-id="${esc(p.id)}" value="${Number(p.goals || 0)}" style="width:58px;padding:5px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;text-align:center" /></td>
+          <td style="padding:7px"><input type="number" min="0" data-edit-field="assists" data-id="${esc(p.id)}" value="${Number(p.assists || 0)}" style="width:58px;padding:5px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;text-align:center" /></td>
+          <td style="padding:7px"><button type="button" class="btn-danger" data-delete-player="${esc(p.id)}">Eliminar</button></td>
+        </tr>
+      `).join('');
+    }
+
+    function renderSettingsView(team) {
+      const map = [
+        ['cfgTeamName', team.name || ''],
+        ['cfgTeamSubtitle', team.subtitle || ''],
+        ['cfgCoachName', team.coachName || ''],
+        ['cfgKitPrimary', team.kitPrimary || '#22e07a'],
+        ['cfgKitSecondary', team.kitSecondary || '#f2c14e']
+      ];
+      map.forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        if (el && document.activeElement !== el) el.value = val;
+      });
+    }
+
+    function switchView(v) {
+      document.querySelectorAll('.view').forEach(s => s.classList.toggle('active', s.id === `view-${v}`));
+      document.querySelectorAll('[data-nav-view]').forEach(b => b.classList.toggle('active', b.dataset.navView === v));
+    }
+
+    function buildReport() {
+      const team = activeTeam();
+      const ev = activeEvent(team);
+      const present = (team.players || []).filter(p => p.status === 'present');
+      const late = (team.players || []).filter(p => p.status === 'late');
+      const absent = (team.players || []).filter(p => p.status === 'absent');
+      const doubt = (team.players || []).filter(p => p.status === 'doubt');
+
+      return [
+        `⚽ *CONVOCATORIA Y ASISTENCIA — ${team.name.toUpperCase()}*`,
+        `👨‍💼 *DT:* ${team.coachName}`,
+        `📌 *${ev.type}:* vs ${ev.opponent || 'Por definir'}`,
+        `📅 *Fecha:* ${ev.date} · 🕒 ${ev.time} · 📍 ${ev.field}`,
+        `📋 *Sistema:* ${team.formation.split('').join('-')}`,
+        ``,
+        `✅ *ASISTIERON A JUGAR (${present.length + late.length}):*`,
+        ...present.map(p => `  • #${p.number} ${p.name} (${p.position})`),
+        ...late.map(p => `  • #${p.number} ${p.name} (⏰ Retardo)`),
+        ``,
+        `❌ *NO FUERON A JUGAR / BAJAS (${absent.length}):*`,
+        ...(absent.length ? absent.map(p => `  • #${p.number} ${p.name} — Motivo: ${p.absenceReason || 'No especificado'}${p.note ? ' (' + p.note + ')' : ''}`) : ['  • Sin bajas']),
+        ...(doubt.length ? ['', `⏳ *EN DUDA (${doubt.length}):*`, ...doubt.map(p => `  • #${p.number} ${p.name}`)] : []),
+        ...(ev.coachNotes ? ['', `📝 *Indicaciones DT:* ${ev.coachNotes}`] : [])
+      ].join('\n');
+    }
+
+    document.addEventListener('click', e => {
+      const sw = e.target.closest('[data-switch-team]');
+      if (sw) { state.activeTeamId = sw.dataset.switchTeam; saveState(`Equipo activo: ${activeTeam().name}`); renderAll(); return; }
+
+      const nv = e.target.closest('[data-nav-view]');
+      if (nv) { switchView(nv.dataset.navView); return; }
+
+      const evCard = e.target.closest('[data-select-event]');
+      if (evCard) { activeTeam().activeEventId = evCard.dataset.selectEvent; saveState('Evento seleccionado'); renderAll(); return; }
+
+      const flt = e.target.closest('[data-att-filter]');
+      if (flt) { currentFilter = flt.dataset.attFilter; renderAll(); return; }
+
+      const st = e.target.closest('[data-set-status]');
+      if (st) {
+        const p = (activeTeam().players || []).find(x => x.id === st.dataset.id);
+        if (p) {
+          const prev = p.status;
+          p.status = st.dataset.setStatus;
+          if (p.status === 'present') { p.absenceReason = ''; if (prev !== 'present') p.attendedCount = Number(p.attendedCount || 8) + 1; }
+          if (p.status === 'absent' && prev === 'present') { p.attendedCount = Math.max(0, Number(p.attendedCount || 8) - 1); }
+          saveState(`${p.name}: actualizado`); renderAll();
+        }
+        return;
+      }
+
+      const fee = e.target.closest('[data-toggle-fee]');
+      if (fee) {
+        const p = (activeTeam().players || []).find(x => x.id === fee.dataset.toggleFee);
+        if (p) { p.feePaid = !p.feePaid; saveState(`Arbitraje de ${p.name}: ${p.feePaid ? 'Pagado' : 'Pendiente'}`); renderAll(); }
+        return;
+      }
+
+      const ping = e.target.closest('[data-ping-player]');
+      if (ping) {
+        const team = activeTeam(); const ev = activeEvent(team);
+        const p = (team.players || []).find(x => x.id === ping.dataset.pingPlayer);
+        if (p) {
+          const msg = `Hola *${p.name}* (#${p.number}), te escribimos de *${team.name}*. ¿Confirmas tu asistencia para el ${ev.type} vs *${ev.opponent}* el ${ev.date} a las ${ev.time} en ${ev.field}? Responde ✅ SÍ o ❌ NO.`;
+          window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+        }
+        return;
+      }
+
+      const gBtn = e.target.closest('[data-add-goal]');
+      if (gBtn) {
+        const p = (activeTeam().players || []).find(x => x.id === gBtn.dataset.addGoal);
+        if (p) { p.goals = Number(p.goals || 0) + 1; saveState(`⚽ Gol para ${p.name}`); renderAll(); }
+        return;
+      }
+
+      const aBtn = e.target.closest('[data-add-assist]');
+      if (aBtn) {
+        const p = (activeTeam().players || []).find(x => x.id === aBtn.dataset.addAssist);
+        if (p) { p.assists = Number(p.assists || 0) + 1; saveState(`👟 Asistencia para ${p.name}`); renderAll(); }
+        return;
+      }
+
+      const del = e.target.closest('[data-delete-player]');
+      if (del) {
+        const team = activeTeam();
+        const idx = (team.players || []).findIndex(x => x.id === del.dataset.deletePlayer);
+        if (idx >= 0) { const rem = team.players.splice(idx, 1)[0]; saveState(`Eliminado: ${rem.name}`); renderAll(); }
+      }
+    });
+
+    document.addEventListener('change', e => {
+      const team = activeTeam();
+      if (e.target.matches('[data-absence-reason]')) {
+        const p = (team.players || []).find(x => x.id === e.target.dataset.absenceReason);
+        if (p) { p.absenceReason = e.target.value; if (p.absenceReason && p.status === 'present') p.status = 'absent'; saveState('Motivo guardado'); renderAll(); }
+        return;
+      }
+      if (e.target.matches('[data-player-note]')) {
+        const p = (team.players || []).find(x => x.id === e.target.dataset.playerNote);
+        if (p) { p.note = e.target.value; saveState('Nota guardada'); }
+        return;
+      }
+      if (e.target.id === 'tacticsFormationSelect') { team.formation = e.target.value; saveState('Formación actualizada'); renderAll(); return; }
+      if (e.target.id === 'roleCaptainSelect') { team.roles = { ...(team.roles || {}), captain: e.target.value }; saveState('Capitán asignado'); renderAll(); return; }
+      if (e.target.id === 'rolePenaltySelect') { team.roles = { ...(team.roles || {}), penalty: e.target.value }; saveState('Cobrador de penales asignado'); return; }
+      if (e.target.id === 'roleFreekickSelect') { team.roles = { ...(team.roles || {}), freekick: e.target.value }; saveState('Cobrador de tiros libres asignado'); return; }
+      if (e.target.matches('[data-lineup-slot]')) {
+        if (!team.lineupSlots) team.lineupSlots = {};
+        team.lineupSlots[Number(e.target.dataset.lineupSlot)] = e.target.value;
+        saveState('Titular actualizado'); renderAll(); return;
+      }
+      if (e.target.matches('[data-edit-field]')) {
+        const p = (team.players || []).find(x => x.id === e.target.dataset.id);
+        const f = e.target.dataset.editField;
+        if (p && f) { p[f] = (f === 'goals' || f === 'assists') ? Math.max(0, Number(e.target.value || 0)) : e.target.value; saveState('Jugador editado'); renderAll(); }
+        return;
+      }
+      if (e.target.id === 'cfgLogoUpload') {
+        const file = e.target.files?.[0]; if (!file) return;
+        const r = new FileReader();
+        r.onload = () => {
+          team.logo = String(r.result || team.logo);
+          const swImg = document.querySelector(`[data-switch-team="${team.id}"] img`);
+          if (swImg) swImg.src = team.logo;
+          saveState('Escudo actualizado'); renderAll();
+        };
+        r.readAsDataURL(file);
+      }
+    });
+
+    ['evType', 'matchOpponent', 'matchDate', 'matchTime', 'matchField', 'matchCoachNotes'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', e => {
+        const ev = activeEvent();
+        if (id === 'evType') ev.type = e.target.value;
+        if (id === 'matchOpponent') ev.opponent = e.target.value;
+        if (id === 'matchDate') ev.date = e.target.value;
+        if (id === 'matchTime') ev.time = e.target.value;
+        if (id === 'matchField') ev.field = e.target.value;
+        if (id === 'matchCoachNotes') ev.coachNotes = e.target.value;
+        saveState(); renderAll();
+      });
+    });
+
+    document.getElementById('tacticsStyleInput')?.addEventListener('input', e => { activeTeam().tacticalStyle = e.target.value; saveState(); });
+
+    document.getElementById('btnNewEvent')?.addEventListener('click', () => {
+      const team = activeTeam();
+      const newEv = { id: 'ev_' + Date.now(), type: 'Partido', opponent: 'Nuevo Rival', date: TODAY, time: '16:00', field: 'Campo #1', coachNotes: '' };
+      team.events.unshift(newEv);
+      team.activeEventId = newEv.id;
+      (team.players || []).forEach(p => { p.totalEvents = Number(p.totalEvents || 10) + 1; });
+      saveState('Nuevo evento creado'); renderAll();
+    });
+
+    document.getElementById('addPlayerForm')?.addEventListener('submit', e => {
+      e.preventDefault();
+      const team = activeTeam();
+      const name = document.getElementById('newPlayerName').value.trim();
+      if (!name) return;
+      const number = document.getElementById('newPlayerNumber').value.trim() || String((team.players?.length || 0) + 1);
+      const position = document.getElementById('newPlayerPos').value;
+      const status = document.getElementById('newPlayerStatus').value;
+      const reason = document.getElementById('newPlayerReason').value.trim();
+      team.players.push({
+        id: 'pl_' + Date.now(), number, name, position, status,
+        absenceReason: status === 'absent' ? (reason || 'No asistió') : '',
+        note: reason, goals: 0, assists: 0, feePaid: false, attendedCount: status === 'present' ? 1 : 0, totalEvents: 1
+      });
+      e.target.reset(); saveState(`Agregado: #${number} ${name}`); renderAll();
+    });
+
+    document.getElementById('btnMarkAllPresent')?.addEventListener('click', () => {
+      (activeTeam().players || []).forEach(p => { p.status = 'present'; p.absenceReason = ''; });
+      saveState('Todos marcados presentes'); renderAll();
+    });
+
+    document.getElementById('btnShareWa')?.addEventListener('click', () => {
+      window.open('https://wa.me/?text=' + encodeURIComponent(buildReport()), '_blank', 'noopener');
+    });
+
+    document.getElementById('btnCopyReport')?.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(buildReport()); showToast('Reporte copiado al portapapeles'); } catch (_) {}
+    });
+
+    document.getElementById('btnCopyRsvpLink')?.addEventListener('click', async () => {
+      const team = activeTeam(); const ev = activeEvent(team);
+      const url = `${location.origin}${location.pathname}?team=${team.id}&event=${ev.id}`;
+      try { await navigator.clipboard.writeText(url); showToast('Link de convocatoria copiado'); } catch (_) {}
+    });
+
+    document.getElementById('btnAutoFillPresent')?.addEventListener('click', () => {
+      const team = activeTeam();
+      const avail = (team.players || []).filter(p => p.status === 'present' || p.status === 'late');
+      team.lineupSlots = {};
+      avail.slice(0, 11).forEach((p, idx) => { team.lineupSlots[idx] = p.id; });
+      saveState('11 titular armado con presentes'); renderAll();
+    });
+
+    document.getElementById('btnResetPitchCoords')?.addEventListener('click', () => {
+      const team = activeTeam();
+      if (team.customCoords?.[team.formation]) delete team.customCoords[team.formation];
+      saveState('Posiciones centradas'); renderAll();
+    });
+
+    document.getElementById('btnDownloadPitchSvg')?.addEventListener('click', () => {
+      const svg = document.querySelector('#tacticsPitchContainer svg');
+      if (!svg) return;
+      const team = activeTeam();
+      const blob = new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = `pizarra-${team.id}-${team.formation}.svg`; a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      showToast('Pizarra SVG descargada');
+    });
+
+    document.getElementById('teamConfigForm')?.addEventListener('submit', e => {
+      e.preventDefault();
+      const team = activeTeam();
+      team.name = document.getElementById('cfgTeamName').value.trim() || team.name;
+      team.subtitle = document.getElementById('cfgTeamSubtitle').value.trim() || team.subtitle;
+      team.coachName = document.getElementById('cfgCoachName').value.trim() || team.coachName;
+      team.kitPrimary = document.getElementById('cfgKitPrimary').value || '#22e07a';
+      team.kitSecondary = document.getElementById('cfgKitSecondary').value || '#f2c14e';
+      const swSpan = document.querySelector(`[data-switch-team="${team.id}"] span`);
+      if (swSpan) swSpan.textContent = team.name;
+      saveState('Configuración guardada'); renderAll();
+    });
+
+    document.getElementById('btnExportBackup')?.addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = `respaldo-manager-${TODAY}.json`; a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      showToast('Respaldo JSON descargado');
+    });
+
+    document.getElementById('inputImportBackup')?.addEventListener('change', e => {
+      const f = e.target.files?.[0]; if (!f) return;
+      const r = new FileReader();
+      r.onload = () => {
+        try {
+          const parsed = JSON.parse(String(r.result || ''));
+          if (parsed?.teams) { state = parsed; saveState('Respaldo cargado'); renderAll(); }
+        } catch (_) { showToast('Archivo inválido'); }
+      };
+      r.readAsText(f);
+    });
+
+    document.getElementById('btnResetFactory')?.addEventListener('click', () => {
+      if (confirm('¿Restaurar plantillas iniciales de Club América Veteranos y Atlético La Luz?')) {
+        state = clone(DEFAULT_STATE); saveState('Datos restaurados'); renderAll();
+      }
+    });
+
+    function init3DBall() {
+      const stage = document.getElementById('mgrBallStage');
+      if (!stage || !window.JRBallModelV38?.fallback) return;
+      try { const fb = window.JRBallModelV38.fallback(stage); window.addEventListener('resize', () => fb.draw()); } catch (_) {}
+    }
+
+    renderAll();
+    init3DBall();
+  </script>
+</body>
+</html>
