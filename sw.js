@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dt-manager-franco-v10';
+const CACHE_NAME = 'dt-manager-franco-v11-23j';
 self.addEventListener('install', event => {
   self.skipWaiting();
 });

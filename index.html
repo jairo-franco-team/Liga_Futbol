@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#05140d" />
-  <title>DT Manager Pro · Atlético La Luz &amp; Club América Veteranos 35 y más</title>
-  <meta name="description" content="Suite Oficial de Dirección Técnica (DT: Franco) para Atlético La Luz (Dueño: Josué Franco) y Club América Veteranos 35 y más (Dueño: Papá · Capitán y DT: Franco)." />
+  <title>DT Manager Pro · Atlético La Luz (23 Jornadas) &amp; Club América Veteranos 35 y más</title>
+  <meta name="description" content="Suite Oficial de Dirección Técnica para Atlético La Luz (Dueño: Josué Franco · DT: Franco · 23 Jornadas) y Club América Veteranos 35 y más (Dueño, Capitán y DT: Franco)." />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -197,13 +197,16 @@
     .p-foot { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 11.5px; color: var(--text-muted); padding-top: 4px; flex-wrap: wrap; }
     .fee-btn { padding: 3px 8px; border-radius: 6px; border: 1px solid var(--border-subtle); background: rgba(255,255,255,0.05); color: var(--text-muted); font-size: 11px; font-weight: 700; cursor: pointer; }
     .fee-btn.paid { background: rgba(34, 224, 122, 0.2); border-color: var(--green-electric); color: var(--green-neon); }
+
+    /* BOTONES DE LAS 23 JORNADAS (J1 A J23) */
     .wk-btn {
-      width: 32px; height: 32px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.04); color: #fff; font-size: 13px; cursor: pointer;
+      width: 28px; height: 28px; border-radius: 7px; border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04); color: #fff; font-size: 11.5px; cursor: pointer; padding: 0;
     }
     .wk-btn.wk-present { background: rgba(34, 224, 122, 0.24); border-color: var(--green-electric); }
     .wk-btn.wk-late { background: rgba(56, 189, 248, 0.24); border-color: var(--info); }
     .wk-btn.wk-absent { background: rgba(244, 63, 94, 0.28); border-color: var(--danger); }
+
     .tactics-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 440px); gap: 20px; align-items: start; }
     .pitch-card { background: #072215; border: 2px solid var(--border-green); border-radius: 20px; padding: 14px; }
     .pitch-svg-wrap { width: 100%; max-width: 440px; margin: 0 auto; border-radius: 14px; overflow: hidden; touch-action: none; }
@@ -271,8 +274,8 @@
     <div class="topbar-inner">
       <div>
         <span class="badge-coach">⚽ DT MANAGER &amp; COACH PRO · DT: FRANCO</span>
-        <div class="brand-title" style="margin-top:3px">Centro de Mando Técnico · Atlético La Luz &amp; Club América Veteranos 35 y más</div>
-        <div class="brand-sub">Atlético La Luz (Dueño: Josué Franco · DT: Franco) · Club América Veteranos 35 y más (Dueño: Papá · Capitán y DT: Franco)</div>
+        <div class="brand-title" style="margin-top:3px">Centro de Mando Técnico · Atlético La Luz (23 Jornadas) &amp; Club América Veteranos 35 y más</div>
+        <div class="brand-sub">Atlético La Luz (Dueño: Josué Franco · DT: Franco) · Club América Veteranos 35 y más (Dueño, Capitán y DT: Franco)</div>
       </div>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
         <button type="button" class="btn-ghost" id="btnToggleMotion">🎬 Movimiento: ON</button>
@@ -296,7 +299,7 @@
     <section id="americaCategorySection" class="america-only-categories" aria-label="Categoría Oficial Club América Veteranos 35 y más">
       <div>
         <span class="badge-coach">🏆 CATEGORÍA OFICIAL: VETERANOS 35 Y MÁS (EQUIPO #5)</span>
-        <h3 style="font-family:'Sora',sans-serif;font-size:15.5px;color:#fff;margin-top:4px">Club América Veteranos 35 y más · Dueño: Papá · Capitán y DT: Franco</h3>
+        <h3 style="font-family:'Sora',sans-serif;font-size:15.5px;color:#fff;margin-top:4px">Club América Veteranos 35 y más · Dueño, Capitán y DT: Franco</h3>
       </div>
       <a id="americaOfficialRegLink" href="https://www.juventinorosasliga.com/reportes/registro/?categoria=2&temporada=6&equipo=5" target="_blank" rel="noopener" class="btn-gold">🌐 Ver Registro Oficial Veteranos 35 y más</a>
     </section>
@@ -314,7 +317,7 @@
             </div>
             <div>
               <h1 id="heroTeamName" class="hero-title">ATLÉTICO LA LUZ <span class="electric">MANAGER PRO</span></h1>
-              <p id="heroTeamSubtitle" style="color:var(--text-muted);font-size:13.5px;font-weight:600">Plantel Oficial · Dirección Técnica: Franco</p>
+              <p id="heroTeamSubtitle" style="color:var(--text-muted);font-size:13.5px;font-weight:600">Temporada de 23 Jornadas · Dirección Técnica: Franco</p>
               <div class="owner-banner" id="heroOwnerBanner">👑 Dueño: Josué Franco · DT: Franco</div>
             </div>
           </div>
@@ -357,7 +360,7 @@
 
     <nav class="tabs">
       <button type="button" class="tab-btn active" data-nav-view="attendance">📋 Pase de Lista, Razón Social y Bajas</button>
-      <button type="button" class="tab-btn" data-nav-view="constancy">📊 Registro Semanal, Constancia y Descartes</button>
+      <button type="button" class="tab-btn" data-nav-view="constancy">📊 23 Jornadas, Constancia y Descartes</button>
       <button type="button" class="tab-btn" data-nav-view="tactics">⚽ Pizarra 2D, Banca y 3D</button>
       <button type="button" class="tab-btn" data-nav-view="matchlive">⏱️ Partido en Vivo y Entrenamientos</button>
       <button type="button" class="tab-btn" data-nav-view="squad">👥 Plantilla y Teléfonos</button>
@@ -369,13 +372,13 @@
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow">PASE DE LISTA Y RAZÓN SOCIAL DE FALTAS (DT: FRANCO)</div>
+            <div class="eyebrow">PASE DE LISTA DE LAS 23 JORNADAS Y RAZÓN SOCIAL DE FALTAS (DT: FRANCO)</div>
             <h2>Control de Quién Fue a Jugar, Quién Faltó y Por Qué Faltó</h2>
-            <p>Cada tarjeta muestra la constancia semanal del jugador, su teléfono de WhatsApp para aviso en 1 toque y la Razón Social / Motivo exacto cuando no asiste.</p>
+            <p>Selecciona la Jornada (Jornada 1 a Jornada 23), toma lista en 1 toque, registra la Razón Social de quién faltó y guárdalo en el historial de las 23 jornadas.</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button type="button" class="btn-ghost" id="btnRemindDoubtWa">🔔 Cobrar Confirmación a Dudas</button>
-            <button type="button" class="btn-green" id="btnNewEvent">➕ Nueva Semana / Partido</button>
+            <button type="button" class="btn-green" id="btnNewEvent">➕ Nueva Jornada / Partido</button>
           </div>
         </div>
 
@@ -383,16 +386,15 @@
 
         <div class="form-grid">
           <div class="field">
-            <label for="evWeekLabel">Semana / Jornada</label>
-            <select id="evWeekLabel">
-              <option value="Semana 1">Semana 1</option>
-              <option value="Semana 2">Semana 2</option>
-              <option value="Semana 3">Semana 3</option>
-              <option value="Semana 4">Semana 4</option>
-              <option value="Semana 5">Semana 5</option>
-              <option value="Semana 6">Semana 6</option>
-              <option value="Semana 7">Semana 7</option>
-              <option value="Semana 8">Semana 8</option>
+            <label for="evWeekLabel">Jornada del Torneo (1 a 23)</label>
+            <select id="evWeekLabel"></select>
+          </div>
+          <div class="field">
+            <label for="evType">Tipo de Evento</label>
+            <select id="evType">
+              <option value="Partido">⚽ Partido de Jornada</option>
+              <option value="Entrenamiento">🏃 Entrenamiento</option>
+              <option value="Amistoso">🤝 Amistoso</option>
             </select>
           </div>
           <div class="field">
@@ -413,19 +415,19 @@
           </div>
           <div class="field">
             <label for="dutyBalls">⚽ Encargado de Balones y Casacas</label>
-            <input id="dutyBalls" type="text" placeholder="Ej. Franco / Josué Franco / Papá" />
+            <input id="dutyBalls" type="text" placeholder="Ej. Franco / Josué Franco" />
           </div>
           <div class="field" style="grid-column: 1 / -1;">
-            <label for="matchCoachNotes">Charla Técnica de Franco / Notas de la Semana</label>
+            <label for="matchCoachNotes">Charla Técnica de Franco / Notas de la Jornada</label>
             <input id="matchCoachNotes" type="text" placeholder="Indicaciones tácticas, uniforme o avisos..." />
           </div>
         </div>
 
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
           <button type="button" class="btn-ghost" id="btnMarkAllPresent">✅ Marcar Todos Presentes</button>
-          <button type="button" class="btn-green" id="btnSaveWeekSnapshot">💾 Guardar Asistencia en Historial Semanal</button>
+          <button type="button" class="btn-green" id="btnSaveWeekSnapshot">💾 Guardar Asistencia en la Jornada Seleccionada</button>
           <button type="button" class="btn-ghost" id="btnCopyReport">📋 Copiar Reporte DT</button>
-          <button type="button" class="btn-ghost" id="btnExportCsv">📊 Descargar Excel / CSV</button>
+          <button type="button" class="btn-ghost" id="btnExportCsv">📊 Descargar Excel / CSV (23 Jornadas)</button>
         </div>
 
         <div id="absentSummaryBanner" class="absent-banner"></div>
@@ -481,39 +483,23 @@
       </div>
     </section>
 
-    <!-- VISTA 2: REGISTRO SEMANAL DE CONSTANCIA, RAZÓN SOCIAL Y DESCARTE DE JUGADORES -->
+    <!-- VISTA 2: MATRIZ DE LAS 23 JORNADAS DE CONSTANCIA, RAZÓN SOCIAL Y DESCARTE DE JUGADORES -->
     <section id="view-constancy" class="view">
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow">AUDITORÍA SEMANAL DE CONSTANCIA (DT: FRANCO)</div>
-            <h2>Historial Semana por Semana, Ranking de Constancia y Descarte</h2>
-            <p>Toca cualquier casilla semanal (S1 a S8) para alternar entre ✅ Asistió, ⏰ Retardo o ❌ Faltó. Así sabes quiénes son los más constantes y a quiénes descartar por acumular faltas.</p>
+            <div class="eyebrow">AUDITORÍA DE LAS 23 JORNADAS (DT: FRANCO)</div>
+            <h2>Seguimiento de las 23 Jornadas (J1 a J23), Ranking de Constancia y Descarte</h2>
+            <p>Toca cualquier casilla de la Jornada 1 a la Jornada 23 para alternar entre ✅ Asistió, ⏰ Retardo o ❌ Faltó. El sistema calcula quiénes son los más constantes en las 23 jornadas y a quiénes descartar por acumular faltas.</p>
           </div>
-          <button type="button" class="btn-green" id="btnShareConstancyWa">📲 Enviar Tabla de Constancia por WhatsApp</button>
+          <button type="button" class="btn-green" id="btnShareConstancyWa">📲 Enviar Reporte de 23 Jornadas por WhatsApp</button>
         </div>
 
         <div id="discardAlertBox" class="absent-banner"></div>
 
         <div style="overflow-x:auto">
-          <table style="width:100%;border-collapse:collapse;font-size:12.5px">
-            <thead>
-              <tr style="border-bottom:1px solid var(--border-green);text-align:left;color:var(--green-neon)">
-                <th style="padding:8px 6px">#</th>
-                <th style="padding:8px 6px">Jugador</th>
-                <th style="padding:8px 4px;text-align:center">S1</th>
-                <th style="padding:8px 4px;text-align:center">S2</th>
-                <th style="padding:8px 4px;text-align:center">S3</th>
-                <th style="padding:8px 4px;text-align:center">S4</th>
-                <th style="padding:8px 4px;text-align:center">S5</th>
-                <th style="padding:8px 4px;text-align:center">S6</th>
-                <th style="padding:8px 4px;text-align:center">S7</th>
-                <th style="padding:8px 4px;text-align:center">S8</th>
-                <th style="padding:8px 6px">Constancia</th>
-                <th style="padding:8px 6px">Última Razón Social / Motivo de Falta</th>
-                <th style="padding:8px 6px">Veredicto DT</th>
-              </tr>
-            </thead>
+          <table style="width:100%;border-collapse:collapse;font-size:12px">
+            <thead id="constancyTableHead"></thead>
             <tbody id="constancyTableBody"></tbody>
           </table>
         </div>
@@ -527,7 +513,7 @@
           <div>
             <div class="eyebrow">PIZARRA TÁCTICA INTERACTIVA (DT: FRANCO)</div>
             <h2>Alineación Titular, Suplentes Disponibles y Movimiento en Cancha</h2>
-            <p>Arrastra las fichas con el dedo o mouse. El botón ⚡ Armar 11 prioriza a los jugadores presentes y más constantes.</p>
+            <p>Arrastra las fichas con el dedo o mouse. El botón ⚡ Armar 11 prioriza a los jugadores presentes y más constantes de las 23 jornadas.</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button type="button" class="btn-ghost" id="btnAutoFillPresent">⚡ Armar 11 con Presentes y Constantes</button>
@@ -682,7 +668,7 @@
         <div class="panel-head">
           <div>
             <div class="eyebrow">REGISTRO DE PLANTILLA, TELÉFONOS Y RENDIMIENTO</div>
-            <h2>Editar Jugadores, Dorsales, Teléfono WhatsApp, Goles y % de Constancia</h2>
+            <h2>Editar Jugadores, Dorsales, Teléfono WhatsApp, Goles y % de Constancia (23 Jornadas)</h2>
           </div>
           <button type="button" class="btn-green" id="btnExportCsvSquad">📊 Exportar Plantilla a Excel (CSV)</button>
         </div>
@@ -695,7 +681,7 @@
                 <th style="padding:9px 6px">Teléfono WhatsApp</th>
                 <th style="padding:9px 6px">Posición</th>
                 <th style="padding:9px 6px">Estado Hoy</th>
-                <th style="padding:9px 6px">% Constancia</th>
+                <th style="padding:9px 6px">% Constancia (23J)</th>
                 <th style="padding:9px 6px">Goles</th>
                 <th style="padding:9px 6px">Asist.</th>
                 <th style="padding:9px 6px">Acción</th>
@@ -749,7 +735,7 @@
 
   <nav class="bottom-nav">
     <button type="button" class="active" data-nav-view="attendance"><span>📋</span><span>Asistencia</span></button>
-    <button type="button" data-nav-view="constancy"><span>📊</span><span>Constancia</span></button>
+    <button type="button" data-nav-view="constancy"><span>📊</span><span>23 Jornadas</span></button>
     <button type="button" data-nav-view="tactics"><span>⚽</span><span>Tácticas</span></button>
     <button type="button" data-nav-view="matchlive"><span>⏱️</span><span>En Vivo</span></button>
     <button type="button" data-nav-view="squad"><span>👥</span><span>Plantilla</span></button>
@@ -758,13 +744,14 @@
   <div id="mgrToast" class="toast" role="status" aria-live="polite"></div>
 
   <!-- Imagen original exacta del escudo de Atlético La Luz y Balón 3D -->
-  <script src="./assets/atletico-la-luz-logo-real.js?v=10"></script>
+  <script src="./assets/atletico-la-luz-logo-real.js?v=11"></script>
   <script src="./assets/jr-ball-model-v38.js"></script>
   <script type="module">
     import { computePitchMarkings } from './vendor/campos/pitch.js';
     import formations from './vendor/campos/formations.js';
 
-    const STORAGE_KEY = 'dt_manager_franco_v10_real_logo';
+    const STORAGE_KEY = 'dt_manager_franco_v11_23jornadas';
+    const TOTAL_JORNADAS = 23;
     const NS = 'http://www.w3.org/2000/svg';
     const TODAY = new Date().toISOString().slice(0, 10);
     const REAL_LUZ_LOGO = window.ATLETICO_LA_LUZ_REAL_LOGO || './assets/official-logos/dep-la-luz.png';
@@ -779,6 +766,13 @@
       'Sanción deportiva',
       'Sin avisar / Falta injustificada'
     ];
+
+    function makeWeeks23(absentIndices = [], lateIndices = []) {
+      const arr = Array(TOTAL_JORNADAS).fill('P');
+      absentIndices.forEach(i => { if (i >= 0 && i < TOTAL_JORNADAS) arr[i] = 'A'; });
+      lateIndices.forEach(i => { if (i >= 0 && i < TOTAL_JORNADAS) arr[i] = 'L'; });
+      return arr;
+    }
 
     const ALL_FORMATIONS = {
       ...formations,
@@ -812,7 +806,7 @@
           id: 'atletico_luz',
           name: 'Atlético La Luz',
           ownerName: 'Josué Franco (Dueño Atlético La Luz)',
-          subtitle: 'Plantel Oficial · Dirección Técnica: Franco',
+          subtitle: 'Temporada de 23 Jornadas · Dirección Técnica: Franco',
           coachName: 'Franco',
           logo: REAL_LUZ_LOGO,
           kitPrimary: '#22e07a',
@@ -822,7 +816,7 @@
           roles: { captain: 'll18', penalty: 'll13', freekick: 'll10' },
           activeEventId: 'ev_ll_1',
           events: [
-            { id: 'ev_ll_1', weekLabel: 'Semana 1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '10:00', field: 'Campo La Luz', dutyBalls: 'Josué Franco', coachNotes: 'Revisar constancia semanal antes de dar el 11 titular.' }
+            { id: 'ev_ll_1', weekLabel: 'Jornada 1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '10:00', field: 'Campo La Luz', dutyBalls: 'Josué Franco', coachNotes: 'Control de constancia durante las 23 jornadas del torneo.' }
           ],
           liveMatch: { scoreHome: 3, scoreAway: 0, mvpId: 'll18', log: [
             { id: 'lg_ll1', min: "22'", text: '⚽ Gol de José Salvador Rodríguez (Asist: Josué Franco)' },
@@ -832,33 +826,33 @@
           lineupSlots: {},
           customCoords: {},
           players: [
-            { id: 'll1', number: '1', name: 'Kana', phone: '+52 412 143 8352', position: 'Portero', status: 'present', absenceReason: '', note: 'Admin. del grupo WhatsApp', goals: 0, assists: 1, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'll2', number: '2', name: 'Daniel', phone: '+52 729 549 1948', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Titular constante', goals: 1, assists: 1, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'll3', number: '3', name: 'Giovannicp', phone: '+52 412 243 8717', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Central', goals: 1, assists: 0, feePaid: true, weeks: ['P','P','P','P','L','P','P','P'] },
-            { id: 'll4', number: '4', name: 'Jesús Solache', phone: '+52 412 168 0005', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: 'Lateral derecho', goals: 0, assists: 2, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'll5', number: '5', name: 'Juan Barrera', phone: '+52 412 262 8009', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: 'Lateral izquierdo', goals: 1, assists: 2, feePaid: true, weeks: ['P','P','P','A','P','P','P','P'] },
-            { id: 'll6', number: '6', name: 'Kevin', phone: '+52 412 200 2289', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Contención', goals: 2, assists: 3, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'll7', number: '7', name: 'Leonel Luna', phone: '+52 412 125 3538', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Mixto', goals: 3, assists: 4, feePaid: true, weeks: ['P','P','P','P','P','L','P','P'] },
-            { id: 'll8', number: '8', name: 'Mau', phone: '+52 412 111 8197', position: 'Extremo Derecho', status: 'present', absenceReason: '', note: 'Velocidad por banda', goals: 4, assists: 3, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'll9', number: '9', name: 'Aaron (~ Aaron)', phone: '+52 412 131 6317', position: 'Delantero', status: 'present', absenceReason: '', note: 'Atacante', goals: 5, assists: 2, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'll10', number: '10', name: 'Ángel (~ Ángel)', phone: '+52 412 142 6861', position: 'Enganche / 10', status: 'present', absenceReason: '', note: 'Creativo', goals: 6, assists: 6, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'll11', number: '11', name: 'Gabo (~ Gabo)', phone: '+52 412 120 0007', position: 'Extremo Izquierdo', status: 'present', absenceReason: '', note: 'Banda izquierda', goals: 4, assists: 4, feePaid: true, weeks: ['P','P','A','P','P','P','P','P'] },
-            { id: 'll12', number: '12', name: 'Iván GG (~ Ivan Gg)', phone: '+52 412 100 0166', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Medio campo', goals: 2, assists: 2, feePaid: true, weeks: ['P','P','P','P','A','P','P','P'] },
-            { id: 'll13', number: '13', name: 'José Salvador Rodríguez', phone: '+52 412 167 8276', position: 'Delantero', status: 'present', absenceReason: '', note: 'Definidor', goals: 7, assists: 2, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'll14', number: '14', name: 'Rogelio (~ Rogelio)', phone: '+52 412 143 1094', position: 'Defensa', status: 'present', absenceReason: '', note: 'Defensa', goals: 0, assists: 1, feePaid: true, weeks: ['P','A','P','P','P','P','P','P'] },
-            { id: 'll15', number: '15', name: 'Villafuerte (~ Villafuerte)', phone: '+52 412 172 9510', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Volante', goals: 2, assists: 3, feePaid: true, weeks: ['P','P','P','P','P','A','P','P'] },
-            { id: 'll16', number: '16', name: 'A G L (~ A G L)', phone: '+52 412 128 3831', position: 'Delantero', status: 'absent', absenceReason: 'Trabajo / Turno laboral', note: 'Faltó 4 semanas seguidas', goals: 1, assists: 1, feePaid: false, weeks: ['P','A','A','P','A','A','A','A'] },
-            { id: 'll17', number: '17', name: 'Jugador (~ .)', phone: '+52 412 122 0872', position: 'Defensa', status: 'absent', absenceReason: 'Sin avisar / Falta injustificada', note: 'Inconstante · Candidato a descarte', goals: 0, assists: 1, feePaid: false, weeks: ['A','A','P','A','A','P','A','A'] },
-            { id: 'll18', number: '18', name: 'Josué Franco (Dueño)', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Dueño de Atlético La Luz', goals: 5, assists: 7, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'll19', number: '19', name: 'Papá', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Directivo / Dueño Club América Veteranos', goals: 1, assists: 2, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] }
+            { id: 'll1', number: '1', name: 'Kana', phone: '+52 412 143 8352', position: 'Portero', status: 'present', absenceReason: '', note: 'Admin. del grupo WhatsApp', goals: 0, assists: 1, feePaid: true, weeks: makeWeeks23() },
+            { id: 'll2', number: '2', name: 'Daniel', phone: '+52 729 549 1948', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Titular constante', goals: 1, assists: 1, feePaid: true, weeks: makeWeeks23() },
+            { id: 'll3', number: '3', name: 'Giovannicp', phone: '+52 412 243 8717', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Central', goals: 1, assists: 0, feePaid: true, weeks: makeWeeks23([], [4, 11]) },
+            { id: 'll4', number: '4', name: 'Jesús Solache', phone: '+52 412 168 0005', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: 'Lateral derecho', goals: 0, assists: 2, feePaid: true, weeks: makeWeeks23() },
+            { id: 'll5', number: '5', name: 'Juan Barrera', phone: '+52 412 262 8009', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: 'Lateral izquierdo', goals: 1, assists: 2, feePaid: true, weeks: makeWeeks23([3]) },
+            { id: 'll6', number: '6', name: 'Kevin', phone: '+52 412 200 2289', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Contención', goals: 2, assists: 3, feePaid: true, weeks: makeWeeks23() },
+            { id: 'll7', number: '7', name: 'Leonel Luna', phone: '+52 412 125 3538', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Mixto', goals: 3, assists: 4, feePaid: true, weeks: makeWeeks23([], [5]) },
+            { id: 'll8', number: '8', name: 'Mau', phone: '+52 412 111 8197', position: 'Extremo Derecho', status: 'present', absenceReason: '', note: 'Velocidad por banda', goals: 4, assists: 3, feePaid: true, weeks: makeWeeks23() },
+            { id: 'll9', number: '9', name: 'Aaron (~ Aaron)', phone: '+52 412 131 6317', position: 'Delantero', status: 'present', absenceReason: '', note: 'Atacante', goals: 5, assists: 2, feePaid: true, weeks: makeWeeks23() },
+            { id: 'll10', number: '10', name: 'Ángel (~ Ángel)', phone: '+52 412 142 6861', position: 'Enganche / 10', status: 'present', absenceReason: '', note: 'Creativo', goals: 6, assists: 6, feePaid: true, weeks: makeWeeks23() },
+            { id: 'll11', number: '11', name: 'Gabo (~ Gabo)', phone: '+52 412 120 0007', position: 'Extremo Izquierdo', status: 'present', absenceReason: '', note: 'Banda izquierda', goals: 4, assists: 4, feePaid: true, weeks: makeWeeks23([2]) },
+            { id: 'll12', number: '12', name: 'Iván GG (~ Ivan Gg)', phone: '+52 412 100 0166', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Medio campo', goals: 2, assists: 2, feePaid: true, weeks: makeWeeks23([4]) },
+            { id: 'll13', number: '13', name: 'José Salvador Rodríguez', phone: '+52 412 167 8276', position: 'Delantero', status: 'present', absenceReason: '', note: 'Definidor', goals: 7, assists: 2, feePaid: true, weeks: makeWeeks23() },
+            { id: 'll14', number: '14', name: 'Rogelio (~ Rogelio)', phone: '+52 412 143 1094', position: 'Defensa', status: 'present', absenceReason: '', note: 'Defensa', goals: 0, assists: 1, feePaid: true, weeks: makeWeeks23([1]) },
+            { id: 'll15', number: '15', name: 'Villafuerte (~ Villafuerte)', phone: '+52 412 172 9510', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Volante', goals: 2, assists: 3, feePaid: true, weeks: makeWeeks23([5]) },
+            { id: 'll16', number: '16', name: 'A G L (~ A G L)', phone: '+52 412 128 3831', position: 'Delantero', status: 'absent', absenceReason: 'Trabajo / Turno laboral', note: 'Acumula varias faltas en las 23 jornadas', goals: 1, assists: 1, feePaid: false, weeks: makeWeeks23([1,2,4,5,6,7,10,12]) },
+            { id: 'll17', number: '17', name: 'Jugador (~ .)', phone: '+52 412 122 0872', position: 'Defensa', status: 'absent', absenceReason: 'Sin avisar / Falta injustificada', note: 'Inconstante · Candidato a descarte', goals: 0, assists: 1, feePaid: false, weeks: makeWeeks23([0,1,3,4,6,7,9,11,13]) },
+            { id: 'll18', number: '18', name: 'Josué Franco (Dueño)', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Dueño de Atlético La Luz', goals: 5, assists: 7, feePaid: true, weeks: makeWeeks23() },
+            { id: 'll19', number: '19', name: 'Franco (DT)', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Director Técnico y Capitán', goals: 3, assists: 5, feePaid: true, weeks: makeWeeks23() }
           ]
         },
         america_vet: {
           id: 'america_vet',
           name: 'Club América Veteranos 35 y más',
-          ownerName: 'Papá (Dueño Club América Veteranos)',
-          subtitle: 'Categoría Oficial: Veteranos 35 y más · Capitán y DT: Franco',
-          coachName: 'Franco (Capitán y DT)',
+          ownerName: 'Franco (Dueño y DT Club América Veteranos 35 y más)',
+          subtitle: 'Categoría Oficial: Veteranos 35 y más · Dueño, Capitán y DT: Franco',
+          coachName: 'Franco (Dueño, Capitán y DT)',
           logo: './assets/branding/america-veteranos-35-user.png',
           kitPrimary: '#22e07a',
           kitSecondary: '#f5c451',
@@ -867,7 +861,7 @@
           roles: { captain: 'am_franco', penalty: 'am2', freekick: 'am3' },
           activeEventId: 'ev_am_1',
           events: [
-            { id: 'ev_am_1', weekLabel: 'Semana 1', type: 'Partido', opponent: 'Rival en turno (Veteranos 35 y más)', date: TODAY, time: '16:00', field: 'Campo Empastado #1', dutyBalls: 'Franco / Papá', coachNotes: 'Confirmar asistencia 30 min antes. Cuidar coberturas.' }
+            { id: 'ev_am_1', weekLabel: 'Jornada 1', type: 'Partido', opponent: 'Rival en turno (Veteranos 35 y más)', date: TODAY, time: '16:00', field: 'Campo Empastado #1', dutyBalls: 'Franco', coachNotes: 'Confirmar asistencia 30 min antes. Cuidar coberturas.' }
           ],
           liveMatch: { scoreHome: 2, scoreAway: 1, mvpId: 'am_franco', log: [
             { id: 'lg1', min: "18'", text: '⚽ Gol de J. Refugio Zarazúa Agostadero (Asist: Franco)' },
@@ -877,26 +871,24 @@
           lineupSlots: {},
           customCoords: {},
           players: [
-            { id: 'am_franco', number: '10', name: 'Franco (Capitán y DT)', phone: '', position: 'Enganche / 10', status: 'present', absenceReason: '', note: 'Capitán y Director Técnico · Club América Veteranos 35 y más', goals: 8, assists: 9, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'am1', number: '14', name: 'J. Refugio Zarazúa Agostadero', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5', goals: 11, assists: 6, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'am2', number: '9', name: 'Francisco Javier Valdez Corrales', phone: '', position: 'Delantero', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5 · Goleador', goals: 7, assists: 4, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'am3', number: '8', name: 'Óscar Vargas Tovar', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5', goals: 6, assists: 5, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'am4', number: '4', name: 'Eric Fernando Dongu Guerrero', phone: '', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5', goals: 1, assists: 1, feePaid: true, weeks: ['P','P','P','P','P','L','P','P'] },
-            { id: 'am5', number: '5', name: 'Luis Jiménez Zárate', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5', goals: 2, assists: 3, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'am6', number: '1', name: 'Guillermo Franco (POR)', phone: '', position: 'Portero', status: 'present', absenceReason: '', note: 'Portero Titular América 35+', goals: 0, assists: 0, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'am7', number: '2', name: 'Roberto Garduño', phone: '', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: 'Banda derecha', goals: 1, assists: 2, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'am8', number: '3', name: 'Arturo Tavera', phone: '', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Central', goals: 1, assists: 0, feePaid: true, weeks: ['P','P','A','P','P','P','P','P'] },
-            { id: 'am9', number: '6', name: 'Miguel Ángel Cervantes', phone: '', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: 'Lateral izquierdo', goals: 0, assists: 2, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'am10', number: '7', name: 'Héctor Morales', phone: '', position: 'Extremo Derecho', status: 'present', absenceReason: '', note: 'Desborde', goals: 4, assists: 4, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
-            { id: 'am11', number: '11', name: 'Raúl Mendoza', phone: '', position: 'Extremo Izquierdo', status: 'absent', absenceReason: 'Trabajo / Turno laboral', note: 'Avisó permiso de trabajo', goals: 3, assists: 3, feePaid: false, weeks: ['P','A','A','P','A','A','P','A'] },
-            { id: 'am12', number: '12', name: 'Papá (Dueño Club América)', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Dueño y Presidente Club América Veteranos', goals: 2, assists: 5, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] }
+            { id: 'am_franco', number: '10', name: 'Franco (Dueño, Capitán y DT)', phone: '', position: 'Enganche / 10', status: 'present', absenceReason: '', note: 'Dueño, Capitán y Director Técnico · Club América Veteranos 35 y más', goals: 8, assists: 9, feePaid: true, weeks: makeWeeks23() },
+            { id: 'am1', number: '14', name: 'J. Refugio Zarazúa Agostadero', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5', goals: 11, assists: 6, feePaid: true, weeks: makeWeeks23() },
+            { id: 'am2', number: '9', name: 'Francisco Javier Valdez Corrales', phone: '', position: 'Delantero', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5 · Goleador', goals: 7, assists: 4, feePaid: true, weeks: makeWeeks23() },
+            { id: 'am3', number: '8', name: 'Óscar Vargas Tovar', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5', goals: 6, assists: 5, feePaid: true, weeks: makeWeeks23() },
+            { id: 'am4', number: '4', name: 'Eric Fernando Dongu Guerrero', phone: '', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5', goals: 1, assists: 1, feePaid: true, weeks: makeWeeks23([], [5]) },
+            { id: 'am5', number: '5', name: 'Luis Jiménez Zárate', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5', goals: 2, assists: 3, feePaid: true, weeks: makeWeeks23() },
+            { id: 'am6', number: '1', name: 'Guillermo Franco (POR)', phone: '', position: 'Portero', status: 'present', absenceReason: '', note: 'Portero Titular América 35+', goals: 0, assists: 0, feePaid: true, weeks: makeWeeks23() },
+            { id: 'am7', number: '2', name: 'Roberto Garduño', phone: '', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: 'Banda derecha', goals: 1, assists: 2, feePaid: true, weeks: makeWeeks23() },
+            { id: 'am8', number: '3', name: 'Arturo Tavera', phone: '', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Central', goals: 1, assists: 0, feePaid: true, weeks: makeWeeks23([2]) },
+            { id: 'am9', number: '6', name: 'Miguel Ángel Cervantes', phone: '', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: 'Lateral izquierdo', goals: 0, assists: 2, feePaid: true, weeks: makeWeeks23() },
+            { id: 'am10', number: '7', name: 'Héctor Morales', phone: '', position: 'Extremo Derecho', status: 'present', absenceReason: '', note: 'Desborde', goals: 4, assists: 4, feePaid: true, weeks: makeWeeks23() },
+            { id: 'am11', number: '11', name: 'Raúl Mendoza', phone: '', position: 'Extremo Izquierdo', status: 'absent', absenceReason: 'Trabajo / Turno laboral', note: 'Avisó permiso de trabajo', goals: 3, assists: 3, feePaid: false, weeks: makeWeeks23([1,2,4,5,7,9]) }
           ]
         }
       }
     };
 
     let state = loadState();
-    // Asegurar que Atlético La Luz siempre tenga el logo real subido si no fue cambiado manualmente
     if (state.teams?.atletico_luz && (!state.teams.atletico_luz.logo || state.teams.atletico_luz.logo.startsWith('data:image/svg'))) {
       state.teams.atletico_luz.logo = REAL_LUZ_LOGO;
     }
@@ -920,7 +912,7 @@
     function activeTeam() { return state.teams[state.activeTeamId] || state.teams.atletico_luz; }
     function activeEvent(team = activeTeam()) {
       if (!team.events || !team.events.length) {
-        team.events = [{ id: 'ev_' + Date.now(), weekLabel: 'Semana 1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '16:00', field: 'Campo #1', dutyBalls: '', coachNotes: '' }];
+        team.events = [{ id: 'ev_' + Date.now(), weekLabel: 'Jornada 1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '16:00', field: 'Campo #1', dutyBalls: '', coachNotes: '' }];
       }
       return team.events.find(e => e.id === team.activeEventId) || team.events[0];
     }
@@ -941,22 +933,30 @@
       return el;
     }
 
-    function ensureWeeks(p) {
-      if (!Array.isArray(p.weeks) || p.weeks.length < 8) {
-        p.weeks = ['P','P','P','P','P','P','P','P'];
+    // Poblar selector de las 23 Jornadas (Jornada 1 a Jornada 23)
+    const evWeekSelect = document.getElementById('evWeekLabel');
+    if (evWeekSelect && !evWeekSelect.options.length) {
+      for (let j = 1; j <= TOTAL_JORNADAS; j++) {
+        evWeekSelect.add(new Option(`Jornada ${j} (de ${TOTAL_JORNADAS})`, `Jornada ${j}`));
       }
+    }
+
+    function ensureWeeks(p) {
+      if (!Array.isArray(p.weeks)) p.weeks = [];
+      while (p.weeks.length < TOTAL_JORNADAS) p.weeks.push('P');
+      if (p.weeks.length > TOTAL_JORNADAS) p.weeks = p.weeks.slice(0, TOTAL_JORNADAS);
       return p.weeks;
     }
     function attRate(p) {
       const w = ensureWeeks(p);
       const attended = w.filter(x => x === 'P' || x === 'L').length;
-      return Math.round((attended / w.length) * 100);
+      return Math.round((attended / TOTAL_JORNADAS) * 100);
     }
     function absencesCount(p) {
       return ensureWeeks(p).filter(x => x === 'A').length;
     }
     function isDiscardCandidate(p) {
-      return absencesCount(p) >= 3 || p.absenceReason === 'Sin avisar / Falta injustificada';
+      return absencesCount(p) >= 4 || p.absenceReason === 'Sin avisar / Falta injustificada';
     }
 
     async function syncAmericaOfficialRoster(silent = false) {
@@ -990,7 +990,7 @@
                       goals: 0,
                       assists: 0,
                       feePaid: true,
-                      weeks: ['P','P','P','P','P','P','P','P']
+                      weeks: makeWeeks23()
                     });
                     added++;
                   }
@@ -1018,7 +1018,6 @@
       const motionBtn = document.getElementById('btnToggleMotion');
       if (motionBtn) motionBtn.textContent = state.motionEnabled === false ? '🎬 Movimiento: OFF' : '🎬 Movimiento: ON';
 
-      // Mostrar distintivo de Veteranos 35 y más ÚNICAMENTE en Club América Veteranos
       const amCatSec = document.getElementById('americaCategorySection');
       if (amCatSec) amCatSec.classList.toggle('visible', isAmerica);
       const btnSyncAm = document.getElementById('btnSyncOfficialAmerica');
@@ -1037,7 +1036,7 @@
       document.getElementById('heroTeamName').innerHTML = `${esc(team.name)} <span class="electric">MANAGER PRO</span>`;
       document.getElementById('heroTeamSubtitle').textContent = team.subtitle;
       document.getElementById('heroOwnerBanner').textContent = `👑 Dueño: ${team.ownerName} · DT: ${team.coachName}`;
-      document.getElementById('heroEventBadge').textContent = `${(ev.weekLabel || 'SEMANA 1').toUpperCase()} · ${ev.type.toUpperCase()} · ${ev.date}`;
+      document.getElementById('heroEventBadge').textContent = `${(ev.weekLabel || 'JORNADA 1').toUpperCase()} DE ${TOTAL_JORNADAS} · ${ev.type.toUpperCase()} · ${ev.date}`;
 
       const players = team.players || [];
       const present = players.filter(p => p.status === 'present');
@@ -1083,14 +1082,14 @@
       const strip = document.getElementById('eventsStrip');
       strip.innerHTML = (team.events || []).map(item => `
         <button type="button" class="event-card ${item.id === ev.id ? 'active' : ''}" data-select-event="${esc(item.id)}">
-          <div class="event-type">${esc(item.weekLabel || 'Semana')} · ${esc(item.type)}</div>
+          <div class="event-type">${esc(item.weekLabel || 'Jornada 1')} · ${esc(item.type)}</div>
           <div class="event-title">${esc(item.opponent || 'Sesión')}</div>
           <div class="event-meta">📅 ${esc(item.date)} · 🕒 ${esc(item.time)} · 📍 ${esc(item.field)}</div>
         </button>
       `).join('');
 
       const fields = [
-        ['evWeekLabel', ev.weekLabel || 'Semana 1'],
+        ['evWeekLabel', ev.weekLabel || 'Jornada 1'],
         ['evType', ev.type || 'Partido'],
         ['matchOpponent', ev.opponent || ''],
         ['matchDate', ev.date || ''],
@@ -1106,10 +1105,10 @@
 
       const banner = document.getElementById('absentSummaryBanner');
       if (!absent.length) {
-        banner.innerHTML = `<h4 style="color:var(--green-electric)">✅ Sin faltas en esta semana</h4><p style="font-size:12.5px;color:var(--text-muted)">Todos los jugadores de ${esc(team.name)} asistieron o están confirmados.</p>`;
+        banner.innerHTML = `<h4 style="color:var(--green-electric)">✅ Sin faltas en ${esc(ev.weekLabel || 'esta jornada')}</h4><p style="font-size:12.5px;color:var(--text-muted)">Todos los jugadores de ${esc(team.name)} asistieron o están confirmados.</p>`;
       } else {
         banner.innerHTML = `
-          <h4>🚫 Jugadores que FALTARON esta semana (${absent.length}) — Razón Social / Motivo de Ausencia</h4>
+          <h4>🚫 Jugadores que FALTARON en ${esc(ev.weekLabel || 'esta jornada')} (${absent.length}) — Razón Social / Motivo de Ausencia</h4>
           <div class="absent-tags">
             ${absent.map(p => `<span class="absent-tag">#${esc(p.number)} ${esc(p.name)} — <b>Razón: ${esc(p.absenceReason || 'Sin justificar')}</b>${p.note ? ` (${esc(p.note)})` : ''}</span>`).join('')}
           </div>
@@ -1140,7 +1139,7 @@
                 <div class="p-name">${esc(p.name)}</div>
                 <div class="p-badges">
                   <span class="pos-badge">${esc(p.position)}</span>
-                  <span class="${rate >= 85 ? 'constancy-Constant' : 'rate-badge'}">📊 Constancia: ${rate}% (${8 - absencesCount(p)}/8 sem)</span>
+                  <span class="${rate >= 85 ? 'constancy-Constant' : 'rate-badge'}">📊 Constancia: ${rate}% (${TOTAL_JORNADAS - absencesCount(p)}/${TOTAL_JORNADAS} J)</span>
                   ${discard ? `<span class="discard-badge">⚠️ DESCARTAR / BAJA (${absencesCount(p)} faltas)</span>` : ''}
                   ${p.phone ? `<span class="phone-badge">📱 ${esc(p.phone)}</span>` : ''}
                 </div>
@@ -1184,21 +1183,31 @@
       const alertBox = document.getElementById('discardAlertBox');
       if (alertBox) {
         if (!discards.length) {
-          alertBox.innerHTML = `<h4 style="color:var(--green-electric)">🏆 Todo el plantel cumple con buena constancia</h4><p style="font-size:12.5px;color:var(--text-muted)">Ningún jugador supera el límite de faltas acumuladas.</p>`;
+          alertBox.innerHTML = `<h4 style="color:var(--green-electric)">🏆 Todo el plantel cumple con buena constancia en las ${TOTAL_JORNADAS} jornadas</h4><p style="font-size:12.5px;color:var(--text-muted)">Ningún jugador supera el límite de faltas acumuladas.</p>`;
         } else {
           alertBox.innerHTML = `
-            <h4>⚠️ JUGADORES CANDIDATOS A DESCARTE POR FALTAS ACUMULADAS (${discards.length})</h4>
-            <p style="font-size:12px;color:#fecdd3;margin-bottom:8px">Estos jugadores acumulan 3 o más faltas o no avisaron su razón social de ausencia:</p>
+            <h4>⚠️ JUGADORES CANDIDATOS A DESCARTE EN LAS ${TOTAL_JORNADAS} JORNADAS (${discards.length})</h4>
+            <p style="font-size:12px;color:#fecdd3;margin-bottom:8px">Estos jugadores acumulan 4 o más faltas o no avisaron su razón social de ausencia:</p>
             <div class="absent-tags">
               ${discards.map(p => `
                 <span class="absent-tag">
-                  #${esc(p.number)} ${esc(p.name)} (${attRate(p)}% constancia · ${absencesCount(p)} faltas · Razón: ${esc(p.absenceReason || 'No justificó')})
+                  #${esc(p.number)} ${esc(p.name)} (${attRate(p)}% constancia · ${absencesCount(p)}/${TOTAL_JORNADAS} faltas · Razón: ${esc(p.absenceReason || 'No justificó')})
                   <button type="button" class="btn-danger" style="padding:2px 6px;margin-left:6px" data-delete-player="${esc(p.id)}">Descartar</button>
                 </span>
               `).join('')}
             </div>
           `;
         }
+      }
+
+      const thead = document.getElementById('constancyTableHead');
+      if (thead && !thead.innerHTML) {
+        let hCols = `<tr style="border-bottom:1px solid var(--border-green);text-align:left;color:var(--green-neon)"><th style="padding:8px 5px">#</th><th style="padding:8px 6px;min-width:140px">Jugador</th>`;
+        for (let j = 1; j <= TOTAL_JORNADAS; j++) {
+          hCols += `<th style="padding:6px 2px;text-align:center">J${j}</th>`;
+        }
+        hCols += `<th style="padding:8px 6px">Constancia</th><th style="padding:8px 6px">Razón Social / Motivo de Falta</th><th style="padding:8px 6px">Veredicto DT</th></tr>`;
+        thead.innerHTML = hCols;
       }
 
       const tbody = document.getElementById('constancyTableBody');
@@ -1209,22 +1218,22 @@
         const discard = isDiscardCandidate(p);
         return `
           <tr style="border-bottom:1px solid rgba(255,255,255,0.07);background:${discard ? 'rgba(244,63,94,0.1)' : 'transparent'}">
-            <td style="padding:8px 6px;font-weight:800;color:var(--green-electric)">#${esc(p.number)}</td>
-            <td style="padding:8px 6px;font-weight:800;color:#fff">${esc(p.name)}</td>
+            <td style="padding:6px 5px;font-weight:800;color:var(--green-electric)">#${esc(p.number)}</td>
+            <td style="padding:6px;font-weight:800;color:#fff">${esc(p.name)}</td>
             ${w.map((val, idx) => `
-              <td style="padding:4px;text-align:center">
-                <button type="button" class="wk-btn ${val === 'P' ? 'wk-present' : val === 'L' ? 'wk-late' : 'wk-absent'}" data-toggle-week="${esc(p.id)}" data-wk-idx="${idx}" title="Semana ${idx + 1}">
+              <td style="padding:2px;text-align:center">
+                <button type="button" class="wk-btn ${val === 'P' ? 'wk-present' : val === 'L' ? 'wk-late' : 'wk-absent'}" data-toggle-week="${esc(p.id)}" data-wk-idx="${idx}" title="Jornada ${idx + 1}">
                   ${val === 'P' ? '✅' : val === 'L' ? '⏰' : '❌'}
                 </button>
               </td>
             `).join('')}
-            <td style="padding:8px 6px;font-weight:800;color:${rate >= 80 ? 'var(--green-neon)' : 'var(--danger)'}">${rate}% (${8 - absencesCount(p)}/8)</td>
-            <td style="padding:8px 6px">
+            <td style="padding:6px;font-weight:800;white-space:nowrap;color:${rate >= 80 ? 'var(--green-neon)' : 'var(--danger)'}">${rate}% (${TOTAL_JORNADAS - absencesCount(p)}/${TOTAL_JORNADAS})</td>
+            <td style="padding:6px">
               <select data-absence-reason="${esc(p.id)}" style="padding:5px 7px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;font-size:11.5px">
                 ${SOCIAL_REASONS.map(r => `<option value="${esc(r)}" ${p.absenceReason === r ? 'selected' : ''}>${r || 'Asistencia regular'}</option>`).join('')}
               </select>
             </td>
-            <td style="padding:8px 6px">
+            <td style="padding:6px;white-space:nowrap">
               ${discard
                 ? `<span class="discard-badge">⚠️ Descartar / Baja</span>`
                 : `<span class="constancy-Constant">🏆 Constante / Titular</span>`}
@@ -1411,7 +1420,7 @@
             </select>
           </td>
           <td style="padding:7px"><span class="pill">${p.status === 'present' ? '✅ Fue' : p.status === 'late' ? '⏰ Retardo' : p.status === 'absent' ? '❌ Faltó' : '⏳ Duda'}</span></td>
-          <td style="padding:7px;font-weight:800;color:var(--green-neon)">${attRate(p)}%</td>
+          <td style="padding:7px;font-weight:800;color:var(--green-neon)">${attRate(p)}% (${TOTAL_JORNADAS - absencesCount(p)}/${TOTAL_JORNADAS})</td>
           <td style="padding:7px"><input type="number" min="0" data-edit-field="goals" data-id="${esc(p.id)}" value="${Number(p.goals || 0)}" style="width:54px;padding:5px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;text-align:center" /></td>
           <td style="padding:7px"><input type="number" min="0" data-edit-field="assists" data-id="${esc(p.id)}" value="${Number(p.assists || 0)}" style="width:54px;padding:5px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;text-align:center" /></td>
           <td style="padding:7px"><button type="button" class="btn-danger" data-delete-player="${esc(p.id)}">Descartar</button></td>
@@ -1448,25 +1457,25 @@
       const discards = (team.players || []).filter(p => isDiscardCandidate(p));
 
       return [
-        `⚽ *REPORTE SEMANAL Y CONSTANCIA — ${team.name.toUpperCase()}*`,
+        `⚽ *REPORTE DE JORNADA Y CONSTANCIA (23 JORNADAS) — ${team.name.toUpperCase()}*`,
         `👑 *Dueño:* ${team.ownerName || ''}`,
         `👨‍💼 *DT:* ${team.coachName}`,
-        `📌 *${ev.weekLabel || 'Semana'} (${ev.type}):* vs ${ev.opponent || 'Por definir'}`,
+        `📌 *${ev.weekLabel || 'Jornada 1'} (${ev.type}):* vs ${ev.opponent || 'Por definir'}`,
         `📅 *Fecha:* ${ev.date} · 🕒 ${ev.time} · 📍 ${ev.field}`,
         ``,
         `✅ *ASISTIERON A JUGAR (${present.length + late.length}):*`,
-        ...present.map(p => `  • #${p.number} ${p.name} (${attRate(p)}% constancia)`),
+        ...present.map(p => `  • #${p.number} ${p.name} (${attRate(p)}% constancia en 23J)`),
         ...late.map(p => `  • #${p.number} ${p.name} (⏰ Retardo)`),
         ``,
         `❌ *FALTARON A JUGAR — RAZÓN SOCIAL (${absent.length}):*`,
         ...(absent.length ? absent.map(p => `  • #${p.number} ${p.name} — Razón: ${p.absenceReason || 'Sin justificar'}${p.note ? ' (' + p.note + ')' : ''}`) : ['  • Sin faltas']),
-        ...(discards.length ? ['', `⚠️ *CANDIDATOS A DESCARTE POR INCONSTANCIA (${discards.length}):*`, ...discards.map(p => `  • #${p.number} ${p.name} (${absencesCount(p)} faltas acumuladas)`)] : [])
+        ...(discards.length ? ['', `⚠️ *CANDIDATOS A DESCARTE POR INCONSTANCIA (${discards.length}):*`, ...discards.map(p => `  • #${p.number} ${p.name} (${absencesCount(p)} faltas en ${TOTAL_JORNADAS} jornadas)`)] : [])
       ].join('\n');
     }
 
     function exportAttendanceCsv() {
       const team = activeTeam();
-      const rows = [['Dorsal', 'Jugador', 'Telefono_WhatsApp', 'Posicion', 'Estado_Hoy', 'Razon_Social_Falta', 'Constancia_Porcentaje', 'Faltas_Acumuladas', 'Veredicto_DT', 'Goles', 'Asistencias']];
+      const rows = [['Dorsal', 'Jugador', 'Telefono_WhatsApp', 'Posicion', 'Estado_Hoy', 'Razon_Social_Falta', 'Constancia_23_Jornadas', 'Faltas_Acumuladas', 'Veredicto_DT', 'Goles', 'Asistencias']];
       (team.players || []).forEach(p => {
         rows.push([
           p.number, p.name, p.phone || '', p.position, p.status,
@@ -1478,9 +1487,9 @@
       const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
       const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = `constancia-${team.id}-${TODAY}.csv`; a.click();
+      const a = document.createElement('a'); a.href = url; a.download = `constancia-23jornadas-${team.id}-${TODAY}.csv`; a.click();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
-      showToast('Archivo Excel/CSV descargado');
+      showToast('Archivo Excel/CSV de 23 jornadas descargado');
     }
 
     document.addEventListener('click', e => {
@@ -1491,7 +1500,7 @@
       if (nv) { switchView(nv.dataset.navView); return; }
 
       const evCard = e.target.closest('[data-select-event]');
-      if (evCard) { activeTeam().activeEventId = evCard.dataset.selectEvent; saveState('Semana seleccionada'); renderAll(); return; }
+      if (evCard) { activeTeam().activeEventId = evCard.dataset.selectEvent; saveState('Jornada seleccionada'); renderAll(); return; }
 
       const flt = e.target.closest('[data-att-filter]');
       if (flt) { currentFilter = flt.dataset.attFilter; renderAll(); return; }
@@ -1503,7 +1512,7 @@
         if (p) {
           const w = ensureWeeks(p);
           w[idx] = w[idx] === 'P' ? 'A' : w[idx] === 'A' ? 'L' : 'P';
-          saveState(`Semana ${idx + 1} actualizada para ${p.name}`);
+          saveState(`Jornada ${idx + 1} actualizada para ${p.name}`);
           renderAll();
         }
         return;
@@ -1514,11 +1523,13 @@
         const p = (activeTeam().players || []).find(x => x.id === st.dataset.id);
         if (p) {
           p.status = st.dataset.setStatus;
+          const ev = activeEvent();
+          const jIdx = Math.min(TOTAL_JORNADAS - 1, Math.max(0, (parseInt(String(ev.weekLabel || '1').replace(/\D+/g, ''), 10) || 1) - 1));
           const w = ensureWeeks(p);
-          if (p.status === 'present') { p.absenceReason = ''; w[w.length - 1] = 'P'; }
-          else if (p.status === 'late') { w[w.length - 1] = 'L'; }
-          else if (p.status === 'absent') { w[w.length - 1] = 'A'; if (!p.absenceReason) p.absenceReason = 'Sin avisar / Falta injustificada'; }
-          saveState(`${p.name}: actualizado`); renderAll();
+          if (p.status === 'present') { p.absenceReason = ''; w[jIdx] = 'P'; }
+          else if (p.status === 'late') { w[jIdx] = 'L'; }
+          else if (p.status === 'absent') { w[jIdx] = 'A'; if (!p.absenceReason) p.absenceReason = 'Sin avisar / Falta injustificada'; }
+          saveState(`${p.name}: actualizado en ${ev.weekLabel || 'Jornada'}`); renderAll();
         }
         return;
       }
@@ -1550,7 +1561,7 @@
         const p = (team.players || []).find(x => x.id === ping.dataset.pingPlayer);
         if (p) {
           const rsvpUrl = `${location.origin}${location.pathname}?team=${team.id}&rsvp=1`;
-          const msg = `Hola *${p.name}* (#${p.number}), convocatoria de *${team.name}* (DT: ${team.coachName}) para ${ev.weekLabel || 'esta semana'} vs *${ev.opponent}* (${ev.date} · ${ev.time} en ${ev.field}). Si no asistes indica tu razón social para el registro de constancia: ${rsvpUrl}`;
+          const msg = `Hola *${p.name}* (#${p.number}), convocatoria de *${team.name}* (DT: ${team.coachName}) para ${ev.weekLabel || 'esta jornada'} vs *${ev.opponent}* (${ev.date} · ${ev.time} en ${ev.field}). Si no asistes indica tu razón social para el registro de las 23 jornadas: ${rsvpUrl}`;
           const digits = cleanPhone(p.phone);
           const waBase = digits ? `https://wa.me/${digits}` : 'https://wa.me/';
           window.open(`${waBase}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
@@ -1586,7 +1597,12 @@
         const p = (team.players || []).find(x => x.id === e.target.dataset.absenceReason);
         if (p) {
           p.absenceReason = e.target.value;
-          if (p.absenceReason) { p.status = 'absent'; const w = ensureWeeks(p); w[w.length - 1] = 'A'; }
+          if (p.absenceReason) {
+            p.status = 'absent';
+            const ev = activeEvent(team);
+            const jIdx = Math.min(TOTAL_JORNADAS - 1, Math.max(0, (parseInt(String(ev.weekLabel || '1').replace(/\D+/g, ''), 10) || 1) - 1));
+            const w = ensureWeeks(p); w[jIdx] = 'A';
+          }
           saveState(`Razón social guardada: ${p.absenceReason || 'Ninguna'}`); renderAll();
         }
         return;
@@ -1641,12 +1657,12 @@
     document.getElementById('btnSaveWeekSnapshot')?.addEventListener('click', () => {
       const team = activeTeam();
       const ev = activeEvent(team);
-      const wkNum = Math.min(8, Math.max(1, parseInt(String(ev.weekLabel || '1').replace(/\D+/g, ''), 10) || 8)) - 1;
+      const jIdx = Math.min(TOTAL_JORNADAS - 1, Math.max(0, (parseInt(String(ev.weekLabel || '1').replace(/\D+/g, ''), 10) || 1) - 1));
       (team.players || []).forEach(p => {
         const w = ensureWeeks(p);
-        w[wkNum] = p.status === 'present' ? 'P' : p.status === 'late' ? 'L' : 'A';
+        w[jIdx] = p.status === 'present' ? 'P' : p.status === 'late' ? 'L' : 'A';
       });
-      saveState(`✅ Asistencia guardada en ${ev.weekLabel || 'la semana actual'}`);
+      saveState(`✅ Asistencia guardada en ${ev.weekLabel || 'la jornada actual'}`);
       renderAll();
     });
 
@@ -1723,11 +1739,11 @@
 
     document.getElementById('btnNewEvent')?.addEventListener('click', () => {
       const team = activeTeam();
-      const nextWk = `Semana ${Math.min(8, (team.events?.length || 1) + 1)}`;
-      const newEv = { id: 'ev_' + Date.now(), weekLabel: nextWk, type: 'Partido', opponent: 'Nuevo Rival', date: TODAY, time: '16:00', field: 'Campo #1', dutyBalls: '', coachNotes: '' };
+      const nextJ = `Jornada ${Math.min(TOTAL_JORNADAS, (team.events?.length || 1) + 1)}`;
+      const newEv = { id: 'ev_' + Date.now(), weekLabel: nextJ, type: 'Partido', opponent: 'Nuevo Rival', date: TODAY, time: '16:00', field: 'Campo #1', dutyBalls: '', coachNotes: '' };
       team.events.unshift(newEv);
       team.activeEventId = newEv.id;
-      saveState(`Nueva jornada creada: ${nextWk}`); renderAll();
+      saveState(`Nueva jornada creada: ${nextJ}`); renderAll();
     });
 
     document.getElementById('addPlayerForm')?.addEventListener('submit', e => {
@@ -1744,7 +1760,7 @@
         id: 'pl_' + Date.now(), number, name, phone, position, status,
         absenceReason: status === 'absent' ? (reason || 'Sin avisar / Falta injustificada') : '',
         note: reason, goals: 0, assists: 0, feePaid: false,
-        weeks: ['P','P','P','P','P','P','P', status === 'absent' ? 'A' : 'P']
+        weeks: makeWeeks23(status === 'absent' ? [0] : [])
       });
       e.target.reset(); saveState(`Agregado: #${number} ${name}`); renderAll();
     });
@@ -1787,7 +1803,7 @@
       const p = (activeTeam().players || []).find(x => x.id === id);
       if (p) {
         p.status = 'absent'; p.absenceReason = reason; p.note = reason;
-        const w = ensureWeeks(p); w[w.length - 1] = 'A';
+        const w = ensureWeeks(p); w[0] = 'A';
         saveState(`❌ ${p.name} registró su razón social de ausencia`);
         rsvpModal?.classList.remove('open'); renderAll();
       }
@@ -1855,7 +1871,7 @@
     });
 
     document.getElementById('btnResetFactory')?.addEventListener('click', () => {
-      if (confirm('¿Restaurar plantillas oficiales de Atlético La Luz y Club América Veteranos 35 y más?')) {
+      if (confirm('¿Restaurar plantillas oficiales de Atlético La Luz (23 Jornadas) y Club América Veteranos 35 y más?')) {
         state = clone(DEFAULT_STATE); saveState('Datos restaurados'); renderAll();
       }
     });
@@ -1875,7 +1891,6 @@
       try { const fb = window.JRBallModelV38.fallback(stage); window.addEventListener('resize', () => fb.draw()); } catch (_) {}
     }
 
-    // Limpiar Service Workers viejos que retenían la imagen anterior
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.update()));
     }
@@ -1885,33 +1900,5 @@
     init3DBall();
     syncAmericaOfficialRoster(true);
   </script>
-
-<!-- JR_V38_FIX43_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix43-category-row.css?v=38-43-r2">
-<script defer src="./assets/jr-v38-fix43-category-row.js?v=38-43-r2"></script>
-
-
-<!-- JR_V38_FIX44_DIRECT -->
-<script defer src="./assets/jr-v38-fix44-category-replace.js?v=38-44-r1"></script>
-
-
-<!-- JR_V38_FIX45_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix45-stability.css?v=38-48-r1">
-<script defer src="./assets/jr-v38-fix45-stability.js?v=38-48-r1"></script>
-
-
-<!-- JR_V38_FIX48_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix48-america-card.css?v=38-51-r1">
-<script defer src="./assets/jr-v38-fix48-america-card.js?v=38-54"></script>
-
-
-<!-- JR_V38_FIX50_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix50-buttons.css?v=38-50-r1">
-<script defer src="./assets/jr-v38-fix50-buttons.js?v=38-50-r1"></script>
-
-
-<!-- JR_V38_FIX59_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix59.css?v=38-59">
-<script defer src="./assets/jr-v38-fix59.js?v=38-59"></script>
 </body>
 </html>
