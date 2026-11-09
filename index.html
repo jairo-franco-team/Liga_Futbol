@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- Cargamos el escudo real de Atlético La Luz desde el HEAD para que esté disponible de inmediato -->
+  <script src="./assets/atletico-la-luz-logo-real.js?v=12"></script>
   <style>
     :root {
       --bg-deep: #030b07;
@@ -84,7 +86,7 @@
       border-radius: 11px; border: 1px solid transparent; background: transparent;
       color: var(--text-muted); font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 700; cursor: pointer; transition: 0.2s;
     }
-    .team-btn img { width: 34px; height: 34px; object-fit: cover; border-radius: 8px; background: #030906; border: 1px solid rgba(245, 196, 81, 0.55); }
+    .team-btn img { width: 36px; height: 36px; object-fit: cover; border-radius: 9px; background: #030906; border: 1.5px solid var(--gold); }
     .team-btn.active { background: linear-gradient(135deg, #22e07a 0%, #10b981 100%); color: #031c10; border-color: #7df7b4; box-shadow: 0 6px 20px rgba(34, 224, 122, 0.34); }
     .container { max-width: 1280px; margin: 0 auto; padding: 16px; }
 
@@ -111,11 +113,11 @@
     .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr); gap: 20px; align-items: center; }
     .hero-lockup { display: flex; align-items: center; gap: 16px; margin: 12px 0 14px; }
     .crest-box {
-      width: 102px; height: 102px; border-radius: 22px; border: 2.5px solid var(--gold);
+      width: 112px; height: 112px; border-radius: 24px; border: 3px solid var(--gold);
       background: radial-gradient(circle, #132a1e 0%, #030906 100%);
       display: grid; place-items: center; padding: 4px; flex-shrink: 0; animation: pulseGlow 4s infinite ease-in-out;
     }
-    .crest-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 17px; }
+    .crest-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
     .hero-title { font-family: 'Bebas Neue', 'Sora', sans-serif; font-size: clamp(34px, 5vw, 60px); line-height: 0.96; color: #fff; text-transform: uppercase; }
     .hero-title .electric { color: var(--green-electric); }
     .owner-banner {
@@ -152,12 +154,40 @@
     .btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 14px; border-radius: 11px; border: 1px solid var(--border-green); background: rgba(15, 42, 29, 0.78); color: var(--text-main); font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: none; }
     .btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 14px; border-radius: 11px; border: 1px solid var(--gold); background: rgba(245, 196, 81, 0.16); color: #fde68a; font-size: 12px; font-weight: 800; cursor: pointer; text-decoration: none; }
     .btn-danger { display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 11px; border-radius: 9px; border: 1px solid rgba(244, 63, 94, 0.4); background: rgba(244, 63, 94, 0.14); color: #fda4af; font-size: 11.5px; font-weight: 700; cursor: pointer; }
-    .events-strip { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; }
-    .event-card { min-width: 220px; padding: 11px 14px; border-radius: 14px; border: 1px solid var(--border-green); background: rgba(5, 16, 11, 0.88); cursor: pointer; text-align: left; color: var(--text-main); }
-    .event-card.active { background: rgba(34, 224, 122, 0.18); border-color: var(--green-electric); }
-    .event-type { font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--green-neon); }
-    .event-title { font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 800; color: #fff; margin: 2px 0; }
-    .event-meta { font-size: 11.5px; color: var(--text-muted); }
+
+    /* TIRA INTERACTIVA DE LAS 23 JORNADAS (J1 A J23) EN LA PORTADA */
+    .jornadas-23-bar {
+      display: flex; gap: 7px; overflow-x: auto; padding: 10px 4px 12px; margin-bottom: 16px;
+      border-bottom: 1px solid rgba(34, 224, 122, 0.18);
+    }
+    .j23-pill {
+      min-width: 92px; padding: 9px 11px; border-radius: 12px;
+      border: 1px solid var(--border-green); background: rgba(4, 15, 10, 0.9);
+      color: var(--text-main); cursor: pointer; text-align: center; flex-shrink: 0;
+      transition: all 0.18s ease;
+    }
+    .j23-pill small { display: block; font-size: 10px; font-weight: 800; color: var(--green-neon); text-transform: uppercase; }
+    .j23-pill strong { display: block; font-family: 'Sora', sans-serif; font-size: 13px; margin-top: 2px; color: #fff; }
+    .j23-pill.active {
+      background: linear-gradient(135deg, #22e07a 0%, #10b981 100%);
+      border-color: #fde68a; box-shadow: 0 5px 16px rgba(34, 224, 122, 0.32);
+    }
+    .j23-pill.active small, .j23-pill.active strong { color: #031c10; }
+
+    /* MINI TIRA DE 23 JORNADAS DENTRO DE CADA TARJETA DE JUGADOR */
+    .p-mini-j23 {
+      display: flex; gap: 4px; overflow-x: auto; padding: 6px 0 4px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+    .mini-j-btn {
+      min-width: 28px; height: 26px; border-radius: 6px; font-size: 10px; font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #fff;
+      cursor: pointer; flex-shrink: 0;
+    }
+    .mini-j-btn.j-P { background: rgba(34, 224, 122, 0.25); border-color: var(--green-electric); color: var(--green-neon); }
+    .mini-j-btn.j-L { background: rgba(56, 189, 248, 0.25); border-color: var(--info); color: #bae6fd; }
+    .mini-j-btn.j-A { background: rgba(244, 63, 94, 0.3); border-color: var(--danger); color: #fecdd3; }
+
     .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 10px; margin-bottom: 14px; }
     .field { display: flex; flex-direction: column; gap: 5px; }
     .field label { font-size: 11.5px; font-weight: 700; color: var(--text-muted); }
@@ -197,8 +227,6 @@
     .p-foot { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 11.5px; color: var(--text-muted); padding-top: 4px; flex-wrap: wrap; }
     .fee-btn { padding: 3px 8px; border-radius: 6px; border: 1px solid var(--border-subtle); background: rgba(255,255,255,0.05); color: var(--text-muted); font-size: 11px; font-weight: 700; cursor: pointer; }
     .fee-btn.paid { background: rgba(34, 224, 122, 0.2); border-color: var(--green-electric); color: var(--green-neon); }
-
-    /* BOTONES DE LAS 23 JORNADAS (J1 A J23) */
     .wk-btn {
       width: 28px; height: 28px; border-radius: 7px; border: 1px solid rgba(255,255,255,0.14);
       background: rgba(255,255,255,0.04); color: #fff; font-size: 11.5px; cursor: pointer; padding: 0;
@@ -206,7 +234,6 @@
     .wk-btn.wk-present { background: rgba(34, 224, 122, 0.24); border-color: var(--green-electric); }
     .wk-btn.wk-late { background: rgba(56, 189, 248, 0.24); border-color: var(--info); }
     .wk-btn.wk-absent { background: rgba(244, 63, 94, 0.28); border-color: var(--danger); }
-
     .tactics-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 440px); gap: 20px; align-items: start; }
     .pitch-card { background: #072215; border: 2px solid var(--border-green); border-radius: 20px; padding: 14px; }
     .pitch-svg-wrap { width: 100%; max-width: 440px; margin: 0 auto; border-radius: 14px; overflow: hidden; touch-action: none; }
@@ -274,14 +301,14 @@
     <div class="topbar-inner">
       <div>
         <span class="badge-coach">⚽ DT MANAGER &amp; COACH PRO · DT: FRANCO</span>
-        <div class="brand-title" style="margin-top:3px">Centro de Mando Técnico · Atlético La Luz (23 Jornadas) &amp; Club América Veteranos 35 y más</div>
+        <div class="brand-title" style="margin-top:3px">Atlético La Luz (23 Jornadas) &amp; Club América Veteranos 35 y más</div>
         <div class="brand-sub">Atlético La Luz (Dueño: Josué Franco · DT: Franco) · Club América Veteranos 35 y más (Dueño, Capitán y DT: Franco)</div>
       </div>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
         <button type="button" class="btn-ghost" id="btnToggleMotion">🎬 Movimiento: ON</button>
         <div class="team-switcher" role="tablist" aria-label="Cambiar entre mis 2 equipos">
           <button type="button" class="team-btn active" data-switch-team="atletico_luz">
-            <img id="swLogoLuz" src="" alt="Atlético La Luz" />
+            <img id="swLogoLuz" src="./assets/official-logos/dep-la-luz.png" alt="Atlético La Luz" />
             <span>Atlético La Luz</span>
           </button>
           <button type="button" class="team-btn" data-switch-team="america_vet">
@@ -310,10 +337,10 @@
       </video>
       <div class="hero-grid">
         <div>
-          <span class="badge-coach" id="heroEventBadge">CONVOCATORIA ACTIVA</span>
+          <span class="badge-coach" id="heroEventBadge">JORNADA 1 DE 23 · ACTIVA</span>
           <div class="hero-lockup">
             <div class="crest-box">
-              <img id="heroTeamLogo" src="" alt="Escudo Oficial del Equipo" />
+              <img id="heroTeamLogo" src="./assets/official-logos/dep-la-luz.png" alt="Escudo Oficial del Equipo" />
             </div>
             <div>
               <h1 id="heroTeamName" class="hero-title">ATLÉTICO LA LUZ <span class="electric">MANAGER PRO</span></h1>
@@ -358,35 +385,46 @@
       </div>
     </section>
 
+    <script>
+      // Asignar escudo original subido de Atlético La Luz de forma inmediata antes del módulo
+      if (window.ATLETICO_LA_LUZ_REAL_LOGO) {
+        var elSw = document.getElementById('swLogoLuz');
+        var elHero = document.getElementById('heroTeamLogo');
+        if (elSw) elSw.src = window.ATLETICO_LA_LUZ_REAL_LOGO;
+        if (elHero) elHero.src = window.ATLETICO_LA_LUZ_REAL_LOGO;
+      }
+    </script>
+
     <nav class="tabs">
-      <button type="button" class="tab-btn active" data-nav-view="attendance">📋 Pase de Lista, Razón Social y Bajas</button>
-      <button type="button" class="tab-btn" data-nav-view="constancy">📊 23 Jornadas, Constancia y Descartes</button>
+      <button type="button" class="tab-btn active" data-nav-view="attendance">📋 23 Jornadas, Pase de Lista y Razón Social</button>
+      <button type="button" class="tab-btn" data-nav-view="constancy">📊 Tabla Completa 23 Jornadas y Descartes</button>
       <button type="button" class="tab-btn" data-nav-view="tactics">⚽ Pizarra 2D, Banca y 3D</button>
       <button type="button" class="tab-btn" data-nav-view="matchlive">⏱️ Partido en Vivo y Entrenamientos</button>
       <button type="button" class="tab-btn" data-nav-view="squad">👥 Plantilla y Teléfonos</button>
       <button type="button" class="tab-btn" data-nav-view="settings">⚙️ Dueño, Escudo y Respaldo</button>
     </nav>
 
-    <!-- VISTA 1: ASISTENCIA DEL PARTIDO Y RAZÓN SOCIAL DE AUSENCIA -->
+    <!-- VISTA 1: LAS 23 JORNADAS VISIBLES ARRIBA + PASE DE LISTA Y RAZÓN SOCIAL -->
     <section id="view-attendance" class="view active">
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow">PASE DE LISTA DE LAS 23 JORNADAS Y RAZÓN SOCIAL DE FALTAS (DT: FRANCO)</div>
-            <h2>Control de Quién Fue a Jugar, Quién Faltó y Por Qué Faltó</h2>
-            <p>Selecciona la Jornada (Jornada 1 a Jornada 23), toma lista en 1 toque, registra la Razón Social de quién faltó y guárdalo en el historial de las 23 jornadas.</p>
+            <div class="eyebrow">SELECTOR DIRECTO DE LAS 23 JORNADAS (JORNADA 1 A JORNADA 23)</div>
+            <h2>Temporada de 23 Jornadas · Control de Asistencia y Razón Social</h2>
+            <p>Toca cualquiera de los 23 botones de abajo (Jornada 1 a Jornada 23) o marca las casillas J1..J23 dentro de la tarjeta de cada jugador.</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button type="button" class="btn-ghost" id="btnRemindDoubtWa">🔔 Cobrar Confirmación a Dudas</button>
-            <button type="button" class="btn-green" id="btnNewEvent">➕ Nueva Jornada / Partido</button>
+            <button type="button" class="btn-green" id="btnSaveWeekSnapshot">💾 Guardar Jornada Actual</button>
           </div>
         </div>
 
-        <div id="eventsStrip" class="events-strip"></div>
+        <!-- TIRA VISIBLE DE LAS 23 JORNADAS (J1 A J23) -->
+        <div id="jornadas23Strip" class="jornadas-23-bar" aria-label="Seleccionar entre las 23 jornadas"></div>
 
         <div class="form-grid">
           <div class="field">
-            <label for="evWeekLabel">Jornada del Torneo (1 a 23)</label>
+            <label for="evWeekLabel">Jornada Activa (1 a 23)</label>
             <select id="evWeekLabel"></select>
           </div>
           <div class="field">
@@ -425,8 +463,7 @@
 
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
           <button type="button" class="btn-ghost" id="btnMarkAllPresent">✅ Marcar Todos Presentes</button>
-          <button type="button" class="btn-green" id="btnSaveWeekSnapshot">💾 Guardar Asistencia en la Jornada Seleccionada</button>
-          <button type="button" class="btn-ghost" id="btnCopyReport">📋 Copiar Reporte DT</button>
+          <button type="button" class="btn-green" id="btnCopyReport">📋 Copiar Reporte DT</button>
           <button type="button" class="btn-ghost" id="btnExportCsv">📊 Descargar Excel / CSV (23 Jornadas)</button>
         </div>
 
@@ -734,8 +771,8 @@
   </main>
 
   <nav class="bottom-nav">
-    <button type="button" class="active" data-nav-view="attendance"><span>📋</span><span>Asistencia</span></button>
-    <button type="button" data-nav-view="constancy"><span>📊</span><span>23 Jornadas</span></button>
+    <button type="button" class="active" data-nav-view="attendance"><span>📋</span><span>23 Jornadas</span></button>
+    <button type="button" data-nav-view="constancy"><span>📊</span><span>Tabla 23J</span></button>
     <button type="button" data-nav-view="tactics"><span>⚽</span><span>Tácticas</span></button>
     <button type="button" data-nav-view="matchlive"><span>⏱️</span><span>En Vivo</span></button>
     <button type="button" data-nav-view="squad"><span>👥</span><span>Plantilla</span></button>
@@ -743,14 +780,12 @@
 
   <div id="mgrToast" class="toast" role="status" aria-live="polite"></div>
 
-  <!-- Imagen original exacta del escudo de Atlético La Luz y Balón 3D -->
-  <script src="./assets/atletico-la-luz-logo-real.js?v=11"></script>
   <script src="./assets/jr-ball-model-v38.js"></script>
   <script type="module">
     import { computePitchMarkings } from './vendor/campos/pitch.js';
     import formations from './vendor/campos/formations.js';
 
-    const STORAGE_KEY = 'dt_manager_franco_v11_23jornadas';
+    const STORAGE_KEY = 'dt_manager_franco_v12_23jornadas_direct';
     const TOTAL_JORNADAS = 23;
     const NS = 'http://www.w3.org/2000/svg';
     const TODAY = new Date().toISOString().slice(0, 10);
@@ -772,6 +807,24 @@
       absentIndices.forEach(i => { if (i >= 0 && i < TOTAL_JORNADAS) arr[i] = 'A'; });
       lateIndices.forEach(i => { if (i >= 0 && i < TOTAL_JORNADAS) arr[i] = 'L'; });
       return arr;
+    }
+
+    function make23Events(defaultField = 'Campo La Luz', defaultTime = '10:00') {
+      const list = [];
+      for (let j = 1; j <= TOTAL_JORNADAS; j++) {
+        list.push({
+          id: 'jornada_' + j,
+          weekLabel: `Jornada ${j}`,
+          type: 'Partido',
+          opponent: `Rival Jornada ${j}`,
+          date: TODAY,
+          time: defaultTime,
+          field: defaultField,
+          dutyBalls: 'Franco / Josué Franco',
+          coachNotes: `Control de asistencia y razón social — Jornada ${j} de ${TOTAL_JORNADAS}`
+        });
+      }
+      return list;
     }
 
     const ALL_FORMATIONS = {
@@ -814,10 +867,8 @@
           formation: '442',
           tacticalStyle: 'Orden táctico, presión intensa, transiciones rápidas y balón parado',
           roles: { captain: 'll18', penalty: 'll13', freekick: 'll10' },
-          activeEventId: 'ev_ll_1',
-          events: [
-            { id: 'ev_ll_1', weekLabel: 'Jornada 1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '10:00', field: 'Campo La Luz', dutyBalls: 'Josué Franco', coachNotes: 'Control de constancia durante las 23 jornadas del torneo.' }
-          ],
+          activeEventId: 'jornada_1',
+          events: make23Events('Campo La Luz', '10:00'),
           liveMatch: { scoreHome: 3, scoreAway: 0, mvpId: 'll18', log: [
             { id: 'lg_ll1', min: "22'", text: '⚽ Gol de José Salvador Rodríguez (Asist: Josué Franco)' },
             { id: 'lg_ll2', min: "61'", text: '⚽ Gol de Ángel (Tiro libre directo)' }
@@ -859,10 +910,8 @@
           formation: '433',
           tacticalStyle: 'Presión alta, salida limpia por bandas y control de medio campo',
           roles: { captain: 'am_franco', penalty: 'am2', freekick: 'am3' },
-          activeEventId: 'ev_am_1',
-          events: [
-            { id: 'ev_am_1', weekLabel: 'Jornada 1', type: 'Partido', opponent: 'Rival en turno (Veteranos 35 y más)', date: TODAY, time: '16:00', field: 'Campo Empastado #1', dutyBalls: 'Franco', coachNotes: 'Confirmar asistencia 30 min antes. Cuidar coberturas.' }
-          ],
+          activeEventId: 'jornada_1',
+          events: make23Events('Campo Empastado #1', '16:00'),
           liveMatch: { scoreHome: 2, scoreAway: 1, mvpId: 'am_franco', log: [
             { id: 'lg1', min: "18'", text: '⚽ Gol de J. Refugio Zarazúa Agostadero (Asist: Franco)' },
             { id: 'lg2', min: "54'", text: '🔄 Cambio: Entra Luis Jiménez Zárate por Eric Fernando Dongu Guerrero' }
@@ -889,9 +938,16 @@
     };
 
     let state = loadState();
-    if (state.teams?.atletico_luz && (!state.teams.atletico_luz.logo || state.teams.atletico_luz.logo.startsWith('data:image/svg'))) {
+    if (state.teams?.atletico_luz) {
       state.teams.atletico_luz.logo = REAL_LUZ_LOGO;
+      if (!state.teams.atletico_luz.events || state.teams.atletico_luz.events.length < TOTAL_JORNADAS) {
+        state.teams.atletico_luz.events = make23Events('Campo La Luz', '10:00');
+      }
     }
+    if (state.teams?.america_vet && (!state.teams.america_vet.events || state.teams.america_vet.events.length < TOTAL_JORNADAS)) {
+      state.teams.america_vet.events = make23Events('Campo Empastado #1', '16:00');
+    }
+
     let currentFilter = 'all';
     let draggingSlotIndex = null;
     let timerSeconds = 0;
@@ -912,7 +968,7 @@
     function activeTeam() { return state.teams[state.activeTeamId] || state.teams.atletico_luz; }
     function activeEvent(team = activeTeam()) {
       if (!team.events || !team.events.length) {
-        team.events = [{ id: 'ev_' + Date.now(), weekLabel: 'Jornada 1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '16:00', field: 'Campo #1', dutyBalls: '', coachNotes: '' }];
+        team.events = make23Events();
       }
       return team.events.find(e => e.id === team.activeEventId) || team.events[0];
     }
@@ -933,7 +989,6 @@
       return el;
     }
 
-    // Poblar selector de las 23 Jornadas (Jornada 1 a Jornada 23)
     const evWeekSelect = document.getElementById('evWeekLabel');
     if (evWeekSelect && !evWeekSelect.options.length) {
       for (let j = 1; j <= TOTAL_JORNADAS; j++) {
@@ -1024,7 +1079,7 @@
       if (btnSyncAm) btnSyncAm.style.display = isAmerica ? 'inline-flex' : 'none';
 
       const swLuz = document.getElementById('swLogoLuz');
-      if (swLuz) swLuz.src = state.teams.atletico_luz.logo || REAL_LUZ_LOGO;
+      if (swLuz) swLuz.src = REAL_LUZ_LOGO;
       const swAm = document.getElementById('swLogoAmerica');
       if (swAm) swAm.src = state.teams.america_vet.logo;
 
@@ -1032,7 +1087,7 @@
         b.classList.toggle('active', b.dataset.switchTeam === team.id);
       });
 
-      document.getElementById('heroTeamLogo').src = team.logo || REAL_LUZ_LOGO;
+      document.getElementById('heroTeamLogo').src = isAmerica ? team.logo : (team.logo || REAL_LUZ_LOGO);
       document.getElementById('heroTeamName').innerHTML = `${esc(team.name)} <span class="electric">MANAGER PRO</span>`;
       document.getElementById('heroTeamSubtitle').textContent = team.subtitle;
       document.getElementById('heroOwnerBanner').textContent = `👑 Dueño: ${team.ownerName} · DT: ${team.coachName}`;
@@ -1079,14 +1134,16 @@
     }
 
     function renderAttendanceView(team, ev, present, late, absent) {
-      const strip = document.getElementById('eventsStrip');
-      strip.innerHTML = (team.events || []).map(item => `
-        <button type="button" class="event-card ${item.id === ev.id ? 'active' : ''}" data-select-event="${esc(item.id)}">
-          <div class="event-type">${esc(item.weekLabel || 'Jornada 1')} · ${esc(item.type)}</div>
-          <div class="event-title">${esc(item.opponent || 'Sesión')}</div>
-          <div class="event-meta">📅 ${esc(item.date)} · 🕒 ${esc(item.time)} · 📍 ${esc(item.field)}</div>
-        </button>
-      `).join('');
+      // Renderizar las 23 Jornadas directamente en la barra superior
+      const strip = document.getElementById('jornadas23Strip');
+      if (strip) {
+        strip.innerHTML = (team.events || []).map((item, idx) => `
+          <button type="button" class="j23-pill ${item.id === ev.id ? 'active' : ''}" data-select-event="${esc(item.id)}">
+            <small>JORNADA ${idx + 1} / ${TOTAL_JORNADAS}</small>
+            <strong>${esc(item.opponent || `Jornada ${idx + 1}`)}</strong>
+          </button>
+        `).join('');
+      }
 
       const fields = [
         ['evWeekLabel', ev.weekLabel || 'Jornada 1'],
@@ -1128,6 +1185,7 @@
 
       const grid = document.getElementById('attendancePlayersGrid');
       grid.innerHTML = list.map(p => {
+        const w = ensureWeeks(p);
         const rate = attRate(p);
         const discard = isDiscardCandidate(p);
         return `
@@ -1139,7 +1197,7 @@
                 <div class="p-name">${esc(p.name)}</div>
                 <div class="p-badges">
                   <span class="pos-badge">${esc(p.position)}</span>
-                  <span class="${rate >= 85 ? 'constancy-Constant' : 'rate-badge'}">📊 Constancia: ${rate}% (${TOTAL_JORNADAS - absencesCount(p)}/${TOTAL_JORNADAS} J)</span>
+                  <span class="${rate >= 85 ? 'constancy-Constant' : 'rate-badge'}">📊 23 Jornadas: ${rate}% (${TOTAL_JORNADAS - absencesCount(p)}/${TOTAL_JORNADAS})</span>
                   ${discard ? `<span class="discard-badge">⚠️ DESCARTAR / BAJA (${absencesCount(p)} faltas)</span>` : ''}
                   ${p.phone ? `<span class="phone-badge">📱 ${esc(p.phone)}</span>` : ''}
                 </div>
@@ -1156,6 +1214,15 @@
             <button type="button" class="st-btn ${p.status === 'late' ? 'on-late' : ''}" data-set-status="late" data-id="${esc(p.id)}">⏰ Retardo</button>
             <button type="button" class="st-btn ${p.status === 'absent' ? 'on-absent' : ''}" data-set-status="absent" data-id="${esc(p.id)}">❌ Faltó</button>
             <button type="button" class="st-btn ${p.status === 'doubt' ? 'on-doubt' : ''}" data-set-status="doubt" data-id="${esc(p.id)}">⏳ Duda</button>
+          </div>
+
+          <!-- Tira rápida de las 23 Jornadas (J1 a J23) dentro de cada jugador -->
+          <div class="p-mini-j23" title="Toca cualquier jornada (J1 a J23) para cambiar asistencia">
+            ${w.map((val, idx) => `
+              <button type="button" class="mini-j-btn j-${val}" data-toggle-week="${esc(p.id)}" data-wk-idx="${idx}">
+                J${idx + 1}:${val === 'P' ? '✓' : val === 'L' ? '⏰' : '✕'}
+              </button>
+            `).join('')}
           </div>
 
           <div class="absence-row">
@@ -1500,7 +1567,19 @@
       if (nv) { switchView(nv.dataset.navView); return; }
 
       const evCard = e.target.closest('[data-select-event]');
-      if (evCard) { activeTeam().activeEventId = evCard.dataset.selectEvent; saveState('Jornada seleccionada'); renderAll(); return; }
+      if (evCard) {
+        const team = activeTeam();
+        team.activeEventId = evCard.dataset.selectEvent;
+        const ev = activeEvent(team);
+        const jIdx = Math.min(TOTAL_JORNADAS - 1, Math.max(0, (parseInt(String(ev.weekLabel || '1').replace(/\D+/g, ''), 10) || 1) - 1));
+        (team.players || []).forEach(p => {
+          const val = ensureWeeks(p)[jIdx];
+          p.status = val === 'P' ? 'present' : val === 'L' ? 'late' : 'absent';
+        });
+        saveState(`${ev.weekLabel} seleccionada`);
+        renderAll();
+        return;
+      }
 
       const flt = e.target.closest('[data-att-filter]');
       if (flt) { currentFilter = flt.dataset.attFilter; renderAll(); return; }
@@ -1593,6 +1672,10 @@
 
     document.addEventListener('change', e => {
       const team = activeTeam();
+      if (e.target.id === 'evWeekLabel') {
+        const matchEv = (team.events || []).find(x => x.weekLabel === e.target.value);
+        if (matchEv) { team.activeEventId = matchEv.id; saveState(`${matchEv.weekLabel} activa`); renderAll(); return; }
+      }
       if (e.target.matches('[data-absence-reason]')) {
         const p = (team.players || []).find(x => x.id === e.target.dataset.absenceReason);
         if (p) {
@@ -1638,10 +1721,9 @@
       }
     });
 
-    ['evWeekLabel', 'evType', 'matchOpponent', 'matchDate', 'matchTime', 'matchField', 'dutyBalls', 'dutyWater', 'matchCoachNotes'].forEach(id => {
+    ['evType', 'matchOpponent', 'matchDate', 'matchTime', 'matchField', 'dutyBalls', 'dutyWater', 'matchCoachNotes'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', e => {
         const ev = activeEvent();
-        if (id === 'evWeekLabel') ev.weekLabel = e.target.value;
         if (id === 'evType') ev.type = e.target.value;
         if (id === 'matchOpponent') ev.opponent = e.target.value;
         if (id === 'matchDate') ev.date = e.target.value;
@@ -1737,15 +1819,6 @@
     document.getElementById('btnExportCsv')?.addEventListener('click', exportAttendanceCsv);
     document.getElementById('btnExportCsvSquad')?.addEventListener('click', exportAttendanceCsv);
 
-    document.getElementById('btnNewEvent')?.addEventListener('click', () => {
-      const team = activeTeam();
-      const nextJ = `Jornada ${Math.min(TOTAL_JORNADAS, (team.events?.length || 1) + 1)}`;
-      const newEv = { id: 'ev_' + Date.now(), weekLabel: nextJ, type: 'Partido', opponent: 'Nuevo Rival', date: TODAY, time: '16:00', field: 'Campo #1', dutyBalls: '', coachNotes: '' };
-      team.events.unshift(newEv);
-      team.activeEventId = newEv.id;
-      saveState(`Nueva jornada creada: ${nextJ}`); renderAll();
-    });
-
     document.getElementById('addPlayerForm')?.addEventListener('submit', e => {
       e.preventDefault();
       const team = activeTeam();
@@ -1776,12 +1849,6 @@
 
     document.getElementById('btnCopyReport')?.addEventListener('click', async () => {
       try { await navigator.clipboard.writeText(buildReport()); showToast('Reporte copiado al portapapeles'); } catch (_) {}
-    });
-
-    document.getElementById('btnCopyRsvpLink')?.addEventListener('click', async () => {
-      const team = activeTeam(); const ev = activeEvent(team);
-      const url = `${location.origin}${location.pathname}?team=${team.id}&event=${ev.id}&rsvp=1`;
-      try { await navigator.clipboard.writeText(url); showToast('Link de confirmación 1-toque copiado'); } catch (_) {}
     });
 
     const rsvpModal = document.getElementById('rsvpModal');
@@ -1891,8 +1958,12 @@
       try { const fb = window.JRBallModelV38.fallback(stage); window.addEventListener('resize', () => fb.draw()); } catch (_) {}
     }
 
+    // Desinstalar cualquier Service Worker antiguo que haya dejado pegado el caché en el teléfono
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.update()));
+      navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
+    }
+    if ('caches' in window) {
+      caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
     }
 
     checkUrlParams();
@@ -1900,33 +1971,5 @@
     init3DBall();
     syncAmericaOfficialRoster(true);
   </script>
-
-<!-- JR_V38_FIX43_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix43-category-row.css?v=38-43-r2">
-<script defer src="./assets/jr-v38-fix43-category-row.js?v=38-43-r2"></script>
-
-
-<!-- JR_V38_FIX44_DIRECT -->
-<script defer src="./assets/jr-v38-fix44-category-replace.js?v=38-44-r1"></script>
-
-
-<!-- JR_V38_FIX45_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix45-stability.css?v=38-48-r1">
-<script defer src="./assets/jr-v38-fix45-stability.js?v=38-48-r1"></script>
-
-
-<!-- JR_V38_FIX48_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix48-america-card.css?v=38-51-r1">
-<script defer src="./assets/jr-v38-fix48-america-card.js?v=38-54"></script>
-
-
-<!-- JR_V38_FIX50_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix50-buttons.css?v=38-50-r1">
-<script defer src="./assets/jr-v38-fix50-buttons.js?v=38-50-r1"></script>
-
-
-<!-- JR_V38_FIX59_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix59.css?v=38-59">
-<script defer src="./assets/jr-v38-fix59.js?v=38-59"></script>
 </body>
 </html>
