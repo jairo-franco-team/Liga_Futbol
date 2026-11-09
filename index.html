@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#06150e" />
-  <title>DT Manager Pro · Club América Veteranos &amp; Atlético La Luz</title>
-  <meta name="description" content="Suite completa de Director Técnico para Club América Veteranos y Atlético La Luz: ingeniería inversa total de easy2coach, squadi, Attendance Register, Spond y TeamSnap." />
+  <meta name="theme-color" content="#05140d" />
+  <title>DT Manager Pro · Club América Veteranos 35+ &amp; Atlético La Luz</title>
+  <meta name="description" content="Suite Oficial de Dirección Técnica para Club América Veteranos 35+ (Dueño: Papá) y Atlético La Luz (Dueño: Josué Franco). Diseño verde en movimiento con ingeniería inversa completa." />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,143 +13,154 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-deep: #040d08;
-      --bg-card: rgba(10, 29, 20, 0.92);
+      --bg-deep: #030b07;
+      --bg-card: rgba(8, 26, 18, 0.86);
+      --bg-card-strong: rgba(6, 20, 14, 0.94);
       --green-electric: #22e07a;
       --green-neon: #45ed91;
       --green-emerald: #10b981;
-      --gold: #f2c14e;
+      --gold: #f5c451;
       --danger: #f43f5e;
       --warning: #f59e0b;
       --info: #38bdf8;
       --text-main: #f3faf6;
       --text-muted: #9cb8a8;
-      --border-green: rgba(34, 224, 122, 0.26);
-      --border-subtle: rgba(255, 255, 255, 0.1);
-      --shadow: 0 18px 44px rgba(0, 0, 0, 0.55);
-      --radius-xl: 22px;
+      --border-green: rgba(34, 224, 122, 0.28);
+      --border-subtle: rgba(255, 255, 255, 0.12);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+      --radius-xl: 24px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       min-height: 100vh;
-      background:
-        radial-gradient(ellipse at 15% 10%, rgba(34, 224, 122, 0.15), transparent 45%),
-        radial-gradient(ellipse at 85% 20%, rgba(16, 185, 129, 0.12), transparent 50%),
-        linear-gradient(165deg, #040d08 0%, #071911 55%, #030a06 100%);
+      background-color: var(--bg-deep);
       color: var(--text-main);
       font-family: 'Manrope', system-ui, sans-serif;
       line-height: 1.45;
-      padding-bottom: 96px;
+      padding-bottom: 98px;
+      overflow-x: hidden;
+    }
+    .motion-bg-layer {
+      position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none;
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(34, 224, 122, 0.18), transparent 45%),
+        radial-gradient(ellipse at 85% 20%, rgba(245, 196, 81, 0.12), transparent 50%),
+        linear-gradient(165deg, #030b07 0%, #071911 55%, #020805 100%);
+    }
+    .motion-bg-layer video {
+      width: 100%; height: 100%; object-fit: cover; opacity: 0.22;
+      filter: hue-rotate(25deg) saturate(1.35) contrast(1.1); transition: opacity 0.4s ease;
+    }
+    body.motion-off .motion-bg-layer video { opacity: 0; }
+    .motion-orb {
+      position: fixed; width: 420px; height: 420px; border-radius: 50%;
+      filter: blur(90px); z-index: -1; pointer-events: none;
+      animation: floatOrb 11s ease-in-out infinite alternate;
+    }
+    .motion-orb.one { top: -120px; left: -100px; background: rgba(34, 224, 122, 0.16); }
+    .motion-orb.two { bottom: -140px; right: -80px; background: rgba(245, 196, 81, 0.12); animation-delay: -5s; }
+    @keyframes floatOrb { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(40px, 30px) scale(1.14); } }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 18px rgba(34, 224, 122, 0.25), 0 0 36px rgba(245, 196, 81, 0.12); }
+      50% { box-shadow: 0 0 28px rgba(34, 224, 122, 0.48), 0 0 52px rgba(245, 196, 81, 0.28); }
     }
     .topbar {
       position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(16px); background: rgba(4, 15, 10, 0.92);
+      backdrop-filter: blur(18px); background: rgba(4, 14, 9, 0.88);
       border-bottom: 1px solid var(--border-green); padding: 10px 16px;
     }
-    .topbar-inner {
-      max-width: 1280px; margin: 0 auto; display: flex;
-      align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-    }
+    .topbar-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
     .badge-coach {
-      display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
-      border-radius: 999px; background: rgba(34, 224, 122, 0.14);
+      display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px;
+      border-radius: 999px; background: rgba(34, 224, 122, 0.15);
       border: 1px solid var(--border-green); color: var(--green-neon);
       font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
     }
     .brand-title { font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 800; color: #fff; }
     .brand-sub { font-size: 11.5px; color: var(--text-muted); }
-    .team-switcher {
-      display: flex; gap: 6px; background: rgba(3, 10, 7, 0.92);
-      padding: 5px; border-radius: 14px; border: 1px solid var(--border-green);
-    }
+    .team-switcher { display: flex; gap: 6px; background: rgba(3, 10, 7, 0.94); padding: 5px; border-radius: 15px; border: 1px solid var(--border-green); }
     .team-btn {
-      display: flex; align-items: center; gap: 8px; padding: 7px 13px;
-      border-radius: 10px; border: 1px solid transparent; background: transparent;
-      color: var(--text-muted); font-family: 'Sora', sans-serif; font-size: 12.5px;
-      font-weight: 700; cursor: pointer; transition: 0.2s;
+      display: flex; align-items: center; gap: 9px; padding: 7px 14px;
+      border-radius: 11px; border: 1px solid transparent; background: transparent;
+      color: var(--text-muted); font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 700; cursor: pointer; transition: 0.2s;
     }
-    .team-btn img {
-      width: 28px; height: 28px; object-fit: contain; border-radius: 7px;
-      background: #030906; padding: 2px; border: 1px solid rgba(255,255,255,0.12);
-    }
-    .team-btn.active {
-      background: linear-gradient(135deg, #22e07a 0%, #10b981 100%);
-      color: #041d10; border-color: #69f0a7; box-shadow: 0 5px 18px rgba(34, 224, 122, 0.3);
-    }
+    .team-btn img { width: 30px; height: 30px; object-fit: contain; border-radius: 8px; background: #030906; padding: 2px; border: 1px solid rgba(245, 196, 81, 0.35); }
+    .team-btn.active { background: linear-gradient(135deg, #22e07a 0%, #10b981 100%); color: #031c10; border-color: #7df7b4; box-shadow: 0 6px 20px rgba(34, 224, 122, 0.34); }
     .container { max-width: 1280px; margin: 0 auto; padding: 16px; }
     .hero {
-      border-radius: var(--radius-xl); border: 1px solid var(--border-green);
-      background: radial-gradient(circle at 82% 28%, rgba(34, 224, 122, 0.2), transparent 48%),
-                  linear-gradient(135deg, #0b2519 0%, #06130d 65%, #040c08 100%);
+      position: relative; overflow: hidden; border-radius: var(--radius-xl); border: 1px solid var(--border-green);
+      background: radial-gradient(circle at 82% 28%, rgba(34, 224, 122, 0.22), transparent 48%),
+                  linear-gradient(135deg, rgba(11, 39, 26, 0.92) 0%, rgba(5, 19, 13, 0.94) 65%, rgba(3, 11, 7, 0.96) 100%);
       box-shadow: var(--shadow); padding: clamp(18px, 3.5vw, 34px); margin-bottom: 18px;
     }
-    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr); gap: 20px; align-items: center; }
-    .hero-lockup { display: flex; align-items: center; gap: 14px; margin: 10px 0 14px; }
+    .hero-video-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.24; pointer-events: none; mix-blend-mode: screen; }
+    body.motion-off .hero-video-bg { display: none; }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr); gap: 20px; align-items: center; }
+    .hero-lockup { display: flex; align-items: center; gap: 16px; margin: 12px 0 14px; }
     .crest-box {
-      width: 78px; height: 78px; border-radius: 18px; border: 2px solid var(--green-electric);
-      background: #030a06; display: grid; place-items: center; padding: 6px; flex-shrink: 0;
+      width: 90px; height: 90px; border-radius: 20px; border: 2px solid var(--gold);
+      background: radial-gradient(circle, #132a1e 0%, #030906 100%);
+      display: grid; place-items: center; padding: 6px; flex-shrink: 0; animation: pulseGlow 4s infinite ease-in-out;
     }
-    .crest-box img { width: 100%; height: 100%; object-fit: contain; }
-    .hero-title { font-family: 'Bebas Neue', 'Sora', sans-serif; font-size: clamp(32px, 4.8vw, 58px); line-height: 0.98; color: #fff; text-transform: uppercase; }
+    .crest-box img { width: 100%; height: 100%; object-fit: contain; border-radius: 14px; }
+    .hero-title { font-family: 'Bebas Neue', 'Sora', sans-serif; font-size: clamp(34px, 5vw, 60px); line-height: 0.96; color: #fff; text-transform: uppercase; }
     .hero-title .electric { color: var(--green-electric); }
-    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-    .pill {
-      display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px;
-      border-radius: 999px; background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border-subtle); font-size: 11.5px; font-weight: 700; color: #d8ece1;
+    .owner-banner {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; padding: 5px 12px; border-radius: 10px;
+      background: linear-gradient(90deg, rgba(245, 196, 81, 0.2), rgba(34, 224, 122, 0.12));
+      border: 1px solid rgba(245, 196, 81, 0.45); color: #fde68a; font-size: 12.5px; font-weight: 800;
     }
-    .quorum-wrap { margin-top: 14px; background: rgba(4, 14, 9, 0.82); border: 1px solid var(--border-green); border-radius: 14px; padding: 10px 14px; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .pill { display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border-radius: 999px; background: rgba(255, 255, 255, 0.07); border: 1px solid var(--border-subtle); font-size: 11.5px; font-weight: 700; color: #d8ece1; }
+    .quorum-wrap { margin-top: 14px; background: rgba(4, 14, 9, 0.85); border: 1px solid var(--border-green); border-radius: 14px; padding: 10px 14px; }
     .quorum-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; margin-bottom: 6px; }
     .quorum-bar { height: 9px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; }
-    .quorum-fill { height: 100%; background: linear-gradient(90deg, #10b981, #22e07a); transition: width 0.25s ease; }
+    .quorum-fill { height: 100%; background: linear-gradient(90deg, #10b981, #22e07a, #f5c451); transition: width 0.25s ease; }
     .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin-top: 14px; }
-    .kpi { background: rgba(5, 16, 11, 0.8); border: 1px solid var(--border-green); border-radius: 14px; padding: 10px 12px; }
+    .kpi { background: rgba(5, 16, 11, 0.84); border: 1px solid var(--border-green); border-radius: 14px; padding: 10px 12px; }
     .kpi small { display: block; font-size: 10.5px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); }
     .kpi strong { display: block; font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 800; color: #fff; margin-top: 2px; }
     .kpi.present strong { color: var(--green-electric); }
     .kpi.late strong { color: var(--info); }
     .kpi.absent strong { color: var(--danger); }
     .kpi.doubt strong { color: var(--warning); }
-    .ball-stage { width: 100%; height: 195px; border-radius: 18px; border: 1px solid var(--border-green); background: radial-gradient(circle, rgba(34, 224, 122, 0.18), transparent 70%); overflow: hidden; }
+    .ball-stage { width: 100%; height: 205px; border-radius: 18px; border: 1px solid var(--border-green); background: radial-gradient(circle, rgba(34, 224, 122, 0.22), rgba(4, 14, 9, 0.85) 72%); overflow: hidden; }
     .tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 18px; }
-    .tab-btn {
-      display: inline-flex; align-items: center; gap: 7px; padding: 11px 16px;
-      border-radius: 12px; border: 1px solid var(--border-green); background: var(--bg-card);
-      color: var(--text-main); font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 700; cursor: pointer; white-space: nowrap;
-    }
+    .tab-btn { display: inline-flex; align-items: center; gap: 7px; padding: 11px 16px; border-radius: 12px; border: 1px solid var(--border-green); background: var(--bg-card); color: var(--text-main); font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
     .tab-btn.active { background: var(--green-electric); color: #041d10; border-color: var(--green-neon); }
     .view { display: none; }
     .view.active { display: block; }
-    .panel { background: var(--bg-card); border: 1px solid var(--border-green); border-radius: var(--radius-xl); padding: clamp(16px, 2.5vw, 24px); margin-bottom: 18px; box-shadow: var(--shadow); }
+    .panel { background: var(--bg-card); backdrop-filter: blur(14px); border: 1px solid var(--border-green); border-radius: var(--radius-xl); padding: clamp(16px, 2.5vw, 24px); margin-bottom: 18px; box-shadow: var(--shadow); }
     .panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle); }
     .eyebrow { color: var(--green-electric); font-size: 10.5px; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 3px; }
     .panel-head h2, .panel-head h3 { font-family: 'Sora', sans-serif; font-size: clamp(18px, 2.2vw, 23px); color: #fff; }
     .panel-head p { color: var(--text-muted); font-size: 13px; margin-top: 3px; }
     .btn-green { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 15px; border-radius: 11px; border: 1px solid var(--green-electric); background: var(--green-electric); color: #042012; font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 800; cursor: pointer; text-decoration: none; }
     .btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 14px; border-radius: 11px; border: 1px solid var(--border-green); background: rgba(15, 42, 29, 0.78); color: var(--text-main); font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: none; }
+    .btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 14px; border-radius: 11px; border: 1px solid var(--gold); background: rgba(245, 196, 81, 0.16); color: #fde68a; font-size: 12px; font-weight: 800; cursor: pointer; text-decoration: none; }
     .btn-danger { display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 11px; border-radius: 9px; border: 1px solid rgba(244, 63, 94, 0.4); background: rgba(244, 63, 94, 0.14); color: #fda4af; font-size: 11.5px; font-weight: 700; cursor: pointer; }
     .events-strip { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; }
-    .event-card { min-width: 220px; padding: 11px 14px; border-radius: 14px; border: 1px solid var(--border-green); background: rgba(5, 16, 11, 0.85); cursor: pointer; text-align: left; color: var(--text-main); }
-    .event-card.active { background: rgba(34, 224, 122, 0.18); border-color: var(--green-electric); box-shadow: 0 6px 18px rgba(34, 224, 122, 0.18); }
-    .event-type { font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--green-neon); letter-spacing: 0.08em; }
+    .event-card { min-width: 220px; padding: 11px 14px; border-radius: 14px; border: 1px solid var(--border-green); background: rgba(5, 16, 11, 0.88); cursor: pointer; text-align: left; color: var(--text-main); }
+    .event-card.active { background: rgba(34, 224, 122, 0.18); border-color: var(--green-electric); }
+    .event-type { font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--green-neon); }
     .event-title { font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 800; color: #fff; margin: 2px 0; }
     .event-meta { font-size: 11.5px; color: var(--text-muted); }
     .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 10px; margin-bottom: 14px; }
     .field { display: flex; flex-direction: column; gap: 5px; }
     .field label { font-size: 11.5px; font-weight: 700; color: var(--text-muted); }
     .field input, .field select, .field textarea { padding: 9px 12px; border-radius: 10px; border: 1px solid var(--border-green); background: rgba(4, 13, 8, 0.92); color: #fff; font-family: inherit; font-size: 13.5px; }
-    .absent-banner { background: rgba(45, 12, 20, 0.8); border: 1px solid rgba(244, 63, 94, 0.45); border-radius: 16px; padding: 14px 16px; margin-bottom: 16px; }
+    .absent-banner { background: rgba(45, 12, 20, 0.84); border: 1px solid rgba(244, 63, 94, 0.45); border-radius: 16px; padding: 14px 16px; margin-bottom: 16px; }
     .absent-banner h4 { color: #fda4af; font-family: 'Sora', sans-serif; font-size: 14px; margin-bottom: 8px; }
     .absent-tags { display: flex; flex-wrap: wrap; gap: 7px; }
     .absent-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(244, 63, 94, 0.18); border: 1px solid rgba(244, 63, 94, 0.35); color: #ffe4e6; padding: 4px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 700; }
     .filters { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
     .chip { padding: 7px 13px; border-radius: 999px; border: 1px solid var(--border-green); background: rgba(6, 20, 13, 0.85); color: var(--text-muted); font-size: 12px; font-weight: 800; cursor: pointer; }
     .chip.active { background: var(--green-electric); color: #042012; border-color: var(--green-electric); }
-    .players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(315px, 1fr)); gap: 12px; }
-    .p-card { background: rgba(6, 19, 13, 0.94); border: 1px solid var(--border-green); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+    .players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
+    .p-card { background: var(--bg-card-strong); border: 1px solid var(--border-green); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
     .p-card.status-present { border-left: 5px solid var(--green-electric); }
     .p-card.status-late { border-left: 5px solid var(--info); }
-    .p-card.status-absent { border-left: 5px solid var(--danger); background: rgba(28, 11, 16, 0.72); border-color: rgba(244, 63, 94, 0.35); }
+    .p-card.status-absent { border-left: 5px solid var(--danger); background: rgba(28, 11, 16, 0.78); border-color: rgba(244, 63, 94, 0.35); }
     .p-card.status-doubt { border-left: 5px solid var(--warning); }
     .p-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
     .p-id { display: flex; align-items: center; gap: 10px; min-width: 0; }
@@ -158,6 +169,7 @@
     .p-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }
     .pos-badge { font-size: 10.5px; font-weight: 700; color: var(--green-neon); background: rgba(34, 224, 122, 0.12); padding: 2px 7px; border-radius: 5px; }
     .rate-badge { font-size: 10.5px; font-weight: 800; color: #d8ece1; background: rgba(255, 255, 255, 0.08); padding: 2px 7px; border-radius: 5px; }
+    .phone-badge { font-size: 10.5px; font-weight: 700; color: #fde68a; background: rgba(245, 196, 81, 0.14); padding: 2px 7px; border-radius: 5px; }
     .status-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
     .st-btn { padding: 7px 4px; border-radius: 8px; border: 1px solid var(--border-subtle); background: rgba(255, 255, 255, 0.04); color: var(--text-muted); font-size: 11px; font-weight: 800; cursor: pointer; }
     .st-btn.on-present { background: rgba(34, 224, 122, 0.22); border-color: var(--green-electric); color: var(--green-neon); }
@@ -182,7 +194,6 @@
     .bench-chip { padding: 6px 11px; border-radius: 999px; background: rgba(34, 224, 122, 0.12); border: 1px solid var(--border-green); font-size: 12px; font-weight: 700; color: #e2f8ec; }
     .frame-3d { width: 100%; height: 560px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-green); background: #040d08; }
     .frame-3d iframe { width: 100%; height: 100%; border: 0; }
-    /* Match Center Live & Drills */
     .scoreboard-box { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; text-align: center; background: rgba(4, 14, 9, 0.9); border: 1px solid var(--border-green); border-radius: 20px; padding: 20px; margin-bottom: 18px; }
     .score-num { font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: var(--green-electric); line-height: 1; }
     .timer-display { font-family: 'Sora', monospace; font-size: 32px; font-weight: 800; color: #fff; background: rgba(34, 224, 122, 0.12); border: 1px solid var(--border-green); padding: 8px 18px; border-radius: 14px; display: inline-block; margin-bottom: 8px; }
@@ -204,7 +215,14 @@
 </head>
 <body>
 
-  <!-- MODAL DE CONFIRMACIÓN RÁPIDA EN 1 TOQUE (MODO SPOND / SQUADI / EASY2COACH) -->
+  <div class="motion-bg-layer" aria-hidden="true">
+    <video autoplay muted loop playsinline poster="./assets/motion/v38-fix10-field.jpg">
+      <source src="./assets/motion/v38-fix13-page-bg.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="motion-orb one" aria-hidden="true"></div>
+  <div class="motion-orb two" aria-hidden="true"></div>
+
   <div id="rsvpModal" class="rsvp-modal" role="dialog" aria-modal="true" aria-labelledby="rsvpTitle">
     <div class="rsvp-dialog">
       <span class="badge-coach">📲 CONFIRMACIÓN EN 1 TOQUE (SPOND / SQUADI)</span>
@@ -229,25 +247,31 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div>
-        <span class="badge-coach">⚽ DT MANAGER &amp; COACH PRO</span>
-        <div class="brand-title" style="margin-top:3px">Centro de Mando Técnico · Mis 2 Equipos</div>
-        <div class="brand-sub">Ingeniería inversa total: easy2coach · squadi · Attendance Register · Spond · TeamSnap</div>
+        <span class="badge-coach">⚽ DT MANAGER &amp; COACH PRO · DISEÑO EN MOVIMIENTO</span>
+        <div class="brand-title" style="margin-top:3px">Centro de Mando Técnico · Club América Veteranos 35+ &amp; Atlético La Luz</div>
+        <div class="brand-sub">Dueño América Veteranos: Papá · Dueño Atlético La Luz: Josué Franco · DT: Jairo Franco Garduño</div>
       </div>
-      <div class="team-switcher" role="tablist" aria-label="Cambiar entre mis 2 equipos">
-        <button type="button" class="team-btn active" data-switch-team="america_vet">
-          <img src="./assets/branding/america-veteranos-35-user.png" alt="Club América Veteranos" />
-          <span>Club América Veteranos</span>
-        </button>
-        <button type="button" class="team-btn" data-switch-team="atletico_luz">
-          <img src="./assets/official-logos/dep-la-luz.png" alt="Atlético La Luz" />
-          <span>Atlético La Luz</span>
-        </button>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button type="button" class="btn-ghost" id="btnToggleMotion" title="Activar/Pausar fondos en movimiento">🎬 Movimiento: ON</button>
+        <div class="team-switcher" role="tablist" aria-label="Cambiar entre mis 2 equipos">
+          <button type="button" class="team-btn active" data-switch-team="america_vet">
+            <img id="swLogoAmerica" src="./assets/branding/america-veteranos-35-user.png" alt="Club América Veteranos" />
+            <span>Club América Veteranos 35+</span>
+          </button>
+          <button type="button" class="team-btn" data-switch-team="atletico_luz">
+            <img id="swLogoLuz" src="" alt="Atlético La Luz" />
+            <span>Atlético La Luz</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
 
   <main class="container">
     <section class="hero">
+      <video class="hero-video-bg" autoplay muted loop playsinline poster="./assets/motion/v38-fix10-hero.jpg">
+        <source src="./assets/motion/v38-soccer-hero.mp4" type="video/mp4" />
+      </video>
       <div class="hero-grid">
         <div>
           <span class="badge-coach" id="heroEventBadge">CONVOCATORIA ACTIVA</span>
@@ -256,8 +280,9 @@
               <img id="heroTeamLogo" src="./assets/branding/america-veteranos-35-user.png" alt="Escudo" />
             </div>
             <div>
-              <h1 id="heroTeamName" class="hero-title">CLUB AMÉRICA VETERANOS <span class="electric">MANAGER PRO</span></h1>
-              <p id="heroTeamSubtitle" style="color:var(--text-muted);font-size:13.5px;font-weight:600">Dirección Técnica · Jairo Franco Garduño</p>
+              <h1 id="heroTeamName" class="hero-title">CLUB AMÉRICA VETERANOS 35+ <span class="electric">MANAGER PRO</span></h1>
+              <p id="heroTeamSubtitle" style="color:var(--text-muted);font-size:13.5px;font-weight:600">Categoría Veteranos 35 y más · Equipo #5</p>
+              <div class="owner-banner" id="heroOwnerBanner">👑 Dueño del Equipo: Papá · DT: Jairo Franco Garduño</div>
             </div>
           </div>
 
@@ -269,7 +294,6 @@
             <span class="pill" id="pillFeeTotal">💲 Arbitraje: 0 pagados</span>
           </div>
 
-          <!-- Semáforo de Quórum squadi / TeamSnap -->
           <div class="quorum-wrap">
             <div class="quorum-top">
               <span id="quorumLabel">Quórum de Partido (Meta: 11 titulares disponibles)</span>
@@ -279,11 +303,11 @@
           </div>
 
           <div class="kpi-row">
-            <div class="kpi"><small>Plantel</small><strong id="kpiTotal">14</strong></div>
-            <div class="kpi present"><small>✅ Sí Fueron</small><strong id="kpiPresent">11</strong></div>
+            <div class="kpi"><small>Plantel</small><strong id="kpiTotal">0</strong></div>
+            <div class="kpi present"><small>✅ Sí Fueron</small><strong id="kpiPresent">0</strong></div>
             <div class="kpi late"><small>⏰ Retardo</small><strong id="kpiLate">0</strong></div>
-            <div class="kpi absent"><small>❌ No Fueron</small><strong id="kpiAbsent">2</strong></div>
-            <div class="kpi doubt"><small>⏳ En Duda</small><strong id="kpiDoubt">1</strong></div>
+            <div class="kpi absent"><small>❌ No Fueron</small><strong id="kpiAbsent">0</strong></div>
+            <div class="kpi doubt"><small>⏳ En Duda</small><strong id="kpiDoubt">0</strong></div>
           </div>
         </div>
 
@@ -292,7 +316,7 @@
           <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
             <button type="button" class="btn-green" id="btnShareWa">📲 Convocar Grupo WhatsApp</button>
             <button type="button" class="btn-ghost" id="btnOpenRsvpModal">✋ Confirmación 1-Toque</button>
-            <button type="button" class="btn-ghost" id="btnRemindDoubtWa">🔔 Cobrar Confirmación a Dudas</button>
+            <button type="button" class="btn-gold" id="btnSyncOfficialAmerica">🔄 Sincronizar Registro Oficial</button>
           </div>
         </div>
       </div>
@@ -302,20 +326,20 @@
       <button type="button" class="tab-btn active" data-nav-view="attendance">📋 Asistencia, Eventos y Bajas</button>
       <button type="button" class="tab-btn" data-nav-view="tactics">⚽ Pizarra 2D, Banca y 3D</button>
       <button type="button" class="tab-btn" data-nav-view="matchlive">⏱️ Partido en Vivo y Entrenamientos</button>
-      <button type="button" class="tab-btn" data-nav-view="squad">👥 Plantilla, CSV y Estadísticas (%)</button>
-      <button type="button" class="tab-btn" data-nav-view="settings">⚙️ Personalizar Equipo y Respaldo</button>
+      <button type="button" class="tab-btn" data-nav-view="squad">👥 Plantilla, Teléfonos y CSV (%)</button>
+      <button type="button" class="tab-btn" data-nav-view="settings">⚙️ Dueño, Escudo y Respaldo</button>
     </nav>
 
-    <!-- VISTA 1: CALENDARIO SQUADI + ASISTENCIA ATTENDANCE REGISTER + CONVOCATORIA SPOND / TEAMSNAP -->
     <section id="view-attendance" class="view active">
       <div class="panel">
         <div class="panel-head">
           <div>
             <div class="eyebrow">CALENDARIO Y LOGÍSTICA (SQUADI · EASY2COACH · TEAMSNAP)</div>
             <h2>Partidos, Entrenamientos y Tareas del Día de Juego</h2>
-            <p>Programa partidos o entrenamientos, asigna quién lleva balones/hidratación y toma lista de quiénes asistieron y quiénes faltaron.</p>
+            <p>Programa partidos o entrenamientos, toca el botón 📲 de cualquier jugador para enviarle WhatsApp directo a su número personal y registra quiénes fueron y quiénes faltaron.</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button type="button" class="btn-ghost" id="btnRemindDoubtWa">🔔 Cobrar Confirmación a Dudas</button>
             <button type="button" class="btn-ghost" id="btnCopyRsvpLink">🔗 Copiar Link Spond</button>
             <button type="button" class="btn-green" id="btnNewEvent">➕ Nuevo Partido / Entrenamiento</button>
           </div>
@@ -350,7 +374,7 @@
           </div>
           <div class="field">
             <label for="dutyBalls">⚽ Encargado de Balones y Casacas (TeamSnap)</label>
-            <input id="dutyBalls" type="text" placeholder="Ej. Jairo Franco" />
+            <input id="dutyBalls" type="text" placeholder="Ej. Josué Franco / Papá" />
           </div>
           <div class="field">
             <label for="dutyWater">💧 Encargado de Hidratación / Botiquín</label>
@@ -366,6 +390,7 @@
           <button type="button" class="btn-ghost" id="btnMarkAllPresent">✅ Marcar Todos Presentes</button>
           <button type="button" class="btn-green" id="btnCopyReport">📋 Copiar Reporte DT</button>
           <button type="button" class="btn-ghost" id="btnExportCsv">📊 Descargar Excel / CSV (Attendance Register)</button>
+          <a href="https://www.juventinorosasliga.com/reportes/registro/?categoria=2&temporada=6&equipo=5" target="_blank" rel="noopener" class="btn-gold">🌐 Ver Padrón Oficial América 35+</a>
         </div>
 
         <div id="absentSummaryBanner" class="absent-banner"></div>
@@ -391,6 +416,7 @@
         <form id="addPlayerForm" class="form-grid">
           <div class="field"><label for="newPlayerNumber">Dorsal (#)</label><input id="newPlayerNumber" type="text" maxlength="4" placeholder="Ej. 12" /></div>
           <div class="field"><label for="newPlayerName">Nombre del Jugador *</label><input id="newPlayerName" type="text" required placeholder="Nombre o apodo" /></div>
+          <div class="field"><label for="newPlayerPhone">Teléfono WhatsApp</label><input id="newPlayerPhone" type="tel" placeholder="Ej. +52 412 143 8352" /></div>
           <div class="field">
             <label for="newPlayerPos">Posición</label>
             <select id="newPlayerPos">
@@ -419,7 +445,6 @@
       </div>
     </section>
 
-    <!-- VISTA 2: PIZARRA TÁCTICA 2D + BANCA DE SUPLENTES + SIMULADOR 3D -->
     <section id="view-tactics" class="view">
       <div class="panel">
         <div class="panel-head">
@@ -494,7 +519,6 @@
       </div>
     </section>
 
-    <!-- VISTA 3: CRONÓMETRO EN VIVO, CAMBIOS, MVP Y RUTINAS DE ENTRENAMIENTO (EASY2COACH + TEAMSNAP) -->
     <section id="view-matchlive" class="view">
       <div class="panel">
         <div class="panel-head">
@@ -535,7 +559,6 @@
           </div>
         </div>
 
-        <!-- Registro de Sustituciones, Goles, Tarjetas y MVP -->
         <form id="liveActionForm" class="form-grid">
           <div class="field">
             <label for="liveActionType">Acción en Cancha</label>
@@ -567,26 +590,23 @@
         <div id="liveTimelineList" class="timeline-list"></div>
       </div>
 
-      <!-- Catálogo de Ejercicios de Entrenamiento (easy2coach Drills) -->
       <div class="panel">
         <div class="panel-head">
           <div>
             <div class="eyebrow">PLANIFICADOR DE ENTRENAMIENTO (EASY2COACH DRILLS)</div>
             <h2>Rutinas Tácticas y Físicas para tu Equipo</h2>
-            <p>Marca las sesiones completadas con tu plantel o agrega tus propios ejercicios tácticos.</p>
           </div>
         </div>
         <div id="drillsGrid" class="drills-grid"></div>
       </div>
     </section>
 
-    <!-- VISTA 4: PLANTILLA COMPLETA Y ESTADÍSTICAS DE ASISTENCIA -->
     <section id="view-squad" class="view">
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow">REGISTRO DE PLANTILLA Y RENDIMIENTO (MODO ATTENDANCE REGISTER)</div>
-            <h2>Editar Jugadores, Dorsales, Goles y % de Asistencia</h2>
+            <div class="eyebrow">REGISTRO DE PLANTILLA, TELÉFONOS Y RENDIMIENTO</div>
+            <h2>Editar Jugadores, Dorsales, Teléfono WhatsApp, Goles y % de Asistencia</h2>
           </div>
           <button type="button" class="btn-green" id="btnExportCsvSquad">📊 Exportar Plantilla a Excel (CSV)</button>
         </div>
@@ -596,6 +616,7 @@
               <tr style="border-bottom:1px solid var(--border-green);text-align:left;color:var(--green-neon)">
                 <th style="padding:9px 6px">#</th>
                 <th style="padding:9px 6px">Jugador</th>
+                <th style="padding:9px 6px">Teléfono WhatsApp</th>
                 <th style="padding:9px 6px">Posición</th>
                 <th style="padding:9px 6px">Estado Hoy</th>
                 <th style="padding:9px 6px">% Asist.</th>
@@ -610,22 +631,22 @@
       </div>
     </section>
 
-    <!-- VISTA 5: PERSONALIZACIÓN DEL EQUIPO Y RESPALDO JSON -->
     <section id="view-settings" class="view">
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow">IDENTIDAD DEL CLUB</div>
-            <h2>Personalizar Nombre, Escudo y Colores del Equipo Activo</h2>
+            <div class="eyebrow">IDENTIDAD Y DIRECTIVA DEL CLUB</div>
+            <h2>Personalizar Dueño, Nombre, Escudo y Colores del Equipo Activo</h2>
           </div>
         </div>
         <form id="teamConfigForm" class="form-grid">
           <div class="field"><label for="cfgTeamName">Nombre del Equipo</label><input id="cfgTeamName" type="text" required /></div>
+          <div class="field"><label for="cfgOwnerName">Dueño / Presidente del Equipo</label><input id="cfgOwnerName" type="text" required /></div>
+          <div class="field"><label for="cfgCoachName">Manager / Director Técnico</label><input id="cfgCoachName" type="text" /></div>
           <div class="field"><label for="cfgTeamSubtitle">Subtítulo / Categoría</label><input id="cfgTeamSubtitle" type="text" /></div>
-          <div class="field"><label for="cfgCoachName">Manager / DT</label><input id="cfgCoachName" type="text" /></div>
           <div class="field"><label for="cfgKitPrimary">Color Ficha Titular</label><input id="cfgKitPrimary" type="color" style="height:40px;padding:3px" /></div>
           <div class="field"><label for="cfgKitSecondary">Color Portero</label><input id="cfgKitSecondary" type="color" style="height:40px;padding:3px" /></div>
-          <div class="field"><label for="cfgLogoUpload">Subir Nuevo Escudo</label><input id="cfgLogoUpload" type="file" accept="image/*" /></div>
+          <div class="field"><label for="cfgLogoUpload">Subir Escudo Personalizado (Imagen)</label><input id="cfgLogoUpload" type="file" accept="image/*" /></div>
           <div class="field" style="grid-column: 1 / -1;"><button type="submit" class="btn-green">💾 Guardar Cambios del Equipo</button></div>
         </form>
       </div>
@@ -643,7 +664,7 @@
             ⬆️ Cargar Respaldo (.JSON)
             <input id="inputImportBackup" type="file" accept="application/json" style="display:none" />
           </label>
-          <button type="button" class="btn-danger" id="btnResetFactory">Restaurar Datos Iniciales</button>
+          <button type="button" class="btn-danger" id="btnResetFactory">Restaurar Plantillas Oficiales</button>
         </div>
       </div>
     </section>
@@ -664,9 +685,40 @@
     import { computePitchMarkings } from './vendor/campos/pitch.js';
     import formations from './vendor/campos/formations.js';
 
-    const STORAGE_KEY = 'dt_manager_coach_green_v4';
+    const STORAGE_KEY = 'dt_manager_coach_green_v6_real_phones';
     const NS = 'http://www.w3.org/2000/svg';
     const TODAY = new Date().toISOString().slice(0, 10);
+
+    const ATLETICO_LA_LUZ_CREST_SVG = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+        <defs>
+          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fff2a6"/>
+            <stop offset="45%" stop-color="#f5c451"/>
+            <stop offset="100%" stop-color="#9e6b08"/>
+          </linearGradient>
+          <linearGradient id="shieldBg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#171717"/>
+            <stop offset="60%" stop-color="#060606"/>
+            <stop offset="100%" stop-color="#1f1503"/>
+          </linearGradient>
+          <linearGradient id="metalText" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="50%" stop-color="#d8dee9"/>
+            <stop offset="100%" stop-color="#8b95a5"/>
+          </linearGradient>
+        </defs>
+        <rect width="240" height="240" rx="36" fill="#040b07"/>
+        <path d="M55,22 L72,56 L92,26 L120,62 L148,26 L168,56 L185,22 L175,70 L65,70 Z" fill="url(#goldGrad)" stroke="#fff" stroke-width="1.5"/>
+        <path d="M44,68 L196,68 L186,162 C180,196 120,222 120,222 C120,222 60,196 54,162 Z" fill="url(#shieldBg)" stroke="url(#goldGrad)" stroke-width="5"/>
+        <circle cx="120" cy="96" r="28" fill="#f8fafc" stroke="url(#goldGrad)" stroke-width="3"/>
+        <polygon points="120,78 131,86 127,99 113,99 109,86" fill="#0b0f0c"/>
+        <rect x="34" y="102" width="172" height="24" rx="6" fill="#090909" stroke="url(#goldGrad)" stroke-width="2.5"/>
+        <text x="120" y="119" text-anchor="middle" fill="#ffffff" font-family="Arial Black, sans-serif" font-size="15" font-weight="900" letter-spacing="3">★ ATLÉTICO ★</text>
+        <text x="120" y="156" text-anchor="middle" fill="url(#metalText)" stroke="#000" stroke-width="1.5" font-family="Impact, Arial Black, sans-serif" font-size="40" font-style="italic" font-weight="900" letter-spacing="2">LA LUZ</text>
+        <polygon points="120,164 126,180 143,186 126,192 120,209 114,192 97,186 114,180" fill="url(#goldGrad)"/>
+      </svg>
+    `);
 
     const ALL_FORMATIONS = {
       ...formations,
@@ -693,84 +745,90 @@
     ];
 
     const DEFAULT_STATE = {
-      activeTeamId: 'america_vet',
+      activeTeamId: 'atletico_luz',
+      motionEnabled: true,
       teams: {
         america_vet: {
           id: 'america_vet',
-          name: 'Club América Veteranos',
-          subtitle: 'Plantilla Veteranos · Dirección Técnica',
+          name: 'Club América Veteranos 35+',
+          ownerName: 'Papá (Dueño Club América Veteranos)',
+          subtitle: 'Categoría Veteranos 35 y más · Equipo #5 · Registro Oficial',
           coachName: 'Jairo Franco Garduño',
           logo: './assets/branding/america-veteranos-35-user.png',
           kitPrimary: '#22e07a',
-          kitSecondary: '#f2c14e',
+          kitSecondary: '#f5c451',
           formation: '433',
           tacticalStyle: 'Presión alta, salida limpia por bandas y control de medio campo',
-          roles: { captain: 'am3', penalty: 'am8', freekick: 'am6' },
+          roles: { captain: 'am1', penalty: 'am2', freekick: 'am3' },
           activeEventId: 'ev_am_1',
           events: [
-            { id: 'ev_am_1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '16:00', field: 'Campo Empastado #1', dutyBalls: 'Alfredo Tena', dutyWater: 'Pável Pardo', coachNotes: 'Confirmar asistencia 30 min antes. Cuidar coberturas.' }
+            { id: 'ev_am_1', type: 'Partido', opponent: 'Rival en turno (Veteranos 35+)', date: TODAY, time: '16:00', field: 'Campo Empastado #1', dutyBalls: 'Papá', dutyWater: 'J. Refugio Zarazúa', coachNotes: 'Confirmar asistencia 30 min antes. Cuidar coberturas.' }
           ],
-          liveMatch: { scoreHome: 2, scoreAway: 1, mvpId: 'am8', log: [
-            { id: 'lg1', min: "18'", text: '⚽ Gol de Salvador Cabañas (Asist: Cuauhtémoc Blanco)' },
-            { id: 'lg2', min: "54'", text: '🔄 Cambio: Entra Luis Roberto Alves por Reinaldo Navia' }
+          liveMatch: { scoreHome: 2, scoreAway: 1, mvpId: 'am1', log: [
+            { id: 'lg1', min: "18'", text: '⚽ Gol de J. Refugio Zarazúa Agostadero (Asist: Francisco Javier Valdez Corrales)' },
+            { id: 'lg2', min: "54'", text: '🔄 Cambio: Entra Luis Jiménez Zárate por Eric Fernando Dongu Guerrero' }
           ]},
           drills: JSON.parse(JSON.stringify(DEFAULT_DRILLS)),
           lineupSlots: {},
           customCoords: {},
           players: [
-            { id: 'am1', number: '1', name: 'Guillermo Ochoa (POR)', position: 'Portero', status: 'present', absenceReason: '', note: 'Titular', goals: 0, assists: 0, feePaid: true, attendedCount: 9, totalEvents: 10 },
-            { id: 'am2', number: '2', name: 'Paul Aguilar', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: 'Banda derecha', goals: 1, assists: 2, feePaid: true, attendedCount: 9, totalEvents: 10 },
-            { id: 'am3', number: '4', name: 'Alfredo Tena', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Capitán', goals: 2, assists: 0, feePaid: true, attendedCount: 10, totalEvents: 10 },
-            { id: 'am4', number: '3', name: 'Aquivaldo Mosquera', position: 'Defensa Central', status: 'present', absenceReason: '', note: '', goals: 1, assists: 0, feePaid: true, attendedCount: 8, totalEvents: 10 },
-            { id: 'am5', number: '16', name: 'Carlos Ponce', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: '', goals: 0, assists: 1, feePaid: false, attendedCount: 8, totalEvents: 10 },
-            { id: 'am6', number: '5', name: 'Pável Pardo', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Balón parado', goals: 3, assists: 5, feePaid: true, attendedCount: 10, totalEvents: 10 },
-            { id: 'am7', number: '8', name: 'Reinaldo Navia', position: 'Mediocampista', status: 'present', absenceReason: '', note: '', goals: 4, assists: 2, feePaid: true, attendedCount: 8, totalEvents: 10 },
-            { id: 'am8', number: '10', name: 'Cuauhtémoc Blanco', position: 'Enganche / 10', status: 'present', absenceReason: '', note: 'Armador', goals: 8, assists: 9, feePaid: true, attendedCount: 9, totalEvents: 10 },
-            { id: 'am9', number: '7', name: 'Claudio López', position: 'Extremo Derecho', status: 'present', absenceReason: '', note: 'Velocidad', goals: 5, assists: 4, feePaid: true, attendedCount: 9, totalEvents: 10 },
-            { id: 'am10', number: '11', name: 'Christian Benítez', position: 'Extremo Izquierdo', status: 'present', absenceReason: '', note: '', goals: 6, assists: 3, feePaid: true, attendedCount: 9, totalEvents: 10 },
-            { id: 'am11', number: '9', name: 'Salvador Cabañas', position: 'Delantero', status: 'present', absenceReason: '', note: 'Definidor', goals: 10, assists: 3, feePaid: true, attendedCount: 10, totalEvents: 10 },
-            { id: 'am12', number: '14', name: 'Isaac Terrazas', position: 'Defensa', status: 'absent', absenceReason: 'Trabajo', note: 'Avisó turno laboral', goals: 0, assists: 1, feePaid: false, attendedCount: 6, totalEvents: 10 },
-            { id: 'am13', number: '18', name: 'Germán Villa', position: 'Mediocampista', status: 'absent', absenceReason: 'Lesión', note: 'Molestia muscular', goals: 1, assists: 1, feePaid: false, attendedCount: 7, totalEvents: 10 },
-            { id: 'am14', number: '19', name: 'Luis Roberto Alves', position: 'Delantero', status: 'doubt', absenceReason: 'En duda', note: 'Confirma 1h antes', goals: 3, assists: 1, feePaid: false, attendedCount: 7, totalEvents: 10 }
+            { id: 'am1', number: '10', name: 'J. Refugio Zarazúa Agostadero', phone: '', position: 'Enganche / 10', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5 · Capitán', goals: 11, assists: 6, feePaid: true, attendedCount: 10, totalEvents: 10 },
+            { id: 'am2', number: '9', name: 'Francisco Javier Valdez Corrales', phone: '', position: 'Delantero', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5 · Goleador', goals: 7, assists: 4, feePaid: true, attendedCount: 10, totalEvents: 10 },
+            { id: 'am3', number: '8', name: 'Óscar Vargas Tovar', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5', goals: 6, assists: 5, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'am4', number: '4', name: 'Eric Fernando Dongu Guerrero', phone: '', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5', goals: 1, assists: 1, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'am5', number: '5', name: 'Luis Jiménez Zárate', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5', goals: 2, assists: 3, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'am6', number: '1', name: 'Guillermo Franco (POR)', phone: '', position: 'Portero', status: 'present', absenceReason: '', note: 'Portero Titular América 35+', goals: 0, assists: 0, feePaid: true, attendedCount: 10, totalEvents: 10 },
+            { id: 'am7', number: '2', name: 'Roberto Garduño', phone: '', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: 'Banda derecha', goals: 1, assists: 2, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'am8', number: '3', name: 'Arturo Tavera', phone: '', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Central', goals: 1, assists: 0, feePaid: true, attendedCount: 8, totalEvents: 10 },
+            { id: 'am9', number: '6', name: 'Miguel Ángel Cervantes', phone: '', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: 'Lateral izquierdo', goals: 0, assists: 2, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'am10', number: '7', name: 'Héctor Morales', phone: '', position: 'Extremo Derecho', status: 'present', absenceReason: '', note: 'Desborde', goals: 4, assists: 4, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'am11', number: '11', name: 'Raúl Mendoza', phone: '', position: 'Extremo Izquierdo', status: 'present', absenceReason: '', note: 'Ofensivo', goals: 3, assists: 3, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'am12', number: '12', name: 'Papá (Dueño del Equipo)', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Dueño y Presidente Club América Veteranos', goals: 2, assists: 5, feePaid: true, attendedCount: 10, totalEvents: 10 }
           ]
         },
         atletico_luz: {
           id: 'atletico_luz',
           name: 'Atlético La Luz',
-          subtitle: 'Proyecto Deportivo · Dirección Técnica',
+          ownerName: 'Josué Franco (Dueño Atlético La Luz)',
+          subtitle: 'Plantel Oficial · Dueño: Josué Franco',
           coachName: 'Jairo Franco Garduño',
-          logo: './assets/official-logos/dep-la-luz.png',
-          kitPrimary: '#10b981',
-          kitSecondary: '#f2c14e',
+          logo: ATLETICO_LA_LUZ_CREST_SVG,
+          kitPrimary: '#22e07a',
+          kitSecondary: '#f5c451',
           formation: '442',
-          tacticalStyle: 'Orden táctico, transiciones rápidas al ataque y solidez defensiva',
-          roles: { captain: 'll7', penalty: 'll10', freekick: 'll7' },
+          tacticalStyle: 'Orden táctico, presión intensa, transiciones rápidas y balón parado',
+          roles: { captain: 'll18', penalty: 'll13', freekick: 'll10' },
           activeEventId: 'ev_ll_1',
           events: [
-            { id: 'ev_ll_1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '10:00', field: 'Campo La Luz', dutyBalls: 'Jairo Franco', dutyWater: 'Martín Franco', coachNotes: 'Mantener líneas juntas y aprovechar tiros libres.' }
+            { id: 'ev_ll_1', type: 'Partido', opponent: 'Rival en turno', date: TODAY, time: '10:00', field: 'Campo La Luz', dutyBalls: 'Josué Franco', dutyWater: 'Kana', coachNotes: 'Confirmar asistencia en el grupo de WhatsApp.' }
           ],
-          liveMatch: { scoreHome: 3, scoreAway: 0, mvpId: 'll7', log: [
-            { id: 'lg_ll1', min: "22'", text: '⚽ Gol de Mateo Villagómez (Asist: Jairo Franco)' },
-            { id: 'lg_ll2', min: "61'", text: '⚽ Gol de Jairo Franco (Tiro libre directo)' }
+          liveMatch: { scoreHome: 3, scoreAway: 0, mvpId: 'll18', log: [
+            { id: 'lg_ll1', min: "22'", text: '⚽ Gol de José Salvador Rodríguez (Asist: Josué Franco)' },
+            { id: 'lg_ll2', min: "61'", text: '⚽ Gol de Ángel (Tiro libre directo)' }
           ]},
           drills: JSON.parse(JSON.stringify(DEFAULT_DRILLS)),
           lineupSlots: {},
           customCoords: {},
           players: [
-            { id: 'll1', number: '1', name: 'Martín Franco (POR)', position: 'Portero', status: 'present', absenceReason: '', note: 'Titular', goals: 0, assists: 0, feePaid: true, attendedCount: 10, totalEvents: 10 },
-            { id: 'll2', number: '2', name: 'Diego Garduño', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: '', goals: 0, assists: 2, feePaid: true, attendedCount: 9, totalEvents: 10 },
-            { id: 'll3', number: '3', name: 'Alejandro Mendoza', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Líder zaga', goals: 1, assists: 0, feePaid: true, attendedCount: 9, totalEvents: 10 },
-            { id: 'll4', number: '4', name: 'Roberto Ramírez', position: 'Defensa Central', status: 'present', absenceReason: '', note: '', goals: 1, assists: 0, feePaid: true, attendedCount: 8, totalEvents: 10 },
-            { id: 'll5', number: '6', name: 'Fernando Guerrero', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: '', goals: 0, assists: 1, feePaid: true, attendedCount: 8, totalEvents: 10 },
-            { id: 'll6', number: '5', name: 'Eduardo Morales', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Recuperador', goals: 2, assists: 3, feePaid: true, attendedCount: 9, totalEvents: 10 },
-            { id: 'll7', number: '8', name: 'Jairo Franco', position: 'Enganche / 10', status: 'present', absenceReason: '', note: 'Capitán y DT', goals: 6, assists: 7, feePaid: true, attendedCount: 10, totalEvents: 10 },
-            { id: 'll8', number: '7', name: 'Sebastián Ortega', position: 'Extremo Derecho', status: 'present', absenceReason: '', note: '', goals: 3, assists: 4, feePaid: true, attendedCount: 8, totalEvents: 10 },
-            { id: 'll9', number: '11', name: 'Daniel Cervantes', position: 'Extremo Izquierdo', status: 'present', absenceReason: '', note: '', goals: 4, assists: 3, feePaid: false, attendedCount: 8, totalEvents: 10 },
-            { id: 'll10', number: '9', name: 'Mateo Villagómez', position: 'Delantero', status: 'present', absenceReason: '', note: 'Goleador', goals: 9, assists: 2, feePaid: true, attendedCount: 9, totalEvents: 10 },
-            { id: 'll11', number: '10', name: 'Leonardo Silva', position: 'Delantero', status: 'present', absenceReason: '', note: '', goals: 5, assists: 5, feePaid: true, attendedCount: 9, totalEvents: 10 },
-            { id: 'll12', number: '15', name: 'Héctor Vázquez', position: 'Defensa', status: 'absent', absenceReason: 'Personal / Familia', note: 'No asistió hoy', goals: 0, assists: 0, feePaid: false, attendedCount: 5, totalEvents: 10 },
-            { id: 'll13', number: '17', name: 'Ricardo Gasca', position: 'Mediocampista', status: 'absent', absenceReason: 'Viaje', note: 'Fuera de la ciudad', goals: 1, assists: 2, feePaid: false, attendedCount: 6, totalEvents: 10 },
-            { id: 'll14', number: '20', name: 'Emiliano Rocha', position: 'Delantero', status: 'doubt', absenceReason: 'En duda', note: 'Por confirmar', goals: 2, assists: 1, feePaid: false, attendedCount: 7, totalEvents: 10 }
+            { id: 'll1', number: '1', name: 'Kana', phone: '+52 412 143 8352', position: 'Portero', status: 'present', absenceReason: '', note: 'Admin. del grupo WhatsApp', goals: 0, assists: 1, feePaid: true, attendedCount: 10, totalEvents: 10 },
+            { id: 'll2', number: '2', name: 'Daniel', phone: '+52 729 549 1948', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Titular', goals: 1, assists: 1, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'll3', number: '3', name: 'Giovannicp', phone: '+52 412 243 8717', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Central', goals: 1, assists: 0, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'll4', number: '4', name: 'Jesús Solache', phone: '+52 412 168 0005', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: 'Lateral derecho', goals: 0, assists: 2, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'll5', number: '5', name: 'Juan Barrera', phone: '+52 412 262 8009', position: 'Defensa Lateral', status: 'present', absenceReason: '', note: 'Lateral izquierdo', goals: 1, assists: 2, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'll6', number: '6', name: 'Kevin', phone: '+52 412 200 2289', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Contención', goals: 2, assists: 3, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'll7', number: '7', name: 'Leonel Luna', phone: '+52 412 125 3538', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Mixto', goals: 3, assists: 4, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'll8', number: '8', name: 'Mau', phone: '+52 412 111 8197', position: 'Extremo Derecho', status: 'present', absenceReason: '', note: 'Velocidad por banda', goals: 4, assists: 3, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'll9', number: '9', name: 'Aaron', phone: '+52 412 131 6317', position: 'Delantero', status: 'present', absenceReason: '', note: 'Atacante', goals: 5, assists: 2, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'll10', number: '10', name: 'Ángel', phone: '+52 412 142 6861', position: 'Enganche / 10', status: 'present', absenceReason: '', note: 'Creativo', goals: 6, assists: 6, feePaid: true, attendedCount: 10, totalEvents: 10 },
+            { id: 'll11', number: '11', name: 'Gabo', phone: '+52 412 120 0007', position: 'Extremo Izquierdo', status: 'present', absenceReason: '', note: 'Banda izquierda', goals: 4, assists: 4, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'll12', number: '12', name: 'Iván GG', phone: '+52 412 100 0166', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Medio campo', goals: 2, assists: 2, feePaid: true, attendedCount: 8, totalEvents: 10 },
+            { id: 'll13', number: '13', name: 'José Salvador Rodríguez', phone: '+52 412 167 8276', position: 'Delantero', status: 'present', absenceReason: '', note: 'Definidor', goals: 7, assists: 2, feePaid: true, attendedCount: 9, totalEvents: 10 },
+            { id: 'll14', number: '14', name: 'Rogelio', phone: '+52 412 143 1094', position: 'Defensa', status: 'present', absenceReason: '', note: 'Defensa', goals: 0, assists: 1, feePaid: true, attendedCount: 8, totalEvents: 10 },
+            { id: 'll15', number: '15', name: 'Villafuerte', phone: '+52 412 172 9510', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Volante', goals: 2, assists: 3, feePaid: true, attendedCount: 8, totalEvents: 10 },
+            { id: 'll16', number: '16', name: 'A G L', phone: '+52 412 128 3831', position: 'Delantero', status: 'doubt', absenceReason: 'En duda', note: 'Contacto ~ A G L', goals: 1, assists: 1, feePaid: false, attendedCount: 7, totalEvents: 10 },
+            { id: 'll17', number: '17', name: 'Jugador (~ .)', phone: '+52 412 122 0872', position: 'Defensa', status: 'doubt', absenceReason: 'En duda', note: 'Contacto ~ .', goals: 0, assists: 1, feePaid: false, attendedCount: 7, totalEvents: 10 },
+            { id: 'll18', number: '18', name: 'Josué Franco', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Dueño y Capitán de Atlético La Luz', goals: 5, assists: 7, feePaid: true, attendedCount: 10, totalEvents: 10 },
+            { id: 'll19', number: '19', name: 'Papá', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Directivo / Dueño Club América Veteranos', goals: 1, assists: 2, feePaid: true, attendedCount: 10, totalEvents: 10 }
           ]
         }
       }
@@ -804,12 +862,15 @@
     function esc(v) {
       return String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     }
+    function cleanPhone(ph) {
+      return String(ph || '').replace(/\D+/g, '');
+    }
     function showToast(txt) {
       const t = document.getElementById('mgrToast');
       if (!t) return;
       t.textContent = txt; t.classList.add('show');
       clearTimeout(window.__toastT);
-      window.__toastT = setTimeout(() => t.classList.remove('show'), 2500);
+      window.__toastT = setTimeout(() => t.classList.remove('show'), 2600);
     }
     function svgEl(tag, attrs = {}) {
       const el = document.createElementNS(NS, tag);
@@ -822,9 +883,69 @@
       return Math.min(100, Math.round((att / tot) * 100));
     }
 
+    async function syncAmericaOfficialRoster(silent = false) {
+      const america = state.teams.america_vet;
+      const existingNames = new Set((america.players || []).map(p => p.name.toLowerCase().trim()));
+      let added = 0;
+
+      for (const path of ['./data/official-live.json', './data/temporada-actual-v22.json', './data/temporada-actual-2026.json']) {
+        try {
+          const res = await fetch(path, { cache: 'no-store' });
+          if (!res.ok) continue;
+          const data = await res.json();
+          const cats = data?.categories ? Object.values(data.categories) : [];
+          cats.forEach(c => {
+            const rosters = c?.rosters || {};
+            Object.entries(rosters).forEach(([tName, list]) => {
+              if (/america|américa/i.test(tName) && Array.isArray(list)) {
+                list.forEach(rawName => {
+                  const clean = String(rawName?.name || rawName || '').trim();
+                  if (clean && !existingNames.has(clean.toLowerCase())) {
+                    existingNames.add(clean.toLowerCase());
+                    america.players.push({
+                      id: 'am_sync_' + Date.now() + '_' + added,
+                      number: String(america.players.length + 1),
+                      name: clean,
+                      phone: '',
+                      position: 'Mediocampista',
+                      status: 'present',
+                      absenceReason: '',
+                      note: 'Sincronizado del Registro Oficial (Equipo 5)',
+                      goals: 0,
+                      assists: 0,
+                      feePaid: true,
+                      attendedCount: 9,
+                      totalEvents: 10
+                    });
+                    added++;
+                  }
+                });
+              }
+            });
+          });
+        } catch (_) {}
+      }
+
+      if (added > 0) {
+        saveState(`✅ ${added} jugadores adicionales sincronizados al Club América Veteranos 35+`);
+        renderAll();
+      } else if (!silent) {
+        showToast('✅ Padrón oficial de Club América Veteranos 35+ (Equipo 5) al día');
+      }
+    }
+
     function renderAll() {
       const team = activeTeam();
       const ev = activeEvent(team);
+
+      document.body.classList.toggle('motion-off', state.motionEnabled === false);
+      const motionBtn = document.getElementById('btnToggleMotion');
+      if (motionBtn) motionBtn.textContent = state.motionEnabled === false ? '🎬 Movimiento: OFF' : '🎬 Movimiento: ON';
+
+      const swLuz = document.getElementById('swLogoLuz');
+      if (swLuz) swLuz.src = state.teams.atletico_luz.logo || ATLETICO_LA_LUZ_CREST_SVG;
+      const swAm = document.getElementById('swLogoAmerica');
+      if (swAm) swAm.src = state.teams.america_vet.logo;
 
       document.querySelectorAll('[data-switch-team]').forEach(b => {
         b.classList.toggle('active', b.dataset.switchTeam === team.id);
@@ -832,7 +953,8 @@
 
       document.getElementById('heroTeamLogo').src = team.logo;
       document.getElementById('heroTeamName').innerHTML = `${esc(team.name)} <span class="electric">MANAGER PRO</span>`;
-      document.getElementById('heroTeamSubtitle').textContent = `${team.subtitle} · DT: ${team.coachName}`;
+      document.getElementById('heroTeamSubtitle').textContent = team.subtitle;
+      document.getElementById('heroOwnerBanner').textContent = `👑 Dueño: ${team.ownerName || 'Directiva'} · DT: ${team.coachName}`;
       document.getElementById('heroEventBadge').textContent = `${ev.type.toUpperCase()} ACTIVO · ${ev.date}`;
 
       const players = team.players || [];
@@ -933,11 +1055,12 @@
                 <div class="p-badges">
                   <span class="pos-badge">${esc(p.position)}</span>
                   <span class="rate-badge">📊 Asist: ${attRate(p)}%</span>
+                  ${p.phone ? `<span class="phone-badge">📱 ${esc(p.phone)}</span>` : ''}
                 </div>
               </div>
             </div>
             <div style="display:flex;gap:5px">
-              <button type="button" class="btn-ghost" style="padding:5px 8px" data-ping-player="${esc(p.id)}" title="Recordar por WhatsApp">📲</button>
+              <button type="button" class="btn-ghost" style="padding:5px 8px" data-ping-player="${esc(p.id)}" title="Mandar WhatsApp directo al jugador">📲</button>
               <button type="button" class="btn-danger" data-delete-player="${esc(p.id)}" title="Eliminar">✕</button>
             </div>
           </div>
@@ -1004,7 +1127,7 @@
 
         const g = svgEl('g', { transform: `translate(${x} ${y})`, style: 'cursor:grab', 'data-slot-idx': String(idx) });
         g.appendChild(svgEl('circle', { r: 3.1, fill: isAbsent ? 'rgba(244,63,94,0.3)' : 'rgba(34,224,122,0.22)' }));
-        g.appendChild(svgEl('circle', { r: 2.45, fill: isAbsent ? '#f43f5e' : (idx === 0 ? (team.kitSecondary || '#f2c14e') : (team.kitPrimary || '#22e07a')), stroke: '#04140c', 'stroke-width': 0.38 }));
+        g.appendChild(svgEl('circle', { r: 2.45, fill: isAbsent ? '#f43f5e' : (idx === 0 ? (team.kitSecondary || '#f5c451') : (team.kitPrimary || '#22e07a')), stroke: '#04140c', 'stroke-width': 0.38 }));
 
         const num = svgEl('text', { 'text-anchor': 'middle', 'dominant-baseline': 'central', fill: '#04190e', 'font-family': 'Sora, sans-serif', 'font-size': 2.15, 'font-weight': 800 });
         num.textContent = pl ? String(pl.number) : String(idx + 1);
@@ -1136,7 +1259,8 @@
       document.getElementById('squadTableBody').innerHTML = (team.players || []).map(p => `
         <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
           <td style="padding:7px"><input type="text" data-edit-field="number" data-id="${esc(p.id)}" value="${esc(p.number)}" style="width:48px;padding:5px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;text-align:center;font-weight:800" /></td>
-          <td style="padding:7px"><input type="text" data-edit-field="name" data-id="${esc(p.id)}" value="${esc(p.name)}" style="width:100%;min-width:150px;padding:6px 8px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;font-weight:700" /></td>
+          <td style="padding:7px"><input type="text" data-edit-field="name" data-id="${esc(p.id)}" value="${esc(p.name)}" style="width:100%;min-width:145px;padding:6px 8px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;font-weight:700" /></td>
+          <td style="padding:7px"><input type="tel" data-edit-field="phone" data-id="${esc(p.id)}" value="${esc(p.phone || '')}" placeholder="+52 412..." style="width:138px;padding:6px 8px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fde68a;font-size:12px" /></td>
           <td style="padding:7px">
             <select data-edit-field="position" data-id="${esc(p.id)}" style="padding:6px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff">
               ${positions.map(pos => `<option value="${esc(pos)}" ${p.position === pos ? 'selected' : ''}>${esc(pos)}</option>`).join('')}
@@ -1144,8 +1268,8 @@
           </td>
           <td style="padding:7px"><span class="pill">${p.status === 'present' ? '✅ Fue' : p.status === 'late' ? '⏰ Retardo' : p.status === 'absent' ? '❌ No fue' : '⏳ Duda'}</span></td>
           <td style="padding:7px;font-weight:800;color:var(--green-neon)">${attRate(p)}%</td>
-          <td style="padding:7px"><input type="number" min="0" data-edit-field="goals" data-id="${esc(p.id)}" value="${Number(p.goals || 0)}" style="width:58px;padding:5px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;text-align:center" /></td>
-          <td style="padding:7px"><input type="number" min="0" data-edit-field="assists" data-id="${esc(p.id)}" value="${Number(p.assists || 0)}" style="width:58px;padding:5px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;text-align:center" /></td>
+          <td style="padding:7px"><input type="number" min="0" data-edit-field="goals" data-id="${esc(p.id)}" value="${Number(p.goals || 0)}" style="width:54px;padding:5px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;text-align:center" /></td>
+          <td style="padding:7px"><input type="number" min="0" data-edit-field="assists" data-id="${esc(p.id)}" value="${Number(p.assists || 0)}" style="width:54px;padding:5px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;text-align:center" /></td>
           <td style="padding:7px"><button type="button" class="btn-danger" data-delete-player="${esc(p.id)}">Eliminar</button></td>
         </tr>
       `).join('');
@@ -1154,10 +1278,11 @@
     function renderSettingsView(team) {
       const map = [
         ['cfgTeamName', team.name || ''],
+        ['cfgOwnerName', team.ownerName || ''],
         ['cfgTeamSubtitle', team.subtitle || ''],
         ['cfgCoachName', team.coachName || ''],
         ['cfgKitPrimary', team.kitPrimary || '#22e07a'],
-        ['cfgKitSecondary', team.kitSecondary || '#f2c14e']
+        ['cfgKitSecondary', team.kitSecondary || '#f5c451']
       ];
       map.forEach(([id, val]) => {
         const el = document.getElementById(id);
@@ -1180,6 +1305,7 @@
 
       return [
         `⚽ *CONVOCATORIA Y ASISTENCIA — ${team.name.toUpperCase()}*`,
+        `👑 *Dueño:* ${team.ownerName || ''}`,
         `👨‍💼 *DT:* ${team.coachName}`,
         `📌 *${ev.type}:* vs ${ev.opponent || 'Por definir'}`,
         `📅 *Fecha:* ${ev.date} · 🕒 ${ev.time} · 📍 ${ev.field}`,
@@ -1199,14 +1325,14 @@
 
     function exportAttendanceCsv() {
       const team = activeTeam();
-      const rows = [['Dorsal', 'Jugador', 'Posicion', 'Estado_Hoy', 'Motivo_Ausencia', 'Porcentaje_Asistencia', 'Goles', 'Asistencias', 'Arbitraje_Pagado']];
+      const rows = [['Dorsal', 'Jugador', 'Telefono_WhatsApp', 'Posicion', 'Estado_Hoy', 'Motivo_Ausencia', 'Porcentaje_Asistencia', 'Goles', 'Asistencias', 'Arbitraje_Pagado']];
       (team.players || []).forEach(p => {
-        rows.push([p.number, p.name, p.position, p.status, p.absenceReason || '', `${attRate(p)}%`, p.goals || 0, p.assists || 0, p.feePaid ? 'SI' : 'NO']);
+        rows.push([p.number, p.name, p.phone || '', p.position, p.status, p.absenceReason || '', `${attRate(p)}%`, p.goals || 0, p.assists || 0, p.feePaid ? 'SI' : 'NO']);
       });
       const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
       const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = `asistencia-${team.id}-${TODAY}.csv`; a.click();
+      const a = document.createElement('a'); a.href = url; a.download = `plantilla-${team.id}-${TODAY}.csv`; a.click();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
       showToast('Archivo Excel/CSV descargado');
     }
@@ -1264,8 +1390,10 @@
         const p = (team.players || []).find(x => x.id === ping.dataset.pingPlayer);
         if (p) {
           const rsvpUrl = `${location.origin}${location.pathname}?team=${team.id}&rsvp=1`;
-          const msg = `Hola *${p.name}* (#${p.number}), convocatoria de *${team.name}* para el ${ev.type} vs *${ev.opponent}* (${ev.date} · ${ev.time} en ${ev.field}). Confirma en 1 toque aquí: ${rsvpUrl}`;
-          window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+          const msg = `Hola *${p.name}* (#${p.number}), convocatoria de *${team.name}* (${team.ownerName}) para el ${ev.type} vs *${ev.opponent}* (${ev.date} · ${ev.time} en ${ev.field}). Confirma en 1 toque aquí: ${rsvpUrl}`;
+          const digits = cleanPhone(p.phone);
+          const waBase = digits ? `https://wa.me/${digits}` : 'https://wa.me/';
+          window.open(`${waBase}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
         }
         return;
       }
@@ -1324,8 +1452,6 @@
         const r = new FileReader();
         r.onload = () => {
           team.logo = String(r.result || team.logo);
-          const swImg = document.querySelector(`[data-switch-team="${team.id}"] img`);
-          if (swImg) swImg.src = team.logo;
           saveState('Escudo actualizado'); renderAll();
         };
         r.readAsDataURL(file);
@@ -1349,7 +1475,14 @@
 
     document.getElementById('tacticsStyleInput')?.addEventListener('input', e => { activeTeam().tacticalStyle = e.target.value; saveState(); });
 
-    // Controles de Cronómetro y Marcador en Vivo
+    document.getElementById('btnToggleMotion')?.addEventListener('click', () => {
+      state.motionEnabled = state.motionEnabled === false ? true : false;
+      saveState(state.motionEnabled ? 'Fondos en movimiento activados' : 'Fondos en movimiento pausados');
+      renderAll();
+    });
+
+    document.getElementById('btnSyncOfficialAmerica')?.addEventListener('click', () => syncAmericaOfficialRoster(false));
+
     function updateTimerDisplay() {
       const m = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
       const s = String(timerSeconds % 60).padStart(2, '0');
@@ -1385,6 +1518,7 @@
       const lm = team.liveMatch || { scoreHome: 0, scoreAway: 0, log: [] };
       const txt = [
         `⏱️ *MARCADOR Y CRÓNICA EN VIVO — ${team.name.toUpperCase()}*`,
+        `👑 *Dueño:* ${team.ownerName}`,
         `⚽ *${team.name} ${lm.scoreHome} - ${lm.scoreAway} ${ev.opponent || 'Rival'}*`,
         `📍 ${ev.field} · 📅 ${ev.date}`,
         ``,
@@ -1421,11 +1555,12 @@
       const name = document.getElementById('newPlayerName').value.trim();
       if (!name) return;
       const number = document.getElementById('newPlayerNumber').value.trim() || String((team.players?.length || 0) + 1);
+      const phone = document.getElementById('newPlayerPhone').value.trim();
       const position = document.getElementById('newPlayerPos').value;
       const status = document.getElementById('newPlayerStatus').value;
       const reason = document.getElementById('newPlayerReason').value.trim();
       team.players.push({
-        id: 'pl_' + Date.now(), number, name, position, status,
+        id: 'pl_' + Date.now(), number, name, phone, position, status,
         absenceReason: status === 'absent' ? (reason || 'No asistió') : '',
         note: reason, goals: 0, assists: 0, feePaid: false, attendedCount: status === 'present' ? 1 : 0, totalEvents: 1
       });
@@ -1504,10 +1639,11 @@
       e.preventDefault();
       const team = activeTeam();
       team.name = document.getElementById('cfgTeamName').value.trim() || team.name;
+      team.ownerName = document.getElementById('cfgOwnerName').value.trim() || team.ownerName;
       team.subtitle = document.getElementById('cfgTeamSubtitle').value.trim() || team.subtitle;
       team.coachName = document.getElementById('cfgCoachName').value.trim() || team.coachName;
       team.kitPrimary = document.getElementById('cfgKitPrimary').value || '#22e07a';
-      team.kitSecondary = document.getElementById('cfgKitSecondary').value || '#f2c14e';
+      team.kitSecondary = document.getElementById('cfgKitSecondary').value || '#f5c451';
       const swSpan = document.querySelector(`[data-switch-team="${team.id}"] span`);
       if (swSpan) swSpan.textContent = team.name;
       saveState('Configuración guardada'); renderAll();
@@ -1534,7 +1670,7 @@
     });
 
     document.getElementById('btnResetFactory')?.addEventListener('click', () => {
-      if (confirm('¿Restaurar plantillas iniciales de Club América Veteranos y Atlético La Luz?')) {
+      if (confirm('¿Restaurar plantillas oficiales de Club América Veteranos 35+ y Atlético La Luz?')) {
         state = clone(DEFAULT_STATE); saveState('Datos restaurados'); renderAll();
       }
     });
@@ -1557,34 +1693,7 @@
     checkUrlParams();
     renderAll();
     init3DBall();
+    syncAmericaOfficialRoster(true);
   </script>
-
-<!-- JR_V38_FIX43_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix43-category-row.css?v=38-43-r2">
-<script defer src="./assets/jr-v38-fix43-category-row.js?v=38-43-r2"></script>
-
-
-<!-- JR_V38_FIX44_DIRECT -->
-<script defer src="./assets/jr-v38-fix44-category-replace.js?v=38-44-r1"></script>
-
-
-<!-- JR_V38_FIX45_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix45-stability.css?v=38-48-r1">
-<script defer src="./assets/jr-v38-fix45-stability.js?v=38-48-r1"></script>
-
-
-<!-- JR_V38_FIX48_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix48-america-card.css?v=38-51-r1">
-<script defer src="./assets/jr-v38-fix48-america-card.js?v=38-54"></script>
-
-
-<!-- JR_V38_FIX50_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix50-buttons.css?v=38-50-r1">
-<script defer src="./assets/jr-v38-fix50-buttons.js?v=38-50-r1"></script>
-
-
-<!-- JR_V38_FIX59_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix59.css?v=38-59">
-<script defer src="./assets/jr-v38-fix59.js?v=38-59"></script>
 </body>
 </html>
