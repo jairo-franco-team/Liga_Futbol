@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#05140d" />
-  <title>DT Manager Pro · Atlético La Luz &amp; Club América Veteranos 35+</title>
-  <meta name="description" content="Suite Oficial de Dirección Técnica para Atlético La Luz (Dueño: Josué Franco) y Club América Veteranos 35+ (Dueño: Papá). Control semanal de constancia, razón social de faltas, categorías exclusivas para América y pizarra 2D/3D." />
+  <title>DT Manager Pro · Atlético La Luz &amp; Club América Veteranos 35 y más</title>
+  <meta name="description" content="Suite Oficial de Dirección Técnica (DT: Franco) para Atlético La Luz (Dueño: Josué Franco) y Club América Veteranos 35 y más (Dueño: Papá · Capitán y DT: Franco)." />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,31 +84,21 @@
       border-radius: 11px; border: 1px solid transparent; background: transparent;
       color: var(--text-muted); font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 700; cursor: pointer; transition: 0.2s;
     }
-    .team-btn img { width: 32px; height: 32px; object-fit: contain; border-radius: 8px; background: #030906; padding: 2px; border: 1px solid rgba(245, 196, 81, 0.45); }
+    .team-btn img { width: 34px; height: 34px; object-fit: cover; border-radius: 8px; background: #030906; border: 1px solid rgba(245, 196, 81, 0.55); }
     .team-btn.active { background: linear-gradient(135deg, #22e07a 0%, #10b981 100%); color: #031c10; border-color: #7df7b4; box-shadow: 0 6px 20px rgba(34, 224, 122, 0.34); }
     .container { max-width: 1280px; margin: 0 auto; padding: 16px; }
 
-    /* BARRA EXCLUSIVA DE CATEGORÍAS (SOLO VISIBLE EN CLUB AMÉRICA VETERANOS) */
+    /* DISTINTIVO EXCLUSIVO DE CATEGORÍA SOLO PARA CLUB AMÉRICA VETERANOS 35 Y MÁS */
     .america-only-categories {
       display: none;
       margin-bottom: 16px;
-      padding: 14px 18px;
+      padding: 13px 18px;
       border-radius: 18px;
-      border: 1px solid rgba(245, 196, 81, 0.45);
+      border: 1px solid rgba(245, 196, 81, 0.5);
       background: linear-gradient(135deg, rgba(20, 42, 28, 0.94), rgba(7, 20, 13, 0.95));
       box-shadow: var(--shadow);
     }
-    .america-only-categories.visible { display: block; }
-    .cat-chips-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-    .cat-chip-btn {
-      padding: 8px 14px; border-radius: 11px; border: 1px solid var(--border-green);
-      background: rgba(4, 14, 9, 0.88); color: #e2f8ec; font-family: 'Sora', sans-serif;
-      font-size: 12px; font-weight: 700; cursor: pointer; transition: 0.18s;
-    }
-    .cat-chip-btn.active {
-      background: linear-gradient(135deg, #f5c451, #d99b16);
-      color: #09140d; border-color: #fde68a; font-weight: 800;
-    }
+    .america-only-categories.visible { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 
     .hero {
       position: relative; overflow: hidden; border-radius: var(--radius-xl); border: 1px solid var(--border-green);
@@ -121,11 +111,11 @@
     .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr); gap: 20px; align-items: center; }
     .hero-lockup { display: flex; align-items: center; gap: 16px; margin: 12px 0 14px; }
     .crest-box {
-      width: 96px; height: 96px; border-radius: 22px; border: 2.5px solid var(--gold);
+      width: 102px; height: 102px; border-radius: 22px; border: 2.5px solid var(--gold);
       background: radial-gradient(circle, #132a1e 0%, #030906 100%);
-      display: grid; place-items: center; padding: 5px; flex-shrink: 0; animation: pulseGlow 4s infinite ease-in-out;
+      display: grid; place-items: center; padding: 4px; flex-shrink: 0; animation: pulseGlow 4s infinite ease-in-out;
     }
-    .crest-box img { width: 100%; height: 100%; object-fit: contain; border-radius: 16px; }
+    .crest-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 17px; }
     .hero-title { font-family: 'Bebas Neue', 'Sora', sans-serif; font-size: clamp(34px, 5vw, 60px); line-height: 0.96; color: #fff; text-transform: uppercase; }
     .hero-title .electric { color: var(--green-electric); }
     .owner-banner {
@@ -207,8 +197,6 @@
     .p-foot { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 11.5px; color: var(--text-muted); padding-top: 4px; flex-wrap: wrap; }
     .fee-btn { padding: 3px 8px; border-radius: 6px; border: 1px solid var(--border-subtle); background: rgba(255,255,255,0.05); color: var(--text-muted); font-size: 11px; font-weight: 700; cursor: pointer; }
     .fee-btn.paid { background: rgba(34, 224, 122, 0.2); border-color: var(--green-electric); color: var(--green-neon); }
-
-    /* MATRIZ SEMANAL DE CONSTANCIA Y DESCARTE */
     .wk-btn {
       width: 32px; height: 32px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.14);
       background: rgba(255,255,255,0.04); color: #fff; font-size: 13px; cursor: pointer;
@@ -216,7 +204,6 @@
     .wk-btn.wk-present { background: rgba(34, 224, 122, 0.24); border-color: var(--green-electric); }
     .wk-btn.wk-late { background: rgba(56, 189, 248, 0.24); border-color: var(--info); }
     .wk-btn.wk-absent { background: rgba(244, 63, 94, 0.28); border-color: var(--danger); }
-
     .tactics-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 440px); gap: 20px; align-items: start; }
     .pitch-card { background: #072215; border: 2px solid var(--border-green); border-radius: 20px; padding: 14px; }
     .pitch-svg-wrap { width: 100%; max-width: 440px; margin: 0 auto; border-radius: 14px; overflow: hidden; touch-action: none; }
@@ -283,9 +270,9 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div>
-        <span class="badge-coach">⚽ DT MANAGER &amp; COACH PRO · DISEÑO EN MOVIMIENTO</span>
-        <div class="brand-title" style="margin-top:3px">Centro de Mando Técnico · Atlético La Luz &amp; Club América Veteranos</div>
-        <div class="brand-sub">Dueño Atlético La Luz: Josué Franco · Dueño América Veteranos: Papá · DT: Jairo Franco Garduño</div>
+        <span class="badge-coach">⚽ DT MANAGER &amp; COACH PRO · DT: FRANCO</span>
+        <div class="brand-title" style="margin-top:3px">Centro de Mando Técnico · Atlético La Luz &amp; Club América Veteranos 35 y más</div>
+        <div class="brand-sub">Atlético La Luz (Dueño: Josué Franco · DT: Franco) · Club América Veteranos 35 y más (Dueño: Papá · Capitán y DT: Franco)</div>
       </div>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
         <button type="button" class="btn-ghost" id="btnToggleMotion">🎬 Movimiento: ON</button>
@@ -295,8 +282,8 @@
             <span>Atlético La Luz</span>
           </button>
           <button type="button" class="team-btn" data-switch-team="america_vet">
-            <img id="swLogoAmerica" src="./assets/branding/america-veteranos-35-user.png" alt="Club América Veteranos" />
-            <span>Club América Veteranos 35+</span>
+            <img id="swLogoAmerica" src="./assets/branding/america-veteranos-35-user.png" alt="Club América Veteranos 35 y más" />
+            <span>Club América Veteranos 35 y más</span>
           </button>
         </div>
       </div>
@@ -305,23 +292,13 @@
 
   <main class="container">
 
-    <!-- SELECTOR DE CATEGORÍAS EXCLUSIVO PARA CLUB AMÉRICA VETERANOS (OCULTO EN ATLÉTICO LA LUZ) -->
-    <section id="americaCategorySection" class="america-only-categories" aria-label="Categorías Liga Juventino Rosas (Exclusivo Club América Veteranos)">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
-        <div>
-          <span class="badge-coach">🏆 LIGA JUVENTINO ROSAS · EXCLUSIVO CLUB AMÉRICA VETERANOS</span>
-          <h3 style="font-family:'Sora',sans-serif;font-size:16px;color:#fff;margin-top:4px">Categorías Oficiales de la Liga (Dueño: Papá)</h3>
-          <p style="font-size:12px;color:var(--text-muted)">Este módulo de categorías pertenece únicamente a la liga de Club América Veteranos y no se mezcla con Atlético La Luz.</p>
-        </div>
-        <a id="americaOfficialRegLink" href="https://www.juventinorosasliga.com/reportes/registro/?categoria=2&temporada=6&equipo=5" target="_blank" rel="noopener" class="btn-gold">🌐 Abrir Registro Oficial Equipo #5</a>
+    <!-- CATEGORÍA ÚNICA EXCLUSIVA DE CLUB AMÉRICA VETERANOS 35 Y MÁS (NO EXISTE EN ATLÉTICO LA LUZ) -->
+    <section id="americaCategorySection" class="america-only-categories" aria-label="Categoría Oficial Club América Veteranos 35 y más">
+      <div>
+        <span class="badge-coach">🏆 CATEGORÍA OFICIAL: VETERANOS 35 Y MÁS (EQUIPO #5)</span>
+        <h3 style="font-family:'Sora',sans-serif;font-size:15.5px;color:#fff;margin-top:4px">Club América Veteranos 35 y más · Dueño: Papá · Capitán y DT: Franco</h3>
       </div>
-      <div class="cat-chips-row" id="americaCategoryChips">
-        <button type="button" class="cat-chip-btn active" data-am-cat="Veteranos 35+ (Cat. 2 · Temp. 6 · Eq. 5)">⭐ Veteranos 35 y más (Equipo 5)</button>
-        <button type="button" class="cat-chip-btn" data-am-cat="Veteranos 50+ (Cat. 1)">Veteranos 50+</button>
-        <button type="button" class="cat-chip-btn" data-am-cat="Primera Fuerza (Cat. 3)">Primera Fuerza</button>
-        <button type="button" class="cat-chip-btn" data-am-cat="Segunda Fuerza (Cat. 4)">Segunda Fuerza</button>
-        <button type="button" class="cat-chip-btn" data-am-cat="Intermedia (Cat. 5)">Intermedia</button>
-      </div>
+      <a id="americaOfficialRegLink" href="https://www.juventinorosasliga.com/reportes/registro/?categoria=2&temporada=6&equipo=5" target="_blank" rel="noopener" class="btn-gold">🌐 Ver Registro Oficial Veteranos 35 y más</a>
     </section>
 
     <section class="hero">
@@ -333,12 +310,12 @@
           <span class="badge-coach" id="heroEventBadge">CONVOCATORIA ACTIVA</span>
           <div class="hero-lockup">
             <div class="crest-box">
-              <img id="heroTeamLogo" src="" alt="Escudo del Equipo" />
+              <img id="heroTeamLogo" src="" alt="Escudo Oficial del Equipo" />
             </div>
             <div>
               <h1 id="heroTeamName" class="hero-title">ATLÉTICO LA LUZ <span class="electric">MANAGER PRO</span></h1>
-              <p id="heroTeamSubtitle" style="color:var(--text-muted);font-size:13.5px;font-weight:600">Liga Independiente · Plantel Oficial</p>
-              <div class="owner-banner" id="heroOwnerBanner">👑 Dueño del Equipo: Josué Franco · DT: Jairo Franco Garduño</div>
+              <p id="heroTeamSubtitle" style="color:var(--text-muted);font-size:13.5px;font-weight:600">Plantel Oficial · Dirección Técnica: Franco</p>
+              <div class="owner-banner" id="heroOwnerBanner">👑 Dueño: Josué Franco · DT: Franco</div>
             </div>
           </div>
 
@@ -346,7 +323,7 @@
             <span class="pill" id="pillOpponent">🆚 Rival: Por definir</span>
             <span class="pill" id="pillField">📍 Cancha: Campo La Luz</span>
             <span class="pill" id="pillFormation">📋 Sistema: 4-4-2</span>
-            <span class="pill" id="pillCaptain">©️ Capitán: Josué Franco</span>
+            <span class="pill" id="pillCaptain">©️ Capitán: Franco</span>
             <span class="pill" id="pillFeeTotal">💲 Arbitraje: 0 pagados</span>
           </div>
 
@@ -392,9 +369,9 @@
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow">PASE DE LISTA Y RAZÓN SOCIAL DE FALTAS</div>
+            <div class="eyebrow">PASE DE LISTA Y RAZÓN SOCIAL DE FALTAS (DT: FRANCO)</div>
             <h2>Control de Quién Fue a Jugar, Quién Faltó y Por Qué Faltó</h2>
-            <p>Cada tarjeta muestra la constancia del jugador, su teléfono de WhatsApp para aviso en 1 toque y la Razón Social / Motivo exacto cuando no asiste.</p>
+            <p>Cada tarjeta muestra la constancia semanal del jugador, su teléfono de WhatsApp para aviso en 1 toque y la Razón Social / Motivo exacto cuando no asiste.</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button type="button" class="btn-ghost" id="btnRemindDoubtWa">🔔 Cobrar Confirmación a Dudas</button>
@@ -436,10 +413,10 @@
           </div>
           <div class="field">
             <label for="dutyBalls">⚽ Encargado de Balones y Casacas</label>
-            <input id="dutyBalls" type="text" placeholder="Ej. Josué Franco / Papá" />
+            <input id="dutyBalls" type="text" placeholder="Ej. Franco / Josué Franco / Papá" />
           </div>
           <div class="field" style="grid-column: 1 / -1;">
-            <label for="matchCoachNotes">Charla Técnica / Notas de la Semana</label>
+            <label for="matchCoachNotes">Charla Técnica de Franco / Notas de la Semana</label>
             <input id="matchCoachNotes" type="text" placeholder="Indicaciones tácticas, uniforme o avisos..." />
           </div>
         </div>
@@ -509,9 +486,9 @@
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow">AUDITORÍA SEMANAL DEL DIRECTOR TÉCNICO</div>
+            <div class="eyebrow">AUDITORÍA SEMANAL DE CONSTANCIA (DT: FRANCO)</div>
             <h2>Historial Semana por Semana, Ranking de Constancia y Descarte</h2>
-            <p>Toca cualquier casilla semanal (S1 a S8) para alternar entre ✅ Asistió, ⏰ Retardo o ❌ Faltó. El sistema detecta automáticamente quiénes son los más constantes y a quiénes descartar por acumular faltas.</p>
+            <p>Toca cualquier casilla semanal (S1 a S8) para alternar entre ✅ Asistió, ⏰ Retardo o ❌ Faltó. Así sabes quiénes son los más constantes y a quiénes descartar por acumular faltas.</p>
           </div>
           <button type="button" class="btn-green" id="btnShareConstancyWa">📲 Enviar Tabla de Constancia por WhatsApp</button>
         </div>
@@ -548,7 +525,7 @@
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow">PIZARRA TÁCTICA INTERACTIVA (MODO EASY2COACH)</div>
+            <div class="eyebrow">PIZARRA TÁCTICA INTERACTIVA (DT: FRANCO)</div>
             <h2>Alineación Titular, Suplentes Disponibles y Movimiento en Cancha</h2>
             <p>Arrastra las fichas con el dedo o mouse. El botón ⚡ Armar 11 prioriza a los jugadores presentes y más constantes.</p>
           </div>
@@ -579,7 +556,7 @@
                 <select id="roleFreekickSelect"></select>
               </div>
               <div class="field" style="grid-column: 1 / -1;">
-                <label for="tacticsStyleInput">Instrucciones Tácticas del Partido</label>
+                <label for="tacticsStyleInput">Instrucciones Tácticas de Franco</label>
                 <input id="tacticsStyleInput" type="text" placeholder="Ej. Presión alta, salida limpia por bandas..." />
               </div>
             </div>
@@ -736,14 +713,14 @@
         <div class="panel-head">
           <div>
             <div class="eyebrow">IDENTIDAD Y DIRECTIVA DEL CLUB</div>
-            <h2>Personalizar Dueño, Nombre, Escudo y Colores del Equipo Activo</h2>
+            <h2>Personalizar Dueño, DT, Nombre, Escudo y Colores del Equipo Activo</h2>
           </div>
         </div>
         <form id="teamConfigForm" class="form-grid">
           <div class="field"><label for="cfgTeamName">Nombre del Equipo</label><input id="cfgTeamName" type="text" required /></div>
           <div class="field"><label for="cfgOwnerName">Dueño / Presidente del Equipo</label><input id="cfgOwnerName" type="text" required /></div>
           <div class="field"><label for="cfgCoachName">Manager / Director Técnico</label><input id="cfgCoachName" type="text" /></div>
-          <div class="field"><label for="cfgTeamSubtitle">Subtítulo / Liga</label><input id="cfgTeamSubtitle" type="text" /></div>
+          <div class="field"><label for="cfgTeamSubtitle">Subtítulo</label><input id="cfgTeamSubtitle" type="text" /></div>
           <div class="field"><label for="cfgKitPrimary">Color Ficha Titular</label><input id="cfgKitPrimary" type="color" style="height:40px;padding:3px" /></div>
           <div class="field"><label for="cfgKitSecondary">Color Portero</label><input id="cfgKitSecondary" type="color" style="height:40px;padding:3px" /></div>
           <div class="field"><label for="cfgLogoUpload">Subir Escudo Personalizado (Imagen)</label><input id="cfgLogoUpload" type="file" accept="image/*" /></div>
@@ -780,56 +757,17 @@
 
   <div id="mgrToast" class="toast" role="status" aria-live="polite"></div>
 
+  <!-- Imagen original exacta del escudo de Atlético La Luz y Balón 3D -->
+  <script src="./assets/atletico-la-luz-logo-real.js?v=10"></script>
   <script src="./assets/jr-ball-model-v38.js"></script>
   <script type="module">
     import { computePitchMarkings } from './vendor/campos/pitch.js';
     import formations from './vendor/campos/formations.js';
 
-    // Nueva clave limpia para que cargue de inmediato a todos los jugadores nuevos y el nuevo escudo
-    const STORAGE_KEY = 'dt_manager_pro_v8_constancia_semanal';
+    const STORAGE_KEY = 'dt_manager_franco_v10_real_logo';
     const NS = 'http://www.w3.org/2000/svg';
     const TODAY = new Date().toISOString().slice(0, 10);
-
-    // Escudo Oficial de Atlético La Luz (Fiel a la imagen subida: Corona Dorada, Balón Clásico, Relámpagos, Cinta ATLÉTICO, Texto Metálico LA LUZ y Estrella de 8 puntas)
-    const ATLETICO_LA_LUZ_CREST_SVG = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260">
-        <defs>
-          <linearGradient id="goldG" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#fff6b3"/>
-            <stop offset="45%" stop-color="#f5c451"/>
-            <stop offset="100%" stop-color="#9c6706"/>
-          </linearGradient>
-          <linearGradient id="darkShield" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#191919"/>
-            <stop offset="55%" stop-color="#050505"/>
-            <stop offset="100%" stop-color="#211604"/>
-          </linearGradient>
-          <linearGradient id="silverTxt" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff"/>
-            <stop offset="55%" stop-color="#d4dce6"/>
-            <stop offset="100%" stop-color="#7f8a99"/>
-          </linearGradient>
-        </defs>
-        <rect width="260" height="260" rx="38" fill="#040b07"/>
-        <!-- Relámpagos dorados laterales -->
-        <polygon points="22,40 58,92 42,96 74,148 52,112 36,110" fill="url(#goldG)" opacity="0.85"/>
-        <polygon points="238,40 202,92 218,96 186,148 208,112 224,110" fill="url(#goldG)" opacity="0.85"/>
-        <!-- Corona real superior -->
-        <path d="M62,22 L80,58 L104,26 L130,62 L156,26 L180,58 L198,22 L186,72 L74,72 Z" fill="url(#goldG)" stroke="#fff" stroke-width="1.5"/>
-        <!-- Cuerpo del escudo -->
-        <path d="M48,70 L212,70 L200,174 C192,212 130,240 130,240 C130,240 68,212 60,174 Z" fill="url(#darkShield)" stroke="url(#goldG)" stroke-width="5.5"/>
-        <!-- Balón superior -->
-        <circle cx="130" cy="100" r="30" fill="#f8fafc" stroke="url(#goldG)" stroke-width="3"/>
-        <polygon points="130,80 142,89 137,103 123,103 118,89" fill="#0c100d"/>
-        <!-- Cinta ATLÉTICO -->
-        <rect x="36" y="108" width="188" height="26" rx="7" fill="#080808" stroke="url(#goldG)" stroke-width="2.8"/>
-        <text x="130" y="126" text-anchor="middle" fill="#ffffff" font-family="Arial Black, sans-serif" font-size="16" font-weight="900" letter-spacing="3.5">★ ATLÉTICO ★</text>
-        <!-- LA LUZ metálico -->
-        <text x="130" y="168" text-anchor="middle" fill="url(#silverTxt)" stroke="#000" stroke-width="1.8" font-family="Impact, Arial Black, sans-serif" font-size="44" font-style="italic" font-weight="900" letter-spacing="2">LA LUZ</text>
-        <!-- Estrella de 8 puntas resplandeciente -->
-        <polygon points="130,176 137,194 156,200 137,206 130,225 123,206 104,200 123,194" fill="url(#goldG)"/>
-      </svg>
-    `);
+    const REAL_LUZ_LOGO = window.ATLETICO_LA_LUZ_REAL_LOGO || './assets/official-logos/dep-la-luz.png';
 
     const SOCIAL_REASONS = [
       '',
@@ -869,15 +807,14 @@
     const DEFAULT_STATE = {
       activeTeamId: 'atletico_luz',
       motionEnabled: true,
-      americaCategory: 'Veteranos 35+ (Cat. 2 · Temp. 6 · Eq. 5)',
       teams: {
         atletico_luz: {
           id: 'atletico_luz',
           name: 'Atlético La Luz',
           ownerName: 'Josué Franco (Dueño Atlético La Luz)',
-          subtitle: 'Liga Independiente · Plantel Oficial de WhatsApp',
-          coachName: 'Jairo Franco Garduño',
-          logo: ATLETICO_LA_LUZ_CREST_SVG,
+          subtitle: 'Plantel Oficial · Dirección Técnica: Franco',
+          coachName: 'Franco',
+          logo: REAL_LUZ_LOGO,
           kitPrimary: '#22e07a',
           kitSecondary: '#f5c451',
           formation: '442',
@@ -912,35 +849,36 @@
             { id: 'll15', number: '15', name: 'Villafuerte (~ Villafuerte)', phone: '+52 412 172 9510', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Volante', goals: 2, assists: 3, feePaid: true, weeks: ['P','P','P','P','P','A','P','P'] },
             { id: 'll16', number: '16', name: 'A G L (~ A G L)', phone: '+52 412 128 3831', position: 'Delantero', status: 'absent', absenceReason: 'Trabajo / Turno laboral', note: 'Faltó 4 semanas seguidas', goals: 1, assists: 1, feePaid: false, weeks: ['P','A','A','P','A','A','A','A'] },
             { id: 'll17', number: '17', name: 'Jugador (~ .)', phone: '+52 412 122 0872', position: 'Defensa', status: 'absent', absenceReason: 'Sin avisar / Falta injustificada', note: 'Inconstante · Candidato a descarte', goals: 0, assists: 1, feePaid: false, weeks: ['A','A','P','A','A','P','A','A'] },
-            { id: 'll18', number: '18', name: 'Josué Franco (Dueño)', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Dueño y Capitán de Atlético La Luz', goals: 5, assists: 7, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
+            { id: 'll18', number: '18', name: 'Josué Franco (Dueño)', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Dueño de Atlético La Luz', goals: 5, assists: 7, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
             { id: 'll19', number: '19', name: 'Papá', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Directivo / Dueño Club América Veteranos', goals: 1, assists: 2, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] }
           ]
         },
         america_vet: {
           id: 'america_vet',
-          name: 'Club América Veteranos 35+',
+          name: 'Club América Veteranos 35 y más',
           ownerName: 'Papá (Dueño Club América Veteranos)',
-          subtitle: 'Liga Juventino Rosas · Categoría Veteranos 35 y más · Equipo #5',
-          coachName: 'Jairo Franco Garduño',
+          subtitle: 'Categoría Oficial: Veteranos 35 y más · Capitán y DT: Franco',
+          coachName: 'Franco (Capitán y DT)',
           logo: './assets/branding/america-veteranos-35-user.png',
           kitPrimary: '#22e07a',
           kitSecondary: '#f5c451',
           formation: '433',
           tacticalStyle: 'Presión alta, salida limpia por bandas y control de medio campo',
-          roles: { captain: 'am1', penalty: 'am2', freekick: 'am3' },
+          roles: { captain: 'am_franco', penalty: 'am2', freekick: 'am3' },
           activeEventId: 'ev_am_1',
           events: [
-            { id: 'ev_am_1', weekLabel: 'Semana 1', type: 'Partido', opponent: 'Rival en turno (Veteranos 35+)', date: TODAY, time: '16:00', field: 'Campo Empastado #1', dutyBalls: 'Papá', coachNotes: 'Confirmar asistencia 30 min antes. Cuidar coberturas.' }
+            { id: 'ev_am_1', weekLabel: 'Semana 1', type: 'Partido', opponent: 'Rival en turno (Veteranos 35 y más)', date: TODAY, time: '16:00', field: 'Campo Empastado #1', dutyBalls: 'Franco / Papá', coachNotes: 'Confirmar asistencia 30 min antes. Cuidar coberturas.' }
           ],
-          liveMatch: { scoreHome: 2, scoreAway: 1, mvpId: 'am1', log: [
-            { id: 'lg1', min: "18'", text: '⚽ Gol de J. Refugio Zarazúa Agostadero (Asist: Francisco Javier Valdez Corrales)' },
+          liveMatch: { scoreHome: 2, scoreAway: 1, mvpId: 'am_franco', log: [
+            { id: 'lg1', min: "18'", text: '⚽ Gol de J. Refugio Zarazúa Agostadero (Asist: Franco)' },
             { id: 'lg2', min: "54'", text: '🔄 Cambio: Entra Luis Jiménez Zárate por Eric Fernando Dongu Guerrero' }
           ]},
           drills: JSON.parse(JSON.stringify(DEFAULT_DRILLS)),
           lineupSlots: {},
           customCoords: {},
           players: [
-            { id: 'am1', number: '10', name: 'J. Refugio Zarazúa Agostadero', phone: '', position: 'Enganche / 10', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5 · Capitán', goals: 11, assists: 6, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
+            { id: 'am_franco', number: '10', name: 'Franco (Capitán y DT)', phone: '', position: 'Enganche / 10', status: 'present', absenceReason: '', note: 'Capitán y Director Técnico · Club América Veteranos 35 y más', goals: 8, assists: 9, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
+            { id: 'am1', number: '14', name: 'J. Refugio Zarazúa Agostadero', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5', goals: 11, assists: 6, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
             { id: 'am2', number: '9', name: 'Francisco Javier Valdez Corrales', phone: '', position: 'Delantero', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5 · Goleador', goals: 7, assists: 4, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
             { id: 'am3', number: '8', name: 'Óscar Vargas Tovar', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5', goals: 6, assists: 5, feePaid: true, weeks: ['P','P','P','P','P','P','P','P'] },
             { id: 'am4', number: '4', name: 'Eric Fernando Dongu Guerrero', phone: '', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5', goals: 1, assists: 1, feePaid: true, weeks: ['P','P','P','P','P','L','P','P'] },
@@ -958,6 +896,10 @@
     };
 
     let state = loadState();
+    // Asegurar que Atlético La Luz siempre tenga el logo real subido si no fue cambiado manualmente
+    if (state.teams?.atletico_luz && (!state.teams.atletico_luz.logo || state.teams.atletico_luz.logo.startsWith('data:image/svg'))) {
+      state.teams.atletico_luz.logo = REAL_LUZ_LOGO;
+    }
     let currentFilter = 'all';
     let draggingSlotIndex = null;
     let timerSeconds = 0;
@@ -999,7 +941,6 @@
       return el;
     }
 
-    // Cálculo de Constancia Semanal y Candidatos a Descarte
     function ensureWeeks(p) {
       if (!Array.isArray(p.weeks) || p.weeks.length < 8) {
         p.weeks = ['P','P','P','P','P','P','P','P'];
@@ -1018,7 +959,6 @@
       return absencesCount(p) >= 3 || p.absenceReason === 'Sin avisar / Falta injustificada';
     }
 
-    // Sincronización con los JSON del repositorio para Club América Veteranos 35+
     async function syncAmericaOfficialRoster(silent = false) {
       const america = state.teams.america_vet;
       const existingNames = new Set((america.players || []).map(p => p.name.toLowerCase().trim()));
@@ -1062,10 +1002,10 @@
       }
 
       if (added > 0) {
-        saveState(`✅ ${added} jugadores oficiales agregados a Club América Veteranos 35+`);
+        saveState(`✅ ${added} jugadores oficiales agregados a Club América Veteranos 35 y más`);
         renderAll();
       } else if (!silent) {
-        showToast('✅ Padrón oficial de Club América Veteranos 35+ (Equipo 5) actualizado');
+        showToast('✅ Padrón oficial de Club América Veteranos 35 y más al día');
       }
     }
 
@@ -1078,18 +1018,14 @@
       const motionBtn = document.getElementById('btnToggleMotion');
       if (motionBtn) motionBtn.textContent = state.motionEnabled === false ? '🎬 Movimiento: OFF' : '🎬 Movimiento: ON';
 
-      // Mostrar el módulo de Categorías ÚNICAMENTE cuando está activo Club América Veteranos
+      // Mostrar distintivo de Veteranos 35 y más ÚNICAMENTE en Club América Veteranos
       const amCatSec = document.getElementById('americaCategorySection');
       if (amCatSec) amCatSec.classList.toggle('visible', isAmerica);
       const btnSyncAm = document.getElementById('btnSyncOfficialAmerica');
       if (btnSyncAm) btnSyncAm.style.display = isAmerica ? 'inline-flex' : 'none';
 
-      document.querySelectorAll('[data-am-cat]').forEach(b => {
-        b.classList.toggle('active', b.dataset.amCat === state.americaCategory);
-      });
-
       const swLuz = document.getElementById('swLogoLuz');
-      if (swLuz) swLuz.src = state.teams.atletico_luz.logo || ATLETICO_LA_LUZ_CREST_SVG;
+      if (swLuz) swLuz.src = state.teams.atletico_luz.logo || REAL_LUZ_LOGO;
       const swAm = document.getElementById('swLogoAmerica');
       if (swAm) swAm.src = state.teams.america_vet.logo;
 
@@ -1097,9 +1033,9 @@
         b.classList.toggle('active', b.dataset.switchTeam === team.id);
       });
 
-      document.getElementById('heroTeamLogo').src = team.logo || ATLETICO_LA_LUZ_CREST_SVG;
+      document.getElementById('heroTeamLogo').src = team.logo || REAL_LUZ_LOGO;
       document.getElementById('heroTeamName').innerHTML = `${esc(team.name)} <span class="electric">MANAGER PRO</span>`;
-      document.getElementById('heroTeamSubtitle').textContent = isAmerica ? `${team.subtitle} · ${state.americaCategory}` : team.subtitle;
+      document.getElementById('heroTeamSubtitle').textContent = team.subtitle;
       document.getElementById('heroOwnerBanner').textContent = `👑 Dueño: ${team.ownerName} · DT: ${team.coachName}`;
       document.getElementById('heroEventBadge').textContent = `${(ev.weekLabel || 'SEMANA 1').toUpperCase()} · ${ev.type.toUpperCase()} · ${ev.date}`;
 
@@ -1115,7 +1051,7 @@
       document.getElementById('pillOpponent').textContent = `🆚 ${ev.type}: ${ev.opponent || 'Por definir'}`;
       document.getElementById('pillField').textContent = `📍 ${ev.field || 'Por definir'} (${ev.time || ''})`;
       document.getElementById('pillFormation').textContent = `📋 Sistema: ${team.formation.split('').join('-')}`;
-      document.getElementById('pillCaptain').textContent = `©️ Capitán: ${capPlayer ? capPlayer.name : 'Por asignar'}`;
+      document.getElementById('pillCaptain').textContent = `©️ Capitán: ${capPlayer ? capPlayer.name : 'Franco'}`;
       document.getElementById('pillFeeTotal').textContent = `💲 Arbitraje: ${paidCount}/${players.length} pagados`;
 
       document.getElementById('kpiTotal').textContent = String(players.length);
@@ -1488,7 +1424,7 @@
         ['cfgTeamName', team.name || ''],
         ['cfgOwnerName', team.ownerName || ''],
         ['cfgTeamSubtitle', team.subtitle || ''],
-        ['cfgCoachName', team.coachName || ''],
+        ['cfgCoachName', team.coachName || 'Franco'],
         ['cfgKitPrimary', team.kitPrimary || '#22e07a'],
         ['cfgKitSecondary', team.kitSecondary || '#f5c451']
       ];
@@ -1551,13 +1487,6 @@
       const sw = e.target.closest('[data-switch-team]');
       if (sw) { state.activeTeamId = sw.dataset.switchTeam; saveState(`Equipo activo: ${activeTeam().name}`); renderAll(); return; }
 
-      const amCat = e.target.closest('[data-am-cat]');
-      if (amCat) {
-        state.americaCategory = amCat.dataset.amCat;
-        saveState(`Categoría de América: ${state.americaCategory}`);
-        renderAll(); return;
-      }
-
       const nv = e.target.closest('[data-nav-view]');
       if (nv) { switchView(nv.dataset.navView); return; }
 
@@ -1567,7 +1496,6 @@
       const flt = e.target.closest('[data-att-filter]');
       if (flt) { currentFilter = flt.dataset.attFilter; renderAll(); return; }
 
-      // Alternar asistencia en una semana específica (S1..S8)
       const wkBtn = e.target.closest('[data-toggle-week]');
       if (wkBtn) {
         const p = (activeTeam().players || []).find(x => x.id === wkBtn.dataset.toggleWeek);
@@ -1622,7 +1550,7 @@
         const p = (team.players || []).find(x => x.id === ping.dataset.pingPlayer);
         if (p) {
           const rsvpUrl = `${location.origin}${location.pathname}?team=${team.id}&rsvp=1`;
-          const msg = `Hola *${p.name}* (#${p.number}), convocatoria de *${team.name}* (${team.ownerName}) para ${ev.weekLabel || 'esta semana'} vs *${ev.opponent}* (${ev.date} · ${ev.time} en ${ev.field}). Si no asistes indica tu razón social para el registro de constancia: ${rsvpUrl}`;
+          const msg = `Hola *${p.name}* (#${p.number}), convocatoria de *${team.name}* (DT: ${team.coachName}) para ${ev.weekLabel || 'esta semana'} vs *${ev.opponent}* (${ev.date} · ${ev.time} en ${ev.field}). Si no asistes indica tu razón social para el registro de constancia: ${rsvpUrl}`;
           const digits = cleanPhone(p.phone);
           const waBase = digits ? `https://wa.me/${digits}` : 'https://wa.me/';
           window.open(`${waBase}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
@@ -1771,7 +1699,7 @@
       const lm = team.liveMatch || { scoreHome: 0, scoreAway: 0, log: [] };
       const txt = [
         `⏱️ *MARCADOR Y CRÓNICA EN VIVO — ${team.name.toUpperCase()}*`,
-        `👑 *Dueño:* ${team.ownerName}`,
+        `👑 *Dueño:* ${team.ownerName} · *DT:* ${team.coachName}`,
         `⚽ *${team.name} ${lm.scoreHome} - ${lm.scoreAway} ${ev.opponent || 'Rival'}*`,
         `📍 ${ev.field} · 📅 ${ev.date}`,
         ``,
@@ -1927,7 +1855,7 @@
     });
 
     document.getElementById('btnResetFactory')?.addEventListener('click', () => {
-      if (confirm('¿Restaurar plantillas oficiales de Atlético La Luz y Club América Veteranos 35+?')) {
+      if (confirm('¿Restaurar plantillas oficiales de Atlético La Luz y Club América Veteranos 35 y más?')) {
         state = clone(DEFAULT_STATE); saveState('Datos restaurados'); renderAll();
       }
     });
@@ -1947,38 +1875,15 @@
       try { const fb = window.JRBallModelV38.fallback(stage); window.addEventListener('resize', () => fb.draw()); } catch (_) {}
     }
 
+    // Limpiar Service Workers viejos que retenían la imagen anterior
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.update()));
+    }
+
     checkUrlParams();
     renderAll();
     init3DBall();
     syncAmericaOfficialRoster(true);
   </script>
-
-<!-- JR_V38_FIX43_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix43-category-row.css?v=38-43-r2">
-<script defer src="./assets/jr-v38-fix43-category-row.js?v=38-43-r2"></script>
-
-
-<!-- JR_V38_FIX44_DIRECT -->
-<script defer src="./assets/jr-v38-fix44-category-replace.js?v=38-44-r1"></script>
-
-
-<!-- JR_V38_FIX45_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix45-stability.css?v=38-48-r1">
-<script defer src="./assets/jr-v38-fix45-stability.js?v=38-48-r1"></script>
-
-
-<!-- JR_V38_FIX48_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix48-america-card.css?v=38-51-r1">
-<script defer src="./assets/jr-v38-fix48-america-card.js?v=38-54"></script>
-
-
-<!-- JR_V38_FIX50_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix50-buttons.css?v=38-50-r1">
-<script defer src="./assets/jr-v38-fix50-buttons.js?v=38-50-r1"></script>
-
-
-<!-- JR_V38_FIX59_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix59.css?v=38-59">
-<script defer src="./assets/jr-v38-fix59.js?v=38-59"></script>
 </body>
 </html>

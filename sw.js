@@ -1,13 +1,12 @@
-/* V38 FIX22: service worker intentionally remains cache-disabled for synchronization stability. */
-self.addEventListener('install',event=>{self.skipWaiting();});
-self.addEventListener('activate',event=>{
-  event.waitUntil((async()=>{
-    try{
-      const keys=await caches.keys();
-      await Promise.all(keys.map(k=>caches.delete(k)));
-    }catch(e){}
-    try{await self.registration.unregister();}catch(e){}
-    try{await self.clients.claim();}catch(e){}
-  })());
+const CACHE_NAME = 'dt-manager-franco-v10';
+self.addEventListener('install', event => {
+  self.skipWaiting();
 });
-self.addEventListener('fetch',()=>{});
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k)))).then(() => self.clients.claim())
+  );
+});
+self.addEventListener('fetch', event => {
+  event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
+});
