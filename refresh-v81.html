@@ -3,10 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Actualizando DT Manager Pro v14...</title>
+  <title>Reparando Escudo y Caché v15...</title>
   <script>
     (async function(){
       try {
+        // Limpiar cualquier WebP corrupto guardado en localStorage del teléfono
+        for (let i = 0; i < localStorage.length; i++) {
+          const k = localStorage.key(i);
+          const v = localStorage.getItem(k);
+          if (v && v.includes('data:image/webp;base64,UklGR')) {
+            localStorage.removeItem(k);
+          }
+        }
         if ('serviceWorker' in navigator) {
           const regs = await navigator.serviceWorker.getRegistrations();
           for (const r of regs) await r.unregister();
@@ -15,12 +23,22 @@
           const keys = await caches.keys();
           for (const k of keys) await caches.delete(k);
         }
+        // Forzar recarga de red en el caché HTTP de Chrome para reemplazar el archivo viejo ?v=14
+        await Promise.allSettled([
+          fetch('./assets/atletico-la-luz-logo-real.js?v=14', { cache: 'reload' }),
+          fetch('./assets/atletico-la-luz-logo-real.js', { cache: 'reload' }),
+          fetch('./index.html?v=14', { cache: 'reload' }),
+          fetch('./index.html', { cache: 'reload' })
+        ]);
       } catch (_) {}
-      location.replace('./index.html?v=14&nocache=' + Date.now());
+      location.replace('./index.html?v=15&nocache=' + Date.now());
     })();
   </script>
 </head>
-<body style="background:#030b07;color:#22e07a;font-family:sans-serif;display:grid;place-items:center;min-height:100vh;text-align:center;padding:20px">
-  <p>Cargando nuevo diseño v14 Pro (Escudo Atlético La Luz HD · 12 Jornadas Nuevos Jugadores · Club América 8 Jornadas)...</p>
+<body style="background:#020906;color:#1ee87a;font-family:sans-serif;display:grid;place-items:center;min-height:100vh;text-align:center;padding:24px">
+  <div>
+    <h2 style="margin-bottom:8px">⚡ Reparando Escudo Oficial de Atlético La Luz (v15)</h2>
+    <p style="color:#9abaa9">Limpiando imagen en caché y abriendo aplicación actualizada...</p>
+  </div>
 </body>
 </html>

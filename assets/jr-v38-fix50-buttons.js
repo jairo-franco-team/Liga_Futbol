@@ -1,18 +1,11 @@
-// Auto-aplicar escudo real de Atlético La Luz en todos los elementos de imagen
+// Refuerzo de carga fresca sin caché del escudo JPEG verificado de Atlético La Luz
 (function(){
-  function applyLuzLogo(){
-    var logo = window.ATLETICO_LA_LUZ_REAL_LOGO;
-    if (!logo) return;
-    var sw = document.getElementById('swLogoLuz');
-    if (sw) sw.src = logo;
-    var hero = document.getElementById('heroTeamLogo');
-    var activeBtn = document.querySelector('[data-switch-team="atletico_luz"].active');
-    if (hero && activeBtn) hero.src = logo;
+  function refreshLuzCrest(){
+    if (!window.ATLETICO_LA_LUZ_REAL_LOGO || window.ATLETICO_LA_LUZ_REAL_LOGO.indexOf('data:image/webp') === 0) {
+      var s = document.createElement('script');
+      s.src = './assets/atletico-la-luz-logo-real.js?v=15_' + Date.now();
+      document.head.appendChild(s);
+    }
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', applyLuzLogo);
-  } else {
-    applyLuzLogo();
-  }
-  window.addEventListener('load', applyLuzLogo);
+  refreshLuzCrest();
 })();
