@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#04120b" />
-  <title>DT Manager Pro v19 · Atlético La Luz (12J) &amp; Club América Veteranos 35+ (8J)</title>
-  <meta name="description" content="Control semanal con rivales y fechas precargadas, tablero interactivo de quiénes sí vienen y quiénes no vienen, generador PNG con escudo oficial, GPS de canchas y estadísticas." />
+  <title>DT Manager Pro v20 · Atlético La Luz (Fútbol 7 Ocalos) &amp; Club América 35+ (Fútbol 11)</title>
+  <meta name="description" content="Suite Oficial DT Manager Pro: Atlético La Luz (Liga de Fútbol 7 Torneo Ocalos COMUDE · 7 vs 7) y Club América Veteranos 35+ (Fútbol 11 · 11 vs 11)." />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,11 +86,11 @@
     .team-btn.active { background: linear-gradient(135deg, #1ee87a 0%, #0ea866 100%); color: #021a0e; border-color: #8bfac0; box-shadow: 0 6px 22px rgba(30, 232, 122, 0.36); }
     .container { max-width: 1320px; margin: 0 auto; padding: 16px; }
 
-    .america-only-categories {
-      display: none; margin-bottom: 16px; padding: 14px 18px; border-radius: 20px; border: 1px solid var(--border-gold);
+    .league-specific-banner {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+      margin-bottom: 16px; padding: 14px 18px; border-radius: 20px; border: 1px solid var(--border-gold);
       background: linear-gradient(135deg, rgba(24, 46, 31, 0.94), rgba(8, 22, 14, 0.96)); box-shadow: var(--shadow-xl);
     }
-    .america-only-categories.visible { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 
     .hero {
       position: relative; overflow: hidden; border-radius: var(--radius-xl); border: 1px solid var(--border-green);
@@ -308,7 +308,7 @@
     <div class="rsvp-dialog">
       <span class="badge-coach">🖼️ REPORTE OFICIAL PNG · VINIERON VS FALTARON</span>
       <h3 id="pngModalTitle" style="font-family:'Sora',sans-serif;font-size:18px;margin:8px 0 4px;color:#fff">Imagen Lista para Enviar al Grupo de WhatsApp</h3>
-      <p style="font-size:12px;color:var(--text-muted)">Incluye escudo oficial, jornada, fecha semanal, rival, cancha, quiénes sí vinieron y quiénes faltaron.</p>
+      <p style="font-size:12px;color:var(--text-muted)">Incluye escudo oficial, modalidad (Fútbol 7 / Fútbol 11), jornada, fecha, rival, cancha y asistencia.</p>
       <img id="pngPreviewElement" class="png-preview-img" alt="Vista previa PNG" />
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
         <button type="button" class="btn-green" id="btnShareNativePng">📤 Compartir a WhatsApp</button>
@@ -339,20 +339,20 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div>
-        <span class="badge-coach">⚽ DT MANAGER PRO V19 · CALENDARIO SEMANAL &amp; PÓSTER PNG</span>
-        <div class="brand-title" style="margin-top:3px">Calendario de Rivales · Quiénes Sí Vienen y Quiénes Faltaron</div>
-        <div class="brand-sub">Atlético La Luz (12 Domingos · Dueño: Josué Franco) · Club América 35+ (8 Sábados · Dueño y DT: Franco)</div>
+        <span class="badge-coach">⚽ DT MANAGER PRO V20 · FÚTBOL 7 OCALOS &amp; FÚTBOL 11</span>
+        <div class="brand-title" style="margin-top:3px">Atlético La Luz (Fútbol 7 · Torneo Ocalos) &amp; Club América 35+ (Fútbol 11)</div>
+        <div class="brand-sub">Atlético La Luz (7 vs 7 · COMUDE Ocalos · Dueño: Josué Franco) · Club América 35+ (11 vs 11 · Dueño y DT: Franco)</div>
       </div>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
         <button type="button" class="btn-ghost" id="btnToggleMotion">🎬 Movimiento: ON</button>
         <div class="team-switcher" role="tablist" aria-label="Cambiar entre mis 2 equipos">
           <button type="button" class="team-btn active" data-switch-team="atletico_luz">
             <span class="team-btn-crest"><img id="swLogoLuz" src="./assets/official-logos/dep-la-luz.png" alt="Escudo Atlético La Luz" /></span>
-            <span>Atlético La Luz (12J)</span>
+            <span>Atlético La Luz · F7 (12J)</span>
           </button>
           <button type="button" class="team-btn" data-switch-team="america_vet">
             <span class="team-btn-crest"><img id="swLogoAmerica" src="./assets/branding/america-veteranos-35-user.png" alt="Escudo Club América 35+" /></span>
-            <span>Club América 35+ (8J)</span>
+            <span>Club América 35+ · F11 (8J)</span>
           </button>
         </div>
       </div>
@@ -361,16 +361,8 @@
 
   <main class="container">
 
-    <section id="americaCategorySection" class="america-only-categories" aria-label="Categoría Oficial Club América Veteranos 35 y más">
-      <div>
-        <span class="badge-coach">🏆 CATEGORÍA OFICIAL: VETERANOS 35 Y MÁS · SÁBADOS 4:00 PM</span>
-        <h3 style="font-family:'Sora',sans-serif;font-size:15.5px;color:#fff;margin-top:4px">Club América Veteranos 35 y más · Dueño, Capitán y DT: Franco</h3>
-      </div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button type="button" class="btn-ghost" id="btnAddExtraJornadaAm">➕ Habilitar 12 Jornadas para Nuevos</button>
-        <a id="americaOfficialRegLink" href="https://www.juventinorosasliga.com/reportes/registro/?categoria=2&temporada=6&equipo=5" target="_blank" rel="noopener" class="btn-gold">🌐 Ver Registro Oficial Equipo #5</a>
-      </div>
-    </section>
+    <!-- BANNER DINÁMICO DE LIGA EXCLUSIVA POR EQUIPO (SIN MEZCLAR LIGAS) -->
+    <section id="leagueSpecificBanner" class="league-specific-banner" aria-label="Información de Liga del Equipo Activo"></section>
 
     <section class="hero">
       <video class="hero-video-bg" autoplay muted loop playsinline poster="./assets/motion/v38-fix10-hero.jpg">
@@ -378,7 +370,7 @@
       </video>
       <div class="hero-grid">
         <div>
-          <span class="badge-coach" id="heroEventBadge">JORNADA 1 · CALENDARIO SEMANAL</span>
+          <span class="badge-coach" id="heroEventBadge">TORNEO OCALOS FÚTBOL 7 · JORNADA 1</span>
           <div class="hero-lockup">
             <label class="crest-medallion" title="Toca aquí si deseas cambiar la foto del escudo desde tu galería">
               <div class="crest-medallion-inner">
@@ -388,24 +380,24 @@
               <input id="quickHeroLogoInput" type="file" accept="image/*" style="display:none" />
             </label>
             <div>
-              <h1 id="heroTeamName" class="hero-title">ATLÉTICO LA LUZ <span class="electric">MANAGER PRO</span></h1>
-              <p id="heroTeamSubtitle" style="color:var(--text-muted);font-size:13.5px;font-weight:600">Calendario Semanal Precargado · 11 Rivales + Jornada 12 Nuevos</p>
+              <h1 id="heroTeamName" class="hero-title">ATLÉTICO LA LUZ <span class="electric">FÚTBOL 7</span></h1>
+              <p id="heroTeamSubtitle" style="color:var(--text-muted);font-size:13.5px;font-weight:600">Liga de Fútbol 7 Torneo Ocalos · COMUDE Juventino Rosas</p>
               <div class="owner-banner" id="heroOwnerBanner">👑 Dueño: Josué Franco · DT: Franco</div>
             </div>
           </div>
 
           <div class="pill-row">
-            <span class="pill" id="pillOpponent">🆚 Rival: Tavera FC</span>
-            <a class="pill" id="pillFieldMaps" href="#" target="_blank" rel="noopener" style="border-color:var(--border-gold);color:#fef08a">📍 Cancha + Mapa GPS</a>
+            <span class="pill" id="pillModality" style="border-color:var(--green-electric);color:var(--green-neon)">⚽ Modalidad: Fútbol 7 (7 vs 7)</span>
+            <span class="pill" id="pillOpponent">🆚 Rival: Dep. Santos</span>
+            <a class="pill" id="pillFieldMaps" href="#" target="_blank" rel="noopener" style="border-color:var(--border-gold);color:#fef08a">📍 Campo Ocalos · GPS</a>
             <span class="pill" id="pillWeather">🌤️ Clima de Cancha</span>
-            <span class="pill" id="pillUniform">👕 Uniforme: Negro y Dorado</span>
             <span class="pill" id="pillRecordPts">🏆 Récord: 0PJ · 0 Pts</span>
           </div>
 
           <div class="quorum-wrap">
             <div class="quorum-top">
-              <span id="quorumLabel">Disponibilidad Semanal (Meta: 11 titulares que SÍ VIENEN)</span>
-              <span id="quorumCount" style="color:var(--green-electric)">11 / 11 listos</span>
+              <span id="quorumLabel">Quórum de Partido (Meta: 7 titulares disponibles en Fútbol 7)</span>
+              <span id="quorumCount" style="color:var(--green-electric)">7 / 7 listos</span>
             </div>
             <div class="quorum-bar"><div id="quorumFill" class="quorum-fill" style="width:100%"></div></div>
           </div>
@@ -435,7 +427,7 @@
       <button type="button" class="tab-btn active" data-nav-view="attendance">📋 Quién Viene, Quién No Viene y PNG</button>
       <button type="button" class="tab-btn" data-nav-view="calendar">📅 Calendario Semanal y Rivales</button>
       <button type="button" class="tab-btn" data-nav-view="constancy">📊 Matriz de Jornadas y Descartes</button>
-      <button type="button" class="tab-btn" data-nav-view="tactics">⚽ Pizarra 2D, Banca y 3D</button>
+      <button type="button" class="tab-btn" data-nav-view="tactics">⚽ Pizarra Táctica (F7 / F11)</button>
       <button type="button" class="tab-btn" data-nav-view="matchlive">⏱️ En Vivo y Entrenamientos</button>
       <button type="button" class="tab-btn" data-nav-view="squad">👥 Plantilla, Goleo y Teléfonos</button>
       <button type="button" class="tab-btn" data-nav-view="settings">⚙️ Ajustes y Respaldo</button>
@@ -445,9 +437,9 @@
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow" id="jornadasHeaderEyebrow">ROL DE JUEGOS SEMANAL PRECARGADO</div>
+            <div class="eyebrow" id="jornadasHeaderEyebrow">ROL DE JUEGOS SEMANAL OFICIAL</div>
             <h2 id="jornadasHeaderTitle">Pase de Lista · ¿Contra Quién Jugamos, Quién Viene y Quién No Viene?</h2>
-            <p>Toca cualquier jornada del calendario de abajo para ver su fecha semanal y rival precargado, mueve jugadores en 1 toque entre <b>Sí Vienen</b> y <b>No Vienen</b>, y genera la <b>Imagen PNG</b> para WhatsApp.</p>
+            <p>Toca cualquier jornada abajo para ver su rival y horario oficial, clasifica en 1 toque quién sí viene y quién faltó, y genera la <b>Imagen PNG</b> para el grupo de WhatsApp.</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button type="button" class="btn-gold" id="btnGeneratePosterTop">🖼️ Generar Imagen PNG (Vinieron vs Faltaron)</button>
@@ -461,7 +453,7 @@
 
         <div class="form-grid">
           <div class="field"><label for="evWeekLabel">Jornada</label><select id="evWeekLabel"></select></div>
-          <div class="field"><label for="matchOpponent">🆚 Equipo Rival *</label><input id="matchOpponent" list="rivalsDatalist" type="text" placeholder="Ej. Tavera FC / Juventus..." /></div>
+          <div class="field"><label for="matchOpponent">🆚 Equipo Rival *</label><input id="matchOpponent" list="rivalsDatalist" type="text" placeholder="Selecciona rival de la liga..." /></div>
           <div class="field"><label for="matchDate">📅 Fecha Semanal</label><input id="matchDate" type="date" /></div>
           <div class="field"><label for="matchTime">🕒 Hora del Juego</label><input id="matchTime" type="time" /></div>
           <div class="field">
@@ -471,7 +463,7 @@
               <option value="🚌 Visita">🚌 Visita</option>
             </select>
           </div>
-          <div class="field"><label for="matchField">📍 Cancha Oficial</label><input id="matchField" list="fieldsDatalist" type="text" placeholder="Selecciona o escribe cancha..." /></div>
+          <div class="field"><label for="matchField">📍 Cancha Oficial</label><input id="matchField" list="fieldsDatalist" type="text" placeholder="Campo Ocalos / Empastado..." /></div>
           <div class="field"><label for="matchUniform">👕 Uniforme a Usar</label><input id="matchUniform" type="text" placeholder="Ej. Negro con Dorado" /></div>
           <div class="field">
             <label for="matchResultType">Resultado</label>
@@ -482,10 +474,10 @@
               <option value="L">❌ Perdido (0 pts)</option>
             </select>
           </div>
-          <div class="field"><label for="matchScoreInput">⚽ Marcador</label><input id="matchScoreInput" type="text" placeholder="Ej. 3 - 1" /></div>
+          <div class="field"><label for="matchScoreInput">⚽ Marcador</label><input id="matchScoreInput" type="text" placeholder="Ej. 4 - 2" /></div>
           <div class="field"><label for="refereeCostInput">💲 Arbitraje ($)</label><input id="refereeCostInput" type="number" min="0" step="10" /></div>
           <div class="field"><label for="playerFeeInput">💲 Cuota Jugador ($)</label><input id="playerFeeInput" type="number" min="0" step="5" /></div>
-          <div class="field"><label for="matchCoachNotes">📝 Aviso del DT Franco</label><input id="matchCoachNotes" type="text" placeholder="Ej. Llegar 20 min antes..." /></div>
+          <div class="field"><label for="matchCoachNotes">📝 Aviso del DT Franco</label><input id="matchCoachNotes" type="text" placeholder="Ej. Puntuales 15 min antes en Ocalos..." /></div>
         </div>
 
         <div id="cashSummaryBox" class="cash-box"></div>
@@ -560,9 +552,9 @@
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow">CALENDARIO SEMANAL PRECARGADO · RIVALES, FECHAS Y CANCHAS GPS</div>
+            <div class="eyebrow" id="calendarEyebrow">CALENDARIO SEMANAL PRECARGADO · RIVALES Y FECHAS</div>
             <h2 id="calendarTitle">Rol Completo de Juegos Semanales</h2>
-            <p>Edita aquí mismo cualquier rival, fecha, hora o cancha de toda la temporada, o recalcula automáticamente todas las fechas semanales (+7 días) desde la Jornada 1.</p>
+            <p id="calendarDesc">Edita cualquier rival, día de la semana (Lunes a Viernes 7-9 PM en Ocalos para Atlético La Luz; Sábados para Club América) o recalcula las fechas semanales.</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
             <input id="autoStartDateInput" type="date" style="padding:8px 10px;border-radius:10px;border:1px solid var(--border-green);background:#04120b;color:#fff;font-size:12.5px" title="Fecha de inicio Jornada 1" />
@@ -598,11 +590,12 @@
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow">PIZARRA TÁCTICA INTERACTIVA (CON LOS QUE SÍ VIENEN)</div>
-            <h2>Alineación Titular, Banca Disponible y Póster PNG</h2>
+            <div class="eyebrow" id="tacticsEyebrow">PIZARRA TÁCTICA ADAPTATIVA (FÚTBOL 7 / FÚTBOL 11)</div>
+            <h2 id="tacticsMainTitle">Alineación Titular, Banca de Cambios y Póster PNG</h2>
+            <p id="tacticsDesc">Arrastra las fichas en la cancha. Se adapta automáticamente a 7 jugadores (Atlético La Luz) o 11 jugadores (Club América).</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button type="button" class="btn-ghost" id="btnAutoFillPresent">⚡ Armar 11 con los que SÍ VIENEN</button>
+            <button type="button" class="btn-ghost" id="btnAutoFillPresent">⚡ Armar Titulares Presentes</button>
             <button type="button" class="btn-gold" id="btnGeneratePosterTactics">🖼️ Imagen PNG de la Jornada</button>
             <button type="button" class="btn-ghost" id="btnResetPitchCoords">🔄 Centrar</button>
             <button type="button" class="btn-green" id="btnDownloadPitchSvg">⬇️ SVG</button>
@@ -614,22 +607,22 @@
             <div class="form-grid">
               <div class="field"><label for="tacticsFormationSelect">Formación</label><select id="tacticsFormationSelect"></select></div>
               <div class="field"><label for="roleCaptainSelect">©️ Capitán</label><select id="roleCaptainSelect"></select></div>
-              <div class="field"><label for="rolePenaltySelect">🎯 Penales</label><select id="rolePenaltySelect"></select></div>
+              <div class="field"><label for="rolePenaltySelect">🎯 Penales / Shootout</label><select id="rolePenaltySelect"></select></div>
               <div class="field"><label for="roleFreekickSelect">⚡ Tiros Libres</label><select id="roleFreekickSelect"></select></div>
-              <div class="field" style="grid-column: 1 / -1;"><label for="tacticsStyleInput">Instrucciones Tácticas de Franco</label><input id="tacticsStyleInput" type="text" placeholder="Ej. Presión alta, salida limpia por bandas..." /></div>
+              <div class="field" style="grid-column: 1 / -1;"><label for="tacticsStyleInput">Instrucciones Tácticas de Franco</label><input id="tacticsStyleInput" type="text" placeholder="Ej. Rotaciones intensas cada 8 min..." /></div>
             </div>
-            <h3 style="font-family:'Sora',sans-serif;font-size:15px;margin:10px 0 6px;color:var(--green-neon)">Once Titular por Posición</h3>
+            <h3 id="startersHeadingLabel" style="font-family:'Sora',sans-serif;font-size:15px;margin:10px 0 6px;color:var(--green-neon)">Cuadro Titular por Posición</h3>
             <div id="tacticsLineupSlots" class="slots-list"></div>
             <div class="bench-box">
-              <div class="eyebrow">BANCO DE SUPLENTES (SÍ VIENEN EN ESTA JORNADA)</div>
+              <div class="eyebrow" id="benchHeadingLabel">BANCO DE SUPLENTES Y ROTACIONES</div>
               <div id="benchPlayersList" class="bench-chips"></div>
             </div>
           </div>
 
           <div class="pitch-card">
             <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:11.5px;color:var(--text-muted)">
-              <span>🟢 Arrastra cualquier ficha en la cancha</span>
-              <span>Cancha 2D Oficial</span>
+              <span>🟢 Arrastra cualquier ficha</span>
+              <span id="pitchDimensionsBadge">Cancha Oficial</span>
             </div>
             <div id="tacticsPitchContainer" class="pitch-svg-wrap"></div>
           </div>
@@ -664,7 +657,7 @@
             <div class="timer-display" id="matchTimerDisplay">00:00</div>
             <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
               <button type="button" class="btn-green" id="btnTimerToggle">▶️ Iniciar / Pausar</button>
-              <button type="button" class="btn-ghost" id="btnTimerHalf">⏱️ 2º Tiempo (45')</button>
+              <button type="button" class="btn-ghost" id="btnTimerHalf">⏱️ 2º Tiempo</button>
               <button type="button" class="btn-danger" id="btnTimerReset">Reiniciar</button>
             </div>
           </div>
@@ -690,7 +683,7 @@
           </div>
           <div class="field"><label for="livePlayerPrimary">Jugador Principal (Anota / Entra)</label><select id="livePlayerPrimary"></select></div>
           <div class="field"><label for="livePlayerSecondary">Asistencia o Jugador que Sale</label><select id="livePlayerSecondary"></select></div>
-          <div class="field"><label for="liveMinuteInput">Minuto (' )</label><input id="liveMinuteInput" type="text" placeholder="Ej. 32'" /></div>
+          <div class="field"><label for="liveMinuteInput">Minuto (' )</label><input id="liveMinuteInput" type="text" placeholder="Ej. 18'" /></div>
           <div class="field" style="justify-content:flex-end"><button type="submit" class="btn-green" style="height:40px">➕ Registrar en Bitácora</button></div>
         </form>
         <div id="liveTimelineList" class="timeline-list"></div>
@@ -725,17 +718,24 @@
 
     <section id="view-settings" class="view">
       <div class="panel">
-        <div class="panel-head"><div><div class="eyebrow">CONFIGURACIÓN DEL CLUB Y JORNADAS</div><h2>Personalizar Jornadas del Torneo, Dueño, DT y Escudo</h2></div></div>
+        <div class="panel-head"><div><div class="eyebrow">CONFIGURACIÓN DEL CLUB Y MODALIDAD</div><h2>Personalizar Modalidad (Fútbol 7 / Fútbol 11), Jornadas, Dueño y Escudo</h2></div></div>
         <form id="teamConfigForm" class="form-grid">
           <div class="field"><label for="cfgTeamName">Nombre del Equipo</label><input id="cfgTeamName" type="text" required /></div>
-          <div class="field"><label for="cfgTotalJornadas">Total de Jornadas de este Equipo</label><input id="cfgTotalJornadas" type="number" min="1" max="38" required /></div>
-          <div class="field"><label for="cfgOwnerName">Dueño / Presidente del Equipo</label><input id="cfgOwnerName" type="text" required /></div>
+          <div class="field">
+            <label for="cfgStartersRequired">Modalidad de Juego</label>
+            <select id="cfgStartersRequired">
+              <option value="7">⚽ Fútbol 7 (7 Titulares en Cancha)</option>
+              <option value="11">🏟️ Fútbol 11 (11 Titulares en Cancha)</option>
+            </select>
+          </div>
+          <div class="field"><label for="cfgTotalJornadas">Total de Jornadas</label><input id="cfgTotalJornadas" type="number" min="1" max="38" required /></div>
+          <div class="field"><label for="cfgOwnerName">Dueño / Presidente</label><input id="cfgOwnerName" type="text" required /></div>
           <div class="field"><label for="cfgCoachName">Manager / Director Técnico</label><input id="cfgCoachName" type="text" /></div>
-          <div class="field"><label for="cfgTeamSubtitle">Subtítulo</label><input id="cfgTeamSubtitle" type="text" /></div>
+          <div class="field"><label for="cfgTeamSubtitle">Liga / Torneo</label><input id="cfgTeamSubtitle" type="text" /></div>
           <div class="field"><label for="cfgKitPrimary">Color Ficha Titular</label><input id="cfgKitPrimary" type="color" style="height:40px;padding:3px" /></div>
           <div class="field"><label for="cfgKitSecondary">Color Portero</label><input id="cfgKitSecondary" type="color" style="height:40px;padding:3px" /></div>
           <div class="field"><label for="cfgLogoUpload">Subir Escudo Personalizado (Desde tu Galería)</label><input id="cfgLogoUpload" type="file" accept="image/*" /></div>
-          <div class="field" style="grid-column: 1 / -1;"><button type="submit" class="btn-green">💾 Guardar Configuración y Jornadas</button></div>
+          <div class="field" style="grid-column: 1 / -1;"><button type="submit" class="btn-green">💾 Guardar Configuración del Equipo</button></div>
         </form>
       </div>
 
@@ -744,7 +744,7 @@
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <button type="button" class="btn-green" id="btnExportBackup">⬇️ Descargar Respaldo Completo (.JSON)</button>
           <label class="btn-ghost" style="cursor:pointer">⬆️ Cargar Respaldo (.JSON)<input id="inputImportBackup" type="file" accept="application/json" style="display:none" /></label>
-          <button type="button" class="btn-danger" id="btnResetFactory">Restaurar Calendario y Plantillas Oficiales</button>
+          <button type="button" class="btn-danger" id="btnResetFactory">Restaurar Calendario Oficial (Ocalos F7 y América F11)</button>
         </div>
       </div>
     </section>
@@ -761,36 +761,7 @@
 
   <div id="mgrToast" class="toast" role="status" aria-live="polite"></div>
 
-  <!-- Scripts externos 100% limpios (imposible que se corte ninguna etiqueta HTML) -->
   <script src="./assets/jr-ball-model-v38.js"></script>
-  <script src="./assets/dt-manager-v19.js?v=19"></script>
-
-<!-- JR_V38_FIX43_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix43-category-row.css?v=38-43-r2">
-<script defer src="./assets/jr-v38-fix43-category-row.js?v=38-43-r2"></script>
-
-
-<!-- JR_V38_FIX44_DIRECT -->
-<script defer src="./assets/jr-v38-fix44-category-replace.js?v=38-44-r1"></script>
-
-
-<!-- JR_V38_FIX45_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix45-stability.css?v=38-48-r1">
-<script defer src="./assets/jr-v38-fix45-stability.js?v=38-48-r1"></script>
-
-
-<!-- JR_V38_FIX48_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix48-america-card.css?v=38-51-r1">
-<script defer src="./assets/jr-v38-fix48-america-card.js?v=38-54"></script>
-
-
-<!-- JR_V38_FIX50_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix50-buttons.css?v=38-50-r1">
-<script defer src="./assets/jr-v38-fix50-buttons.js?v=38-50-r1"></script>
-
-
-<!-- JR_V38_FIX59_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix59.css?v=38-59">
-<script defer src="./assets/jr-v38-fix59.js?v=38-59"></script>
+  <script src="./assets/dt-manager-v20.js?v=20"></script>
 </body>
 </html>

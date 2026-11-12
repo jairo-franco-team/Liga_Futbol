@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Abriendo DT Manager Pro v20 (Fútbol 7 Ocalos &amp; Fútbol 11)...</title>
+  <script>
+    (async function(){
+      try {
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          for (const r of regs) await r.unregister();
+        }
+        if ('caches' in window) {
+          const keys = await caches.keys();
+          for (const k of keys) await caches.delete(k);
+        }
+        await fetch('./index.html', { cache: 'reload' }).catch(() => {});
+      } catch (_) {}
+      location.replace('./index.html?v=20&t=' + Date.now());
+    })();
+  </script>
+</head>
+<body style="background:#020906;color:#1ee87a;font-family:sans-serif;display:grid;place-items:center;min-height:100vh;text-align:center;padding:20px">
+  <p>Cargando versión v20 (Atlético La Luz: Fútbol 7 Torneo Ocalos COMUDE · Club América: Fútbol 11)...</p>
+</body>
+</html>
