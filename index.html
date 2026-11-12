@@ -1548,7 +1548,35 @@
         <body><h2>⚽ CÉDULA Y REGISTRO DE ASISTENCIA — ${esc(team.name.toUpperCase())}</h2>
         <p><b>${esc(ev.weekLabel)}</b> vs <b>${esc(ev.opponent)}</b> | Fecha: ${esc(ev.date)} ${esc(ev.time)} | Cancha: ${esc(ev.field)} | DT: ${esc(team.coachName)}</p>
         <table><thead><tr><th>#</th><th>Jugador</th><th>Posición</th><th>Asistencia</th><th>Razón Social</th><th>Arbitraje</th></tr></thead><tbody>${rowsHtml}</tbody></table>
-        <script>window.onload=()=>window.print();<\/script></body></html>`);
+        <script>window.onload=()=>window.print();<\/script>
+<!-- JR_V38_FIX43_DIRECT -->
+<link rel="stylesheet" href="./assets/jr-v38-fix43-category-row.css?v=38-43-r2">
+<script defer src="./assets/jr-v38-fix43-category-row.js?v=38-43-r2"></script>
+
+
+<!-- JR_V38_FIX44_DIRECT -->
+<script defer src="./assets/jr-v38-fix44-category-replace.js?v=38-44-r1"></script>
+
+
+<!-- JR_V38_FIX45_DIRECT -->
+<link rel="stylesheet" href="./assets/jr-v38-fix45-stability.css?v=38-48-r1">
+<script defer src="./assets/jr-v38-fix45-stability.js?v=38-48-r1"></script>
+
+
+<!-- JR_V38_FIX48_DIRECT -->
+<link rel="stylesheet" href="./assets/jr-v38-fix48-america-card.css?v=38-51-r1">
+<script defer src="./assets/jr-v38-fix48-america-card.js?v=38-54"></script>
+
+
+<!-- JR_V38_FIX50_DIRECT -->
+<link rel="stylesheet" href="./assets/jr-v38-fix50-buttons.css?v=38-50-r1">
+<script defer src="./assets/jr-v38-fix50-buttons.js?v=38-50-r1"></script>
+
+
+<!-- JR_V38_FIX59_DIRECT -->
+<link rel="stylesheet" href="./assets/jr-v38-fix59.css?v=38-59">
+<script defer src="./assets/jr-v38-fix59.js?v=38-59"></script>
+</body></html>`);
       w.document.close();
     }
 
@@ -1872,5 +1900,33 @@
     const stage = document.getElementById('mgrBallStage');
     if (stage && window.JRBallModelV38?.fallback) { try { const fb = window.JRBallModelV38.fallback(stage); window.addEventListener('resize', () => fb.draw()); } catch (_) {} }
   </script>
+
+<!-- JR_V38_FIX43_DIRECT -->
+<link rel="stylesheet" href="./assets/jr-v38-fix43-category-row.css?v=38-43-r2">
+<script defer src="./assets/jr-v38-fix43-category-row.js?v=38-43-r2"></script>
+
+
+<!-- JR_V38_FIX44_DIRECT -->
+<script defer src="./assets/jr-v38-fix44-category-replace.js?v=38-44-r1"></script>
+
+
+<!-- JR_V38_FIX45_DIRECT -->
+<link rel="stylesheet" href="./assets/jr-v38-fix45-stability.css?v=38-48-r1">
+<script defer src="./assets/jr-v38-fix45-stability.js?v=38-48-r1"></script>
+
+
+<!-- JR_V38_FIX48_DIRECT -->
+<link rel="stylesheet" href="./assets/jr-v38-fix48-america-card.css?v=38-51-r1">
+<script defer src="./assets/jr-v38-fix48-america-card.js?v=38-54"></script>
+
+
+<!-- JR_V38_FIX50_DIRECT -->
+<link rel="stylesheet" href="./assets/jr-v38-fix50-buttons.css?v=38-50-r1">
+<script defer src="./assets/jr-v38-fix50-buttons.js?v=38-50-r1"></script>
+
+
+<!-- JR_V38_FIX59_DIRECT -->
+<link rel="stylesheet" href="./assets/jr-v38-fix59.css?v=38-59">
+<script defer src="./assets/jr-v38-fix59.js?v=38-59"></script>
 </body>
 </html>
