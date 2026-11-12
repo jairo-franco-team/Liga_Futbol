@@ -11,7 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <script src="./assets/atletico-la-luz-logo-real.js?v=14"></script>
+  <!-- Ruta completamente nueva v16 nunca antes guardada en el caché HTTP de Chrome -->
+  <script src="./assets/escudo-luz-clean-v16.js?v=16"></script>
   <style>
     :root {
       --bg-deep: #020906;
@@ -36,17 +37,10 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
-      min-height: 100vh;
-      background-color: var(--bg-deep);
-      color: var(--text-main);
-      font-family: 'Manrope', system-ui, sans-serif;
-      line-height: 1.45;
-      padding-bottom: 102px;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
+      min-height: 100vh; background-color: var(--bg-deep); color: var(--text-main);
+      font-family: 'Manrope', system-ui, sans-serif; line-height: 1.45;
+      padding-bottom: 102px; overflow-x: hidden; scroll-behavior: smooth;
     }
-
-    /* CAPA DE ESTADIO EN MOVIMIENTO + RESPLANDOR CHAMPIONS VERDE/DORADO */
     .motion-bg-layer {
       position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none;
       background:
@@ -55,88 +49,52 @@
         radial-gradient(circle at 50% 95%, rgba(14, 168, 102, 0.15), transparent 50%),
         linear-gradient(170deg, #020805 0%, #061810 52%, #020704 100%);
     }
-    .motion-bg-layer video {
-      width: 100%; height: 100%; object-fit: cover; opacity: 0.2;
-      filter: hue-rotate(24deg) saturate(1.4) contrast(1.12); transition: opacity 0.4s ease;
-    }
+    .motion-bg-layer video { width: 100%; height: 100%; object-fit: cover; opacity: 0.2; filter: hue-rotate(24deg) saturate(1.4) contrast(1.12); transition: opacity 0.4s ease; }
     body.motion-off .motion-bg-layer video { opacity: 0; }
     .pitch-grid-overlay {
       position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.22;
-      background-image:
-        linear-gradient(rgba(30, 232, 122, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(30, 232, 122, 0.05) 1px, transparent 1px);
+      background-image: linear-gradient(rgba(30, 232, 122, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(30, 232, 122, 0.05) 1px, transparent 1px);
       background-size: 44px 44px;
     }
+    @keyframes spinHalo { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    @keyframes crestFloat { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-4px); } }
 
-    @keyframes spinHalo {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    @keyframes crestFloat {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-4px); }
-    }
-
-    /* TOPBAR PREMIUM */
     .topbar {
-      position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+      position: sticky; top: 0; z-index: 100; backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
       background: linear-gradient(90deg, rgba(3, 12, 8, 0.94), rgba(7, 24, 16, 0.92), rgba(3, 12, 8, 0.94));
-      border-bottom: 1px solid var(--border-green);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-      padding: 10px 16px;
+      border-bottom: 1px solid var(--border-green); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); padding: 10px 16px;
     }
     .topbar-inner { max-width: 1300px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
     .badge-coach {
-      display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px;
-      border-radius: 999px; background: linear-gradient(90deg, rgba(30, 232, 122, 0.18), rgba(247, 201, 72, 0.14));
-      border: 1px solid var(--border-green); color: var(--green-neon);
-      font-size: 10.5px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px;
+      background: linear-gradient(90deg, rgba(30, 232, 122, 0.18), rgba(247, 201, 72, 0.14));
+      border: 1px solid var(--border-green); color: var(--green-neon); font-size: 10.5px; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;
     }
-    .brand-title { font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+    .brand-title { font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 800; color: #fff; }
     .brand-sub { font-size: 11.5px; color: var(--text-muted); }
-
-    .team-switcher {
-      display: flex; gap: 6px; background: rgba(2, 9, 6, 0.95);
-      padding: 5px; border-radius: 16px; border: 1px solid var(--border-green);
-      box-shadow: inset 0 2px 8px rgba(0,0,0,0.6);
-    }
+    .team-switcher { display: flex; gap: 6px; background: rgba(2, 9, 6, 0.95); padding: 5px; border-radius: 16px; border: 1px solid var(--border-green); }
     .team-btn {
-      display: flex; align-items: center; gap: 10px; padding: 7px 14px;
-      border-radius: 12px; border: 1px solid transparent; background: transparent;
-      color: var(--text-muted); font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 700;
-      cursor: pointer; transition: all 0.22s ease;
+      display: flex; align-items: center; gap: 10px; padding: 7px 14px; border-radius: 12px;
+      border: 1px solid transparent; background: transparent; color: var(--text-muted);
+      font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 700; cursor: pointer; transition: 0.22s;
     }
     .team-btn-crest {
       width: 38px; height: 38px; border-radius: 10px; padding: 2px;
       background: radial-gradient(circle, #1c1605 0%, #050806 100%);
       border: 1.5px solid var(--gold); display: grid; place-items: center; flex-shrink: 0;
-      box-shadow: 0 0 12px rgba(247, 201, 72, 0.28);
     }
-    .team-btn-crest img {
-      width: 100%; height: 100%; object-fit: contain; border-radius: 7px;
-      filter: contrast(1.08) saturate(1.14);
-    }
-    .team-btn.active {
-      background: linear-gradient(135deg, #1ee87a 0%, #0ea866 100%);
-      color: #021a0e; border-color: #8bfac0; box-shadow: 0 6px 22px rgba(30, 232, 122, 0.36);
-    }
-
+    .team-btn-crest img { width: 100%; height: 100%; object-fit: contain; border-radius: 7px; }
+    .team-btn.active { background: linear-gradient(135deg, #1ee87a 0%, #0ea866 100%); color: #021a0e; border-color: #8bfac0; box-shadow: 0 6px 22px rgba(30, 232, 122, 0.36); }
     .container { max-width: 1300px; margin: 0 auto; padding: 16px; }
 
-    /* BARRA EXCLUSIVA CLUB AMÉRICA VETERANOS 35+ */
     .america-only-categories {
-      display: none; margin-bottom: 16px; padding: 14px 18px; border-radius: 20px;
-      border: 1px solid var(--border-gold);
-      background: linear-gradient(135deg, rgba(24, 46, 31, 0.94), rgba(8, 22, 14, 0.96));
-      box-shadow: var(--shadow-xl);
+      display: none; margin-bottom: 16px; padding: 14px 18px; border-radius: 20px; border: 1px solid var(--border-gold);
+      background: linear-gradient(135deg, rgba(24, 46, 31, 0.94), rgba(8, 22, 14, 0.96)); box-shadow: var(--shadow-xl);
     }
     .america-only-categories.visible { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 
-    /* HERO BROADCAST CON ESCUDO HD EN MEDALLÓN DORADO SIN RECORTES */
     .hero {
-      position: relative; overflow: hidden; border-radius: var(--radius-xl);
-      border: 1px solid var(--border-green);
+      position: relative; overflow: hidden; border-radius: var(--radius-xl); border: 1px solid var(--border-green);
       background:
         radial-gradient(circle at 82% 24%, rgba(30, 232, 122, 0.24), transparent 46%),
         radial-gradient(circle at 14% 35%, rgba(247, 201, 72, 0.16), transparent 44%),
@@ -148,10 +106,9 @@
     .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.42fr) minmax(0, 0.58fr); gap: 22px; align-items: center; }
     .hero-lockup { display: flex; align-items: center; gap: 20px; margin: 14px 0 16px; }
 
-    /* MEDALLÓN ÉLITE PARA QUE EL ESCUDO DE ATLÉTICO LA LUZ LUZCA NÍTIDO, COMPLETO Y CON HALO DORADO */
     .crest-medallion {
       position: relative; width: 132px; height: 132px; border-radius: 28px;
-      display: grid; place-items: center; padding: 5px; flex-shrink: 0;
+      display: grid; place-items: center; padding: 5px; flex-shrink: 0; cursor: pointer;
       animation: crestFloat 4.5s ease-in-out infinite;
       box-shadow: 0 14px 36px rgba(0, 0, 0, 0.75), 0 0 32px rgba(247, 201, 72, 0.32);
     }
@@ -163,16 +120,20 @@
     .crest-medallion-inner {
       position: relative; z-index: 1; width: 100%; height: 100%; border-radius: 24px;
       background: radial-gradient(circle at 50% 35%, #231b07 0%, #070b08 72%, #020503 100%);
-      display: grid; place-items: center; padding: 6px; overflow: hidden;
-      border: 1px solid rgba(255, 244, 184, 0.35);
+      display: grid; place-items: center; padding: 6px; overflow: hidden; border: 1px solid rgba(255, 244, 184, 0.35);
     }
     .crest-medallion-inner img {
       width: 100%; height: 100%; object-fit: contain; border-radius: 16px;
       filter: drop-shadow(0 6px 14px rgba(247, 201, 72, 0.38)) contrast(1.09) saturate(1.15);
     }
+    .crest-edit-tag {
+      position: absolute; bottom: -6px; right: -6px; z-index: 3;
+      background: var(--gold); color: #041d10; font-size: 10px; font-weight: 800;
+      padding: 3px 7px; border-radius: 999px; border: 1.5px solid #020906; box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    }
 
-    .hero-title { font-family: 'Bebas Neue', 'Sora', sans-serif; font-size: clamp(36px, 5.2vw, 64px); line-height: 0.95; color: #fff; text-transform: uppercase; letter-spacing: 0.015em; }
-    .hero-title .electric { color: var(--green-electric); text-shadow: 0 0 24px rgba(30, 232, 122, 0.35); }
+    .hero-title { font-family: 'Bebas Neue', 'Sora', sans-serif; font-size: clamp(36px, 5.2vw, 64px); line-height: 0.95; color: #fff; text-transform: uppercase; }
+    .hero-title .electric { color: var(--green-electric); }
     .owner-banner {
       display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; padding: 6px 14px; border-radius: 11px;
       background: linear-gradient(90deg, rgba(247, 201, 72, 0.24), rgba(30, 232, 122, 0.14));
@@ -180,131 +141,64 @@
     }
     .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
     .pill { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.07); border: 1px solid var(--border-subtle); font-size: 11.5px; font-weight: 700; color: #dcf2e5; }
-
     .quorum-wrap { margin-top: 16px; background: rgba(3, 12, 8, 0.88); border: 1px solid var(--border-green); border-radius: 16px; padding: 12px 15px; }
     .quorum-top { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: 12px; font-weight: 800; margin-bottom: 7px; }
     .quorum-bar { height: 10px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; }
     .quorum-fill { height: 100%; background: linear-gradient(90deg, #0ea866, #1ee87a, #f7c948); transition: width 0.3s ease; }
-
     .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 10px; margin-top: 14px; }
-    .kpi {
-      background: linear-gradient(180deg, rgba(8, 26, 18, 0.9), rgba(4, 14, 9, 0.94));
-      border: 1px solid var(--border-green); border-radius: 16px; padding: 11px 13px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
-    }
-    .kpi small { display: block; font-size: 10.5px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.04em; }
+    .kpi { background: linear-gradient(180deg, rgba(8, 26, 18, 0.9), rgba(4, 14, 9, 0.94)); border: 1px solid var(--border-green); border-radius: 16px; padding: 11px 13px; }
+    .kpi small { display: block; font-size: 10.5px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); }
     .kpi strong { display: block; font-family: 'Sora', sans-serif; font-size: 24px; font-weight: 800; color: #fff; margin-top: 2px; }
-    .kpi.present { border-color: rgba(30, 232, 122, 0.5); }
     .kpi.present strong { color: var(--green-electric); }
-    .kpi.absent { border-color: rgba(255, 71, 105, 0.45); }
     .kpi.absent strong { color: var(--danger); }
-    .kpi.newp { border-color: var(--border-gold); }
     .kpi.newp strong { color: var(--gold); }
     .kpi.doubt strong { color: var(--warning); }
+    .ball-stage { width: 100%; height: 210px; border-radius: 20px; border: 1px solid var(--border-green); background: radial-gradient(circle, rgba(30, 232, 122, 0.24), rgba(3, 12, 8, 0.9) 72%); overflow: hidden; }
 
-    .ball-stage {
-      width: 100%; height: 210px; border-radius: 20px; border: 1px solid var(--border-green);
-      background: radial-gradient(circle, rgba(30, 232, 122, 0.24), rgba(3, 12, 8, 0.9) 72%);
-      overflow: hidden; box-shadow: inset 0 0 30px rgba(30, 232, 122, 0.14);
-    }
-
-    /* NAVEGACIÓN PRINCIPAL */
     .tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 18px; }
-    .tab-btn {
-      display: inline-flex; align-items: center; gap: 7px; padding: 11px 17px;
-      border-radius: 13px; border: 1px solid var(--border-green); background: var(--bg-card);
-      color: var(--text-main); font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 700;
-      cursor: pointer; white-space: nowrap; transition: 0.2s;
-    }
-    .tab-btn.active {
-      background: linear-gradient(135deg, #1ee87a, #10b981); color: #031d10;
-      border-color: #8bfac0; box-shadow: 0 8px 22px rgba(30, 232, 122, 0.3);
-    }
+    .tab-btn { display: inline-flex; align-items: center; gap: 7px; padding: 11px 17px; border-radius: 13px; border: 1px solid var(--border-green); background: var(--bg-card); color: var(--text-main); font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+    .tab-btn.active { background: linear-gradient(135deg, #1ee87a, #10b981); color: #031d10; border-color: #8bfac0; }
     .view { display: none; }
     .view.active { display: block; }
-
-    .panel {
-      background: var(--bg-card); backdrop-filter: blur(16px);
-      border: 1px solid var(--border-green); border-radius: var(--radius-xl);
-      padding: clamp(16px, 2.5vw, 26px); margin-bottom: 18px; box-shadow: var(--shadow-xl);
-    }
+    .panel { background: var(--bg-card); backdrop-filter: blur(16px); border: 1px solid var(--border-green); border-radius: var(--radius-xl); padding: clamp(16px, 2.5vw, 26px); margin-bottom: 18px; box-shadow: var(--shadow-xl); }
     .panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle); }
     .eyebrow { color: var(--green-electric); font-size: 10.5px; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 3px; }
     .panel-head h2, .panel-head h3 { font-family: 'Sora', sans-serif; font-size: clamp(18px, 2.2vw, 23px); color: #fff; }
     .panel-head p { color: var(--text-muted); font-size: 13px; margin-top: 3px; }
 
-    .btn-green { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 16px; border-radius: 12px; border: 1px solid var(--green-electric); background: linear-gradient(135deg, #1ee87a, #10b981); color: #032011; font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 800; cursor: pointer; text-decoration: none; transition: 0.18s; }
-    .btn-green:hover { filter: brightness(1.08); transform: translateY(-1px); }
-    .btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 14px; border-radius: 12px; border: 1px solid var(--border-green); background: rgba(14, 40, 28, 0.8); color: var(--text-main); font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: none; transition: 0.18s; }
+    .btn-green { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 16px; border-radius: 12px; border: 1px solid var(--green-electric); background: linear-gradient(135deg, #1ee87a, #10b981); color: #032011; font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 800; cursor: pointer; text-decoration: none; }
+    .btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 14px; border-radius: 12px; border: 1px solid var(--border-green); background: rgba(14, 40, 28, 0.8); color: var(--text-main); font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: none; }
     .btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 15px; border-radius: 12px; border: 1px solid var(--gold); background: linear-gradient(135deg, rgba(247, 201, 72, 0.24), rgba(201, 144, 18, 0.18)); color: #fef08a; font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 800; cursor: pointer; text-decoration: none; }
     .btn-danger { display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 11px; border-radius: 9px; border: 1px solid rgba(255, 71, 105, 0.45); background: rgba(255, 71, 105, 0.15); color: #fecdd3; font-size: 11.5px; font-weight: 700; cursor: pointer; }
 
-    /* TIRA DE JORNADAS (8 EN CLUB AMÉRICA · 11 + JORNADA 12 NUEVOS EN ATLÉTICO LA LUZ) */
-    .jornadas-bar {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(126px, 1fr)); gap: 8px;
-      margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid rgba(30, 232, 122, 0.18);
-    }
-    .j-pill {
-      padding: 10px 10px; border-radius: 14px; border: 1px solid var(--border-green);
-      background: rgba(4, 15, 10, 0.92); color: var(--text-main); cursor: pointer;
-      text-align: left; transition: all 0.18s ease; position: relative; overflow: hidden;
-    }
-    .j-pill:hover { transform: translateY(-2px); border-color: var(--green-neon); }
-    .j-pill.extra-new {
-      border-color: var(--gold);
-      background: linear-gradient(135deg, rgba(46, 35, 6, 0.92), rgba(18, 26, 12, 0.95));
-    }
-    .j-pill small { display: block; font-size: 10px; font-weight: 800; color: var(--green-neon); text-transform: uppercase; letter-spacing: 0.06em; }
+    .jornadas-bar { display: grid; grid-template-columns: repeat(auto-fill, minmax(126px, 1fr)); gap: 8px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid rgba(30, 232, 122, 0.18); }
+    .j-pill { padding: 10px; border-radius: 14px; border: 1px solid var(--border-green); background: rgba(4, 15, 10, 0.92); color: var(--text-main); cursor: pointer; text-align: left; transition: 0.18s; }
+    .j-pill.extra-new { border-color: var(--gold); background: linear-gradient(135deg, rgba(46, 35, 6, 0.92), rgba(18, 26, 12, 0.95)); }
+    .j-pill small { display: block; font-size: 10px; font-weight: 800; color: var(--green-neon); text-transform: uppercase; }
     .j-pill.extra-new small { color: var(--gold); }
     .j-pill strong { display: block; font-family: 'Sora', sans-serif; font-size: 12.5px; margin-top: 2px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .j-pill.active {
-      background: linear-gradient(135deg, #1ee87a 0%, #0ea866 100%);
-      border-color: #fef08a; box-shadow: 0 8px 20px rgba(30, 232, 122, 0.32);
-    }
+    .j-pill.active { background: linear-gradient(135deg, #1ee87a 0%, #0ea866 100%); border-color: #fef08a; }
     .j-pill.active small, .j-pill.active strong { color: #031c10; }
 
-    /* TABLERO PROTAGÓNICO: ¿QUIÉN VIENE Y QUIÉN NO VIENE? */
-    .split-who-comes {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px;
-    }
-    .comes-box {
-      background: linear-gradient(145deg, rgba(7, 38, 23, 0.92), rgba(4, 21, 13, 0.95));
-      border: 1.5px solid rgba(30, 232, 122, 0.55); border-radius: 18px; padding: 16px;
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
-    }
-    .comes-box h4 { color: var(--green-neon); font-family: 'Sora', sans-serif; font-size: 14.5px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
-    .not-comes-box {
-      background: linear-gradient(145deg, rgba(48, 11, 21, 0.9), rgba(24, 7, 12, 0.95));
-      border: 1.5px solid rgba(255, 71, 105, 0.55); border-radius: 18px; padding: 16px;
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
-    }
-    .not-comes-box h4 { color: #fda4af; font-family: 'Sora', sans-serif; font-size: 14.5px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+    .split-who-comes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+    .comes-box { background: linear-gradient(145deg, rgba(7, 38, 23, 0.92), rgba(4, 21, 13, 0.95)); border: 1.5px solid rgba(30, 232, 122, 0.55); border-radius: 18px; padding: 16px; }
+    .comes-box h4 { color: var(--green-neon); font-family: 'Sora', sans-serif; font-size: 14.5px; margin-bottom: 10px; display: flex; justify-content: space-between; }
+    .not-comes-box { background: linear-gradient(145deg, rgba(48, 11, 21, 0.9), rgba(24, 7, 12, 0.95)); border: 1.5px solid rgba(255, 71, 105, 0.55); border-radius: 18px; padding: 16px; }
+    .not-comes-box h4 { color: #fda4af; font-family: 'Sora', sans-serif; font-size: 14.5px; margin-bottom: 10px; display: flex; justify-content: space-between; }
     .tag-list { display: flex; flex-wrap: wrap; gap: 7px; }
     .yes-tag { display: inline-flex; align-items: center; gap: 5px; background: rgba(30, 232, 122, 0.16); border: 1px solid rgba(30, 232, 122, 0.42); color: #e6fcef; padding: 5px 11px; border-radius: 999px; font-size: 12px; font-weight: 800; }
     .absent-tag { display: inline-flex; align-items: center; gap: 5px; background: rgba(255, 71, 105, 0.2); border: 1px solid rgba(255, 71, 105, 0.42); color: #ffe4e6; padding: 5px 11px; border-radius: 999px; font-size: 12px; font-weight: 800; }
 
-    /* TARJETAS DE JUGADORES PRO */
     .players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 14px; }
-    .p-card {
-      background: var(--bg-card-strong); border: 1px solid var(--border-green);
-      border-radius: 18px; padding: 15px; display: flex; flex-direction: column; gap: 10px;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45); transition: transform 0.18s ease, border-color 0.18s ease;
-    }
-    .p-card:hover { transform: translateY(-2px); border-color: var(--green-neon); }
+    .p-card { background: var(--bg-card-strong); border: 1px solid var(--border-green); border-radius: 18px; padding: 15px; display: flex; flex-direction: column; gap: 10px; }
     .p-card.status-present { border-left: 6px solid var(--green-electric); }
     .p-card.status-late { border-left: 6px solid var(--info); }
     .p-card.status-absent { border-left: 6px solid var(--danger); background: linear-gradient(160deg, rgba(32, 10, 16, 0.9), rgba(10, 16, 13, 0.96)); border-color: rgba(255, 71, 105, 0.38); }
     .p-card.status-doubt { border-left: 6px solid var(--warning); }
     .p-card.discard-alert { border: 2px solid var(--danger); }
-
     .p-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
     .p-id { display: flex; align-items: center; gap: 11px; min-width: 0; }
-    .dorsal {
-      width: 42px; height: 42px; border-radius: 12px;
-      background: linear-gradient(135deg, rgba(30, 232, 122, 0.22), rgba(247, 201, 72, 0.14));
-      border: 1.5px solid var(--green-electric); display: grid; place-items: center;
-      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15.5px; color: var(--green-neon); flex-shrink: 0;
-    }
+    .dorsal { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, rgba(30, 232, 122, 0.22), rgba(247, 201, 72, 0.14)); border: 1.5px solid var(--green-electric); display: grid; place-items: center; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15.5px; color: var(--green-neon); flex-shrink: 0; }
     .p-name { font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 800; color: #fff; }
     .p-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 3px; }
     .pos-badge { font-size: 10.5px; font-weight: 700; color: var(--green-neon); background: rgba(30, 232, 122, 0.13); padding: 2px 8px; border-radius: 6px; }
@@ -314,11 +208,10 @@
     .discard-badge { font-size: 10.5px; font-weight: 800; color: #ffe4e6; background: rgba(255, 71, 105, 0.34); border: 1px solid var(--danger); padding: 2px 8px; border-radius: 6px; }
     .constancy-Constant { font-size: 10.5px; font-weight: 800; color: #032011; background: var(--green-electric); padding: 2px 8px; border-radius: 6px; }
 
-    /* BOTONES GRANDES: SÍ VIENE / NO VIENE */
     .status-grid-main { display: grid; grid-template-columns: 1.25fr 1.25fr 0.8fr 0.8fr; gap: 6px; }
-    .st-btn { padding: 9px 6px; border-radius: 10px; border: 1px solid var(--border-subtle); background: rgba(255, 255, 255, 0.04); color: var(--text-muted); font-size: 11.5px; font-weight: 800; cursor: pointer; transition: 0.16s; }
-    .st-btn.on-present { background: linear-gradient(135deg, #1ee87a, #10b981); border-color: #8bfac0; color: #032011; box-shadow: 0 4px 14px rgba(30, 232, 122, 0.3); }
-    .st-btn.on-absent { background: linear-gradient(135deg, #ff4769, #e11d48); border-color: #fda4af; color: #fff; box-shadow: 0 4px 14px rgba(255, 71, 105, 0.3); }
+    .st-btn { padding: 9px 6px; border-radius: 10px; border: 1px solid var(--border-subtle); background: rgba(255, 255, 255, 0.04); color: var(--text-muted); font-size: 11.5px; font-weight: 800; cursor: pointer; }
+    .st-btn.on-present { background: linear-gradient(135deg, #1ee87a, #10b981); border-color: #8bfac0; color: #032011; }
+    .st-btn.on-absent { background: linear-gradient(135deg, #ff4769, #e11d48); border-color: #fda4af; color: #fff; }
     .st-btn.on-late { background: rgba(56, 189, 248, 0.25); border-color: var(--info); color: #bae6fd; }
     .st-btn.on-doubt { background: rgba(251, 191, 36, 0.24); border-color: var(--warning); color: #fef08a; }
 
@@ -341,7 +234,6 @@
     .p-foot { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 11.5px; color: var(--text-muted); padding-top: 4px; flex-wrap: wrap; }
     .fee-btn { padding: 4px 9px; border-radius: 7px; border: 1px solid var(--border-subtle); background: rgba(255,255,255,0.05); color: var(--text-muted); font-size: 11px; font-weight: 700; cursor: pointer; }
     .fee-btn.paid { background: rgba(30, 232, 122, 0.2); border-color: var(--green-electric); color: var(--green-neon); }
-
     .wk-btn { width: 32px; height: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.04); color: #fff; font-size: 12px; cursor: pointer; padding: 0; }
     .wk-btn.wk-present { background: rgba(30, 232, 122, 0.25); border-color: var(--green-electric); }
     .wk-btn.wk-late { background: rgba(56, 189, 248, 0.24); border-color: var(--info); }
@@ -393,20 +285,13 @@
   </div>
   <div class="pitch-grid-overlay" aria-hidden="true"></div>
 
-  <!-- MODAL DE CONFIRMACIÓN EN 1 TOQUE -->
   <div id="rsvpModal" class="rsvp-modal" role="dialog" aria-modal="true" aria-labelledby="rsvpTitle">
     <div class="rsvp-dialog">
       <span class="badge-coach">📲 CONFIRMAR SI VIENES O NO VIENES</span>
       <h3 id="rsvpTitle" style="font-family:'Sora',sans-serif;font-size:20px;margin:10px 0 6px;color:#fff">¿Vienes a jugar esta jornada?</h3>
       <p id="rsvpSubtitle" style="font-size:13px;color:var(--text-muted);margin-bottom:14px">Selecciona tu nombre y confirma en un toque para armar el once titular.</p>
-      <div class="field" style="margin-bottom:12px">
-        <label for="rsvpPlayerSelect">Selecciona Jugador</label>
-        <select id="rsvpPlayerSelect"></select>
-      </div>
-      <div class="field" style="margin-bottom:14px">
-        <label for="rsvpReasonInput">Razón Social / Motivo (si no vienes)</label>
-        <input id="rsvpReasonInput" type="text" placeholder="Ej. Trabajo, turno laboral, lesión, familiar..." />
-      </div>
+      <div class="field" style="margin-bottom:12px"><label for="rsvpPlayerSelect">Selecciona Jugador</label><select id="rsvpPlayerSelect"></select></div>
+      <div class="field" style="margin-bottom:14px"><label for="rsvpReasonInput">Razón Social / Motivo (si no vienes)</label><input id="rsvpReasonInput" type="text" placeholder="Ej. Trabajo, turno laboral, lesión, familiar..." /></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
         <button type="button" class="btn-green" id="btnRsvpYes">✅ SÍ VENGO</button>
         <button type="button" class="btn-danger" id="btnRsvpNo" style="justify-content:center;padding:11px;font-size:12.5px">❌ NO VENGO</button>
@@ -418,7 +303,7 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div>
-        <span class="badge-coach">⚽ DT MANAGER PRO · ÉLITE BROADCAST EDITION</span>
+        <span class="badge-coach">⚽ DT MANAGER PRO · ÉLITE BROADCAST V16</span>
         <div class="brand-title" style="margin-top:3px">Control de Quién Viene, Quién No Viene y Altas por Jornada</div>
         <div class="brand-sub">Atlético La Luz (11J + J12 Nuevos · Dueño: Josué Franco) · Club América 35+ (8J · Dueño, Capitán y DT: Franco)</div>
       </div>
@@ -440,7 +325,6 @@
 
   <main class="container">
 
-    <!-- CATEGORÍA EXCLUSIVA SOLO PARA CLUB AMÉRICA VETERANOS 35+ -->
     <section id="americaCategorySection" class="america-only-categories" aria-label="Categoría Oficial Club América Veteranos 35 y más">
       <div>
         <span class="badge-coach">🏆 CATEGORÍA OFICIAL: VETERANOS 35 Y MÁS · 8 JORNADAS</span>
@@ -460,11 +344,14 @@
         <div>
           <span class="badge-coach" id="heroEventBadge">JORNADA 1 DE 12 · ACTIVA</span>
           <div class="hero-lockup">
-            <div class="crest-medallion">
+            <!-- Al tocar el medallón también puedes subir cualquier imagen desde tu celular al instante -->
+            <label class="crest-medallion" title="Toca aquí si deseas cambiar la foto del escudo desde tu galería">
               <div class="crest-medallion-inner">
                 <img id="heroTeamLogo" src="./assets/official-logos/dep-la-luz.png" alt="Escudo Oficial del Equipo" />
               </div>
-            </div>
+              <span class="crest-edit-tag">📷 HD</span>
+              <input id="quickHeroLogoInput" type="file" accept="image/*" style="display:none" />
+            </label>
             <div>
               <h1 id="heroTeamName" class="hero-title">ATLÉTICO LA LUZ <span class="electric">MANAGER PRO</span></h1>
               <p id="heroTeamSubtitle" style="color:var(--text-muted);font-size:13.5px;font-weight:600">11 Jornadas Oficiales + Jornada 12 para Meter Nuevos Jugadores</p>
@@ -508,15 +395,6 @@
       </div>
     </section>
 
-    <script>
-      if (window.ATLETICO_LA_LUZ_REAL_LOGO) {
-        var elSw = document.getElementById('swLogoLuz');
-        var elHero = document.getElementById('heroTeamLogo');
-        if (elSw) elSw.src = window.ATLETICO_LA_LUZ_REAL_LOGO;
-        if (elHero) elHero.src = window.ATLETICO_LA_LUZ_REAL_LOGO;
-      }
-    </script>
-
     <nav class="tabs">
       <button type="button" class="tab-btn active" data-nav-view="attendance">📋 ¿Quién Viene, Quién No Viene y Nuevos?</button>
       <button type="button" class="tab-btn" data-nav-view="constancy">📊 Tabla de Jornadas y Constancia</button>
@@ -526,15 +404,13 @@
       <button type="button" class="tab-btn" data-nav-view="settings">⚙️ Jornadas, Dueño y Escudo</button>
     </nav>
 
-    <!-- VISTA 1: QUIÉN VIENE Y QUIÉN NO VIENE + JORNADAS + ALTA DE NUEVOS JUGADORES -->
     <section id="view-attendance" class="view active">
-
       <div id="altaNuevoJugadorPanel" class="panel" style="border-color:var(--border-gold)">
         <div class="panel-head">
           <div>
             <div class="eyebrow" style="color:var(--gold)">🆕 REGISTRO DE NUEVOS JUGADORES EN LAS JORNADAS</div>
             <h3>Meter Nuevo Jugador al Equipo</h3>
-            <p>Ideal para ir metiendo refuerzos hasta la Jornada 12: elige en qué jornada entra y si hoy SÍ VIENE o NO VIENE (las jornadas previas no le cuentan como falta).</p>
+            <p>Ideal para ir metiendo refuerzos hasta la Jornada 12: elige en qué jornada entra y si hoy SÍ VIENE o NO VIENE.</p>
           </div>
         </div>
         <form id="addPlayerForm" class="form-grid" style="margin-bottom:0">
@@ -554,10 +430,7 @@
               <option value="Delantero">Delantero</option>
             </select>
           </div>
-          <div class="field">
-            <label for="newPlayerJoinWeek">Jornada de Ingreso</label>
-            <select id="newPlayerJoinWeek"></select>
-          </div>
+          <div class="field"><label for="newPlayerJoinWeek">Jornada de Ingreso</label><select id="newPlayerJoinWeek"></select></div>
           <div class="field">
             <label for="newPlayerStatus">¿Viene hoy?</label>
             <select id="newPlayerStatus">
@@ -585,34 +458,15 @@
           </div>
         </div>
 
-        <!-- CUADRÍCULA DE JORNADAS POR EQUIPO -->
         <div id="jornadasStrip" class="jornadas-bar" aria-label="Seleccionar jornada del equipo"></div>
 
         <div class="form-grid">
-          <div class="field">
-            <label for="evWeekLabel">Jornada Activa</label>
-            <select id="evWeekLabel"></select>
-          </div>
-          <div class="field">
-            <label for="matchOpponent">Rival en turno</label>
-            <input id="matchOpponent" type="text" placeholder="Nombre del rival..." />
-          </div>
-          <div class="field">
-            <label for="matchDate">Fecha</label>
-            <input id="matchDate" type="date" />
-          </div>
-          <div class="field">
-            <label for="matchTime">Hora de cita</label>
-            <input id="matchTime" type="time" />
-          </div>
-          <div class="field">
-            <label for="matchField">Cancha / Campo</label>
-            <input id="matchField" type="text" placeholder="Ej. Campo La Luz / Empastado 1" />
-          </div>
-          <div class="field">
-            <label for="matchCoachNotes">Notas de Franco / Nuevos a observar</label>
-            <input id="matchCoachNotes" type="text" placeholder="Indicaciones del partido..." />
-          </div>
+          <div class="field"><label for="evWeekLabel">Jornada Activa</label><select id="evWeekLabel"></select></div>
+          <div class="field"><label for="matchOpponent">Rival en turno</label><input id="matchOpponent" type="text" placeholder="Nombre del rival..." /></div>
+          <div class="field"><label for="matchDate">Fecha</label><input id="matchDate" type="date" /></div>
+          <div class="field"><label for="matchTime">Hora de cita</label><input id="matchTime" type="time" /></div>
+          <div class="field"><label for="matchField">Cancha / Campo</label><input id="matchField" type="text" placeholder="Ej. Campo La Luz / Empastado 1" /></div>
+          <div class="field"><label for="matchCoachNotes">Notas de Franco / Nuevos a observar</label><input id="matchCoachNotes" type="text" placeholder="Indicaciones del partido..." /></div>
         </div>
 
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
@@ -621,7 +475,6 @@
           <button type="button" class="btn-ghost" id="btnExportCsv">📊 Descargar Excel / CSV</button>
         </div>
 
-        <!-- PIZARRA VISUAL DIVIDIDA: QUIÉN SÍ VIENE vs QUIÉN NO VIENE -->
         <div class="split-who-comes">
           <div id="whoComesBanner" class="comes-box"></div>
           <div id="whoNotComesBanner" class="not-comes-box"></div>
@@ -641,7 +494,6 @@
       </div>
     </section>
 
-    <!-- VISTA 2: TABLA COMPLETA DE JORNADAS -->
     <section id="view-constancy" class="view">
       <div class="panel">
         <div class="panel-head">
@@ -652,9 +504,7 @@
           </div>
           <button type="button" class="btn-green" id="btnShareConstancyWa">📲 Enviar Reporte por WhatsApp</button>
         </div>
-
         <div id="discardAlertBox" class="not-comes-box" style="margin-bottom:16px"></div>
-
         <div style="overflow-x:auto">
           <table style="width:100%;border-collapse:collapse;font-size:12px">
             <thead id="constancyTableHead"></thead>
@@ -664,7 +514,6 @@
       </div>
     </section>
 
-    <!-- VISTA 3: PIZARRA TÁCTICA 2D + BANCA + 3D -->
     <section id="view-tactics" class="view">
       <div class="panel">
         <div class="panel-head">
@@ -683,31 +532,14 @@
         <div class="tactics-layout">
           <div>
             <div class="form-grid">
-              <div class="field">
-                <label for="tacticsFormationSelect">Formación</label>
-                <select id="tacticsFormationSelect"></select>
-              </div>
-              <div class="field">
-                <label for="roleCaptainSelect">©️ Capitán del Equipo</label>
-                <select id="roleCaptainSelect"></select>
-              </div>
-              <div class="field">
-                <label for="rolePenaltySelect">🎯 Cobrador de Penales</label>
-                <select id="rolePenaltySelect"></select>
-              </div>
-              <div class="field">
-                <label for="roleFreekickSelect">⚡ Tiros Libres / Córners</label>
-                <select id="roleFreekickSelect"></select>
-              </div>
-              <div class="field" style="grid-column: 1 / -1;">
-                <label for="tacticsStyleInput">Instrucciones Tácticas de Franco</label>
-                <input id="tacticsStyleInput" type="text" placeholder="Ej. Presión alta, salida limpia por bandas..." />
-              </div>
+              <div class="field"><label for="tacticsFormationSelect">Formación</label><select id="tacticsFormationSelect"></select></div>
+              <div class="field"><label for="roleCaptainSelect">©️ Capitán del Equipo</label><select id="roleCaptainSelect"></select></div>
+              <div class="field"><label for="rolePenaltySelect">🎯 Cobrador de Penales</label><select id="rolePenaltySelect"></select></div>
+              <div class="field"><label for="roleFreekickSelect">⚡ Tiros Libres / Córners</label><select id="roleFreekickSelect"></select></div>
+              <div class="field" style="grid-column: 1 / -1;"><label for="tacticsStyleInput">Instrucciones Tácticas de Franco</label><input id="tacticsStyleInput" type="text" placeholder="Ej. Presión alta, salida limpia por bandas..." /></div>
             </div>
-
             <h3 style="font-family:'Sora',sans-serif;font-size:15px;margin:10px 0 6px;color:var(--green-neon)">Once Titular por Posición</h3>
             <div id="tacticsLineupSlots" class="slots-list"></div>
-
             <div class="bench-box">
               <div class="eyebrow">BANCO DE SUPLENTES (SÍ VIENEN Y ESTÁN LISTOS PARA ENTRAR)</div>
               <div id="benchPlayersList" class="bench-chips"></div>
@@ -726,29 +558,19 @@
 
       <div class="panel">
         <div class="panel-head">
-          <div>
-            <div class="eyebrow">SIMULADOR EN TRES DIMENSIONES</div>
-            <h2>Laboratorio Táctico 3D en Cancha</h2>
-          </div>
+          <div><div class="eyebrow">SIMULADOR EN TRES DIMENSIONES</div><h2>Laboratorio Táctico 3D en Cancha</h2></div>
           <a href="./tools/tactics-3d/index.html" target="_blank" rel="noopener" class="btn-ghost">🔍 Abrir 3D en Pantalla Completa</a>
         </div>
-        <div class="frame-3d">
-          <iframe src="./tools/tactics-3d/index.html" title="Simulador Táctico 3D" loading="lazy"></iframe>
-        </div>
+        <div class="frame-3d"><iframe src="./tools/tactics-3d/index.html" title="Simulador Táctico 3D" loading="lazy"></iframe></div>
       </div>
     </section>
 
-    <!-- VISTA 4: PARTIDO EN VIVO Y ENTRENAMIENTOS -->
     <section id="view-matchlive" class="view">
       <div class="panel">
         <div class="panel-head">
-          <div>
-            <div class="eyebrow">CONSOLA DE PARTIDO EN VIVO</div>
-            <h2>Cronómetro, Marcador, Sustituciones y Jugador MVP</h2>
-          </div>
+          <div><div class="eyebrow">CONSOLA DE PARTIDO EN VIVO</div><h2>Cronómetro, Marcador, Sustituciones y Jugador MVP</h2></div>
           <button type="button" class="btn-green" id="btnShareLiveWa">📲 Mandar Crónica por WhatsApp</button>
         </div>
-
         <div class="scoreboard-box">
           <div>
             <div class="eyebrow" id="liveMyTeamLabel">MI EQUIPO</div>
@@ -758,7 +580,6 @@
               <button type="button" class="btn-ghost" id="btnHomeMinus">-1</button>
             </div>
           </div>
-
           <div>
             <div class="timer-display" id="matchTimerDisplay">00:00</div>
             <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
@@ -767,7 +588,6 @@
               <button type="button" class="btn-danger" id="btnTimerReset">Reiniciar</button>
             </div>
           </div>
-
           <div>
             <div class="eyebrow" id="liveOpponentLabel">RIVAL</div>
             <div class="score-num" id="scoreAway" style="color:#f8fafc">0</div>
@@ -777,7 +597,6 @@
             </div>
           </div>
         </div>
-
         <form id="liveActionForm" class="form-grid">
           <div class="field">
             <label for="liveActionType">Acción en Cancha</label>
@@ -789,60 +608,33 @@
               <option value="⭐ MVP del Partido">⭐ Elegir MVP del Partido</option>
             </select>
           </div>
-          <div class="field">
-            <label for="livePlayerPrimary">Jugador Principal (Anota / Entra)</label>
-            <select id="livePlayerPrimary"></select>
-          </div>
-          <div class="field">
-            <label for="livePlayerSecondary">Asistencia o Jugador que Sale</label>
-            <select id="livePlayerSecondary"></select>
-          </div>
-          <div class="field">
-            <label for="liveMinuteInput">Minuto (' )</label>
-            <input id="liveMinuteInput" type="text" placeholder="Ej. 32'" />
-          </div>
-          <div class="field" style="justify-content:flex-end">
-            <button type="submit" class="btn-green" style="height:40px">➕ Registrar en Bitácora</button>
-          </div>
+          <div class="field"><label for="livePlayerPrimary">Jugador Principal (Anota / Entra)</label><select id="livePlayerPrimary"></select></div>
+          <div class="field"><label for="livePlayerSecondary">Asistencia o Jugador que Sale</label><select id="livePlayerSecondary"></select></div>
+          <div class="field"><label for="liveMinuteInput">Minuto (' )</label><input id="liveMinuteInput" type="text" placeholder="Ej. 32'" /></div>
+          <div class="field" style="justify-content:flex-end"><button type="submit" class="btn-green" style="height:40px">➕ Registrar en Bitácora</button></div>
         </form>
-
         <div id="liveTimelineList" class="timeline-list"></div>
       </div>
 
       <div class="panel">
-        <div class="panel-head">
-          <div>
-            <div class="eyebrow">PLANIFICADOR DE ENTRENAMIENTO</div>
-            <h2>Rutinas Tácticas y Físicas para tu Equipo</h2>
-          </div>
-        </div>
+        <div class="panel-head"><div><div class="eyebrow">PLANIFICADOR DE ENTRENAMIENTO</div><h2>Rutinas Tácticas y Físicas para tu Equipo</h2></div></div>
         <div id="drillsGrid" class="drills-grid"></div>
       </div>
     </section>
 
-    <!-- VISTA 5: PLANTILLA COMPLETA -->
     <section id="view-squad" class="view">
       <div class="panel">
         <div class="panel-head">
-          <div>
-            <div class="eyebrow">REGISTRO DE PLANTILLA, TELÉFONOS Y RENDIMIENTO</div>
-            <h2>Editar Jugadores, Dorsales, Teléfono WhatsApp, Goles y % de Constancia</h2>
-          </div>
+          <div><div class="eyebrow">REGISTRO DE PLANTILLA, TELÉFONOS Y RENDIMIENTO</div><h2>Editar Jugadores, Dorsales, Teléfono WhatsApp, Goles y % de Constancia</h2></div>
           <button type="button" class="btn-green" id="btnExportCsvSquad">📊 Exportar Plantilla a Excel (CSV)</button>
         </div>
         <div style="overflow-x:auto">
           <table style="width:100%;border-collapse:collapse;font-size:13px">
             <thead>
               <tr style="border-bottom:1px solid var(--border-green);text-align:left;color:var(--green-neon)">
-                <th style="padding:9px 6px">#</th>
-                <th style="padding:9px 6px">Jugador</th>
-                <th style="padding:9px 6px">Teléfono WhatsApp</th>
-                <th style="padding:9px 6px">Posición</th>
-                <th style="padding:9px 6px">¿Viene Hoy?</th>
-                <th style="padding:9px 6px">% Constancia</th>
-                <th style="padding:9px 6px">Goles</th>
-                <th style="padding:9px 6px">Asist.</th>
-                <th style="padding:9px 6px">Acción</th>
+                <th style="padding:9px 6px">#</th><th style="padding:9px 6px">Jugador</th><th style="padding:9px 6px">Teléfono WhatsApp</th>
+                <th style="padding:9px 6px">Posición</th><th style="padding:9px 6px">¿Viene Hoy?</th><th style="padding:9px 6px">% Constancia</th>
+                <th style="padding:9px 6px">Goles</th><th style="padding:9px 6px">Asist.</th><th style="padding:9px 6px">Acción</th>
               </tr>
             </thead>
             <tbody id="squadTableBody"></tbody>
@@ -851,14 +643,10 @@
       </div>
     </section>
 
-    <!-- VISTA 6: CONFIGURACIÓN DE JORNADAS, DUEÑO Y ESCUDO -->
     <section id="view-settings" class="view">
       <div class="panel">
         <div class="panel-head">
-          <div>
-            <div class="eyebrow">CONFIGURACIÓN DEL CLUB Y NÚMERO DE JORNADAS</div>
-            <h2>Personalizar Jornadas del Torneo, Dueño, DT y Escudo</h2>
-          </div>
+          <div><div class="eyebrow">CONFIGURACIÓN DEL CLUB Y NÚMERO DE JORNADAS</div><h2>Personalizar Jornadas del Torneo, Dueño, DT y Escudo</h2></div>
         </div>
         <form id="teamConfigForm" class="form-grid">
           <div class="field"><label for="cfgTeamName">Nombre del Equipo</label><input id="cfgTeamName" type="text" required /></div>
@@ -868,24 +656,16 @@
           <div class="field"><label for="cfgTeamSubtitle">Subtítulo</label><input id="cfgTeamSubtitle" type="text" /></div>
           <div class="field"><label for="cfgKitPrimary">Color Ficha Titular</label><input id="cfgKitPrimary" type="color" style="height:40px;padding:3px" /></div>
           <div class="field"><label for="cfgKitSecondary">Color Portero</label><input id="cfgKitSecondary" type="color" style="height:40px;padding:3px" /></div>
-          <div class="field"><label for="cfgLogoUpload">Subir Escudo Personalizado (Imagen)</label><input id="cfgLogoUpload" type="file" accept="image/*" /></div>
+          <div class="field"><label for="cfgLogoUpload">Subir Escudo Personalizado (Desde tu Galería)</label><input id="cfgLogoUpload" type="file" accept="image/*" /></div>
           <div class="field" style="grid-column: 1 / -1;"><button type="submit" class="btn-green">💾 Guardar Configuración y Jornadas</button></div>
         </form>
       </div>
 
       <div class="panel">
-        <div class="panel-head">
-          <div>
-            <div class="eyebrow">PORTABILIDAD Y RESPALDO</div>
-            <h3>Exportar o Importar tus Modificaciones (.JSON)</h3>
-          </div>
-        </div>
+        <div class="panel-head"><div><div class="eyebrow">PORTABILIDAD Y RESPALDO</div><h3>Exportar o Importar tus Modificaciones (.JSON)</h3></div></div>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <button type="button" class="btn-green" id="btnExportBackup">⬇️ Descargar Respaldo (.JSON)</button>
-          <label class="btn-ghost" style="cursor:pointer">
-            ⬆️ Cargar Respaldo (.JSON)
-            <input id="inputImportBackup" type="file" accept="application/json" style="display:none" />
-          </label>
+          <label class="btn-ghost" style="cursor:pointer">⬆️ Cargar Respaldo (.JSON)<input id="inputImportBackup" type="file" accept="application/json" style="display:none" /></label>
           <button type="button" class="btn-danger" id="btnResetFactory">Restaurar Plantillas Oficiales (8J y 12J)</button>
         </div>
       </div>
@@ -907,20 +687,15 @@
     import { computePitchMarkings } from './vendor/campos/pitch.js';
     import formations from './vendor/campos/formations.js';
 
-    const STORAGE_KEY = 'dt_manager_franco_v14_pro_8j_12j';
+    const STORAGE_KEY = 'dt_manager_franco_v16_clean_logo';
     const NS = 'http://www.w3.org/2000/svg';
     const TODAY = new Date().toISOString().slice(0, 10);
-    const REAL_LUZ_LOGO = window.ATLETICO_LA_LUZ_REAL_LOGO || './assets/official-logos/dep-la-luz.png';
+    const CUSTOM_GALLERY_CREST = localStorage.getItem('CUSTOM_LUZ_CREST_OVERRIDE');
+    const REAL_LUZ_LOGO = CUSTOM_GALLERY_CREST || window.ATLETICO_LA_LUZ_REAL_LOGO || './assets/official-logos/dep-la-luz.png';
 
     const SOCIAL_REASONS = [
-      '',
-      'Trabajo / Turno laboral',
-      'Lesión médica / Molestia física',
-      'Compromiso familiar / Personal',
-      'Estudios / Escuela',
-      'Transporte / Fuera de la ciudad',
-      'Sanción deportiva',
-      'Sin avisar / Falta injustificada'
+      '', 'Trabajo / Turno laboral', 'Lesión médica / Molestia física', 'Compromiso familiar / Personal',
+      'Estudios / Escuela', 'Transporte / Fuera de la ciudad', 'Sanción deportiva', 'Sin avisar / Falta injustificada'
     ];
 
     function makeWeeks(count, absentIndices = [], lateIndices = [], joinWeek = 1) {
@@ -936,17 +711,10 @@
       for (let j = 1; j <= totalJ; j++) {
         const isExtraNew = isLuz && j === 12;
         list.push({
-          id: 'jornada_' + j,
-          weekLabel: `Jornada ${j}`,
-          isExtraNew,
-          type: 'Partido',
+          id: 'jornada_' + j, weekLabel: `Jornada ${j}`, isExtraNew, type: 'Partido',
           opponent: isExtraNew ? 'Nuevos Jugadores / Altas' : `Rival Jornada ${j}`,
-          date: TODAY,
-          time: defaultTime,
-          field: defaultField,
-          coachNotes: isExtraNew
-            ? 'Jornada 12 habilitada para meter nuevos jugadores y ver quién viene.'
-            : `Control de quién viene y quién no viene — Jornada ${j} de ${totalJ}`
+          date: TODAY, time: defaultTime, field: defaultField,
+          coachNotes: isExtraNew ? 'Jornada 12 habilitada para meter nuevos jugadores y ver quién viene.' : `Control de quién viene y quién no viene — Jornada ${j} de ${totalJ}`
         });
       }
       return list;
@@ -955,17 +723,12 @@
     const ALL_FORMATIONS = {
       ...formations,
       '4141': [
-        { code: 'GK', x: 10, y: 50 },
-        { code: 'RB', x: 26, y: 14 }, { code: 'RCB', x: 24, y: 38 }, { code: 'LCB', x: 24, y: 62 }, { code: 'LB', x: 26, y: 86 },
-        { code: 'CDM', x: 43, y: 50 },
-        { code: 'RM', x: 64, y: 12 }, { code: 'RCM', x: 62, y: 37 }, { code: 'LCM', x: 62, y: 63 }, { code: 'LM', x: 64, y: 88 },
-        { code: 'ST', x: 88, y: 50 }
+        { code: 'GK', x: 10, y: 50 }, { code: 'RB', x: 26, y: 14 }, { code: 'RCB', x: 24, y: 38 }, { code: 'LCB', x: 24, y: 62 }, { code: 'LB', x: 26, y: 86 },
+        { code: 'CDM', x: 43, y: 50 }, { code: 'RM', x: 64, y: 12 }, { code: 'RCM', x: 62, y: 37 }, { code: 'LCM', x: 62, y: 63 }, { code: 'LM', x: 64, y: 88 }, { code: 'ST', x: 88, y: 50 }
       ],
       '532': [
-        { code: 'GK', x: 10, y: 50 },
-        { code: 'RWB', x: 30, y: 10 }, { code: 'RCB', x: 24, y: 30 }, { code: 'CB', x: 22, y: 50 }, { code: 'LCB', x: 24, y: 70 }, { code: 'LWB', x: 30, y: 90 },
-        { code: 'RCM', x: 56, y: 30 }, { code: 'CM', x: 54, y: 50 }, { code: 'LCM', x: 56, y: 70 },
-        { code: 'RCF', x: 86, y: 38 }, { code: 'LCF', x: 86, y: 62 }
+        { code: 'GK', x: 10, y: 50 }, { code: 'RWB', x: 30, y: 10 }, { code: 'RCB', x: 24, y: 30 }, { code: 'CB', x: 22, y: 50 }, { code: 'LCB', x: 24, y: 70 }, { code: 'LWB', x: 30, y: 90 },
+        { code: 'RCM', x: 56, y: 30 }, { code: 'CM', x: 54, y: 50 }, { code: 'LCM', x: 56, y: 70 }, { code: 'RCF', x: 86, y: 38 }, { code: 'LCF', x: 86, y: 62 }
       ]
     };
 
@@ -981,27 +744,18 @@
       motionEnabled: true,
       teams: {
         atletico_luz: {
-          id: 'atletico_luz',
-          name: 'Atlético La Luz',
-          totalJornadas: 12,
+          id: 'atletico_luz', name: 'Atlético La Luz', totalJornadas: 12,
           ownerName: 'Josué Franco (Dueño Atlético La Luz)',
           subtitle: '11 Jornadas Oficiales + Jornada 12 para Meter Nuevos Jugadores · DT: Franco',
-          coachName: 'Franco',
-          logo: REAL_LUZ_LOGO,
-          kitPrimary: '#1ee87a',
-          kitSecondary: '#f7c948',
-          formation: '442',
-          tacticalStyle: 'Orden táctico, presión intensa, transiciones rápidas y balón parado',
-          roles: { captain: 'll18', penalty: 'll13', freekick: 'll10' },
-          activeEventId: 'jornada_1',
+          coachName: 'Franco', logo: REAL_LUZ_LOGO, kitPrimary: '#1ee87a', kitSecondary: '#f7c948',
+          formation: '442', tacticalStyle: 'Orden táctico, presión intensa, transiciones rápidas y balón parado',
+          roles: { captain: 'll18', penalty: 'll13', freekick: 'll10' }, activeEventId: 'jornada_1',
           events: makeTeamEvents(12, 'Campo La Luz', '10:00', true),
           liveMatch: { scoreHome: 3, scoreAway: 0, mvpId: 'll18', log: [
             { id: 'lg_ll1', min: "22'", text: '⚽ Gol de José Salvador Rodríguez (Asist: Josué Franco)' },
             { id: 'lg_ll2', min: "61'", text: '⚽ Gol de Ángel (Tiro libre directo)' }
           ]},
-          drills: JSON.parse(JSON.stringify(DEFAULT_DRILLS)),
-          lineupSlots: {},
-          customCoords: {},
+          drills: JSON.parse(JSON.stringify(DEFAULT_DRILLS)), lineupSlots: {}, customCoords: {},
           players: [
             { id: 'll1', number: '1', name: 'Kana', phone: '+52 412 143 8352', position: 'Portero', status: 'present', absenceReason: '', note: 'Admin. del grupo WhatsApp', goals: 0, assists: 1, feePaid: true, joinWeek: 1, weeks: makeWeeks(12) },
             { id: 'll2', number: '2', name: 'Daniel', phone: '+52 729 549 1948', position: 'Defensa Central', status: 'present', absenceReason: '', note: 'Titular constante', goals: 1, assists: 1, feePaid: true, joinWeek: 1, weeks: makeWeeks(12) },
@@ -1025,27 +779,19 @@
           ]
         },
         america_vet: {
-          id: 'america_vet',
-          name: 'Club América Veteranos 35 y más',
-          totalJornadas: 8,
+          id: 'america_vet', name: 'Club América Veteranos 35 y más', totalJornadas: 8,
           ownerName: 'Franco (Dueño y DT Club América Veteranos 35 y más)',
           subtitle: 'Torneo de 8 Jornadas · Categoría Veteranos 35 y más · Dueño, Capitán y DT: Franco',
-          coachName: 'Franco (Dueño, Capitán y DT)',
-          logo: './assets/branding/america-veteranos-35-user.png',
-          kitPrimary: '#1ee87a',
-          kitSecondary: '#f7c948',
-          formation: '433',
+          coachName: 'Franco (Dueño, Capitán y DT)', logo: './assets/branding/america-veteranos-35-user.png',
+          kitPrimary: '#1ee87a', kitSecondary: '#f7c948', formation: '433',
           tacticalStyle: 'Presión alta, salida limpia por bandas y control de medio campo',
-          roles: { captain: 'am_franco', penalty: 'am2', freekick: 'am3' },
-          activeEventId: 'jornada_1',
+          roles: { captain: 'am_franco', penalty: 'am2', freekick: 'am3' }, activeEventId: 'jornada_1',
           events: makeTeamEvents(8, 'Campo Empastado #1', '16:00', false),
           liveMatch: { scoreHome: 2, scoreAway: 1, mvpId: 'am_franco', log: [
             { id: 'lg1', min: "18'", text: '⚽ Gol de J. Refugio Zarazúa Agostadero (Asist: Franco)' },
             { id: 'lg2', min: "54'", text: '🔄 Cambio: Entra Luis Jiménez Zárate por Eric Fernando Dongu Guerrero' }
           ]},
-          drills: JSON.parse(JSON.stringify(DEFAULT_DRILLS)),
-          lineupSlots: {},
-          customCoords: {},
+          drills: JSON.parse(JSON.stringify(DEFAULT_DRILLS)), lineupSlots: {}, customCoords: {},
           players: [
             { id: 'am_franco', number: '10', name: 'Franco (Dueño, Capitán y DT)', phone: '', position: 'Enganche / 10', status: 'present', absenceReason: '', note: 'Dueño, Capitán y Director Técnico · Club América Veteranos 35 y más', goals: 8, assists: 9, feePaid: true, joinWeek: 1, weeks: makeWeeks(8) },
             { id: 'am1', number: '14', name: 'J. Refugio Zarazúa Agostadero', phone: '', position: 'Mediocampista', status: 'present', absenceReason: '', note: 'Registrado Oficial Eq. 5', goals: 11, assists: 6, feePaid: true, joinWeek: 1, weeks: makeWeeks(8) },
@@ -1065,7 +811,9 @@
     };
 
     let state = loadState();
-    if (state.teams?.atletico_luz) state.teams.atletico_luz.logo = REAL_LUZ_LOGO;
+    if (state.teams?.atletico_luz && (!state.teams.atletico_luz.logo || state.teams.atletico_luz.logo.startsWith('data:image/webp'))) {
+      state.teams.atletico_luz.logo = REAL_LUZ_LOGO;
+    }
 
     let currentFilter = 'all';
     let draggingSlotIndex = null;
@@ -1085,9 +833,7 @@
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); if (msg) showToast(msg); } catch (_) {}
     }
     function activeTeam() { return state.teams[state.activeTeamId] || state.teams.atletico_luz; }
-    function teamJornadas(team = activeTeam()) {
-      return Math.max(1, Number(team.totalJornadas || (team.id === 'america_vet' ? 8 : 12)));
-    }
+    function teamJornadas(team = activeTeam()) { return Math.max(1, Number(team.totalJornadas || (team.id === 'america_vet' ? 8 : 12))); }
     function syncTeamEventsLength(team) {
       const total = teamJornadas(team);
       if (!Array.isArray(team.events)) team.events = [];
@@ -1095,40 +841,22 @@
         const j = team.events.length + 1;
         const isExtra = team.id === 'atletico_luz' && j >= 12;
         team.events.push({
-          id: 'jornada_' + j,
-          weekLabel: `Jornada ${j}`,
-          isExtraNew: isExtra,
-          type: 'Partido',
-          opponent: isExtra ? `Nuevos Jugadores / Altas` : `Rival Jornada ${j}`,
-          date: TODAY,
-          time: team.id === 'america_vet' ? '16:00' : '10:00',
-          field: team.id === 'america_vet' ? 'Campo Empastado #1' : 'Campo La Luz',
-          coachNotes: ''
+          id: 'jornada_' + j, weekLabel: `Jornada ${j}`, isExtraNew: isExtra, type: 'Partido',
+          opponent: isExtra ? 'Nuevos Jugadores / Altas' : `Rival Jornada ${j}`, date: TODAY,
+          time: team.id === 'america_vet' ? '16:00' : '10:00', field: team.id === 'america_vet' ? 'Campo Empastado #1' : 'Campo La Luz', coachNotes: ''
         });
       }
       if (team.events.length > total) team.events = team.events.slice(0, total);
     }
-    function activeEvent(team = activeTeam()) {
-      syncTeamEventsLength(team);
-      return team.events.find(e => e.id === team.activeEventId) || team.events[0];
-    }
-    function esc(v) {
-      return String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-    }
+    function activeEvent(team = activeTeam()) { syncTeamEventsLength(team); return team.events.find(e => e.id === team.activeEventId) || team.events[0]; }
+    function esc(v) { return String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
     function cleanPhone(ph) { return String(ph || '').replace(/\D+/g, ''); }
     function showToast(txt) {
-      const t = document.getElementById('mgrToast');
-      if (!t) return;
-      t.textContent = txt; t.classList.add('show');
-      clearTimeout(window.__toastT);
+      const t = document.getElementById('mgrToast'); if (!t) return;
+      t.textContent = txt; t.classList.add('show'); clearTimeout(window.__toastT);
       window.__toastT = setTimeout(() => t.classList.remove('show'), 2600);
     }
-    function svgEl(tag, attrs = {}) {
-      const el = document.createElementNS(NS, tag);
-      Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, String(v)));
-      return el;
-    }
-
+    function svgEl(tag, attrs = {}) { const el = document.createElementNS(NS, tag); Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, String(v))); return el; }
     function ensureWeeks(p, team = activeTeam()) {
       const total = teamJornadas(team);
       if (!Array.isArray(p.weeks)) p.weeks = [];
@@ -1136,23 +864,32 @@
       if (p.weeks.length > total) p.weeks = p.weeks.slice(0, total);
       return p.weeks;
     }
-    function activeWeeksCount(p, team = activeTeam()) {
-      const w = ensureWeeks(p, team);
-      return Math.max(1, w.filter(x => x !== 'N').length);
-    }
+    function activeWeeksCount(p, team = activeTeam()) { return Math.max(1, ensureWeeks(p, team).filter(x => x !== 'N').length); }
     function attRate(p, team = activeTeam()) {
-      const w = ensureWeeks(p, team);
-      const eligible = w.filter(x => x !== 'N');
+      const eligible = ensureWeeks(p, team).filter(x => x !== 'N');
       if (!eligible.length) return 100;
-      const attended = eligible.filter(x => x === 'P' || x === 'L').length;
-      return Math.round((attended / eligible.length) * 100);
+      return Math.round((eligible.filter(x => x === 'P' || x === 'L').length / eligible.length) * 100);
     }
-    function absencesCount(p, team = activeTeam()) {
-      return ensureWeeks(p, team).filter(x => x === 'A').length;
-    }
-    function isDiscardCandidate(p, team = activeTeam()) {
-      return absencesCount(p, team) >= 3 || p.absenceReason === 'Sin avisar / Falta injustificada';
-    }
+    function absencesCount(p, team = activeTeam()) { return ensureWeeks(p, team).filter(x => x === 'A').length; }
+    function isDiscardCandidate(p, team = activeTeam()) { return absencesCount(p, team) >= 3 || p.absenceReason === 'Sin avisar / Falta injustificada'; }
+
+    // Subida instantánea tocando el medallón del escudo
+    document.getElementById('quickHeroLogoInput')?.addEventListener('change', e => {
+      const file = e.target.files?.[0]; if (!file) return;
+      const r = new FileReader();
+      r.onload = () => {
+        const dataUrl = String(r.result || '');
+        const team = activeTeam();
+        team.logo = dataUrl;
+        if (team.id === 'atletico_luz') {
+          localStorage.setItem('CUSTOM_LUZ_CREST_OVERRIDE', dataUrl);
+          window.ATLETICO_LA_LUZ_REAL_LOGO = dataUrl;
+        }
+        saveState('✅ ¡Escudo actualizado desde tu galería!');
+        renderAll();
+      };
+      r.readAsDataURL(file);
+    });
 
     function renderAll() {
       const team = activeTeam();
@@ -1160,16 +897,16 @@
       const totalJ = teamJornadas(team);
       const ev = activeEvent(team);
       const isAmerica = team.id === 'america_vet';
+      const currentLuzLogo = localStorage.getItem('CUSTOM_LUZ_CREST_OVERRIDE') || window.ATLETICO_LA_LUZ_REAL_LOGO || state.teams.atletico_luz.logo;
 
       document.body.classList.toggle('motion-off', state.motionEnabled === false);
       const motionBtn = document.getElementById('btnToggleMotion');
       if (motionBtn) motionBtn.textContent = state.motionEnabled === false ? '🎬 Movimiento: OFF' : '🎬 Movimiento: ON';
 
-      const amCatSec = document.getElementById('americaCategorySection');
-      if (amCatSec) amCatSec.classList.toggle('visible', isAmerica);
+      document.getElementById('americaCategorySection')?.classList.toggle('visible', isAmerica);
 
       const swLuz = document.getElementById('swLogoLuz');
-      if (swLuz) swLuz.src = REAL_LUZ_LOGO;
+      if (swLuz) swLuz.src = currentLuzLogo;
       const swAm = document.getElementById('swLogoAmerica');
       if (swAm) swAm.src = state.teams.america_vet.logo;
 
@@ -1180,7 +917,7 @@
         if (sp && b.dataset.switchTeam === 'america_vet') sp.textContent = `Club América 35+ (${teamJornadas(state.teams.america_vet)}J)`;
       });
 
-      document.getElementById('heroTeamLogo').src = isAmerica ? team.logo : (team.logo || REAL_LUZ_LOGO);
+      document.getElementById('heroTeamLogo').src = isAmerica ? team.logo : currentLuzLogo;
       document.getElementById('heroTeamName').innerHTML = `${esc(team.name)} <span class="electric">MANAGER PRO</span>`;
       document.getElementById('heroTeamSubtitle').textContent = team.subtitle;
       document.getElementById('heroOwnerBanner').textContent = `👑 Dueño: ${team.ownerName} · DT: ${team.coachName}`;
@@ -1191,18 +928,12 @@
       const currentJNum = Math.min(totalJ, Math.max(1, parseInt(String(ev.weekLabel || '1').replace(/\D+/g, ''), 10) || 1));
       if (evWeekSelect) {
         evWeekSelect.innerHTML = '';
-        for (let j = 1; j <= totalJ; j++) {
-          const extraTxt = (!isAmerica && j >= 12) ? ' · Nuevos Jugadores' : '';
-          evWeekSelect.add(new Option(`Jornada ${j} de ${totalJ}${extraTxt}`, `Jornada ${j}`));
-        }
+        for (let j = 1; j <= totalJ; j++) evWeekSelect.add(new Option(`Jornada ${j} de ${totalJ}${(!isAmerica && j >= 12) ? ' · Nuevos Jugadores' : ''}`, `Jornada ${j}`));
         evWeekSelect.value = ev.weekLabel || 'Jornada 1';
       }
       if (joinWeekSelect) {
         joinWeekSelect.innerHTML = '';
-        for (let j = 1; j <= totalJ; j++) {
-          const extraTxt = (!isAmerica && j === 12) ? ' (Jornada 12 · Altas Nuevos)' : '';
-          joinWeekSelect.add(new Option(`Entra en Jornada ${j}${extraTxt}`, String(j)));
-        }
+        for (let j = 1; j <= totalJ; j++) joinWeekSelect.add(new Option(`Entra en Jornada ${j}${(!isAmerica && j === 12) ? ' (Jornada 12 · Altas Nuevos)' : ''}`, String(j)));
         joinWeekSelect.value = String(currentJNum);
       }
 
@@ -1235,15 +966,13 @@
         : `⚠️ Solo ${available.length} vienen hoy (Faltan ${11 - available.length} para completar 11)`;
 
       const rsvpSel = document.getElementById('rsvpPlayerSelect');
-      if (rsvpSel) {
-        rsvpSel.innerHTML = players.map(p => `<option value="${esc(p.id)}">#${esc(p.number)} ${esc(p.name)} (${esc(p.position)})</option>`).join('');
-      }
+      if (rsvpSel) rsvpSel.innerHTML = players.map(p => `<option value="${esc(p.id)}">#${esc(p.number)} ${esc(p.name)} (${esc(p.position)})</option>`).join('');
 
       renderAttendanceView(team, ev, present, late, absent, doubt, totalJ);
       renderConstancyView(team, totalJ);
       renderTacticsView(team, available);
       renderMatchLiveView(team, ev);
-      renderSquadView(team, totalJ);
+      renderSquadView(team);
       renderSettingsView(team, totalJ);
     }
 
@@ -1268,47 +997,23 @@
         }).join('');
       }
 
-      const fields = [
-        ['matchOpponent', ev.opponent || ''],
-        ['matchDate', ev.date || ''],
-        ['matchTime', ev.time || ''],
-        ['matchField', ev.field || ''],
-        ['matchCoachNotes', ev.coachNotes || '']
-      ];
-      fields.forEach(([id, val]) => {
-        const el = document.getElementById(id);
-        if (el && document.activeElement !== el) el.value = val;
+      [['matchOpponent', ev.opponent || ''], ['matchDate', ev.date || ''], ['matchTime', ev.time || ''], ['matchField', ev.field || ''], ['matchCoachNotes', ev.coachNotes || '']].forEach(([id, val]) => {
+        const el = document.getElementById(id); if (el && document.activeElement !== el) el.value = val;
       });
 
       const comingAll = [...present, ...late];
-      const comesBox = document.getElementById('whoComesBanner');
-      const notComesBox = document.getElementById('whoNotComesBanner');
+      document.getElementById('whoComesBanner').innerHTML = `
+        <h4><span>✅ SÍ VIENEN A JUGAR</span> <span>${comingAll.length} listos</span></h4>
+        <div class="tag-list">
+          ${comingAll.length ? comingAll.map(p => `<span class="yes-tag">#${esc(p.number)} ${esc(p.name)}${Number(p.joinWeek || 1) > 1 ? ` (🆕 J${p.joinWeek})` : ''}${p.status === 'late' ? ' (⏰ Tarde)' : ''}</span>`).join('') : `<span style="font-size:12px;color:var(--text-muted)">Aún no hay jugadores confirmados.</span>`}
+        </div>`;
+      document.getElementById('whoNotComesBanner').innerHTML = `
+        <h4><span>❌ NO VIENEN A JUGAR</span> <span>${absent.length} bajas</span></h4>
+        <div class="tag-list">
+          ${absent.length ? absent.map(p => `<span class="absent-tag">#${esc(p.number)} ${esc(p.name)} — <b>${esc(p.absenceReason || 'Sin avisar')}</b>${p.note ? ` (${esc(p.note)})` : ''}</span>`).join('') : `<span style="font-size:12px;color:var(--text-muted)">Nadie ha faltado en esta jornada.</span>`}
+        </div>`;
 
-      if (comesBox) {
-        comesBox.innerHTML = `
-          <h4><span>✅ SÍ VIENEN A JUGAR</span> <span>${comingAll.length} listos</span></h4>
-          <div class="tag-list">
-            ${comingAll.length
-              ? comingAll.map(p => `<span class="yes-tag">#${esc(p.number)} ${esc(p.name)}${Number(p.joinWeek || 1) > 1 ? ` (🆕 J${p.joinWeek})` : ''}${p.status === 'late' ? ' (⏰ Tarde)' : ''}</span>`).join('')
-              : `<span style="font-size:12px;color:var(--text-muted)">Aún no hay jugadores confirmados.</span>`}
-          </div>
-        `;
-      }
-
-      if (notComesBox) {
-        notComesBox.innerHTML = `
-          <h4><span>❌ NO VIENEN A JUGAR</span> <span>${absent.length} bajas</span></h4>
-          <div class="tag-list">
-            ${absent.length
-              ? absent.map(p => `<span class="absent-tag">#${esc(p.number)} ${esc(p.name)} — <b>${esc(p.absenceReason || 'Sin avisar')}</b>${p.note ? ` (${esc(p.note)})` : ''}</span>`).join('')
-              : `<span style="font-size:12px;color:var(--text-muted)">Nadie ha faltado en esta jornada.</span>`}
-          </div>
-        `;
-      }
-
-      document.querySelectorAll('[data-att-filter]').forEach(b => {
-        b.classList.toggle('active', b.dataset.attFilter === currentFilter);
-      });
+      document.querySelectorAll('[data-att-filter]').forEach(b => b.classList.toggle('active', b.dataset.attFilter === currentFilter));
 
       let list = team.players || [];
       if (currentFilter === 'present') list = comingAll;
@@ -1318,8 +1023,7 @@
       else if (currentFilter === 'constant') list = list.filter(p => attRate(p, team) >= 80 && !isDiscardCandidate(p, team));
       else if (currentFilter === 'discard') list = list.filter(p => isDiscardCandidate(p, team));
 
-      const grid = document.getElementById('attendancePlayersGrid');
-      grid.innerHTML = list.map(p => {
+      document.getElementById('attendancePlayersGrid').innerHTML = list.map(p => {
         const w = ensureWeeks(p, team);
         const rate = attRate(p, team);
         const discard = isDiscardCandidate(p, team);
@@ -1345,113 +1049,59 @@
               <button type="button" class="btn-danger" data-delete-player="${esc(p.id)}" title="Descartar">✕</button>
             </div>
           </div>
-
           <div class="status-grid-main">
             <button type="button" class="st-btn ${p.status === 'present' ? 'on-present' : ''}" data-set-status="present" data-id="${esc(p.id)}">✅ SÍ VIENE</button>
             <button type="button" class="st-btn ${p.status === 'absent' ? 'on-absent' : ''}" data-set-status="absent" data-id="${esc(p.id)}">❌ NO VIENE</button>
             <button type="button" class="st-btn ${p.status === 'late' ? 'on-late' : ''}" data-set-status="late" data-id="${esc(p.id)}">⏰ Tarde</button>
             <button type="button" class="st-btn ${p.status === 'doubt' ? 'on-doubt' : ''}" data-set-status="doubt" data-id="${esc(p.id)}">⏳ Duda</button>
           </div>
-
-          <div class="p-mini-weeks" title="Toca cualquier jornada para cambiar asistencia">
-            ${w.map((val, idx) => `
-              <button type="button" class="mini-j-btn j-${val}" data-toggle-week="${esc(p.id)}" data-wk-idx="${idx}">
-                J${idx + 1}:${val === 'P' ? '✓' : val === 'L' ? '⏰' : val === 'N' ? '🆕' : '✕'}
-              </button>
-            `).join('')}
+          <div class="p-mini-weeks">
+            ${w.map((val, idx) => `<button type="button" class="mini-j-btn j-${val}" data-toggle-week="${esc(p.id)}" data-wk-idx="${idx}">J${idx + 1}:${val === 'P' ? '✓' : val === 'L' ? '⏰' : val === 'N' ? '🆕' : '✕'}</button>`).join('')}
           </div>
-
           <div class="absence-row">
-            <select data-absence-reason="${esc(p.id)}" title="Razón Social si no viene">
-              ${SOCIAL_REASONS.map(r => `<option value="${esc(r)}" ${p.absenceReason === r ? 'selected' : ''}>${r ? 'Razón: ' + esc(r) : 'Razón Social (si no viene)...'}</option>`).join('')}
-            </select>
+            <select data-absence-reason="${esc(p.id)}">${SOCIAL_REASONS.map(r => `<option value="${esc(r)}" ${p.absenceReason === r ? 'selected' : ''}>${r ? 'Razón: ' + esc(r) : 'Razón Social (si no viene)...'}</option>`).join('')}</select>
             <input type="text" data-player-note="${esc(p.id)}" value="${esc(p.note || '')}" placeholder="Nota / quién lo invitó..." />
           </div>
-
           <div class="p-foot">
             <span>⚽ <b>${Number(p.goals || 0)}</b> <button type="button" class="btn-ghost" style="padding:2px 6px;font-size:10.5px" data-add-goal="${esc(p.id)}">+1</button></span>
             <span>👟 <b>${Number(p.assists || 0)}</b> <button type="button" class="btn-ghost" style="padding:2px 6px;font-size:10.5px" data-add-assist="${esc(p.id)}">+1</button></span>
-            <button type="button" class="fee-btn ${p.feePaid ? 'paid' : ''}" data-toggle-fee="${esc(p.id)}">
-              ${p.feePaid ? '💲 Arbitraje Pagado' : '💲 Arbitraje Pend.'}
-            </button>
+            <button type="button" class="fee-btn ${p.feePaid ? 'paid' : ''}" data-toggle-fee="${esc(p.id)}">${p.feePaid ? '💲 Arbitraje Pagado' : '💲 Arbitraje Pend.'}</button>
           </div>
-        </article>
-      `}).join('');
+        </article>`;
+      }).join('');
     }
 
     function renderConstancyView(team, totalJ) {
       document.getElementById('constancyTitle').textContent = `Tabla de las ${totalJ} Jornadas (${team.name})`;
       const players = [...(team.players || [])].sort((a, b) => attRate(b, team) - attRate(a, team));
       const discards = players.filter(p => isDiscardCandidate(p, team));
+      document.getElementById('discardAlertBox').innerHTML = !discards.length
+        ? `<h4 style="color:var(--green-electric)">🏆 Todo el plantel cumple con buena asistencia en las ${totalJ} jornadas</h4>`
+        : `<h4><span>⚠️ JUGADORES QUE NO VIENEN / INCONSTANTES (${discards.length})</span></h4><div class="tag-list">${discards.map(p => `<span class="absent-tag">#${esc(p.number)} ${esc(p.name)} (${absencesCount(p, team)} faltas) <button type="button" class="btn-danger" style="padding:2px 6px;margin-left:6px" data-delete-player="${esc(p.id)}">Descartar</button></span>`).join('')}</div>`;
 
-      const alertBox = document.getElementById('discardAlertBox');
-      if (alertBox) {
-        if (!discards.length) {
-          alertBox.innerHTML = `<h4 style="color:var(--green-electric)">🏆 Todo el plantel cumple con buena asistencia en las ${totalJ} jornadas</h4>`;
-        } else {
-          alertBox.innerHTML = `
-            <h4><span>⚠️ JUGADORES QUE NO VIENEN / INCONSTANTES (${discards.length})</span></h4>
-            <div class="tag-list">
-              ${discards.map(p => `
-                <span class="absent-tag">
-                  #${esc(p.number)} ${esc(p.name)} (${absencesCount(p, team)} faltas · ${esc(p.absenceReason || 'Sin avisar')})
-                  <button type="button" class="btn-danger" style="padding:2px 6px;margin-left:6px" data-delete-player="${esc(p.id)}">Descartar</button>
-                </span>
-              `).join('')}
-            </div>
-          `;
-        }
-      }
+      let hCols = `<tr style="border-bottom:1px solid var(--border-green);text-align:left;color:var(--green-neon)"><th style="padding:8px 5px">#</th><th style="padding:8px 6px;min-width:140px">Jugador</th>`;
+      for (let j = 1; j <= totalJ; j++) hCols += `<th style="padding:6px 3px;text-align:center">${team.id === 'atletico_luz' && j === 12 ? 'J12🆕' : `J${j}`}</th>`;
+      hCols += `<th style="padding:8px 6px">Constancia</th><th style="padding:8px 6px">Razón Social si faltó</th><th style="padding:8px 6px">Estado</th></tr>`;
+      document.getElementById('constancyTableHead').innerHTML = hCols;
 
-      const thead = document.getElementById('constancyTableHead');
-      if (thead) {
-        let hCols = `<tr style="border-bottom:1px solid var(--border-green);text-align:left;color:var(--green-neon)"><th style="padding:8px 5px">#</th><th style="padding:8px 6px;min-width:140px">Jugador</th>`;
-        for (let j = 1; j <= totalJ; j++) {
-          hCols += `<th style="padding:6px 3px;text-align:center">${team.id === 'atletico_luz' && j === 12 ? 'J12🆕' : `J${j}`}</th>`;
-        }
-        hCols += `<th style="padding:8px 6px">Constancia</th><th style="padding:8px 6px">Razón Social si faltó</th><th style="padding:8px 6px">Estado</th></tr>`;
-        thead.innerHTML = hCols;
-      }
-
-      const tbody = document.getElementById('constancyTableBody');
-      if (!tbody) return;
-      tbody.innerHTML = players.map(p => {
-        const w = ensureWeeks(p, team);
-        const rate = attRate(p, team);
-        const discard = isDiscardCandidate(p, team);
+      document.getElementById('constancyTableBody').innerHTML = players.map(p => {
+        const w = ensureWeeks(p, team); const rate = attRate(p, team); const discard = isDiscardCandidate(p, team);
         return `
           <tr style="border-bottom:1px solid rgba(255,255,255,0.07);background:${discard ? 'rgba(255,71,105,0.1)' : 'transparent'}">
             <td style="padding:6px 5px;font-weight:800;color:var(--green-electric)">#${esc(p.number)}</td>
             <td style="padding:6px;font-weight:800;color:#fff">${esc(p.name)} ${Number(p.joinWeek || 1) > 1 ? `<span class="new-badge">J${p.joinWeek}</span>` : ''}</td>
-            ${w.map((val, idx) => `
-              <td style="padding:2px;text-align:center">
-                <button type="button" class="wk-btn ${val === 'P' ? 'wk-present' : val === 'L' ? 'wk-late' : val === 'N' ? 'wk-new' : 'wk-absent'}" data-toggle-week="${esc(p.id)}" data-wk-idx="${idx}" title="Jornada ${idx + 1}">
-                  ${val === 'P' ? '✅' : val === 'L' ? '⏰' : val === 'N' ? '🆕' : '❌'}
-                </button>
-              </td>
-            `).join('')}
-            <td style="padding:6px;font-weight:800;white-space:nowrap;color:${rate >= 80 ? 'var(--green-neon)' : 'var(--danger)'}">${rate}%</td>
-            <td style="padding:6px">
-              <select data-absence-reason="${esc(p.id)}" style="padding:5px 7px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;font-size:11.5px">
-                ${SOCIAL_REASONS.map(r => `<option value="${esc(r)}" ${p.absenceReason === r ? 'selected' : ''}>${r || 'Viene constante'}</option>`).join('')}
-              </select>
-            </td>
-            <td style="padding:6px;white-space:nowrap">
-              ${discard
-                ? `<span class="discard-badge">⚠️ Descartar</span>`
-                : `<span class="constancy-Constant">🏆 Cumple</span>`}
-            </td>
-          </tr>
-        `;
+            ${w.map((val, idx) => `<td style="padding:2px;text-align:center"><button type="button" class="wk-btn ${val === 'P' ? 'wk-present' : val === 'L' ? 'wk-late' : val === 'N' ? 'wk-new' : 'wk-absent'}" data-toggle-week="${esc(p.id)}" data-wk-idx="${idx}">${val === 'P' ? '✅' : val === 'L' ? '⏰' : val === 'N' ? '🆕' : '❌'}</button></td>`).join('')}
+            <td style="padding:6px;font-weight:800;color:${rate >= 80 ? 'var(--green-neon)' : 'var(--danger)'}">${rate}%</td>
+            <td style="padding:6px"><select data-absence-reason="${esc(p.id)}" style="padding:5px 7px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;font-size:11.5px">${SOCIAL_REASONS.map(r => `<option value="${esc(r)}" ${p.absenceReason === r ? 'selected' : ''}>${r || 'Viene constante'}</option>`).join('')}</select></td>
+            <td style="padding:6px;white-space:nowrap">${discard ? `<span class="discard-badge">⚠️ Descartar</span>` : `<span class="constancy-Constant">🏆 Cumple</span>`}</td>
+          </tr>`;
       }).join('');
     }
 
     function buildPitchSvg(team, available) {
       const svg = svgEl('svg', { viewBox: '-3 -3 74 111', role: 'img' });
       svg.appendChild(svgEl('rect', { x: -3, y: -3, width: 74, height: 111, fill: '#0b3822' }));
-      for (let i = 0; i < 10; i++) {
-        svg.appendChild(svgEl('rect', { x: 0, y: i * 10.5, width: 68, height: 5.25, fill: i % 2 === 0 ? 'rgba(30,232,122,0.05)' : 'rgba(0,0,0,0.08)' }));
-      }
+      for (let i = 0; i < 10; i++) svg.appendChild(svgEl('rect', { x: 0, y: i * 10.5, width: 68, height: 5.25, fill: i % 2 === 0 ? 'rgba(30,232,122,0.05)' : 'rgba(0,0,0,0.08)' }));
       const lines = svgEl('g', { stroke: '#a3e8c1', 'stroke-width': 0.32, fill: 'none' });
       computePitchMarkings('full', 'vertical').forEach(m => {
         const attrs = {}; let tag = m.type;
@@ -1459,9 +1109,7 @@
           tag = 'path'; const a = m.startAngle, b = m.endAngle;
           attrs.d = `M ${m.cx + m.r * Math.cos(a)} ${m.cy + m.r * Math.sin(a)} A ${m.r} ${m.r} 0 ${b - a > Math.PI ? 1 : 0} 1 ${m.cx + m.r * Math.cos(b)} ${m.cy + m.r * Math.sin(b)}`;
         } else {
-          ['x', 'y', 'width', 'height', 'x2', 'y2', 'cx', 'cy', 'r'].forEach(k => {
-            if (m[k] !== undefined) attrs[tag === 'line' && k === 'x' ? 'x1' : tag === 'line' && k === 'y' ? 'y1' : k] = m[k];
-          });
+          ['x', 'y', 'width', 'height', 'x2', 'y2', 'cx', 'cy', 'r'].forEach(k => { if (m[k] !== undefined) attrs[tag === 'line' && k === 'x' ? 'x1' : tag === 'line' && k === 'y' ? 'y1' : k] = m[k]; });
         }
         if (m.filled) attrs.fill = '#a3e8c1';
         if (m.thick) attrs['stroke-width'] = 0.65;
@@ -1471,179 +1119,101 @@
 
       const coords = ALL_FORMATIONS[team.formation] || ALL_FORMATIONS['433'];
       const customMap = team.customCoords?.[team.formation] || {};
-
       coords.forEach((p, idx) => {
         const c = customMap[idx];
-        const x = c ? c.x : p.y * 0.68;
-        const y = c ? c.y : (100 - p.x) * 1.05;
+        const x = c ? c.x : p.y * 0.68; const y = c ? c.y : (100 - p.x) * 1.05;
         const assignedId = team.lineupSlots?.[idx];
         const pl = (team.players || []).find(item => item.id === assignedId) || available[idx] || null;
         const isAbsent = pl && pl.status === 'absent';
         const isCap = pl && team.roles?.captain === pl.id;
-
         const g = svgEl('g', { transform: `translate(${x} ${y})`, style: 'cursor:grab', 'data-slot-idx': String(idx) });
         g.appendChild(svgEl('circle', { r: 3.1, fill: isAbsent ? 'rgba(255,71,105,0.3)' : 'rgba(30,232,122,0.22)' }));
         g.appendChild(svgEl('circle', { r: 2.45, fill: isAbsent ? '#ff4769' : (idx === 0 ? (team.kitSecondary || '#f7c948') : (team.kitPrimary || '#1ee87a')), stroke: '#04140c', 'stroke-width': 0.38 }));
-
         const num = svgEl('text', { 'text-anchor': 'middle', 'dominant-baseline': 'central', fill: '#04190e', 'font-family': 'Sora, sans-serif', 'font-size': 2.15, 'font-weight': 800 });
-        num.textContent = pl ? String(pl.number) : String(idx + 1);
-        g.appendChild(num);
-
+        num.textContent = pl ? String(pl.number) : String(idx + 1); g.appendChild(num);
         const lbl = svgEl('text', { y: 4.5, 'text-anchor': 'middle', fill: '#fff', 'font-family': 'Manrope, sans-serif', 'font-size': 2.0, 'font-weight': 800, 'paint-order': 'stroke', stroke: '#04190e', 'stroke-width': 0.75 });
         const clean = pl ? pl.name.replace(/\(POR\)/i, '').trim() : p.code;
-        lbl.textContent = (isCap ? '© ' : '') + (clean.length > 13 ? clean.slice(0, 12) + '…' : clean);
-        g.appendChild(lbl);
+        lbl.textContent = (isCap ? '© ' : '') + (clean.length > 13 ? clean.slice(0, 12) + '…' : clean); g.appendChild(lbl);
         svg.appendChild(g);
       });
 
       const pt = svg.createSVGPoint();
-      function cursorPt(evt) {
-        const e = evt.touches ? evt.touches[0] : evt;
-        pt.x = e.clientX; pt.y = e.clientY;
-        return pt.matrixTransform(svg.getScreenCTM().inverse());
-      }
-      svg.addEventListener('pointerdown', e => {
-        const node = e.target.closest('[data-slot-idx]');
-        if (!node) return;
-        draggingSlotIndex = Number(node.getAttribute('data-slot-idx'));
-        e.preventDefault();
-      });
+      function cursorPt(evt) { const e = evt.touches ? evt.touches[0] : evt; pt.x = e.clientX; pt.y = e.clientY; return pt.matrixTransform(svg.getScreenCTM().inverse()); }
+      svg.addEventListener('pointerdown', e => { const node = e.target.closest('[data-slot-idx]'); if (!node) return; draggingSlotIndex = Number(node.getAttribute('data-slot-idx')); e.preventDefault(); });
       svg.addEventListener('pointermove', e => {
         if (draggingSlotIndex === null) return;
-        const loc = cursorPt(e);
-        const cx = Math.max(2, Math.min(66, loc.x));
-        const cy = Math.max(4, Math.min(102, loc.y));
-        if (!team.customCoords) team.customCoords = {};
-        if (!team.customCoords[team.formation]) team.customCoords[team.formation] = {};
+        const loc = cursorPt(e); const cx = Math.max(2, Math.min(66, loc.x)); const cy = Math.max(4, Math.min(102, loc.y));
+        if (!team.customCoords) team.customCoords = {}; if (!team.customCoords[team.formation]) team.customCoords[team.formation] = {};
         team.customCoords[team.formation][draggingSlotIndex] = { x: Number(cx.toFixed(2)), y: Number(cy.toFixed(2)) };
-        const node = svg.querySelector(`[data-slot-idx="${draggingSlotIndex}"]`);
-        if (node) node.setAttribute('transform', `translate(${cx} ${cy})`);
+        const node = svg.querySelector(`[data-slot-idx="${draggingSlotIndex}"]`); if (node) node.setAttribute('transform', `translate(${cx} ${cy})`);
       });
       const stop = () => { if (draggingSlotIndex !== null) { draggingSlotIndex = null; saveState(); } };
-      svg.addEventListener('pointerup', stop);
-      svg.addEventListener('pointerleave', stop);
+      svg.addEventListener('pointerup', stop); svg.addEventListener('pointerleave', stop);
       return svg;
     }
 
     function renderTacticsView(team, available) {
       const fSel = document.getElementById('tacticsFormationSelect');
-      if (!fSel.options.length) {
-        Object.keys(ALL_FORMATIONS).forEach(k => fSel.add(new Option(k.split('').join('-'), k)));
-      }
+      if (!fSel.options.length) Object.keys(ALL_FORMATIONS).forEach(k => fSel.add(new Option(k.split('').join('-'), k)));
       fSel.value = team.formation || '433';
-
-      const stIn = document.getElementById('tacticsStyleInput');
-      if (document.activeElement !== stIn) stIn.value = team.tacticalStyle || '';
-
+      const stIn = document.getElementById('tacticsStyleInput'); if (document.activeElement !== stIn) stIn.value = team.tacticalStyle || '';
       const optsHtml = (selectedId) => `<option value="">-- Seleccionar --</option>` + (team.players || []).map(p => `<option value="${esc(p.id)}" ${p.id === selectedId ? 'selected' : ''}>#${esc(p.number)} ${esc(p.name)}</option>`).join('');
       document.getElementById('roleCaptainSelect').innerHTML = optsHtml(team.roles?.captain);
       document.getElementById('rolePenaltySelect').innerHTML = optsHtml(team.roles?.penalty);
       document.getElementById('roleFreekickSelect').innerHTML = optsHtml(team.roles?.freekick);
-
       document.getElementById('tacticsPitchContainer').replaceChildren(buildPitchSvg(team, available));
 
       const coords = ALL_FORMATIONS[team.formation] || ALL_FORMATIONS['433'];
-      const all = team.players || [];
-      const starterIds = new Set();
-
+      const all = team.players || []; const starterIds = new Set();
       document.getElementById('tacticsLineupSlots').innerHTML = coords.map((pos, idx) => {
-        const cur = team.lineupSlots?.[idx] || available[idx]?.id || '';
-        if (cur) starterIds.add(cur);
+        const cur = team.lineupSlots?.[idx] || available[idx]?.id || ''; if (cur) starterIds.add(cur);
         return `
           <div class="slot-item">
             <span class="slot-badge">${idx + 1}·${esc(pos.code)}</span>
             <select data-lineup-slot="${idx}">
               <option value="">-- Vacío --</option>
-              <optgroup label="✅ SÍ VIENEN (${available.length})">
-                ${all.filter(p => p.status === 'present' || p.status === 'late').map(p => `<option value="${esc(p.id)}" ${p.id === cur ? 'selected' : ''}>#${esc(p.number)} ${esc(p.name)} (${attRate(p, team)}%)</option>`).join('')}
-              </optgroup>
-              <optgroup label="❌ NO VIENEN / ⏳ DUDA">
-                ${all.filter(p => p.status !== 'present' && p.status !== 'late').map(p => `<option value="${esc(p.id)}" ${p.id === cur ? 'selected' : ''}>${p.status === 'absent' ? '❌ [NO VIENE]' : '⏳ [DUDA]'} #${esc(p.number)} ${esc(p.name)}</option>`).join('')}
-              </optgroup>
+              <optgroup label="✅ SÍ VIENEN (${available.length})">${all.filter(p => p.status === 'present' || p.status === 'late').map(p => `<option value="${esc(p.id)}" ${p.id === cur ? 'selected' : ''}>#${esc(p.number)} ${esc(p.name)}</option>`).join('')}</optgroup>
+              <optgroup label="❌ NO VIENEN / ⏳ DUDA">${all.filter(p => p.status !== 'present' && p.status !== 'late').map(p => `<option value="${esc(p.id)}" ${p.id === cur ? 'selected' : ''}>${p.status === 'absent' ? '❌ [NO VIENE]' : '⏳ [DUDA]'} #${esc(p.number)} ${esc(p.name)}</option>`).join('')}</optgroup>
             </select>
-          </div>
-        `;
+          </div>`;
       }).join('');
-
       const bench = available.filter(p => !starterIds.has(p.id));
-      const benchBox = document.getElementById('benchPlayersList');
-      if (benchBox) {
-        benchBox.innerHTML = bench.length
-          ? bench.map(p => `<span class="bench-chip">🔄 #${esc(p.number)} ${esc(p.name)} (${esc(p.position)})</span>`).join('')
-          : `<span style="font-size:12px;color:var(--text-muted)">No hay suplentes adicionales confirmados hoy.</span>`;
-      }
+      document.getElementById('benchPlayersList').innerHTML = bench.length ? bench.map(p => `<span class="bench-chip">🔄 #${esc(p.number)} ${esc(p.name)} (${esc(p.position)})</span>`).join('') : `<span style="font-size:12px;color:var(--text-muted)">No hay suplentes adicionales confirmados hoy.</span>`;
     }
 
     function renderMatchLiveView(team, ev) {
       if (!team.liveMatch) team.liveMatch = { scoreHome: 0, scoreAway: 0, log: [] };
       if (!team.drills) team.drills = JSON.parse(JSON.stringify(DEFAULT_DRILLS));
-
       document.getElementById('liveMyTeamLabel').textContent = team.name.toUpperCase();
       document.getElementById('liveOpponentLabel').textContent = (ev.opponent || 'RIVAL').toUpperCase();
       document.getElementById('scoreHome').textContent = String(team.liveMatch.scoreHome || 0);
       document.getElementById('scoreAway').textContent = String(team.liveMatch.scoreAway || 0);
-
       const pOpts = (team.players || []).map(p => `<option value="${esc(p.name)}">#${esc(p.number)} ${esc(p.name)}</option>`).join('');
       document.getElementById('livePlayerPrimary').innerHTML = pOpts;
       document.getElementById('livePlayerSecondary').innerHTML = `<option value="">-- Ninguno / Sin asistencia --</option>` + pOpts;
-
-      const tList = document.getElementById('liveTimelineList');
-      tList.innerHTML = (team.liveMatch.log || []).map(item => `
-        <div class="timeline-item">
-          <span><b style="color:var(--green-electric)">${esc(item.min)}</b> · ${esc(item.text)}</span>
-          <button type="button" class="btn-danger" data-del-log="${esc(item.id)}" style="padding:3px 7px">✕</button>
-        </div>
-      `).join('');
-
-      const dGrid = document.getElementById('drillsGrid');
-      dGrid.innerHTML = (team.drills || []).map(d => `
-        <article class="drill-card ${d.done ? 'done' : ''}">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <span class="pos-badge">${esc(d.category)} · ${esc(d.duration)}</span>
-            <button type="button" class="fee-btn ${d.done ? 'paid' : ''}" data-toggle-drill="${esc(d.id)}">
-              ${d.done ? '✅ Completado' : '⏳ Pendiente'}
-            </button>
-          </div>
-          <h4 style="font-family:'Sora',sans-serif;font-size:14.5px;color:#fff">${esc(d.title)}</h4>
-          <p style="font-size:12px;color:var(--text-muted)">${esc(d.desc)}</p>
-        </article>
-      `).join('');
+      document.getElementById('liveTimelineList').innerHTML = (team.liveMatch.log || []).map(item => `<div class="timeline-item"><span><b style="color:var(--green-electric)">${esc(item.min)}</b> · ${esc(item.text)}</span><button type="button" class="btn-danger" data-del-log="${esc(item.id)}" style="padding:3px 7px">✕</button></div>`).join('');
+      document.getElementById('drillsGrid').innerHTML = (team.drills || []).map(d => `<article class="drill-card ${d.done ? 'done' : ''}"><div style="display:flex;justify-content:space-between;align-items:center"><span class="pos-badge">${esc(d.category)} · ${esc(d.duration)}</span><button type="button" class="fee-btn ${d.done ? 'paid' : ''}" data-toggle-drill="${esc(d.id)}">${d.done ? '✅ Completado' : '⏳ Pendiente'}</button></div><h4 style="font-family:'Sora',sans-serif;font-size:14.5px;color:#fff">${esc(d.title)}</h4><p style="font-size:12px;color:var(--text-muted)">${esc(d.desc)}</p></article>`).join('');
     }
 
-    function renderSquadView(team, totalJ) {
+    function renderSquadView(team) {
       const positions = ['Portero', 'Defensa Central', 'Defensa Lateral', 'Defensa', 'Mediocampista', 'Enganche / 10', 'Extremo Derecho', 'Extremo Izquierdo', 'Delantero'];
       document.getElementById('squadTableBody').innerHTML = (team.players || []).map(p => `
         <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
           <td style="padding:7px"><input type="text" data-edit-field="number" data-id="${esc(p.id)}" value="${esc(p.number)}" style="width:48px;padding:5px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;text-align:center;font-weight:800" /></td>
           <td style="padding:7px"><input type="text" data-edit-field="name" data-id="${esc(p.id)}" value="${esc(p.name)}" style="width:100%;min-width:145px;padding:6px 8px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;font-weight:700" /></td>
           <td style="padding:7px"><input type="tel" data-edit-field="phone" data-id="${esc(p.id)}" value="${esc(p.phone || '')}" placeholder="+52 412..." style="width:138px;padding:6px 8px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fef08a;font-size:12px" /></td>
-          <td style="padding:7px">
-            <select data-edit-field="position" data-id="${esc(p.id)}" style="padding:6px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff">
-              ${positions.map(pos => `<option value="${esc(pos)}" ${p.position === pos ? 'selected' : ''}>${esc(pos)}</option>`).join('')}
-            </select>
-          </td>
+          <td style="padding:7px"><select data-edit-field="position" data-id="${esc(p.id)}" style="padding:6px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff">${positions.map(pos => `<option value="${esc(pos)}" ${p.position === pos ? 'selected' : ''}>${esc(pos)}</option>`).join('')}</select></td>
           <td style="padding:7px"><span class="pill">${p.status === 'present' ? '✅ Sí viene' : p.status === 'late' ? '⏰ Tarde' : p.status === 'absent' ? '❌ No viene' : '⏳ Duda'}</span></td>
-          <td style="padding:7px;font-weight:800;color:var(--green-neon)">${attRate(p, team)}% (${activeWeeksCount(p, team) - absencesCount(p, team)}/${activeWeeksCount(p, team)})</td>
+          <td style="padding:7px;font-weight:800;color:var(--green-neon)">${attRate(p, team)}%</td>
           <td style="padding:7px"><input type="number" min="0" data-edit-field="goals" data-id="${esc(p.id)}" value="${Number(p.goals || 0)}" style="width:54px;padding:5px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;text-align:center" /></td>
           <td style="padding:7px"><input type="number" min="0" data-edit-field="assists" data-id="${esc(p.id)}" value="${Number(p.assists || 0)}" style="width:54px;padding:5px;border-radius:7px;border:1px solid var(--border-green);background:#04120b;color:#fff;text-align:center" /></td>
           <td style="padding:7px"><button type="button" class="btn-danger" data-delete-player="${esc(p.id)}">Descartar</button></td>
-        </tr>
-      `).join('');
+        </tr>`).join('');
     }
 
     function renderSettingsView(team, totalJ) {
-      const map = [
-        ['cfgTeamName', team.name || ''],
-        ['cfgTotalJornadas', totalJ],
-        ['cfgOwnerName', team.ownerName || ''],
-        ['cfgTeamSubtitle', team.subtitle || ''],
-        ['cfgCoachName', team.coachName || 'Franco'],
-        ['cfgKitPrimary', team.kitPrimary || '#1ee87a'],
-        ['cfgKitSecondary', team.kitSecondary || '#f7c948']
-      ];
-      map.forEach(([id, val]) => {
-        const el = document.getElementById(id);
-        if (el && document.activeElement !== el) el.value = val;
+      [['cfgTeamName', team.name || ''], ['cfgTotalJornadas', totalJ], ['cfgOwnerName', team.ownerName || ''], ['cfgTeamSubtitle', team.subtitle || ''], ['cfgCoachName', team.coachName || 'Franco'], ['cfgKitPrimary', team.kitPrimary || '#1ee87a'], ['cfgKitSecondary', team.kitSecondary || '#f7c948']].forEach(([id, val]) => {
+        const el = document.getElementById(id); if (el && document.activeElement !== el) el.value = val;
       });
     }
 
@@ -1653,230 +1223,135 @@
     }
 
     function buildReport() {
-      const team = activeTeam();
-      const totalJ = teamJornadas(team);
-      const ev = activeEvent(team);
+      const team = activeTeam(); const totalJ = teamJornadas(team); const ev = activeEvent(team);
       const present = (team.players || []).filter(p => p.status === 'present');
       const late = (team.players || []).filter(p => p.status === 'late');
       const absent = (team.players || []).filter(p => p.status === 'absent');
       const doubt = (team.players || []).filter(p => p.status === 'doubt');
-
       return [
         `⚽ *LISTA DE QUIÉN VIENE Y QUIÉN NO VIENE — ${team.name.toUpperCase()}*`,
         `👑 *Dueño:* ${team.ownerName || ''} · 👨‍💼 *DT:* ${team.coachName}`,
         `📌 *${ev.weekLabel || 'Jornada 1'} (de ${totalJ}):* vs ${ev.opponent || 'Por definir'}`,
-        `📅 *Fecha:* ${ev.date} · 🕒 ${ev.time} · 📍 ${ev.field}`,
-        ``,
+        `📅 *Fecha:* ${ev.date} · 🕒 ${ev.time} · 📍 ${ev.field}`, ``,
         `✅ *SÍ VIENEN A JUGAR (${present.length + late.length}):*`,
         ...present.map(p => `  • #${p.number} ${p.name}${Number(p.joinWeek || 1) > 1 ? ` [Nuevo J${p.joinWeek}]` : ''}`),
-        ...late.map(p => `  • #${p.number} ${p.name} (⏰ Llega tarde)`),
-        ``,
+        ...late.map(p => `  • #${p.number} ${p.name} (⏰ Llega tarde)`), ``,
         `❌ *NO VIENEN A JUGAR (${absent.length}):*`,
-        ...(absent.length ? absent.map(p => `  • #${p.number} ${p.name} — Razón: ${p.absenceReason || 'Sin avisar'}${p.note ? ' (' + p.note + ')' : ''}`) : ['  • Ninguna baja']),
+        ...(absent.length ? absent.map(p => `  • #${p.number} ${p.name} — Razón: ${p.absenceReason || 'Sin avisar'}`) : ['  • Ninguna baja']),
         ...(doubt.length ? ['', `⏳ *FALTA POR CONFIRMAR (${doubt.length}):*`, ...doubt.map(p => `  • #${p.number} ${p.name}`)] : [])
       ].join('\n');
     }
 
     function exportAttendanceCsv() {
-      const team = activeTeam();
-      const totalJ = teamJornadas(team);
+      const team = activeTeam(); const totalJ = teamJornadas(team);
       const rows = [['Dorsal', 'Jugador', 'Telefono_WhatsApp', 'Posicion', 'Jornada_Ingreso', 'Viene_Hoy', 'Razon_Social_Si_No_Viene', `Constancia_${totalJ}_Jornadas`, 'Faltas', 'Goles', 'Asistencias']];
-      (team.players || []).forEach(p => {
-        rows.push([
-          p.number, p.name, p.phone || '', p.position, `Jornada ${p.joinWeek || 1}`,
-          p.status === 'present' ? 'SI VIENE' : p.status === 'absent' ? 'NO VIENE' : p.status,
-          p.absenceReason || '', `${attRate(p, team)}%`, absencesCount(p, team),
-          p.goals || 0, p.assists || 0
-        ]);
-      });
+      (team.players || []).forEach(p => rows.push([p.number, p.name, p.phone || '', p.position, `Jornada ${p.joinWeek || 1}`, p.status === 'present' ? 'SI VIENE' : p.status === 'absent' ? 'NO VIENE' : p.status, p.absenceReason || '', `${attRate(p, team)}%`, absencesCount(p, team), p.goals || 0, p.assists || 0]));
       const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
       const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = `quien-viene-${team.id}-${TODAY}.csv`; a.click();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-      showToast('Archivo Excel/CSV descargado');
+      const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `quien-viene-${team.id}-${TODAY}.csv`; a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000); showToast('Archivo Excel/CSV descargado');
     }
 
     document.addEventListener('click', e => {
       const sw = e.target.closest('[data-switch-team]');
       if (sw) { state.activeTeamId = sw.dataset.switchTeam; saveState(`Equipo activo: ${activeTeam().name}`); renderAll(); return; }
-
       const nv = e.target.closest('[data-nav-view]');
       if (nv) { switchView(nv.dataset.navView); return; }
-
       const evCard = e.target.closest('[data-select-event]');
       if (evCard) {
-        const team = activeTeam();
-        const totalJ = teamJornadas(team);
-        team.activeEventId = evCard.dataset.selectEvent;
-        const ev = activeEvent(team);
-        const jIdx = Math.min(totalJ - 1, Math.max(0, (parseInt(String(ev.weekLabel || '1').replace(/\D+/g, ''), 10) || 1) - 1));
-        (team.players || []).forEach(p => {
-          const val = ensureWeeks(p, team)[jIdx];
-          p.status = val === 'P' ? 'present' : val === 'L' ? 'late' : val === 'N' ? 'doubt' : 'absent';
-        });
-        saveState(`${ev.weekLabel} seleccionada`);
-        renderAll();
-        return;
+        const team = activeTeam(); const totalJ = teamJornadas(team); team.activeEventId = evCard.dataset.selectEvent;
+        const ev = activeEvent(team); const jIdx = Math.min(totalJ - 1, Math.max(0, (parseInt(String(ev.weekLabel || '1').replace(/\D+/g, ''), 10) || 1) - 1));
+        (team.players || []).forEach(p => { const val = ensureWeeks(p, team)[jIdx]; p.status = val === 'P' ? 'present' : val === 'L' ? 'late' : val === 'N' ? 'doubt' : 'absent'; });
+        saveState(`${ev.weekLabel} seleccionada`); renderAll(); return;
       }
-
       const flt = e.target.closest('[data-att-filter]');
       if (flt) { currentFilter = flt.dataset.attFilter; renderAll(); return; }
-
       const wkBtn = e.target.closest('[data-toggle-week]');
       if (wkBtn) {
-        const team = activeTeam();
-        const p = (team.players || []).find(x => x.id === wkBtn.dataset.toggleWeek);
-        const idx = Number(wkBtn.dataset.wkIdx);
-        if (p) {
-          const w = ensureWeeks(p, team);
-          w[idx] = w[idx] === 'P' ? 'A' : w[idx] === 'A' ? 'L' : w[idx] === 'L' ? 'N' : 'P';
-          saveState(`Jornada ${idx + 1} actualizada para ${p.name}`);
-          renderAll();
-        }
+        const team = activeTeam(); const p = (team.players || []).find(x => x.id === wkBtn.dataset.toggleWeek); const idx = Number(wkBtn.dataset.wkIdx);
+        if (p) { const w = ensureWeeks(p, team); w[idx] = w[idx] === 'P' ? 'A' : w[idx] === 'A' ? 'L' : w[idx] === 'L' ? 'N' : 'P'; saveState(`Jornada ${idx + 1} actualizada`); renderAll(); }
         return;
       }
-
       const st = e.target.closest('[data-set-status]');
       if (st) {
-        const team = activeTeam();
-        const totalJ = teamJornadas(team);
-        const p = (team.players || []).find(x => x.id === st.dataset.id);
+        const team = activeTeam(); const totalJ = teamJornadas(team); const p = (team.players || []).find(x => x.id === st.dataset.id);
         if (p) {
-          p.status = st.dataset.setStatus;
-          const ev = activeEvent(team);
+          p.status = st.dataset.setStatus; const ev = activeEvent(team);
           const jIdx = Math.min(totalJ - 1, Math.max(0, (parseInt(String(ev.weekLabel || '1').replace(/\D+/g, ''), 10) || 1) - 1));
           const w = ensureWeeks(p, team);
           if (p.status === 'present') { p.absenceReason = ''; w[jIdx] = 'P'; }
           else if (p.status === 'late') { w[jIdx] = 'L'; }
           else if (p.status === 'absent') { w[jIdx] = 'A'; if (!p.absenceReason) p.absenceReason = 'Sin avisar / Falta injustificada'; }
-          saveState(`${p.name}: ${p.status === 'present' ? '✅ SÍ VIENE' : p.status === 'absent' ? '❌ NO VIENE' : 'actualizado'}`);
-          renderAll();
+          saveState(`${p.name}: ${p.status === 'present' ? '✅ SÍ VIENE' : p.status === 'absent' ? '❌ NO VIENE' : 'actualizado'}`); renderAll();
         }
         return;
       }
-
       const fee = e.target.closest('[data-toggle-fee]');
-      if (fee) {
-        const p = (activeTeam().players || []).find(x => x.id === fee.dataset.toggleFee);
-        if (p) { p.feePaid = !p.feePaid; saveState(`Arbitraje de ${p.name}: ${p.feePaid ? 'Pagado' : 'Pendiente'}`); renderAll(); }
-        return;
-      }
-
+      if (fee) { const p = (activeTeam().players || []).find(x => x.id === fee.dataset.toggleFee); if (p) { p.feePaid = !p.feePaid; saveState(); renderAll(); } return; }
       const drBtn = e.target.closest('[data-toggle-drill]');
-      if (drBtn) {
-        const d = (activeTeam().drills || []).find(x => x.id === drBtn.dataset.toggleDrill);
-        if (d) { d.done = !d.done; saveState(`Ejercicio: ${d.title}`); renderAll(); }
-        return;
-      }
-
+      if (drBtn) { const d = (activeTeam().drills || []).find(x => x.id === drBtn.dataset.toggleDrill); if (d) { d.done = !d.done; saveState(); renderAll(); } return; }
       const delLog = e.target.closest('[data-del-log]');
-      if (delLog) {
-        const team = activeTeam();
-        team.liveMatch.log = (team.liveMatch.log || []).filter(x => x.id !== delLog.dataset.delLog);
-        saveState('Evento borrado de bitácora'); renderAll(); return;
-      }
-
+      if (delLog) { const team = activeTeam(); team.liveMatch.log = (team.liveMatch.log || []).filter(x => x.id !== delLog.dataset.delLog); saveState(); renderAll(); return; }
       const ping = e.target.closest('[data-ping-player]');
       if (ping) {
-        const team = activeTeam(); const ev = activeEvent(team);
-        const p = (team.players || []).find(x => x.id === ping.dataset.pingPlayer);
+        const team = activeTeam(); const ev = activeEvent(team); const p = (team.players || []).find(x => x.id === ping.dataset.pingPlayer);
         if (p) {
           const rsvpUrl = `${location.origin}${location.pathname}?team=${team.id}&rsvp=1`;
-          const msg = `Hola *${p.name}* (#${p.number}), necesitamos saber quién viene y quién no viene en *${team.name}* (DT: ${team.coachName}) para ${ev.weekLabel || 'esta jornada'} vs *${ev.opponent}* (${ev.date} · ${ev.time} en ${ev.field}). Confirma en 1 toque aquí: ${rsvpUrl}`;
-          const digits = cleanPhone(p.phone);
-          const waBase = digits ? `https://wa.me/${digits}` : 'https://wa.me/';
-          window.open(`${waBase}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+          const msg = `Hola *${p.name}* (#${p.number}), confirma si vienes o no vienes en *${team.name}* para ${ev.weekLabel} vs *${ev.opponent}* (${ev.date} · ${ev.time} en ${ev.field}): ${rsvpUrl}`;
+          const digits = cleanPhone(p.phone); window.open(`${digits ? `https://wa.me/${digits}` : 'https://wa.me/'}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
         }
         return;
       }
-
       const gBtn = e.target.closest('[data-add-goal]');
-      if (gBtn) {
-        const p = (activeTeam().players || []).find(x => x.id === gBtn.dataset.addGoal);
-        if (p) { p.goals = Number(p.goals || 0) + 1; saveState(`⚽ Gol para ${p.name}`); renderAll(); }
-        return;
-      }
-
+      if (gBtn) { const p = (activeTeam().players || []).find(x => x.id === gBtn.dataset.addGoal); if (p) { p.goals = Number(p.goals || 0) + 1; saveState(); renderAll(); } return; }
       const aBtn = e.target.closest('[data-add-assist]');
-      if (aBtn) {
-        const p = (activeTeam().players || []).find(x => x.id === aBtn.dataset.addAssist);
-        if (p) { p.assists = Number(p.assists || 0) + 1; saveState(`👟 Asistencia para ${p.name}`); renderAll(); }
-        return;
-      }
-
+      if (aBtn) { const p = (activeTeam().players || []).find(x => x.id === aBtn.dataset.addAssist); if (p) { p.assists = Number(p.assists || 0) + 1; saveState(); renderAll(); } return; }
       const del = e.target.closest('[data-delete-player]');
-      if (del) {
-        const team = activeTeam();
-        const idx = (team.players || []).findIndex(x => x.id === del.dataset.deletePlayer);
-        if (idx >= 0) { const rem = team.players.splice(idx, 1)[0]; saveState(`Jugador descartado: ${rem.name}`); renderAll(); }
-      }
+      if (del) { const team = activeTeam(); const idx = (team.players || []).findIndex(x => x.id === del.dataset.deletePlayer); if (idx >= 0) { const rem = team.players.splice(idx, 1)[0]; saveState(`Jugador descartado: ${rem.name}`); renderAll(); } }
     });
 
     document.getElementById('btnAddOneJornada')?.addEventListener('click', () => {
-      const team = activeTeam();
-      team.totalJornadas = teamJornadas(team) + 1;
-      syncTeamEventsLength(team);
-      team.activeEventId = 'jornada_' + team.totalJornadas;
-      saveState(`✅ Se abrió la Jornada ${team.totalJornadas} en ${team.name}`);
-      renderAll();
+      const team = activeTeam(); team.totalJornadas = teamJornadas(team) + 1; syncTeamEventsLength(team);
+      team.activeEventId = 'jornada_' + team.totalJornadas; saveState(`✅ Se abrió la Jornada ${team.totalJornadas}`); renderAll();
     });
-
     document.getElementById('btnAddExtraJornadaAm')?.addEventListener('click', () => {
-      const am = state.teams.america_vet;
-      am.totalJornadas = 12;
-      syncTeamEventsLength(am);
-      saveState('✅ Club América ampliado a 12 Jornadas para meter nuevos jugadores');
-      renderAll();
+      const am = state.teams.america_vet; am.totalJornadas = 12; syncTeamEventsLength(am); saveState('✅ Club América ampliado a 12 Jornadas'); renderAll();
     });
 
     document.addEventListener('change', e => {
-      const team = activeTeam();
-      const totalJ = teamJornadas(team);
-      if (e.target.id === 'evWeekLabel') {
-        const matchEv = (team.events || []).find(x => x.weekLabel === e.target.value);
-        if (matchEv) { team.activeEventId = matchEv.id; saveState(`${matchEv.weekLabel} activa`); renderAll(); return; }
-      }
+      const team = activeTeam(); const totalJ = teamJornadas(team);
+      if (e.target.id === 'evWeekLabel') { const matchEv = (team.events || []).find(x => x.weekLabel === e.target.value); if (matchEv) { team.activeEventId = matchEv.id; saveState(); renderAll(); return; } }
       if (e.target.matches('[data-absence-reason]')) {
         const p = (team.players || []).find(x => x.id === e.target.dataset.absenceReason);
         if (p) {
           p.absenceReason = e.target.value;
-          if (p.absenceReason) {
-            p.status = 'absent';
-            const ev = activeEvent(team);
-            const jIdx = Math.min(totalJ - 1, Math.max(0, (parseInt(String(ev.weekLabel || '1').replace(/\D+/g, ''), 10) || 1) - 1));
-            const w = ensureWeeks(p, team); w[jIdx] = 'A';
-          }
-          saveState(`Razón guardada: ${p.absenceReason || 'Ninguna'}`); renderAll();
+          if (p.absenceReason) { p.status = 'absent'; const jIdx = Math.min(totalJ - 1, Math.max(0, (parseInt(String(activeEvent(team).weekLabel || '1').replace(/\D+/g, ''), 10) || 1) - 1)); ensureWeeks(p, team)[jIdx] = 'A'; }
+          saveState(); renderAll();
         }
         return;
       }
-      if (e.target.matches('[data-player-note]')) {
-        const p = (team.players || []).find(x => x.id === e.target.dataset.playerNote);
-        if (p) { p.note = e.target.value; saveState('Nota guardada'); }
-        return;
-      }
-      if (e.target.id === 'tacticsFormationSelect') { team.formation = e.target.value; saveState('Formación actualizada'); renderAll(); return; }
-      if (e.target.id === 'roleCaptainSelect') { team.roles = { ...(team.roles || {}), captain: e.target.value }; saveState('Capitán asignado'); renderAll(); return; }
-      if (e.target.id === 'rolePenaltySelect') { team.roles = { ...(team.roles || {}), penalty: e.target.value }; saveState('Cobrador de penales asignado'); return; }
-      if (e.target.id === 'roleFreekickSelect') { team.roles = { ...(team.roles || {}), freekick: e.target.value }; saveState('Cobrador de tiros libres asignado'); return; }
-      if (e.target.matches('[data-lineup-slot]')) {
-        if (!team.lineupSlots) team.lineupSlots = {};
-        team.lineupSlots[Number(e.target.dataset.lineupSlot)] = e.target.value;
-        saveState('Titular actualizado'); renderAll(); return;
-      }
+      if (e.target.matches('[data-player-note]')) { const p = (team.players || []).find(x => x.id === e.target.dataset.playerNote); if (p) { p.note = e.target.value; saveState(); } return; }
+      if (e.target.id === 'tacticsFormationSelect') { team.formation = e.target.value; saveState(); renderAll(); return; }
+      if (e.target.id === 'roleCaptainSelect') { team.roles = { ...(team.roles || {}), captain: e.target.value }; saveState(); renderAll(); return; }
+      if (e.target.id === 'rolePenaltySelect') { team.roles = { ...(team.roles || {}), penalty: e.target.value }; saveState(); return; }
+      if (e.target.id === 'roleFreekickSelect') { team.roles = { ...(team.roles || {}), freekick: e.target.value }; saveState(); return; }
+      if (e.target.matches('[data-lineup-slot]')) { if (!team.lineupSlots) team.lineupSlots = {}; team.lineupSlots[Number(e.target.dataset.lineupSlot)] = e.target.value; saveState(); renderAll(); return; }
       if (e.target.matches('[data-edit-field]')) {
-        const p = (team.players || []).find(x => x.id === e.target.dataset.id);
-        const f = e.target.dataset.editField;
-        if (p && f) { p[f] = (f === 'goals' || f === 'assists') ? Math.max(0, Number(e.target.value || 0)) : e.target.value; saveState('Jugador editado'); renderAll(); }
+        const p = (team.players || []).find(x => x.id === e.target.dataset.id); const f = e.target.dataset.editField;
+        if (p && f) { p[f] = (f === 'goals' || f === 'assists') ? Math.max(0, Number(e.target.value || 0)) : e.target.value; saveState(); renderAll(); }
         return;
       }
       if (e.target.id === 'cfgLogoUpload') {
         const file = e.target.files?.[0]; if (!file) return;
         const r = new FileReader();
         r.onload = () => {
-          team.logo = String(r.result || team.logo);
-          saveState('Escudo actualizado'); renderAll();
+          const dataUrl = String(r.result || team.logo);
+          team.logo = dataUrl;
+          if (team.id === 'atletico_luz') {
+            localStorage.setItem('CUSTOM_LUZ_CREST_OVERRIDE', dataUrl);
+            window.ATLETICO_LA_LUZ_REAL_LOGO = dataUrl;
+          }
+          saveState('✅ Escudo actualizado'); renderAll();
         };
         r.readAsDataURL(file);
       }
@@ -1895,191 +1370,87 @@
     });
 
     document.getElementById('btnSaveWeekSnapshot')?.addEventListener('click', () => {
-      const team = activeTeam();
-      const totalJ = teamJornadas(team);
-      const ev = activeEvent(team);
+      const team = activeTeam(); const totalJ = teamJornadas(team); const ev = activeEvent(team);
       const jIdx = Math.min(totalJ - 1, Math.max(0, (parseInt(String(ev.weekLabel || '1').replace(/\D+/g, ''), 10) || 1) - 1));
-      (team.players || []).forEach(p => {
-        const w = ensureWeeks(p, team);
-        if (jIdx >= (Number(p.joinWeek || 1) - 1)) {
-          w[jIdx] = p.status === 'present' ? 'P' : p.status === 'late' ? 'L' : 'A';
-        }
-      });
-      saveState(`✅ Asistencia guardada en ${ev.weekLabel}`);
-      renderAll();
+      (team.players || []).forEach(p => { if (jIdx >= (Number(p.joinWeek || 1) - 1)) ensureWeeks(p, team)[jIdx] = p.status === 'present' ? 'P' : p.status === 'late' ? 'L' : 'A'; });
+      saveState(`✅ Guardado en ${ev.weekLabel}`); renderAll();
     });
-
-    document.getElementById('btnShareConstancyWa')?.addEventListener('click', () => {
-      window.open('https://wa.me/?text=' + encodeURIComponent(buildReport()), '_blank', 'noopener');
-    });
-
+    document.getElementById('btnShareConstancyWa')?.addEventListener('click', () => window.open('https://wa.me/?text=' + encodeURIComponent(buildReport()), '_blank', 'noopener'));
     document.getElementById('tacticsStyleInput')?.addEventListener('input', e => { activeTeam().tacticalStyle = e.target.value; saveState(); });
-
-    document.getElementById('btnToggleMotion')?.addEventListener('click', () => {
-      state.motionEnabled = state.motionEnabled === false ? true : false;
-      saveState(state.motionEnabled ? 'Fondos en movimiento activados' : 'Fondos en movimiento pausados');
-      renderAll();
-    });
+    document.getElementById('btnToggleMotion')?.addEventListener('click', () => { state.motionEnabled = state.motionEnabled === false ? true : false; saveState(); renderAll(); });
 
     document.getElementById('addPlayerForm')?.addEventListener('submit', e => {
       e.preventDefault();
-      const team = activeTeam();
-      const totalJ = teamJornadas(team);
-      const name = document.getElementById('newPlayerName').value.trim();
-      if (!name) return;
+      const team = activeTeam(); const totalJ = teamJornadas(team);
+      const name = document.getElementById('newPlayerName').value.trim(); if (!name) return;
       const number = document.getElementById('newPlayerNumber').value.trim() || String((team.players?.length || 0) + 1);
       const phone = document.getElementById('newPlayerPhone').value.trim();
       const position = document.getElementById('newPlayerPos').value;
       const joinWeek = Math.min(totalJ, Math.max(1, Number(document.getElementById('newPlayerJoinWeek').value || 1)));
       const status = document.getElementById('newPlayerStatus').value;
-      const weeks = makeWeeks(totalJ, status === 'absent' ? [joinWeek - 1] : [], [], joinWeek);
-
       team.players.unshift({
-        id: 'pl_' + Date.now(),
-        number,
-        name,
-        phone,
-        position,
-        status,
-        joinWeek,
+        id: 'pl_' + Date.now(), number, name, phone, position, status, joinWeek,
         absenceReason: status === 'absent' ? 'Sin avisar / Falta injustificada' : '',
         note: joinWeek > 1 ? `Nuevo jugador integrado en Jornada ${joinWeek}` : 'Plantel titular',
-        goals: 0,
-        assists: 0,
-        feePaid: false,
-        weeks
+        goals: 0, assists: 0, feePaid: false, weeks: makeWeeks(totalJ, status === 'absent' ? [joinWeek - 1] : [], [], joinWeek)
       });
-      e.target.reset();
-      saveState(`🆕 Nuevo jugador agregado en Jornada ${joinWeek}: #${number} ${name}`);
-      renderAll();
+      e.target.reset(); saveState(`🆕 Nuevo jugador agregado en Jornada ${joinWeek}: #${number} ${name}`); renderAll();
     });
 
-    function updateTimerDisplay() {
-      const m = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
-      const s = String(timerSeconds % 60).padStart(2, '0');
-      document.getElementById('matchTimerDisplay').textContent = `${m}:${s}`;
-    }
-    document.getElementById('btnTimerToggle')?.addEventListener('click', () => {
-      if (timerInterval) { clearInterval(timerInterval); timerInterval = null; showToast('Cronómetro pausado'); }
-      else { timerInterval = setInterval(() => { timerSeconds++; updateTimerDisplay(); }, 1000); showToast('Cronómetro en marcha'); }
-    });
-    document.getElementById('btnTimerHalf')?.addEventListener('click', () => { timerSeconds = 45 * 60; updateTimerDisplay(); showToast('Reloj en 45:00 (2º Tiempo)'); });
+    function updateTimerDisplay() { document.getElementById('matchTimerDisplay').textContent = `${String(Math.floor(timerSeconds / 60)).padStart(2, '0')}:${String(timerSeconds % 60).padStart(2, '0')}`; }
+    document.getElementById('btnTimerToggle')?.addEventListener('click', () => { if (timerInterval) { clearInterval(timerInterval); timerInterval = null; } else { timerInterval = setInterval(() => { timerSeconds++; updateTimerDisplay(); }, 1000); } });
+    document.getElementById('btnTimerHalf')?.addEventListener('click', () => { timerSeconds = 45 * 60; updateTimerDisplay(); });
     document.getElementById('btnTimerReset')?.addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null; timerSeconds = 0; updateTimerDisplay(); });
-
-    document.getElementById('btnHomePlus')?.addEventListener('click', () => { activeTeam().liveMatch.scoreHome++; saveState('⚽ ¡Gol registrado!'); renderAll(); });
+    document.getElementById('btnHomePlus')?.addEventListener('click', () => { activeTeam().liveMatch.scoreHome++; saveState(); renderAll(); });
     document.getElementById('btnHomeMinus')?.addEventListener('click', () => { activeTeam().liveMatch.scoreHome = Math.max(0, activeTeam().liveMatch.scoreHome - 1); saveState(); renderAll(); });
-    document.getElementById('btnAwayPlus')?.addEventListener('click', () => { activeTeam().liveMatch.scoreAway++; saveState('Gol rival registrado'); renderAll(); });
+    document.getElementById('btnAwayPlus')?.addEventListener('click', () => { activeTeam().liveMatch.scoreAway++; saveState(); renderAll(); });
     document.getElementById('btnAwayMinus')?.addEventListener('click', () => { activeTeam().liveMatch.scoreAway = Math.max(0, activeTeam().liveMatch.scoreAway - 1); saveState(); renderAll(); });
-
     document.getElementById('liveActionForm')?.addEventListener('submit', e => {
-      e.preventDefault();
-      const team = activeTeam();
-      const type = document.getElementById('liveActionType').value;
-      const p1 = document.getElementById('livePlayerPrimary').value;
-      const p2 = document.getElementById('livePlayerSecondary').value;
-      const min = document.getElementById('liveMinuteInput').value.trim() || `${Math.floor(timerSeconds / 60)}'`;
-      const desc = `${type}: ${p1}${p2 ? ' (' + p2 + ')' : ''}`;
-      team.liveMatch.log.unshift({ id: 'lg_' + Date.now(), min, text: desc });
-      document.getElementById('liveMinuteInput').value = '';
-      saveState('Acción agregada al partido en vivo'); renderAll();
+      e.preventDefault(); const team = activeTeam();
+      const desc = `${document.getElementById('liveActionType').value}: ${document.getElementById('livePlayerPrimary').value}${document.getElementById('livePlayerSecondary').value ? ' (' + document.getElementById('livePlayerSecondary').value + ')' : ''}`;
+      team.liveMatch.log.unshift({ id: 'lg_' + Date.now(), min: document.getElementById('liveMinuteInput').value.trim() || `${Math.floor(timerSeconds / 60)}'`, text: desc });
+      document.getElementById('liveMinuteInput').value = ''; saveState(); renderAll();
     });
-
     document.getElementById('btnShareLiveWa')?.addEventListener('click', () => {
-      const team = activeTeam(); const ev = activeEvent(team);
-      const lm = team.liveMatch || { scoreHome: 0, scoreAway: 0, log: [] };
-      const txt = [
-        `⏱️ *MARCADOR Y CRÓNICA EN VIVO — ${team.name.toUpperCase()}*`,
-        `👑 *Dueño:* ${team.ownerName} · *DT:* ${team.coachName}`,
-        `⚽ *${team.name} ${lm.scoreHome} - ${lm.scoreAway} ${ev.opponent || 'Rival'}*`,
-        `📍 ${ev.field} · 📅 ${ev.date}`,
-        ``,
-        `📋 *ACCIONES DEL PARTIDO:*`,
-        ...(lm.log.length ? lm.log.map(l => `  • ${l.min} — ${l.text}`) : ['  • Sin incidencias registradas'])
-      ].join('\n');
-      window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
+      const team = activeTeam(); const ev = activeEvent(team); const lm = team.liveMatch || { scoreHome: 0, scoreAway: 0, log: [] };
+      window.open('https://wa.me/?text=' + encodeURIComponent(`⏱️ *${team.name} ${lm.scoreHome} - ${lm.scoreAway} ${ev.opponent}*\n` + (lm.log || []).map(l => `• ${l.min} ${l.text}`).join('\n')), '_blank', 'noopener');
     });
-
     document.getElementById('btnRemindDoubtWa')?.addEventListener('click', () => {
       const team = activeTeam(); const ev = activeEvent(team);
-      const doubts = (team.players || []).filter(p => p.status === 'doubt');
-      const rsvpUrl = `${location.origin}${location.pathname}?team=${team.id}&rsvp=1`;
-      const names = doubts.length ? doubts.map(p => `#${p.number} ${p.name}`).join(', ') : 'todos los pendientes';
-      const txt = `🔔 *CONFIRMAR QUIÉN VIENE Y QUIÉN NO VIENE (${team.name})*\nAtención: ${names}.\nConfirmen en 1 toque para ${ev.weekLabel || 'el partido'} vs *${ev.opponent}* (${ev.date} · ${ev.time}):\n${rsvpUrl}`;
-      window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank', 'noopener');
+      window.open('https://wa.me/?text=' + encodeURIComponent(`🔔 *CONFIRMAR QUIÉN VIENE Y QUIÉN NO VIENE (${team.name})*\nPartido ${ev.weekLabel} vs ${ev.opponent}: ${location.origin}${location.pathname}?team=${team.id}&rsvp=1`), '_blank', 'noopener');
     });
-
     document.getElementById('btnExportCsv')?.addEventListener('click', exportAttendanceCsv);
     document.getElementById('btnExportCsvSquad')?.addEventListener('click', exportAttendanceCsv);
-
-    document.getElementById('btnMarkAllPresent')?.addEventListener('click', () => {
-      (activeTeam().players || []).forEach(p => { p.status = 'present'; p.absenceReason = ''; });
-      saveState('Todos marcados como SÍ VIENEN'); renderAll();
-    });
-
-    document.getElementById('btnShareWa')?.addEventListener('click', () => {
-      window.open('https://wa.me/?text=' + encodeURIComponent(buildReport()), '_blank', 'noopener');
-    });
-
-    document.getElementById('btnCopyReport')?.addEventListener('click', async () => {
-      try { await navigator.clipboard.writeText(buildReport()); showToast('Lista copiada al portapapeles'); } catch (_) {}
-    });
+    document.getElementById('btnMarkAllPresent')?.addEventListener('click', () => { (activeTeam().players || []).forEach(p => { p.status = 'present'; p.absenceReason = ''; }); saveState(); renderAll(); });
+    document.getElementById('btnShareWa')?.addEventListener('click', () => window.open('https://wa.me/?text=' + encodeURIComponent(buildReport()), '_blank', 'noopener'));
+    document.getElementById('btnCopyReport')?.addEventListener('click', async () => { try { await navigator.clipboard.writeText(buildReport()); showToast('Lista copiada'); } catch (_) {} });
 
     const rsvpModal = document.getElementById('rsvpModal');
     document.getElementById('btnOpenRsvpModal')?.addEventListener('click', () => rsvpModal?.classList.add('open'));
     document.getElementById('btnCloseRsvp')?.addEventListener('click', () => rsvpModal?.classList.remove('open'));
     document.getElementById('btnRsvpYes')?.addEventListener('click', () => {
-      const id = document.getElementById('rsvpPlayerSelect')?.value;
-      const note = document.getElementById('rsvpReasonInput')?.value.trim();
-      const p = (activeTeam().players || []).find(x => x.id === id);
-      if (p) {
-        p.status = 'present'; p.absenceReason = ''; if (note) p.note = note;
-        saveState(`✅ ${p.name} confirmó que SÍ VIENE`);
-        rsvpModal?.classList.remove('open'); renderAll();
-      }
+      const p = (activeTeam().players || []).find(x => x.id === document.getElementById('rsvpPlayerSelect')?.value);
+      if (p) { p.status = 'present'; p.absenceReason = ''; saveState(`✅ ${p.name} SÍ VIENE`); rsvpModal?.classList.remove('open'); renderAll(); }
     });
     document.getElementById('btnRsvpNo')?.addEventListener('click', () => {
-      const team = activeTeam();
-      const id = document.getElementById('rsvpPlayerSelect')?.value;
+      const team = activeTeam(); const p = (team.players || []).find(x => x.id === document.getElementById('rsvpPlayerSelect')?.value);
       const reason = document.getElementById('rsvpReasonInput')?.value.trim() || 'Compromiso familiar / Personal';
-      const p = (team.players || []).find(x => x.id === id);
-      if (p) {
-        p.status = 'absent'; p.absenceReason = reason; p.note = reason;
-        const w = ensureWeeks(p, team); w[0] = 'A';
-        saveState(`❌ ${p.name} avisó que NO VIENE`);
-        rsvpModal?.classList.remove('open'); renderAll();
-      }
+      if (p) { p.status = 'absent'; p.absenceReason = reason; ensureWeeks(p, team)[0] = 'A'; saveState(`❌ ${p.name} NO VIENE`); rsvpModal?.classList.remove('open'); renderAll(); }
     });
 
     document.getElementById('btnAutoFillPresent')?.addEventListener('click', () => {
       const team = activeTeam();
-      const avail = [...(team.players || [])]
-        .filter(p => (p.status === 'present' || p.status === 'late') && !isDiscardCandidate(p, team))
-        .sort((a, b) => attRate(b, team) - attRate(a, team));
-      team.lineupSlots = {};
-      avail.slice(0, 11).forEach((p, idx) => { team.lineupSlots[idx] = p.id; });
-      saveState('11 titular armado con los jugadores que SÍ VIENEN'); renderAll();
+      const avail = [...(team.players || [])].filter(p => (p.status === 'present' || p.status === 'late') && !isDiscardCandidate(p, team)).sort((a, b) => attRate(b, team) - attRate(a, team));
+      team.lineupSlots = {}; avail.slice(0, 11).forEach((p, idx) => { team.lineupSlots[idx] = p.id; }); saveState('11 titular armado'); renderAll();
     });
-
-    document.getElementById('btnResetPitchCoords')?.addEventListener('click', () => {
-      const team = activeTeam();
-      if (team.customCoords?.[team.formation]) delete team.customCoords[team.formation];
-      saveState('Posiciones centradas'); renderAll();
-    });
-
+    document.getElementById('btnResetPitchCoords')?.addEventListener('click', () => { const team = activeTeam(); if (team.customCoords?.[team.formation]) delete team.customCoords[team.formation]; saveState(); renderAll(); });
     document.getElementById('btnDownloadPitchSvg')?.addEventListener('click', () => {
-      const svg = document.querySelector('#tacticsPitchContainer svg');
-      if (!svg) return;
-      const team = activeTeam();
-      const blob = new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = `pizarra-${team.id}-${team.formation}.svg`; a.click();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-      showToast('Pizarra SVG descargada');
+      const svg = document.querySelector('#tacticsPitchContainer svg'); if (!svg) return;
+      const url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml;charset=utf-8' }));
+      const a = document.createElement('a'); a.href = url; a.download = `pizarra-${activeTeam().id}.svg`; a.click();
     });
-
     document.getElementById('teamConfigForm')?.addEventListener('submit', e => {
-      e.preventDefault();
-      const team = activeTeam();
+      e.preventDefault(); const team = activeTeam();
       team.name = document.getElementById('cfgTeamName').value.trim() || team.name;
       team.totalJornadas = Math.min(38, Math.max(1, Number(document.getElementById('cfgTotalJornadas').value || team.totalJornadas)));
       team.ownerName = document.getElementById('cfgOwnerName').value.trim() || team.ownerName;
@@ -2087,89 +1458,33 @@
       team.coachName = document.getElementById('cfgCoachName').value.trim() || team.coachName;
       team.kitPrimary = document.getElementById('cfgKitPrimary').value || '#1ee87a';
       team.kitSecondary = document.getElementById('cfgKitSecondary').value || '#f7c948';
-      syncTeamEventsLength(team);
-      saveState(`Configuración guardada (${team.totalJornadas} jornadas)`); renderAll();
+      syncTeamEventsLength(team); saveState('Configuración guardada'); renderAll();
     });
-
     document.getElementById('btnExportBackup')?.addEventListener('click', () => {
-      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
+      const url = URL.createObjectURL(new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' }));
       const a = document.createElement('a'); a.href = url; a.download = `respaldo-manager-${TODAY}.json`; a.click();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-      showToast('Respaldo JSON descargado');
     });
-
     document.getElementById('inputImportBackup')?.addEventListener('change', e => {
-      const f = e.target.files?.[0]; if (!f) return;
-      const r = new FileReader();
-      r.onload = () => {
-        try {
-          const parsed = JSON.parse(String(r.result || ''));
-          if (parsed?.teams) { state = parsed; saveState('Respaldo cargado'); renderAll(); }
-        } catch (_) { showToast('Archivo inválido'); }
-      };
+      const f = e.target.files?.[0]; if (!f) return; const r = new FileReader();
+      r.onload = () => { try { const parsed = JSON.parse(String(r.result || '')); if (parsed?.teams) { state = parsed; saveState('Respaldo cargado'); renderAll(); } } catch (_) {} };
       r.readAsText(f);
     });
-
     document.getElementById('btnResetFactory')?.addEventListener('click', () => {
       if (confirm('¿Restaurar plantillas oficiales (Atlético La Luz 12 Jornadas y Club América 8 Jornadas)?')) {
-        state = clone(DEFAULT_STATE); saveState('Datos restaurados'); renderAll();
+        localStorage.removeItem('CUSTOM_LUZ_CREST_OVERRIDE'); state = clone(DEFAULT_STATE); saveState('Datos restaurados'); renderAll();
       }
     });
 
-    function checkUrlParams() {
-      const params = new URLSearchParams(location.search);
-      const t = params.get('team');
-      if (t && state.teams[t]) state.activeTeamId = t;
-      if (params.get('rsvp') === '1') {
-        setTimeout(() => rsvpModal?.classList.add('open'), 300);
-      }
-    }
+    const params = new URLSearchParams(location.search);
+    if (params.get('team') && state.teams[params.get('team')]) state.activeTeamId = params.get('team');
+    if (params.get('rsvp') === '1') setTimeout(() => rsvpModal?.classList.add('open'), 300);
 
-    function init3DBall() {
-      const stage = document.getElementById('mgrBallStage');
-      if (!stage || !window.JRBallModelV38?.fallback) return;
-      try { const fb = window.JRBallModelV38.fallback(stage); window.addEventListener('resize', () => fb.draw()); } catch (_) {}
-    }
+    if ('serviceWorker' in navigator) navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
+    if ('caches' in window) caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
 
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
-    }
-    if ('caches' in window) {
-      caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
-    }
-
-    checkUrlParams();
     renderAll();
-    init3DBall();
+    const stage = document.getElementById('mgrBallStage');
+    if (stage && window.JRBallModelV38?.fallback) { try { const fb = window.JRBallModelV38.fallback(stage); window.addEventListener('resize', () => fb.draw()); } catch (_) {} }
   </script>
-
-<!-- JR_V38_FIX43_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix43-category-row.css?v=38-43-r2">
-<script defer src="./assets/jr-v38-fix43-category-row.js?v=38-43-r2"></script>
-
-
-<!-- JR_V38_FIX44_DIRECT -->
-<script defer src="./assets/jr-v38-fix44-category-replace.js?v=38-44-r1"></script>
-
-
-<!-- JR_V38_FIX45_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix45-stability.css?v=38-48-r1">
-<script defer src="./assets/jr-v38-fix45-stability.js?v=38-48-r1"></script>
-
-
-<!-- JR_V38_FIX48_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix48-america-card.css?v=38-51-r1">
-<script defer src="./assets/jr-v38-fix48-america-card.js?v=38-54"></script>
-
-
-<!-- JR_V38_FIX50_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix50-buttons.css?v=38-50-r1">
-<script defer src="./assets/jr-v38-fix50-buttons.js?v=38-50-r1"></script>
-
-
-<!-- JR_V38_FIX59_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix59.css?v=38-59">
-<script defer src="./assets/jr-v38-fix59.js?v=38-59"></script>
 </body>
 </html>
