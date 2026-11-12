@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dt-manager-franco-v20-fut7-fut11';
+const CACHE_NAME = 'dt-manager-franco-v21-arbitraje-170';
 self.addEventListener('install', event => {
   self.skipWaiting();
 });

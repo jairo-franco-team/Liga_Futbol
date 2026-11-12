@@ -4,14 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#04120b" />
-  <title>DT Manager Pro v20 · Atlético La Luz (Fútbol 7 Ocalos) &amp; Club América 35+ (Fútbol 11)</title>
-  <meta name="description" content="Suite Oficial DT Manager Pro: Atlético La Luz (Liga de Fútbol 7 Torneo Ocalos COMUDE · 7 vs 7) y Club América Veteranos 35+ (Fútbol 11 · 11 vs 11)." />
+  <title>DT Manager Pro v21 · Arbitraje $170 · Atlético La Luz (F7) &amp; Club América 35+ (F11)</title>
+  <meta name="description" content="Suite Oficial DT Manager Pro: Arbitraje $170 por partido con división automática entre asistentes, Atlético La Luz (Fútbol 7 Torneo Ocalos) y Club América Veteranos 35+ (Fútbol 11)." />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <!-- Escudo Oficial HD verificado de Atlético La Luz -->
   <script src="./assets/escudo-luz-clean-v16.js?v=16"></script>
   <style>
     :root {
@@ -199,7 +198,7 @@
     .cal-card.current-j { border: 2px solid var(--gold); box-shadow: 0 0 24px rgba(247, 201, 72, 0.22); }
 
     .saved-status-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 13px 16px; border-radius: 16px; margin-bottom: 16px; background: linear-gradient(90deg, rgba(30, 232, 122, 0.15), rgba(247, 201, 72, 0.12)); border: 1px solid rgba(30, 232, 122, 0.45); }
-    .cash-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 10px; background: rgba(3, 12, 8, 0.88); border: 1px solid var(--border-gold); border-radius: 16px; padding: 13px 15px; margin-bottom: 16px; }
+    .cash-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; align-items: center; background: rgba(3, 12, 8, 0.92); border: 1.5px solid var(--border-gold); border-radius: 18px; padding: 15px 16px; margin-bottom: 16px; }
 
     .players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(332px, 1fr)); gap: 14px; }
     .p-card { background: var(--bg-card-strong); border: 1px solid var(--border-green); border-radius: 18px; padding: 15px; display: flex; flex-direction: column; gap: 10px; }
@@ -306,9 +305,9 @@
 
   <div id="pngModal" class="rsvp-modal" role="dialog" aria-modal="true" aria-labelledby="pngModalTitle">
     <div class="rsvp-dialog">
-      <span class="badge-coach">🖼️ REPORTE OFICIAL PNG · VINIERON VS FALTARON</span>
+      <span class="badge-coach">🖼️ REPORTE OFICIAL PNG · ARBITRAJE $170</span>
       <h3 id="pngModalTitle" style="font-family:'Sora',sans-serif;font-size:18px;margin:8px 0 4px;color:#fff">Imagen Lista para Enviar al Grupo de WhatsApp</h3>
-      <p style="font-size:12px;color:var(--text-muted)">Incluye escudo oficial, modalidad (Fútbol 7 / Fútbol 11), jornada, fecha, rival, cancha y asistencia.</p>
+      <p style="font-size:12px;color:var(--text-muted)">Incluye escudo oficial, modalidad, jornada, rival, arbitraje de $170 y quiénes vinieron vs faltaron.</p>
       <img id="pngPreviewElement" class="png-preview-img" alt="Vista previa PNG" />
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
         <button type="button" class="btn-green" id="btnShareNativePng">📤 Compartir a WhatsApp</button>
@@ -322,7 +321,7 @@
     <div class="rsvp-dialog">
       <span class="badge-coach">📲 CONFIRMAR ASISTENCIA DE LA JORNADA</span>
       <h3 id="rsvpTitle" style="font-family:'Sora',sans-serif;font-size:20px;margin:10px 0 6px;color:#fff">¿Vienes a jugar este partido?</h3>
-      <p id="rsvpSubtitle" style="font-size:13px;color:var(--text-muted);margin-bottom:14px">Tu confirmación queda guardada en la fecha semanal seleccionada.</p>
+      <p id="rsvpSubtitle" style="font-size:13px;color:var(--text-muted);margin-bottom:14px">Arbitraje oficial: $170 MXN por partido dividido entre asistentes.</p>
       <div class="field" style="margin-bottom:12px"><label for="rsvpPlayerSelect">Selecciona Jugador</label><select id="rsvpPlayerSelect"></select></div>
       <div class="field" style="margin-bottom:14px"><label for="rsvpReasonInput">Razón Social / Motivo (si no vienes)</label><input id="rsvpReasonInput" type="text" placeholder="Ej. Trabajo, turno laboral, lesión, familiar..." /></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -339,9 +338,9 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div>
-        <span class="badge-coach">⚽ DT MANAGER PRO V20 · FÚTBOL 7 OCALOS &amp; FÚTBOL 11</span>
-        <div class="brand-title" style="margin-top:3px">Atlético La Luz (Fútbol 7 · Torneo Ocalos) &amp; Club América 35+ (Fútbol 11)</div>
-        <div class="brand-sub">Atlético La Luz (7 vs 7 · COMUDE Ocalos · Dueño: Josué Franco) · Club América 35+ (11 vs 11 · Dueño y DT: Franco)</div>
+        <span class="badge-coach">⚽ DT MANAGER PRO V21 · ARBITRAJE $170 POR PARTIDO</span>
+        <div class="brand-title" style="margin-top:3px">Atlético La Luz (Fútbol 7 · Ocalos) &amp; Club América 35+ (Fútbol 11)</div>
+        <div class="brand-sub">Arbitraje Oficial $170 / partido · División automática entre jugadores que SÍ VIENEN</div>
       </div>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
         <button type="button" class="btn-ghost" id="btnToggleMotion">🎬 Movimiento: ON</button>
@@ -361,7 +360,6 @@
 
   <main class="container">
 
-    <!-- BANNER DINÁMICO DE LIGA EXCLUSIVA POR EQUIPO (SIN MEZCLAR LIGAS) -->
     <section id="leagueSpecificBanner" class="league-specific-banner" aria-label="Información de Liga del Equipo Activo"></section>
 
     <section class="hero">
@@ -388,8 +386,9 @@
 
           <div class="pill-row">
             <span class="pill" id="pillModality" style="border-color:var(--green-electric);color:var(--green-neon)">⚽ Modalidad: Fútbol 7 (7 vs 7)</span>
+            <span class="pill" id="pillRefereeHero" style="border-color:var(--border-gold);color:#fef08a">💲 Arbitraje: $170 / partido</span>
             <span class="pill" id="pillOpponent">🆚 Rival: Dep. Santos</span>
-            <a class="pill" id="pillFieldMaps" href="#" target="_blank" rel="noopener" style="border-color:var(--border-gold);color:#fef08a">📍 Campo Ocalos · GPS</a>
+            <a class="pill" id="pillFieldMaps" href="#" target="_blank" rel="noopener">📍 Campo Ocalos · GPS</a>
             <span class="pill" id="pillWeather">🌤️ Clima de Cancha</span>
             <span class="pill" id="pillRecordPts">🏆 Récord: 0PJ · 0 Pts</span>
           </div>
@@ -406,7 +405,7 @@
             <div class="kpi"><small>Plantel</small><strong id="kpiTotal">0</strong></div>
             <div class="kpi present"><small>✅ SÍ VIENEN</small><strong id="kpiPresent">0</strong></div>
             <div class="kpi absent"><small>❌ NO VIENEN</small><strong id="kpiAbsent">0</strong></div>
-            <div class="kpi cash"><small>💲 Caja Jornada</small><strong id="kpiCash">$0</strong></div>
+            <div class="kpi cash"><small>💲 Recaudado / $170</small><strong id="kpiCash">$0 / $170</strong></div>
             <div class="kpi pts"><small>🏆 Goleador</small><strong id="kpiTopScorer" style="font-size:14px;margin-top:6px">-</strong></div>
           </div>
         </div>
@@ -424,7 +423,7 @@
     </section>
 
     <nav id="mainTabsNav" class="tabs">
-      <button type="button" class="tab-btn active" data-nav-view="attendance">📋 Quién Viene, Quién No Viene y PNG</button>
+      <button type="button" class="tab-btn active" data-nav-view="attendance">📋 Quién Viene, Arbitraje $170 y PNG</button>
       <button type="button" class="tab-btn" data-nav-view="calendar">📅 Calendario Semanal y Rivales</button>
       <button type="button" class="tab-btn" data-nav-view="constancy">📊 Matriz de Jornadas y Descartes</button>
       <button type="button" class="tab-btn" data-nav-view="tactics">⚽ Pizarra Táctica (F7 / F11)</button>
@@ -437,9 +436,9 @@
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow" id="jornadasHeaderEyebrow">ROL DE JUEGOS SEMANAL OFICIAL</div>
+            <div class="eyebrow" id="jornadasHeaderEyebrow">ROL SEMANAL OFICIAL · ARBITRAJE $170 POR PARTIDO</div>
             <h2 id="jornadasHeaderTitle">Pase de Lista · ¿Contra Quién Jugamos, Quién Viene y Quién No Viene?</h2>
-            <p>Toca cualquier jornada abajo para ver su rival y horario oficial, clasifica en 1 toque quién sí viene y quién faltó, y genera la <b>Imagen PNG</b> para el grupo de WhatsApp.</p>
+            <p>El arbitraje está fijado en <b>$170 MXN por partido</b> y calcula en vivo de a cuánto les toca entre los que sí vienen.</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button type="button" class="btn-gold" id="btnGeneratePosterTop">🖼️ Generar Imagen PNG (Vinieron vs Faltaron)</button>
@@ -475,11 +474,12 @@
             </select>
           </div>
           <div class="field"><label for="matchScoreInput">⚽ Marcador</label><input id="matchScoreInput" type="text" placeholder="Ej. 4 - 2" /></div>
-          <div class="field"><label for="refereeCostInput">💲 Arbitraje ($)</label><input id="refereeCostInput" type="number" min="0" step="10" /></div>
-          <div class="field"><label for="playerFeeInput">💲 Cuota Jugador ($)</label><input id="playerFeeInput" type="number" min="0" step="5" /></div>
-          <div class="field"><label for="matchCoachNotes">📝 Aviso del DT Franco</label><input id="matchCoachNotes" type="text" placeholder="Ej. Puntuales 15 min antes en Ocalos..." /></div>
+          <div class="field"><label for="refereeCostInput">💲 Arbitraje por Partido ($)</label><input id="refereeCostInput" type="number" min="0" step="5" value="170" /></div>
+          <div class="field"><label for="playerFeeInput">💲 Cooperación Jugador ($)</label><input id="playerFeeInput" type="number" min="0" step="1" value="20" /></div>
+          <div class="field"><label for="matchCoachNotes">📝 Aviso del DT Franco</label><input id="matchCoachNotes" type="text" placeholder="Ej. Puntuales con sus $20 de arbitraje..." /></div>
         </div>
 
+        <!-- PANEL INTELIGENTE DE ARBITRAJE ($170 POR PARTIDO + DIVISIÓN ENTRE ASISTENTES) -->
         <div id="cashSummaryBox" class="cash-box"></div>
 
         <div class="split-who-comes">
@@ -552,7 +552,7 @@
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow" id="calendarEyebrow">CALENDARIO SEMANAL PRECARGADO · RIVALES Y FECHAS</div>
+            <div class="eyebrow" id="calendarEyebrow">CALENDARIO SEMANAL PRECARGADO · ARBITRAJE $170 / PARTIDO</div>
             <h2 id="calendarTitle">Rol Completo de Juegos Semanales</h2>
             <p id="calendarDesc">Edita cualquier rival, día de la semana (Lunes a Viernes 7-9 PM en Ocalos para Atlético La Luz; Sábados para Club América) o recalcula las fechas semanales.</p>
           </div>
@@ -744,7 +744,7 @@
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <button type="button" class="btn-green" id="btnExportBackup">⬇️ Descargar Respaldo Completo (.JSON)</button>
           <label class="btn-ghost" style="cursor:pointer">⬆️ Cargar Respaldo (.JSON)<input id="inputImportBackup" type="file" accept="application/json" style="display:none" /></label>
-          <button type="button" class="btn-danger" id="btnResetFactory">Restaurar Calendario Oficial (Ocalos F7 y América F11)</button>
+          <button type="button" class="btn-danger" id="btnResetFactory">Restaurar Calendario Oficial ($170 Arbitraje)</button>
         </div>
       </div>
     </section>
@@ -762,34 +762,6 @@
   <div id="mgrToast" class="toast" role="status" aria-live="polite"></div>
 
   <script src="./assets/jr-ball-model-v38.js"></script>
-  <script src="./assets/dt-manager-v20.js?v=20"></script>
-
-<!-- JR_V38_FIX43_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix43-category-row.css?v=38-43-r2">
-<script defer src="./assets/jr-v38-fix43-category-row.js?v=38-43-r2"></script>
-
-
-<!-- JR_V38_FIX44_DIRECT -->
-<script defer src="./assets/jr-v38-fix44-category-replace.js?v=38-44-r1"></script>
-
-
-<!-- JR_V38_FIX45_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix45-stability.css?v=38-48-r1">
-<script defer src="./assets/jr-v38-fix45-stability.js?v=38-48-r1"></script>
-
-
-<!-- JR_V38_FIX48_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix48-america-card.css?v=38-51-r1">
-<script defer src="./assets/jr-v38-fix48-america-card.js?v=38-54"></script>
-
-
-<!-- JR_V38_FIX50_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix50-buttons.css?v=38-50-r1">
-<script defer src="./assets/jr-v38-fix50-buttons.js?v=38-50-r1"></script>
-
-
-<!-- JR_V38_FIX59_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix59.css?v=38-59">
-<script defer src="./assets/jr-v38-fix59.js?v=38-59"></script>
+  <script src="./assets/dt-manager-v21.js?v=21"></script>
 </body>
 </html>
