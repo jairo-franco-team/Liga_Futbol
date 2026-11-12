@@ -4,19 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#04120b" />
-  <title>DT Manager Pro v17 · Registro por Jornada · Atlético La Luz (12J) &amp; Club América 35+ (8J)</title>
-  <meta name="description" content="Suite Pro de Dirección Técnica: registro independiente guardado por jornada (quién vino y quién no vino), caja de arbitraje, tarjetas/suspendidos, póster PNG y cédula PDF." />
+  <title>DT Manager Pro v18 · Calendario Semanal, Quién Viene / Quién Faltó &amp; Póster PNG</title>
+  <meta name="description" content="Control semanal con rivales y fechas precargadas, tablero interactivo de quiénes sí vienen y quiénes no vienen, generador PNG con escudo oficial, GPS de canchas y estadísticas." />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <!-- Escudo Oficial HD v16 ya verificado y libre de caché -->
+  <!-- Escudo Oficial HD verificado de Atlético La Luz -->
   <script src="./assets/escudo-luz-clean-v16.js?v=16"></script>
   <style>
     :root {
       --bg-deep: #020906;
-      --bg-surface: #06160f;
       --bg-card: rgba(9, 29, 20, 0.88);
       --bg-card-strong: rgba(5, 19, 13, 0.96);
       --green-electric: #1ee87a;
@@ -139,7 +138,7 @@
       border: 1px solid var(--border-gold); color: #fef08a; font-size: 12.5px; font-weight: 800;
     }
     .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-    .pill { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.07); border: 1px solid var(--border-subtle); font-size: 11.5px; font-weight: 700; color: #dcf2e5; }
+    .pill { display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.07); border: 1px solid var(--border-subtle); font-size: 11.5px; font-weight: 700; color: #dcf2e5; text-decoration: none; }
     .quorum-wrap { margin-top: 16px; background: rgba(3, 12, 8, 0.88); border: 1px solid var(--border-green); border-radius: 16px; padding: 12px 15px; }
     .quorum-top { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: 12px; font-weight: 800; margin-bottom: 7px; }
     .quorum-bar { height: 10px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden; }
@@ -152,8 +151,8 @@
     .kpi.present strong { color: var(--green-electric); }
     .kpi.absent strong { color: var(--danger); }
     .kpi.cash strong { color: var(--gold); }
-    .kpi.saved strong { color: var(--info); }
-    .ball-stage { width: 100%; height: 195px; border-radius: 20px; border: 1px solid var(--border-green); background: radial-gradient(circle, rgba(30, 232, 122, 0.24), rgba(3, 12, 8, 0.9) 72%); overflow: hidden; }
+    .kpi.pts strong { color: var(--info); }
+    .ball-stage { width: 100%; height: 190px; border-radius: 20px; border: 1px solid var(--border-green); background: radial-gradient(circle, rgba(30, 232, 122, 0.24), rgba(3, 12, 8, 0.9) 72%); overflow: hidden; }
 
     .tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 18px; }
     .tab-btn { display: inline-flex; align-items: center; gap: 7px; padding: 11px 16px; border-radius: 13px; border: 1px solid var(--border-green); background: var(--bg-card); color: var(--text-main); font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
@@ -171,39 +170,37 @@
     .btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 15px; border-radius: 12px; border: 1px solid var(--gold); background: linear-gradient(135deg, rgba(247, 201, 72, 0.24), rgba(201, 144, 18, 0.18)); color: #fef08a; font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 800; cursor: pointer; text-decoration: none; }
     .btn-danger { display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 11px; border-radius: 9px; border: 1px solid rgba(255, 71, 105, 0.45); background: rgba(255, 71, 105, 0.15); color: #fecdd3; font-size: 11.5px; font-weight: 700; cursor: pointer; }
 
-    /* PÍLDORAS DE JORNADA CON SELLO DE REGISTRO GUARDADO */
-    .jornadas-bar { display: grid; grid-template-columns: repeat(auto-fill, minmax(136px, 1fr)); gap: 8px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid rgba(30, 232, 122, 0.18); }
+    /* TIRA DEL CALENDARIO SEMANAL CON FECHA Y RIVAL */
+    .jornadas-bar { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid rgba(30, 232, 122, 0.18); }
     .j-pill { padding: 10px 11px; border-radius: 14px; border: 1px solid var(--border-green); background: rgba(4, 15, 10, 0.92); color: var(--text-main); cursor: pointer; text-align: left; transition: 0.18s; }
     .j-pill.extra-new { border-color: var(--gold); background: linear-gradient(135deg, rgba(46, 35, 6, 0.92), rgba(18, 26, 12, 0.95)); }
     .j-pill.is-saved { border-color: rgba(30, 232, 122, 0.65); }
     .j-pill small { display: flex; justify-content: space-between; font-size: 9.5px; font-weight: 800; color: var(--green-neon); text-transform: uppercase; }
     .j-pill.extra-new small { color: var(--gold); }
     .j-pill strong { display: block; font-family: 'Sora', sans-serif; font-size: 12.5px; margin: 2px 0; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .j-pill .j-mini-stat { display: block; font-size: 10.5px; color: var(--text-muted); font-weight: 700; }
+    .j-pill .j-date-lbl { display: block; font-size: 10.5px; color: #fef08a; font-weight: 700; }
+    .j-pill .j-mini-stat { display: block; font-size: 10px; color: var(--text-muted); font-weight: 700; margin-top: 2px; }
     .j-pill.active { background: linear-gradient(135deg, #1ee87a 0%, #0ea866 100%); border-color: #fef08a; box-shadow: 0 8px 20px rgba(30, 232, 122, 0.32); }
-    .j-pill.active small, .j-pill.active strong, .j-pill.active .j-mini-stat { color: #031c10; }
+    .j-pill.active small, .j-pill.active strong, .j-pill.active .j-date-lbl, .j-pill.active .j-mini-stat { color: #031c10; }
 
-    /* BARRA DE ESTADO DEL REGISTRO GUARDADO + CAJA DE ARBITRAJE */
-    .saved-status-bar {
-      display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
-      padding: 13px 16px; border-radius: 16px; margin-bottom: 16px;
-      background: linear-gradient(90deg, rgba(30, 232, 122, 0.15), rgba(247, 201, 72, 0.12));
-      border: 1px solid rgba(30, 232, 122, 0.45);
-    }
-    .cash-box {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 10px;
-      background: rgba(3, 12, 8, 0.88); border: 1px solid var(--border-gold);
-      border-radius: 16px; padding: 13px 15px; margin-bottom: 16px;
-    }
+    /* MÓDULO INTERACTIVO PRINCIPAL: JUGADORES QUE SÍ VIENEN vs JUGADORES QUE NO VIENEN */
+    .split-who-comes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+    .comes-box { background: linear-gradient(145deg, rgba(7, 38, 23, 0.94), rgba(4, 21, 13, 0.96)); border: 2px solid rgba(30, 232, 122, 0.6); border-radius: 20px; padding: 16px; }
+    .comes-box h4 { color: var(--green-neon); font-family: 'Sora', sans-serif; font-size: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+    .not-comes-box { background: linear-gradient(145deg, rgba(48, 11, 21, 0.92), rgba(24, 7, 12, 0.96)); border: 2px solid rgba(255, 71, 105, 0.6); border-radius: 20px; padding: 16px; }
+    .not-comes-box h4 { color: #fda4af; font-family: 'Sora', sans-serif; font-size: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+    .interactive-roster-list { display: flex; flex-direction: column; gap: 6px; max-height: 310px; overflow-y: auto; }
+    .roster-row-yes { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 11px; background: rgba(30, 232, 122, 0.12); border: 1px solid rgba(30, 232, 122, 0.3); font-size: 12.5px; font-weight: 700; }
+    .roster-row-no { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 11px; background: rgba(255, 71, 105, 0.14); border: 1px solid rgba(255, 71, 105, 0.32); font-size: 12.5px; font-weight: 700; }
+    .pending-box { background: rgba(28, 24, 8, 0.85); border: 1px dashed var(--border-gold); border-radius: 18px; padding: 14px 16px; margin-bottom: 18px; }
 
-    .split-who-comes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
-    .comes-box { background: linear-gradient(145deg, rgba(7, 38, 23, 0.92), rgba(4, 21, 13, 0.95)); border: 1.5px solid rgba(30, 232, 122, 0.55); border-radius: 18px; padding: 16px; }
-    .comes-box h4 { color: var(--green-neon); font-family: 'Sora', sans-serif; font-size: 14.5px; margin-bottom: 10px; display: flex; justify-content: space-between; }
-    .not-comes-box { background: linear-gradient(145deg, rgba(48, 11, 21, 0.9), rgba(24, 7, 12, 0.95)); border: 1.5px solid rgba(255, 71, 105, 0.55); border-radius: 18px; padding: 16px; }
-    .not-comes-box h4 { color: #fda4af; font-family: 'Sora', sans-serif; font-size: 14.5px; margin-bottom: 10px; display: flex; justify-content: space-between; }
-    .tag-list { display: flex; flex-wrap: wrap; gap: 7px; }
-    .yes-tag { display: inline-flex; align-items: center; gap: 5px; background: rgba(30, 232, 122, 0.16); border: 1px solid rgba(30, 232, 122, 0.42); color: #e6fcef; padding: 5px 11px; border-radius: 999px; font-size: 12px; font-weight: 800; }
-    .absent-tag { display: inline-flex; align-items: center; gap: 5px; background: rgba(255, 71, 105, 0.2); border: 1px solid rgba(255, 71, 105, 0.42); color: #ffe4e6; padding: 5px 11px; border-radius: 999px; font-size: 12px; font-weight: 800; }
+    /* TABLA DEL CALENDARIO SEMANAL DE PARTIDOS */
+    .cal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 14px; }
+    .cal-card { background: var(--bg-card-strong); border: 1px solid var(--border-green); border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .cal-card.current-j { border: 2px solid var(--gold); box-shadow: 0 0 24px rgba(247, 201, 72, 0.22); }
+
+    .saved-status-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 13px 16px; border-radius: 16px; margin-bottom: 16px; background: linear-gradient(90deg, rgba(30, 232, 122, 0.15), rgba(247, 201, 72, 0.12)); border: 1px solid rgba(30, 232, 122, 0.45); }
+    .cash-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 10px; background: rgba(3, 12, 8, 0.88); border: 1px solid var(--border-gold); border-radius: 16px; padding: 13px 15px; margin-bottom: 16px; }
 
     .players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(332px, 1fr)); gap: 14px; }
     .p-card { background: var(--bg-card-strong); border: 1px solid var(--border-green); border-radius: 18px; padding: 15px; display: flex; flex-direction: column; gap: 10px; }
@@ -211,7 +208,7 @@
     .p-card.status-late { border-left: 6px solid var(--info); }
     .p-card.status-absent { border-left: 6px solid var(--danger); background: linear-gradient(160deg, rgba(32, 10, 16, 0.9), rgba(10, 16, 13, 0.96)); border-color: rgba(255, 71, 105, 0.38); }
     .p-card.status-doubt, .p-card.status-unrecorded { border-left: 6px solid var(--warning); }
-    .p-card.suspended-alert { border: 2px solid var(--danger); box-shadow: 0 0 20px rgba(255, 71, 105, 0.28); }
+    .p-card.suspended-alert { border: 2px solid var(--danger); }
 
     .p-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
     .p-id { display: flex; align-items: center; gap: 11px; min-width: 0; }
@@ -254,16 +251,11 @@
     .disc-btn { padding: 3px 7px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #e2f2ea; font-size: 10.5px; font-weight: 800; cursor: pointer; }
     .disc-btn.active-susp { background: rgba(255,71,105,0.3); border-color: var(--danger); color: #ffe4e6; }
     .disc-btn.active-inj { background: rgba(251,191,36,0.28); border-color: var(--warning); color: #fef08a; }
-
     .wk-btn { width: 32px; height: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.04); color: #9abaa9; font-size: 11.5px; cursor: pointer; padding: 0; }
     .wk-btn.wk-present { background: rgba(30, 232, 122, 0.25); border-color: var(--green-electric); color: #fff; }
     .wk-btn.wk-late { background: rgba(56, 189, 248, 0.24); border-color: var(--info); color: #fff; }
     .wk-btn.wk-absent { background: rgba(255, 71, 105, 0.28); border-color: var(--danger); color: #fff; }
     .wk-btn.wk-new { background: rgba(247, 201, 72, 0.22); border-color: var(--gold); color: #fef08a; }
-
-    /* BITÁCORA DE JORNADAS GUARDADAS */
-    .saved-log-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px; margin-top: 12px; }
-    .saved-log-card { background: rgba(4, 16, 11, 0.92); border: 1px solid var(--border-green); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
 
     .tactics-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 440px); gap: 20px; align-items: start; }
     .pitch-card { background: #062114; border: 2px solid var(--border-green); border-radius: 20px; padding: 14px; }
@@ -287,9 +279,12 @@
     .drill-card { padding: 14px; border-radius: 15px; border: 1px solid var(--border-green); background: rgba(5, 18, 12, 0.88); display: flex; flex-direction: column; gap: 8px; }
     .drill-card.done { border-color: var(--green-electric); background: rgba(30, 232, 122, 0.12); }
 
-    .rsvp-modal { position: fixed; inset: 0; z-index: 300; background: rgba(2, 8, 5, 0.88); backdrop-filter: blur(12px); display: none; place-items: center; padding: 16px; }
+    /* MODALES: RSVP Y VISTA PREVIA DE IMAGEN PNG DE QUIÉNES VINIERON Y QUIÉNES FALTARON */
+    .rsvp-modal { position: fixed; inset: 0; z-index: 300; background: rgba(2, 8, 5, 0.9); backdrop-filter: blur(14px); display: none; place-items: center; padding: 14px; overflow-y: auto; }
     .rsvp-modal.open { display: grid; }
-    .rsvp-dialog { width: 100%; max-width: 480px; background: #071d13; border: 2px solid var(--green-electric); border-radius: 22px; padding: 22px; box-shadow: var(--shadow-xl); }
+    .rsvp-dialog { width: 100%; max-width: 520px; background: #071d13; border: 2px solid var(--green-electric); border-radius: 22px; padding: 20px; box-shadow: var(--shadow-xl); }
+    .png-preview-img { width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--border-gold); margin: 10px 0 14px; display: block; }
+
     .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 120; background: rgba(3, 12, 8, 0.96); backdrop-filter: blur(16px); border-top: 1px solid var(--border-green); display: flex; justify-content: space-around; padding: 8px 6px; }
     .bottom-nav button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px; background: transparent; border: 0; color: var(--text-muted); font-family: 'Sora', sans-serif; font-size: 10.5px; font-weight: 700; cursor: pointer; }
     .bottom-nav button.active { color: var(--green-electric); }
@@ -310,11 +305,27 @@
   </div>
   <div class="pitch-grid-overlay" aria-hidden="true"></div>
 
+  <!-- MODAL DE IMAGEN PNG GENERADA: QUIÉNES SÍ VINIERON Y QUIÉNES FALTARON -->
+  <div id="pngModal" class="rsvp-modal" role="dialog" aria-modal="true" aria-labelledby="pngModalTitle">
+    <div class="rsvp-dialog">
+      <span class="badge-coach">🖼️ REPORTE OFICIAL PNG · VINIERON VS FALTARON</span>
+      <h3 id="pngModalTitle" style="font-family:'Sora',sans-serif;font-size:18px;margin:8px 0 4px;color:#fff">Imagen Lista para Enviar al Grupo de WhatsApp</h3>
+      <p style="font-size:12px;color:var(--text-muted)">Incluye escudo oficial, jornada, fecha semanal, rival, cancha, lista de quienes sí vinieron y quienes faltaron.</p>
+      <img id="pngPreviewElement" class="png-preview-img" alt="Vista previa PNG" />
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+        <button type="button" class="btn-green" id="btnShareNativePng">📤 Compartir a WhatsApp</button>
+        <a id="btnDownloadPngDirect" class="btn-gold" download="asistencia-jornada.png">⬇️ Descargar Imagen .PNG</a>
+      </div>
+      <button type="button" class="btn-ghost" id="btnClosePngModal" style="width:100%">Cerrar vista previa</button>
+    </div>
+  </div>
+
+  <!-- MODAL DE CONFIRMACIÓN RÁPIDA EN 1 TOQUE -->
   <div id="rsvpModal" class="rsvp-modal" role="dialog" aria-modal="true" aria-labelledby="rsvpTitle">
     <div class="rsvp-dialog">
-      <span class="badge-coach">📲 CONFIRMAR EN ESTA JORNADA</span>
-      <h3 id="rsvpTitle" style="font-family:'Sora',sans-serif;font-size:20px;margin:10px 0 6px;color:#fff">¿Vienes a jugar esta jornada?</h3>
-      <p id="rsvpSubtitle" style="font-size:13px;color:var(--text-muted);margin-bottom:14px">Tu confirmación queda guardada directamente en el registro de la jornada activa.</p>
+      <span class="badge-coach">📲 CONFIRMAR ASISTENCIA DE LA JORNADA</span>
+      <h3 id="rsvpTitle" style="font-family:'Sora',sans-serif;font-size:20px;margin:10px 0 6px;color:#fff">¿Vienes a jugar este partido?</h3>
+      <p id="rsvpSubtitle" style="font-size:13px;color:var(--text-muted);margin-bottom:14px">Tu confirmación queda guardada en la fecha semanal seleccionada.</p>
       <div class="field" style="margin-bottom:12px"><label for="rsvpPlayerSelect">Selecciona Jugador</label><select id="rsvpPlayerSelect"></select></div>
       <div class="field" style="margin-bottom:14px"><label for="rsvpReasonInput">Razón Social / Motivo (si no vienes)</label><input id="rsvpReasonInput" type="text" placeholder="Ej. Trabajo, turno laboral, lesión, familiar..." /></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -325,12 +336,16 @@
     </div>
   </div>
 
+  <!-- DATALISTS DE RIVALES Y CANCHAS REALES PRECARGADAS -->
+  <datalist id="rivalsDatalist"></datalist>
+  <datalist id="fieldsDatalist"></datalist>
+
   <header class="topbar">
     <div class="topbar-inner">
       <div>
-        <span class="badge-coach">⚽ DT MANAGER PRO V17 · REGISTRO GUARDADO POR JORNADA</span>
-        <div class="brand-title" style="margin-top:3px">Historial Independiente por Jornada · Caja de Arbitraje · Cédula &amp; Póster</div>
-        <div class="brand-sub">Atlético La Luz (11J + J12 Nuevos · Dueño: Josué Franco) · Club América 35+ (8J · Dueño, Capitán y DT: Franco)</div>
+        <span class="badge-coach">⚽ DT MANAGER PRO V18 · CALENDARIO SEMANAL &amp; PÓSTER PNG</span>
+        <div class="brand-title" style="margin-top:3px">Calendario de Rivales · Quiénes Sí Vienen y Quiénes Faltaron</div>
+        <div class="brand-sub">Atlético La Luz (12 Domingos · Dueño: Josué Franco) · Club América 35+ (8 Sábados · Dueño y DT: Franco)</div>
       </div>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
         <button type="button" class="btn-ghost" id="btnToggleMotion">🎬 Movimiento: ON</button>
@@ -352,7 +367,7 @@
 
     <section id="americaCategorySection" class="america-only-categories" aria-label="Categoría Oficial Club América Veteranos 35 y más">
       <div>
-        <span class="badge-coach">🏆 CATEGORÍA OFICIAL: VETERANOS 35 Y MÁS · 8 JORNADAS</span>
+        <span class="badge-coach">🏆 CATEGORÍA OFICIAL: VETERANOS 35 Y MÁS · SÁBADOS 4:00 PM</span>
         <h3 style="font-family:'Sora',sans-serif;font-size:15.5px;color:#fff;margin-top:4px">Club América Veteranos 35 y más · Dueño, Capitán y DT: Franco</h3>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -367,33 +382,33 @@
       </video>
       <div class="hero-grid">
         <div>
-          <span class="badge-coach" id="heroEventBadge">JORNADA 1 DE 12 · REGISTRO ACTIVO</span>
+          <span class="badge-coach" id="heroEventBadge">JORNADA 1 · CALENDARIO SEMANAL</span>
           <div class="hero-lockup">
             <label class="crest-medallion" title="Toca aquí si deseas cambiar la foto del escudo desde tu galería">
               <div class="crest-medallion-inner">
-                <img id="heroTeamLogo" src="./assets/official-logos/dep-la-luz.png" alt="Escudo Oficial del Equipo" />
+                <img id="heroTeamLogo" src="./assets/official-logos/dep-la-luz.png" alt="Escudo Oficial del Equipo" crossorigin="anonymous" />
               </div>
               <span class="crest-edit-tag">📷 HD</span>
               <input id="quickHeroLogoInput" type="file" accept="image/*" style="display:none" />
             </label>
             <div>
               <h1 id="heroTeamName" class="hero-title">ATLÉTICO LA LUZ <span class="electric">MANAGER PRO</span></h1>
-              <p id="heroTeamSubtitle" style="color:var(--text-muted);font-size:13.5px;font-weight:600">11 Jornadas Oficiales + Jornada 12 para Meter Nuevos Jugadores</p>
+              <p id="heroTeamSubtitle" style="color:var(--text-muted);font-size:13.5px;font-weight:600">Calendario Semanal Precargado · 11 Rivales + Jornada 12 Nuevos</p>
               <div class="owner-banner" id="heroOwnerBanner">👑 Dueño: Josué Franco · DT: Franco</div>
             </div>
           </div>
 
           <div class="pill-row">
-            <span class="pill" id="pillOpponent">🆚 Rival: Por definir</span>
-            <span class="pill" id="pillField">📍 Cancha: Campo La Luz</span>
-            <span class="pill" id="pillFormation">📋 Sistema: 4-4-2</span>
-            <span class="pill" id="pillCaptain">©️ Capitán: Josué Franco</span>
-            <span class="pill" id="pillDisciplina">🟨 0 Amarillas · 🚫 0 Suspendidos</span>
+            <span class="pill" id="pillOpponent">🆚 Rival: Tavera FC</span>
+            <a class="pill" id="pillFieldMaps" href="#" target="_blank" rel="noopener" style="border-color:var(--border-gold);color:#fef08a">📍 Cancha + Mapa GPS</a>
+            <span class="pill" id="pillWeather">🌤️ Clima de Cancha</span>
+            <span class="pill" id="pillUniform">👕 Uniforme: Negro y Dorado</span>
+            <span class="pill" id="pillRecordPts">🏆 Récord: 0PJ · 0 Pts</span>
           </div>
 
           <div class="quorum-wrap">
             <div class="quorum-top">
-              <span id="quorumLabel">Quórum de la Jornada Seleccionada (Meta: 11 titulares que SÍ VINIERON)</span>
+              <span id="quorumLabel">Disponibilidad Semanal (Meta: 11 titulares que SÍ VIENEN)</span>
               <span id="quorumCount" style="color:var(--green-electric)">11 / 11 listos</span>
             </div>
             <div class="quorum-bar"><div id="quorumFill" class="quorum-fill" style="width:100%"></div></div>
@@ -401,18 +416,18 @@
 
           <div class="kpi-row">
             <div class="kpi"><small>Plantel</small><strong id="kpiTotal">0</strong></div>
-            <div class="kpi present"><small>✅ SÍ VINIERON</small><strong id="kpiPresent">0</strong></div>
-            <div class="kpi absent"><small>❌ NO VINIERON</small><strong id="kpiAbsent">0</strong></div>
+            <div class="kpi present"><small>✅ SÍ VIENEN</small><strong id="kpiPresent">0</strong></div>
+            <div class="kpi absent"><small>❌ NO VIENEN</small><strong id="kpiAbsent">0</strong></div>
             <div class="kpi cash"><small>💲 Caja Jornada</small><strong id="kpiCash">$0</strong></div>
-            <div class="kpi saved"><small>💾 Jornadas Guardadas</small><strong id="kpiSavedCount">1</strong></div>
+            <div class="kpi pts"><small>🏆 Goleador</small><strong id="kpiTopScorer" style="font-size:14px;margin-top:6px">-</strong></div>
           </div>
         </div>
 
-        <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:9px;align-items:center">
           <div id="mgrBallStage" class="ball-stage"></div>
           <div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:center">
-            <button type="button" class="btn-green" id="btnShareWa">📲 WhatsApp Jornada</button>
-            <button type="button" class="btn-gold" id="btnGeneratePosterPng">📸 Póster PNG WhatsApp</button>
+            <button type="button" class="btn-gold" id="btnGeneratePosterPng">🖼️ Imagen PNG (Vinieron vs Faltaron)</button>
+            <button type="button" class="btn-green" id="btnShareWa">📲 Texto WhatsApp</button>
             <button type="button" class="btn-ghost" id="btnPrintCedula">🖨️ Cédula PDF</button>
             <button type="button" class="btn-ghost" id="btnOpenRsvpModal">✋ Confirmar 1-Toque</button>
           </div>
@@ -421,24 +436,109 @@
     </section>
 
     <nav class="tabs">
-      <button type="button" class="tab-btn active" data-nav-view="attendance">📋 Pase de Lista y Registro por Jornada</button>
-      <button type="button" class="tab-btn" data-nav-view="history">📚 Bitácora de Jornadas Guardadas</button>
-      <button type="button" class="tab-btn" data-nav-view="constancy">📊 Matriz Completa y Descartes</button>
+      <button type="button" class="tab-btn active" data-nav-view="attendance">📋 Quién Viene, Quién No Viene y PNG</button>
+      <button type="button" class="tab-btn" data-nav-view="calendar">📅 Calendario Semanal y Rivales</button>
+      <button type="button" class="tab-btn" data-nav-view="constancy">📊 Matriz de Jornadas y Descartes</button>
       <button type="button" class="tab-btn" data-nav-view="tactics">⚽ Pizarra 2D, Banca y 3D</button>
       <button type="button" class="tab-btn" data-nav-view="matchlive">⏱️ En Vivo y Entrenamientos</button>
-      <button type="button" class="tab-btn" data-nav-view="squad">👥 Plantilla y Teléfonos</button>
+      <button type="button" class="tab-btn" data-nav-view="squad">👥 Plantilla, Goleo y Teléfonos</button>
       <button type="button" class="tab-btn" data-nav-view="settings">⚙️ Ajustes y Respaldo</button>
     </nav>
 
-    <!-- VISTA 1: PASE DE LISTA Y REGISTRO INDEPENDIENTE POR JORNADA -->
+    <!-- VISTA 1: JUGADORES QUE SÍ VIENEN vs JUGADORES QUE NO VIENEN + REGISTRO SEMANAL -->
     <section id="view-attendance" class="view active">
 
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow" id="jornadasHeaderEyebrow">ROL DE JUEGOS SEMANAL PRECARGADO</div>
+            <h2 id="jornadasHeaderTitle">Pase de Lista · ¿Contra Quién Jugamos, Quién Viene y Quién No Viene?</h2>
+            <p>Toca cualquier jornada del calendario de abajo para ver su fecha semanal y rival precargado, mueve jugadores en 1 toque entre <b>Sí Vienen</b> y <b>No Vienen</b>, y genera la <b>Imagen PNG</b> para WhatsApp.</p>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button type="button" class="btn-gold" id="btnGeneratePosterTop">🖼️ Generar Imagen PNG (Vinieron vs Faltaron)</button>
+            <button type="button" class="btn-ghost" id="btnCopyPrevJornada">📋 Copiar de Jornada Anterior</button>
+            <button type="button" class="btn-green" id="btnSaveWeekSnapshot">💾 Guardar Registro</button>
+          </div>
+        </div>
+
+        <!-- TIRA SEMANAL CON FECHA Y RIVAL DE CADA JORNADA -->
+        <div id="jornadasStrip" class="jornadas-bar" aria-label="Calendario semanal por jornada"></div>
+
+        <div id="savedStatusBanner" class="saved-status-bar"></div>
+
+        <!-- DATOS DEL JUEGO SEMANAL: RIVAL, FECHA, HORA, LOCAL/VISITA, CANCHA GPS Y UNIFORME -->
+        <div class="form-grid">
+          <div class="field"><label for="evWeekLabel">Jornada</label><select id="evWeekLabel"></select></div>
+          <div class="field"><label for="matchOpponent">🆚 Equipo Rival *</label><input id="matchOpponent" list="rivalsDatalist" type="text" placeholder="Ej. Tavera FC / Juventus..." /></div>
+          <div class="field"><label for="matchDate">📅 Fecha Semanal</label><input id="matchDate" type="date" /></div>
+          <div class="field"><label for="matchTime">🕒 Hora del Juego</label><input id="matchTime" type="time" /></div>
+          <div class="field">
+            <label for="matchVenueType">Condición</label>
+            <select id="matchVenueType">
+              <option value="🏠 Local">🏠 Local</option>
+              <option value="🚌 Visita">🚌 Visita</option>
+            </select>
+          </div>
+          <div class="field"><label for="matchField">📍 Cancha Oficial</label><input id="matchField" list="fieldsDatalist" type="text" placeholder="Selecciona o escribe cancha..." /></div>
+          <div class="field"><label for="matchUniform">👕 Uniforme a Usar</label><input id="matchUniform" type="text" placeholder="Ej. Negro con Dorado" /></div>
+          <div class="field">
+            <label for="matchResultType">Resultado</label>
+            <select id="matchResultType">
+              <option value="">📅 Por jugar</option>
+              <option value="W">✅ Ganado (+3 pts)</option>
+              <option value="D">🤝 Empate (+1 pto)</option>
+              <option value="L">❌ Perdido (0 pts)</option>
+            </select>
+          </div>
+          <div class="field"><label for="matchScoreInput">⚽ Marcador</label><input id="matchScoreInput" type="text" placeholder="Ej. 3 - 1" /></div>
+          <div class="field"><label for="refereeCostInput">💲 Arbitraje ($)</label><input id="refereeCostInput" type="number" min="0" step="10" /></div>
+          <div class="field"><label for="playerFeeInput">💲 Cuota Jugador ($)</label><input id="playerFeeInput" type="number" min="0" step="5" /></div>
+          <div class="field"><label for="matchCoachNotes">📝 Aviso del DT Franco</label><input id="matchCoachNotes" type="text" placeholder="Ej. Llegar 20 min antes..." /></div>
+        </div>
+
+        <div id="cashSummaryBox" class="cash-box"></div>
+
+        <!-- TABLERO INTERACTIVO DIRECTO: JUGADORES QUE SÍ VIENEN vs JUGADORES QUE NO VIENEN -->
+        <div class="split-who-comes">
+          <div id="whoComesBanner" class="comes-box"></div>
+          <div id="whoNotComesBanner" class="not-comes-box"></div>
+        </div>
+
+        <!-- JUGADORES PENDIENTES DE CONFIRMAR EN LA SEMANA (1 TOQUE PARA PASAR A SÍ VIENE O NO VIENE) -->
+        <div id="pendingConfirmBox" class="pending-box"></div>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+          <button type="button" class="btn-ghost" id="btnMarkAllPresent">✅ Pasar Todos a SÍ VIENEN</button>
+          <button type="button" class="btn-ghost" id="btnRemindDoubtWa">🔔 Preguntar por WhatsApp a Pendientes</button>
+          <button type="button" class="btn-green" id="btnCopyReport">📋 Copiar Lista en Texto</button>
+          <button type="button" class="btn-ghost" id="btnExportCsv">📊 Descargar Excel / CSV</button>
+        </div>
+
+        <div class="filters">
+          <input id="playerSearchInput" type="search" placeholder="🔍 Buscar jugador o # dorsal..." style="padding:7px 12px;border-radius:999px;border:1px solid var(--border-green);background:#04120b;color:#fff;font-size:12.5px;min-width:210px" />
+          <select id="playerSortSelect" style="padding:7px 12px;border-radius:999px;border:1px solid var(--border-green);background:#04120b;color:#fff;font-size:12px;font-weight:700">
+            <option value="number">Ordenar: # Dorsal</option>
+            <option value="constancy">Ordenar: Mayor Constancia %</option>
+            <option value="goals">Ordenar: Goleadores</option>
+            <option value="name">Ordenar: Nombre A-Z</option>
+          </select>
+          <button type="button" class="chip active" data-att-filter="all">Todos</button>
+          <button type="button" class="chip" data-att-filter="present">✅ Sí vienen</button>
+          <button type="button" class="chip" data-att-filter="absent">❌ No vienen</button>
+          <button type="button" class="chip" data-att-filter="unpaid">💲 Deben arbitraje</button>
+          <button type="button" class="chip" data-att-filter="new">🆕 Nuevos</button>
+        </div>
+
+        <div id="attendancePlayersGrid" class="players-grid"></div>
+      </div>
+
+      <!-- ALTA RÁPIDA DE NUEVOS JUGADORES -->
       <div id="altaNuevoJugadorPanel" class="panel" style="border-color:var(--border-gold)">
         <div class="panel-head">
           <div>
-            <div class="eyebrow" style="color:var(--gold)">🆕 METER NUEVOS JUGADORES POR JORNADA</div>
+            <div class="eyebrow" style="color:var(--gold)">🆕 METER NUEVO JUGADOR EN LA JORNADA</div>
             <h3>Alta Rápida de Jugador / Refuerzo</h3>
-            <p>Elige en qué jornada se integra (por ejemplo Jornada 12 en Atlético La Luz). Sus jornadas anteriores quedan marcadas como 🆕 para no contarle faltas previas.</p>
           </div>
         </div>
         <form id="addPlayerForm" class="form-grid" style="margin-bottom:0">
@@ -456,99 +556,34 @@
           </div>
           <div class="field"><label for="newPlayerJoinWeek">Jornada de Ingreso</label><select id="newPlayerJoinWeek"></select></div>
           <div class="field">
-            <label for="newPlayerStatus">¿Vino en esta Jornada?</label>
+            <label for="newPlayerStatus">¿Viene esta Jornada?</label>
             <select id="newPlayerStatus">
-              <option value="present" selected>✅ SÍ VINO</option>
-              <option value="absent">❌ NO VINO</option>
-              <option value="late">⏰ Llegó tarde</option>
-              <option value="doubt">⏳ Por confirmar</option>
+              <option value="present" selected>✅ SÍ VIENE</option>
+              <option value="absent">❌ NO VIENE</option>
+              <option value="late">⏰ Llega tarde</option>
             </select>
           </div>
           <div class="field" style="justify-content:flex-end"><button type="submit" class="btn-gold" style="height:40px">➕ Meter Jugador</button></div>
         </form>
       </div>
-
-      <div class="panel">
-        <div class="panel-head">
-          <div>
-            <div class="eyebrow" id="jornadasHeaderEyebrow">REGISTRO INDEPENDIENTE GUARDADO POR JORNADA</div>
-            <h2 id="jornadasHeaderTitle">Pase de Lista por Jornada</h2>
-            <p>Cada jornada guarda su propia lista independiente (quién vino, quién no vino, razón social, marcador y pago de arbitraje). Al cambiar de jornada, los datos de las demás quedan intactos.</p>
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button type="button" class="btn-ghost" id="btnCopyPrevJornada">📋 Copiar Lista de Jornada Anterior</button>
-            <button type="button" class="btn-ghost" id="btnAddOneJornada">➕ Abrir +1 Jornada</button>
-            <button type="button" class="btn-green" id="btnSaveWeekSnapshot">💾 Guardar Registro de esta Jornada</button>
-          </div>
-        </div>
-
-        <!-- CUADRÍCULA DE JORNADAS CON SELLO DE GUARDADO -->
-        <div id="jornadasStrip" class="jornadas-bar" aria-label="Seleccionar jornada del equipo"></div>
-
-        <!-- SELLO EN VIVO DE SI ESTA JORNADA YA TIENE REGISTRO GUARDADO -->
-        <div id="savedStatusBanner" class="saved-status-bar"></div>
-
-        <!-- DATOS Y CAJA DE ARBITRAJE DE ESTA JORNADA EN ESPECÍFICO -->
-        <div class="form-grid">
-          <div class="field"><label for="evWeekLabel">Jornada Activa</label><select id="evWeekLabel"></select></div>
-          <div class="field"><label for="matchOpponent">Rival de esta Jornada</label><input id="matchOpponent" type="text" placeholder="Nombre del rival..." /></div>
-          <div class="field"><label for="matchDate">Fecha del Partido</label><input id="matchDate" type="date" /></div>
-          <div class="field"><label for="matchTime">Hora de Cita</label><input id="matchTime" type="time" /></div>
-          <div class="field"><label for="matchField">Cancha / Campo</label><input id="matchField" type="text" placeholder="Ej. Campo La Luz" /></div>
-          <div class="field"><label for="matchScoreInput">Marcador Final (Opcional)</label><input id="matchScoreInput" type="text" placeholder="Ej. Ganamos 3-1" /></div>
-          <div class="field"><label for="refereeCostInput">💲 Costo Arbitraje ($ MXN)</label><input id="refereeCostInput" type="number" min="0" step="10" /></div>
-          <div class="field"><label for="playerFeeInput">💲 Cooperación por Jugador ($)</label><input id="playerFeeInput" type="number" min="0" step="5" /></div>
-          <div class="field" style="grid-column: 1 / -1;"><label for="matchCoachNotes">Observaciones Guardadas de la Jornada (DT: Franco)</label><input id="matchCoachNotes" type="text" placeholder="Ej. Debutó refuerzo nuevo, excelente actitud del equipo..." /></div>
-        </div>
-
-        <!-- RESUMEN FINANCIERO DE ARBITRAJE Y CAJA CHICA DE ESTA JORNADA -->
-        <div id="cashSummaryBox" class="cash-box"></div>
-
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
-          <button type="button" class="btn-ghost" id="btnMarkAllPresent">✅ Marcar Todos SÍ VINIERON</button>
-          <button type="button" class="btn-ghost" id="btnRemindDoubtWa">🔔 Cobrar Confirmación WhatsApp</button>
-          <button type="button" class="btn-green" id="btnCopyReport">📋 Copiar Corte de esta Jornada</button>
-          <button type="button" class="btn-ghost" id="btnExportCsv">📊 Descargar Excel / CSV (Todas las Jornadas)</button>
-        </div>
-
-        <div class="split-who-comes">
-          <div id="whoComesBanner" class="comes-box"></div>
-          <div id="whoNotComesBanner" class="not-comes-box"></div>
-        </div>
-
-        <!-- BUSCADOR EN VIVO + ORDENAMIENTO + FILTROS -->
-        <div class="filters">
-          <input id="playerSearchInput" type="search" placeholder="🔍 Buscar jugador o # dorsal..." style="padding:7px 12px;border-radius:999px;border:1px solid var(--border-green);background:#04120b;color:#fff;font-size:12.5px;min-width:210px" />
-          <select id="playerSortSelect" style="padding:7px 12px;border-radius:999px;border:1px solid var(--border-green);background:#04120b;color:#fff;font-size:12px;font-weight:700">
-            <option value="number">Ordenar: # Dorsal</option>
-            <option value="constancy">Ordenar: Mayor Constancia %</option>
-            <option value="goals">Ordenar: Goleadores</option>
-            <option value="name">Ordenar: Nombre A-Z</option>
-          </select>
-          <button type="button" class="chip active" data-att-filter="all">Todos</button>
-          <button type="button" class="chip" data-att-filter="present">✅ Sí vinieron</button>
-          <button type="button" class="chip" data-att-filter="absent">❌ No vinieron</button>
-          <button type="button" class="chip" data-att-filter="unpaid">💲 Pendientes de Pago</button>
-          <button type="button" class="chip" data-att-filter="new">🆕 Nuevos</button>
-          <button type="button" class="chip" data-att-filter="discard">⚠️ Inconstantes</button>
-        </div>
-
-        <div id="attendancePlayersGrid" class="players-grid"></div>
-      </div>
     </section>
 
-    <!-- VISTA 2: BITÁCORA HISTÓRICA DE JORNADAS GUARDADAS -->
-    <section id="view-history" class="view">
+    <!-- VISTA 2: CALENDARIO SEMANAL COMPLETO DE RIVALES, FECHAS Y UBICACIONES GPS -->
+    <section id="view-calendar" class="view">
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow">MEMORIA Y ARCHIVO OFICIAL DE LA TEMPORADA</div>
-            <h2 id="historyTitle">Bitácora de Jornadas Guardadas</h2>
-            <p>Consulta el archivo exacto de cada jornada jugada: fecha, rival, marcador, cuántos sí vinieron, quiénes faltaron, dinero recaudado y reenvío directo a WhatsApp.</p>
+            <div class="eyebrow">CALENDARIO SEMANAL PRECARGADO · RIVALES, FECHAS Y CANCHAS GPS</div>
+            <h2 id="calendarTitle">Rol Completo de Juegos Semanales</h2>
+            <p>Edita aquí mismo cualquier rival, fecha, hora o cancha de toda la temporada, o recalcula automáticamente todas las fechas semanales (+7 días) desde la Jornada 1.</p>
           </div>
-          <button type="button" class="btn-green" id="btnPrintAllHistory">🖨️ Imprimir / Guardar Cédula PDF</button>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+            <input id="autoStartDateInput" type="date" style="padding:8px 10px;border-radius:10px;border:1px solid var(--border-green);background:#04120b;color:#fff;font-size:12.5px" title="Fecha de inicio Jornada 1" />
+            <button type="button" class="btn-gold" id="btnRecalcWeeklyDates">🔄 Recalcular Fechas Semanales (+7 días)</button>
+            <button type="button" class="btn-ghost" id="btnAddOneJornada">➕ +1 Jornada</button>
+          </div>
         </div>
-        <div id="savedHistoryGrid" class="saved-log-grid"></div>
+        <div id="weeklyCalendarGrid" class="cal-grid"></div>
       </div>
     </section>
 
@@ -559,9 +594,9 @@
           <div>
             <div class="eyebrow">AUDITORÍA GENERAL DE JORNADAS JUGADAS (DT: FRANCO)</div>
             <h2 id="constancyTitle">Matriz de Asistencia por Jornada</h2>
-            <p>La constancia (%) se calcula únicamente sobre las jornadas ya registradas desde que ingresó el jugador (las jornadas futuras `➖` no distorsionan el porcentaje).</p>
+            <p>Toca cualquier casilla para alternar asistencia. El porcentaje se calcula sobre las jornadas ya jugadas.</p>
           </div>
-          <button type="button" class="btn-green" id="btnShareConstancyWa">📲 Enviar Tabla General por WhatsApp</button>
+          <button type="button" class="btn-green" id="btnShareConstancyWa">📲 Enviar Reporte por WhatsApp</button>
         </div>
         <div id="discardAlertBox" class="not-comes-box" style="margin-bottom:16px"></div>
         <div style="overflow-x:auto">
@@ -573,18 +608,17 @@
       </div>
     </section>
 
-    <!-- VISTA 4: PIZARRA TÁCTICA 2D + BANCA + PÓSTER PNG + 3D -->
+    <!-- VISTA 4: PIZARRA TÁCTICA 2D + BANCA + 3D -->
     <section id="view-tactics" class="view">
       <div class="panel">
         <div class="panel-head">
           <div>
-            <div class="eyebrow">PIZARRA TÁCTICA INTERACTIVA (CON ALERTA DE SUSPENDIDOS Y AUSENTES)</div>
-            <h2>Alineación Titular, Banca Disponible y Póster para WhatsApp</h2>
-            <p>El botón ⚡ Armar 11 filtra automáticamente a quienes SÍ VINIERON en la jornada activa y excluye suspendidos o lesionados.</p>
+            <div class="eyebrow">PIZARRA TÁCTICA INTERACTIVA (CON LOS QUE SÍ VIENEN)</div>
+            <h2>Alineación Titular, Banca Disponible y Póster PNG</h2>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button type="button" class="btn-ghost" id="btnAutoFillPresent">⚡ Armar 11 con Presentes Aptos</button>
-            <button type="button" class="btn-gold" id="btnGeneratePosterTactics">📸 Descargar Póster PNG del 11</button>
+            <button type="button" class="btn-ghost" id="btnAutoFillPresent">⚡ Armar 11 con los que SÍ VIENEN</button>
+            <button type="button" class="btn-gold" id="btnGeneratePosterTactics">🖼️ Imagen PNG de la Jornada</button>
             <button type="button" class="btn-ghost" id="btnResetPitchCoords">🔄 Centrar</button>
             <button type="button" class="btn-green" id="btnDownloadPitchSvg">⬇️ SVG</button>
           </div>
@@ -602,7 +636,7 @@
             <h3 style="font-family:'Sora',sans-serif;font-size:15px;margin:10px 0 6px;color:var(--green-neon)">Once Titular por Posición</h3>
             <div id="tacticsLineupSlots" class="slots-list"></div>
             <div class="bench-box">
-              <div class="eyebrow">BANCO DE SUPLENTES (SÍ VINIERON EN ESTA JORNADA)</div>
+              <div class="eyebrow">BANCO DE SUPLENTES (SÍ VIENEN EN ESTA JORNADA)</div>
               <div id="benchPlayersList" class="bench-chips"></div>
             </div>
           </div>
@@ -684,11 +718,11 @@
       </div>
     </section>
 
-    <!-- VISTA 6: PLANTILLA COMPLETA Y DISCIPLINA -->
+    <!-- VISTA 6: PLANTILLA COMPLETA, LÍDERES DE GOLEO Y TELÉFONOS -->
     <section id="view-squad" class="view">
       <div class="panel">
         <div class="panel-head">
-          <div><div class="eyebrow">PADRÓN COMPLETO, TELÉFONOS, GOLES Y TARJETAS</div><h2>Editar Jugadores, Dorsales, WhatsApp, Tarjetas y % de Constancia</h2></div>
+          <div><div class="eyebrow">PADRÓN COMPLETO, LÍDERES DE GOLEO Y WHATSAPP</div><h2>Editar Jugadores, Dorsales, Teléfonos, Goles, Asistencias y Tarjetas</h2></div>
           <button type="button" class="btn-green" id="btnExportCsvSquad">📊 Exportar Plantilla Completa (Excel / CSV)</button>
         </div>
         <div style="overflow-x:auto">
@@ -724,19 +758,19 @@
       </div>
 
       <div class="panel">
-        <div class="panel-head"><div><div class="eyebrow">PORTABILIDAD ENTRE DISPOSITIVOS (JOSUÉ FRANCO &amp; FRANCO)</div><h3>Descargar o Cargar Respaldo Completo (.JSON)</h3></div></div>
+        <div class="panel-head"><div><div class="eyebrow">PORTABILIDAD ENTRE DISPOSITIVOS</div><h3>Descargar o Cargar Respaldo Completo (.JSON)</h3></div></div>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <button type="button" class="btn-green" id="btnExportBackup">⬇️ Descargar Respaldo Completo (.JSON)</button>
           <label class="btn-ghost" style="cursor:pointer">⬆️ Cargar Respaldo (.JSON)<input id="inputImportBackup" type="file" accept="application/json" style="display:none" /></label>
-          <button type="button" class="btn-danger" id="btnResetFactory">Restaurar Datos Iniciales (12J y 8J)</button>
+          <button type="button" class="btn-danger" id="btnResetFactory">Restaurar Calendario y Plantillas Oficiales</button>
         </div>
       </div>
     </section>
   </main>
 
   <nav class="bottom-nav">
-    <button type="button" class="active" data-nav-view="attendance"><span>📋</span><span>Jornada</span></button>
-    <button type="button" data-nav-view="history"><span>📚</span><span>Bitácora</span></button>
+    <button type="button" class="active" data-nav-view="attendance"><span>📋</span><span>Asistencia</span></button>
+    <button type="button" data-nav-view="calendar"><span>📅</span><span>Calendario</span></button>
     <button type="button" data-nav-view="constancy"><span>📊</span><span>Matriz</span></button>
     <button type="button" data-nav-view="tactics"><span>⚽</span><span>Pizarra</span></button>
     <button type="button" data-nav-view="matchlive"><span>⏱️</span><span>En Vivo</span></button>
@@ -749,7 +783,7 @@
     import { computePitchMarkings } from './vendor/campos/pitch.js';
     import formations from './vendor/campos/formations.js';
 
-    const STORAGE_KEY = 'dt_manager_franco_v17_jornada_db';
+    const STORAGE_KEY = 'dt_manager_franco_v18_weekly_calendar';
     const NS = 'http://www.w3.org/2000/svg';
     const TODAY = new Date().toISOString().slice(0, 10);
     const CUSTOM_GALLERY_CREST = localStorage.getItem('CUSTOM_LUZ_CREST_OVERRIDE');
@@ -760,18 +794,84 @@
       'Estudios / Escuela', 'Transporte / Fuera de la ciudad', 'Sanción deportiva', 'Sin avisar / Falta injustificada'
     ];
 
+    // Catálogo de Canchas Reales con Coordenadas GPS para Google Maps y Clima en Vivo
+    const OFFICIAL_FIELDS = [
+      { name: 'Campo La Luz', lat: 20.64337, lon: -100.99286, maps: 'Campo de futbol La Luz, Guanajuato' },
+      { name: 'Campo 1 · Unidad Deportiva Sur', lat: 20.63753, lon: -100.99297, maps: 'Unidad Deportiva Sur, Juventino Rosas, Guanajuato' },
+      { name: 'Campo 2 · Unidad Deportiva Sur', lat: 20.63753, lon: -100.99297, maps: 'Unidad Deportiva Sur, Juventino Rosas, Guanajuato' },
+      { name: 'Campo 3 · Unidad Deportiva Sur', lat: 20.63753, lon: -100.99297, maps: 'Unidad Deportiva Sur, Juventino Rosas, Guanajuato' },
+      { name: 'Campo 4 · Emiliano Zapata', lat: 20.64337, lon: -100.99286, maps: 'Campo de futbol prolongacion Emiliano Zapata, Juventino Rosas' },
+      { name: 'Campo Cerrito de Gasca', lat: 20.61778, lon: -101.06250, maps: 'Campo de futbol Cerrito de Gasca, Guanajuato' },
+      { name: 'Campo de Tavera', lat: 20.60839, lon: -100.93238, maps: 'Campo de futbol Franco Tavera, Juventino Rosas, Guanajuato' },
+      { name: 'Campo San Juan de la Cruz', lat: 20.63379, lon: -100.91157, maps: 'Campo de futbol San Juan de la Cruz, Juventino Rosas' },
+      { name: 'Unidad Deportiva Santiago de Cuenda', lat: 20.59793, lon: -100.99663, maps: 'Unidad Deportiva Santiago de Cuenda, Guanajuato' },
+      { name: 'Campo San Antonio de Romerillo', lat: 20.60784, lon: -100.94854, maps: 'Campo de futbol San Antonio de Romerillo, Guanajuato' },
+      { name: 'Campo de Fútbol de Pozos', lat: 20.61767, lon: -100.90033, maps: '20.61767,-100.90033' },
+      { name: 'Campo Rincón de Centeno', lat: 20.66015, lon: -100.88677, maps: 'Campo de futbol Rincon de Centeno, Juventino Rosas' },
+      { name: 'Campo San José de la Montaña', lat: 20.60102, lon: -101.07242, maps: 'Campo de futbol San Jose de la Montana, Guanajuato' },
+      { name: 'Campo San Julián Tierra Blanca', lat: 20.59140, lon: -101.04036, maps: 'Cancha de futbol San Julian Tierra Blanca, Juventino Rosas' }
+    ];
+
+    // Calendario Semanal Precargado para Atlético La Luz (11 Domingos Oficiales + Jornada 12 Nuevos Jugadores)
+    const LUZ_FIXTURES = [
+      { opponent: 'Tavera FC', date: '2026-11-15', time: '10:00', venue: '🏠 Local', field: 'Campo La Luz', uniform: 'Negro con Dorado' },
+      { opponent: 'Pachangas FC', date: '2026-11-22', time: '10:00', venue: '🚌 Visita', field: 'Campo 2 · Unidad Deportiva Sur', uniform: 'Negro con Dorado' },
+      { opponent: 'San Juan FC', date: '2026-11-29', time: '10:00', venue: '🚌 Visita', field: 'Campo San Juan de la Cruz', uniform: 'Negro con Dorado' },
+      { opponent: 'Tapatío', date: '2026-12-06', time: '10:00', venue: '🏠 Local', field: 'Campo La Luz', uniform: 'Negro con Dorado' },
+      { opponent: 'San Julián', date: '2026-12-13', time: '10:00', venue: '🚌 Visita', field: 'Campo San Julián Tierra Blanca', uniform: 'Alternativo Blanco/Oro' },
+      { opponent: 'Barza', date: '2026-12-20', time: '10:00', venue: '🏠 Local', field: 'Campo La Luz', uniform: 'Negro con Dorado' },
+      { opponent: 'San José JRS', date: '2026-12-27', time: '10:00', venue: '🚌 Visita', field: 'Campo San José de la Montaña', uniform: 'Negro con Dorado' },
+      { opponent: 'San Antonio FC', date: '2027-01-03', time: '10:00', venue: '🏠 Local', field: 'Campo San Antonio de Romerillo', uniform: 'Negro con Dorado' },
+      { opponent: 'Célticos FC', date: '2027-01-10', time: '10:00', venue: '🏠 Local', field: 'Campo La Luz', uniform: 'Negro con Dorado' },
+      { opponent: 'Dep. Nopalero', date: '2027-01-17', time: '10:00', venue: '🚌 Visita', field: 'Campo Rincón de Centeno', uniform: 'Alternativo Blanco/Oro' },
+      { opponent: 'Dep. Zapata', date: '2027-01-24', time: '10:00', venue: '🏠 Local', field: 'Campo 4 · Emiliano Zapata', uniform: 'Negro con Dorado' },
+      { opponent: 'Visoría / Nuevos Refuerzos (J12)', date: '2027-01-31', time: '10:00', venue: '🏠 Local', field: 'Campo La Luz', uniform: 'Libre / Casacas' }
+    ];
+
+    // Calendario Semanal Precargado para Club América Veteranos 35+ (8 Sábados Oficiales a las 4:00 PM)
+    const AMERICA_FIXTURES = [
+      { opponent: 'C. de Gasca', date: '2026-11-14', time: '16:00', venue: '🚌 Visita', field: 'Campo Cerrito de Gasca', uniform: 'Amarillo Oficial' },
+      { opponent: 'Juventus', date: '2026-11-21', time: '16:00', venue: '🏠 Local', field: 'Campo 1 · Unidad Deportiva Sur', uniform: 'Amarillo Oficial' },
+      { opponent: 'Cuenda', date: '2026-11-28', time: '16:00', venue: '🚌 Visita', field: 'Unidad Deportiva Santiago de Cuenda', uniform: 'Azul Visita' },
+      { opponent: 'Pozos FC', date: '2026-12-05', time: '16:00', venue: '🏠 Local', field: 'Campo de Fútbol de Pozos', uniform: 'Amarillo Oficial' },
+      { opponent: 'Boavista', date: '2026-12-12', time: '16:00', venue: '🏠 Local', field: 'Campo 2 · Unidad Deportiva Sur', uniform: 'Amarillo Oficial' },
+      { opponent: 'PSV', date: '2026-12-19', time: '16:00', venue: '🚌 Visita', field: 'Campo 3 · Unidad Deportiva Sur', uniform: 'Azul Visita' },
+      { opponent: 'A. Santiago', date: '2026-12-26', time: '16:00', venue: '🏠 Local', field: 'Unidad Deportiva Santiago de Cuenda', uniform: 'Amarillo Oficial' },
+      { opponent: 'F. Tavera', date: '2027-01-02', time: '16:00', venue: '🚌 Visita', field: 'Campo de Tavera', uniform: 'Amarillo Oficial' }
+    ];
+
+    const ALL_KNOWN_RIVALS = [
+      'Tavera FC', 'Pachangas FC', 'San Juan FC', 'Tapatío', 'San Julián', 'Barza', 'San José JRS',
+      'San Antonio FC', 'Célticos FC', 'Dep. Nopalero', 'Dep. Zapata', 'C. de Gasca', 'Juventus',
+      'Cuenda', 'Pozos FC', 'Boavista', 'PSV', 'A. Santiago', 'F. Tavera', 'Huracán', 'Hermanos', 'Linces'
+    ];
+
     function nowStamp() {
       const d = new Date();
       return `${d.toLocaleDateString('es-MX')} ${d.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' })}`;
     }
 
-    function buildInitialEvents(totalJ, defaultField, defaultTime, isLuz, initialPlayers) {
-      const list = [];
-      for (let j = 1; j <= totalJ; j++) {
+    function shortDateEs(iso) {
+      if (!iso) return 'Por definir';
+      const parts = iso.split('-').map(Number);
+      if (parts.length !== 3) return iso;
+      const d = new Date(parts[0], parts[1] - 1, parts[2]);
+      return d.toLocaleDateString('es-MX', { weekday: 'short', day: '2-digit', month: 'short' });
+    }
+
+    function addDaysIso(iso, days) {
+      const [y, m, d] = iso.split('-').map(Number);
+      const dt = new Date(y, m - 1, d);
+      dt.setDate(dt.getDate() + days);
+      return dt.toISOString().slice(0, 10);
+    }
+
+    function buildScheduledEvents(fixtures, isLuz, initialPlayers) {
+      return fixtures.map((fx, idx) => {
+        const j = idx + 1;
         const isExtraNew = isLuz && j === 12;
         const records = {};
         if (j === 1) {
-          // Jornada 1 arranca como registro guardado real de ejemplo; J2..JN inician limpias para ir guardando cada semana
           initialPlayers.forEach(p => {
             const isAbs = p.initJ1Absent === true;
             records[p.id] = {
@@ -782,24 +882,26 @@
             };
           });
         }
-        list.push({
+        return {
           id: 'jornada_' + j,
           jNum: j,
           weekLabel: `Jornada ${j}`,
           isExtraNew,
-          opponent: isExtraNew ? 'Nuevos Jugadores / Altas' : `Rival Jornada ${j}`,
-          date: TODAY,
-          time: defaultTime,
-          field: defaultField,
+          opponent: fx.opponent,
+          date: fx.date,
+          time: fx.time,
+          venue: fx.venue,
+          field: fx.field,
+          uniform: fx.uniform,
+          resultType: j === 1 ? 'W' : '',
           scoreText: j === 1 ? (isLuz ? '3 - 0' : '2 - 1') : '',
           refereeCost: 550,
           playerFee: 50,
           savedAt: j === 1 ? 'Registro Inicial Guardado' : null,
-          coachNotes: isExtraNew ? 'Jornada 12 abierta para meter y registrar nuevos jugadores.' : '',
+          coachNotes: isExtraNew ? 'Jornada 12 abierta para meter y evaluar nuevos jugadores.' : '',
           records
-        });
-      }
-      return list;
+        };
+      });
     }
 
     const LUZ_INITIAL_PLAYERS = [
@@ -865,11 +967,11 @@
         atletico_luz: {
           id: 'atletico_luz', name: 'Atlético La Luz', totalJornadas: 12,
           ownerName: 'Josué Franco (Dueño Atlético La Luz)',
-          subtitle: '11 Jornadas Oficiales + Jornada 12 para Meter Nuevos Jugadores · DT: Franco',
+          subtitle: 'Domingos 10:00 AM · 11 Rivales Precargados + Jornada 12 Nuevos · DT: Franco',
           coachName: 'Franco', logo: REAL_LUZ_LOGO, kitPrimary: '#1ee87a', kitSecondary: '#f7c948',
           formation: '442', tacticalStyle: 'Orden táctico, presión intensa, transiciones rápidas y balón parado',
           roles: { captain: 'll18', penalty: 'll13', freekick: 'll10' }, activeEventId: 'jornada_1',
-          events: buildInitialEvents(12, 'Campo La Luz', '10:00', true, LUZ_INITIAL_PLAYERS),
+          events: buildScheduledEvents(LUZ_FIXTURES, true, LUZ_INITIAL_PLAYERS),
           liveMatch: { scoreHome: 3, scoreAway: 0, mvpId: 'll18', log: [
             { id: 'lg_ll1', min: "22'", text: '⚽ Gol de José Salvador Rodríguez (Asist: Josué Franco)' },
             { id: 'lg_ll2', min: "61'", text: '⚽ Gol de Ángel (Tiro libre directo)' }
@@ -880,12 +982,12 @@
         america_vet: {
           id: 'america_vet', name: 'Club América Veteranos 35 y más', totalJornadas: 8,
           ownerName: 'Franco (Dueño y DT Club América Veteranos 35 y más)',
-          subtitle: 'Torneo de 8 Jornadas · Categoría Veteranos 35 y más · Dueño, Capitán y DT: Franco',
+          subtitle: 'Sábados 4:00 PM · 8 Rivales Oficiales Veteranos 35+ · Dueño, Capitán y DT: Franco',
           coachName: 'Franco (Dueño, Capitán y DT)', logo: './assets/branding/america-veteranos-35-user.png',
           kitPrimary: '#1ee87a', kitSecondary: '#f7c948', formation: '433',
           tacticalStyle: 'Presión alta, salida limpia por bandas y control de medio campo',
           roles: { captain: 'am_franco', penalty: 'am2', freekick: 'am3' }, activeEventId: 'jornada_1',
-          events: buildInitialEvents(8, 'Campo Empastado #1', '16:00', false, AM_INITIAL_PLAYERS),
+          events: buildScheduledEvents(AMERICA_FIXTURES, false, AM_INITIAL_PLAYERS),
           liveMatch: { scoreHome: 2, scoreAway: 1, mvpId: 'am_franco', log: [
             { id: 'lg1', min: "18'", text: '⚽ Gol de J. Refugio Zarazúa Agostadero (Asist: Franco)' },
             { id: 'lg2', min: "54'", text: '🔄 Cambio: Entra Luis Jiménez Zárate por Eric Fernando Dongu Guerrero' }
@@ -896,6 +998,10 @@
       }
     };
 
+    // Llenar datalists de rivales y canchas
+    document.getElementById('rivalsDatalist').innerHTML = ALL_KNOWN_RIVALS.map(r => `<option value="${r}"></option>`).join('');
+    document.getElementById('fieldsDatalist').innerHTML = OFFICIAL_FIELDS.map(f => `<option value="${f.name}"></option>`).join('');
+
     let state = loadState();
     let currentFilter = 'all';
     let searchQuery = '';
@@ -903,6 +1009,7 @@
     let draggingSlotIndex = null;
     let timerSeconds = 0;
     let timerInterval = null;
+    let lastPngBlob = null;
 
     function clone(o) { return JSON.parse(JSON.stringify(o)); }
     function loadState() {
@@ -924,13 +1031,14 @@
       if (!Array.isArray(team.events)) team.events = [];
       while (team.events.length < total) {
         const j = team.events.length + 1;
-        const isExtra = team.id === 'atletico_luz' && j >= 12;
+        const prevDate = team.events[j - 2]?.date || TODAY;
         team.events.push({
-          id: 'jornada_' + j, jNum: j, weekLabel: `Jornada ${j}`, isExtraNew: isExtra,
-          opponent: isExtra ? 'Nuevos Jugadores / Altas' : `Rival Jornada ${j}`,
-          date: TODAY, time: team.id === 'america_vet' ? '16:00' : '10:00',
-          field: team.id === 'america_vet' ? 'Campo Empastado #1' : 'Campo La Luz',
-          scoreText: '', refereeCost: 550, playerFee: 50, savedAt: null, coachNotes: '', records: {}
+          id: 'jornada_' + j, jNum: j, weekLabel: `Jornada ${j}`, isExtraNew: team.id === 'atletico_luz' && j >= 12,
+          opponent: `Rival Jornada ${j}`, date: addDaysIso(prevDate, 7),
+          time: team.id === 'america_vet' ? '16:00' : '10:00', venue: '🏠 Local',
+          field: team.id === 'america_vet' ? 'Campo 1 · Unidad Deportiva Sur' : 'Campo La Luz',
+          uniform: team.id === 'america_vet' ? 'Amarillo Oficial' : 'Negro con Dorado',
+          resultType: '', scoreText: '', refereeCost: 550, playerFee: 50, savedAt: null, coachNotes: '', records: {}
         });
       }
       if (team.events.length > total) team.events = team.events.slice(0, total);
@@ -942,40 +1050,52 @@
       return team.events.find(e => e.id === team.activeEventId) || team.events[0];
     }
 
-    // Obtener o inicializar el registro independiente de un jugador en una jornada específica
     function getRecord(ev, p) {
       if (!ev.records) ev.records = {};
       const jNum = Number(ev.jNum || 1);
       const joinW = Number(p.joinWeek || 1);
-      if (jNum < joinW) {
-        return { status: 'new_later', reason: '', note: `Entró en J${joinW}`, feePaid: false };
-      }
-      if (!ev.records[p.id]) {
-        ev.records[p.id] = { status: 'unrecorded', reason: '', note: p.note || '', feePaid: false };
-      }
+      if (jNum < joinW) return { status: 'new_later', reason: '', note: `Entró en J${joinW}`, feePaid: false };
+      if (!ev.records[p.id]) ev.records[p.id] = { status: 'unrecorded', reason: '', note: p.note || '', feePaid: false };
       return ev.records[p.id];
     }
 
-    // Estadísticas reales del jugador únicamente sobre las jornadas ya registradas
     function getPlayerStats(p, team = activeTeam()) {
       syncTeamEventsLength(team);
       const joinW = Number(p.joinWeek || 1);
       let playedJornadas = 0, attended = 0, absences = 0, lastReason = '';
       (team.events || []).forEach((ev, idx) => {
-        const jNum = idx + 1;
-        if (jNum < joinW) return;
+        if ((idx + 1) < joinW) return;
         const rec = ev.records?.[p.id];
         if (!rec || rec.status === 'unrecorded' || rec.status === 'doubt' || rec.status === 'new_later') return;
         playedJornadas++;
         if (rec.status === 'present' || rec.status === 'late') attended++;
-        else if (rec.status === 'absent') {
-          absences++;
-          if (rec.reason) lastReason = rec.reason;
-        }
+        else if (rec.status === 'absent') { absences++; if (rec.reason) lastReason = rec.reason; }
       });
       const rate = playedJornadas === 0 ? 100 : Math.round((attended / playedJornadas) * 100);
       const discard = absences >= 3 || lastReason === 'Sin avisar / Falta injustificada';
       return { playedJornadas, attended, absences, rate, lastReason, discard };
+    }
+
+    function getMapsUrl(fieldName) {
+      const match = OFFICIAL_FIELDS.find(f => f.name.toLowerCase() === String(fieldName || '').toLowerCase());
+      const q = match ? match.maps : (fieldName || 'Juventino Rosas, Guanajuato');
+      return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+    }
+
+    async function updateFieldWeather(fieldName) {
+      const pill = document.getElementById('pillWeather');
+      if (!pill) return;
+      const match = OFFICIAL_FIELDS.find(f => f.name.toLowerCase() === String(fieldName || '').toLowerCase()) || OFFICIAL_FIELDS[0];
+      try {
+        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${match.lat}&longitude=${match.lon}&current=temperature_2m,precipitation_probability&timezone=auto`);
+        if (!res.ok) return;
+        const data = await res.json();
+        const temp = Math.round(data?.current?.temperature_2m ?? 24);
+        const rain = data?.current?.precipitation_probability ?? 0;
+        pill.textContent = `🌤️ Cancha: ${temp}°C · Lluvia ${rain}%`;
+      } catch (_) {
+        pill.textContent = `🌤️ Clima listo para partido`;
+      }
     }
 
     function esc(v) { return String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
@@ -992,12 +1112,8 @@
       const r = new FileReader();
       r.onload = () => {
         const dataUrl = String(r.result || '');
-        const team = activeTeam();
-        team.logo = dataUrl;
-        if (team.id === 'atletico_luz') {
-          localStorage.setItem('CUSTOM_LUZ_CREST_OVERRIDE', dataUrl);
-          window.ATLETICO_LA_LUZ_REAL_LOGO = dataUrl;
-        }
+        const team = activeTeam(); team.logo = dataUrl;
+        if (team.id === 'atletico_luz') { localStorage.setItem('CUSTOM_LUZ_CREST_OVERRIDE', dataUrl); window.ATLETICO_LA_LUZ_REAL_LOGO = dataUrl; }
         saveState('✅ ¡Escudo actualizado desde tu galería!'); renderAll();
       };
       r.readAsDataURL(file);
@@ -1031,7 +1147,7 @@
       document.getElementById('heroTeamName').innerHTML = `${esc(team.name)} <span class="electric">MANAGER PRO</span>`;
       document.getElementById('heroTeamSubtitle').textContent = team.subtitle;
       document.getElementById('heroOwnerBanner').textContent = `👑 Dueño: ${team.ownerName} · DT: ${team.coachName}`;
-      document.getElementById('heroEventBadge').textContent = `${(ev.weekLabel || 'JORNADA 1').toUpperCase()} DE ${totalJ} · ${ev.savedAt ? '💾 REGISTRO GUARDADO' : '⏳ ABIERTA PARA REGISTRO'}`;
+      document.getElementById('heroEventBadge').textContent = `${(ev.weekLabel || 'JORNADA 1').toUpperCase()} · ${shortDateEs(ev.date).toUpperCase()} ${ev.time} · VS ${(ev.opponent || '').toUpperCase()}`;
 
       const evWeekSelect = document.getElementById('evWeekLabel');
       const joinWeekSelect = document.getElementById('newPlayerJoinWeek');
@@ -1040,19 +1156,18 @@
         evWeekSelect.innerHTML = '';
         for (let j = 1; j <= totalJ; j++) {
           const jEv = team.events[j - 1];
-          const stTxt = jEv?.savedAt ? ' [💾 Guardada]' : ' [Sin pasar lista]';
-          evWeekSelect.add(new Option(`Jornada ${j} de ${totalJ}${stTxt}`, `Jornada ${j}`));
+          evWeekSelect.add(new Option(`Jornada ${j} (${shortDateEs(jEv?.date)}) vs ${jEv?.opponent || ''}`, `Jornada ${j}`));
         }
         evWeekSelect.value = ev.weekLabel || 'Jornada 1';
       }
       if (joinWeekSelect) {
         joinWeekSelect.innerHTML = '';
-        for (let j = 1; j <= totalJ; j++) joinWeekSelect.add(new Option(`Entra en Jornada ${j}${(!isAmerica && j === 12) ? ' (Altas Nuevos)' : ''}`, String(j)));
+        for (let j = 1; j <= totalJ; j++) joinWeekSelect.add(new Option(`Entra en Jornada ${j} (${shortDateEs(team.events[j-1]?.date)})`, String(j)));
         joinWeekSelect.value = String(currentJNum);
       }
 
       const players = team.players || [];
-      const present = [], late = [], absent = [], doubt = [];
+      const present = [], late = [], absent = [], pending = [];
       let paidPlayersCount = 0;
       players.forEach(p => {
         const rec = getRecord(ev, p);
@@ -1060,39 +1175,47 @@
         if (rec.status === 'present') present.push(p);
         else if (rec.status === 'late') late.push(p);
         else if (rec.status === 'absent') absent.push(p);
-        else if (rec.status !== 'new_later') doubt.push(p);
+        else if (rec.status !== 'new_later') pending.push(p);
       });
 
       const available = [...present, ...late];
       const collectedCash = paidPlayersCount * Number(ev.playerFee ?? 50);
-      const savedJornadasCount = (team.events || []).filter(e => Boolean(e.savedAt)).length;
-      const totalYellows = players.reduce((acc, p) => acc + Number(p.yellows || 0), 0);
-      const totalSusp = players.filter(p => p.suspended).length;
 
-      const capPlayer = players.find(p => p.id === team.roles?.captain);
-      document.getElementById('pillOpponent').textContent = `🆚 Rival: ${ev.opponent || 'Por definir'}${ev.scoreText ? ` (${ev.scoreText})` : ''}`;
-      document.getElementById('pillField').textContent = `📍 ${ev.field || 'Por definir'} (${ev.time || ''})`;
-      document.getElementById('pillFormation').textContent = `📋 Sistema: ${team.formation.split('').join('-')}`;
-      document.getElementById('pillCaptain').textContent = `©️ Capitán: ${capPlayer ? capPlayer.name : 'Franco'}`;
-      document.getElementById('pillDisciplina').textContent = `🟨 ${totalYellows} Amarillas · 🚫 ${totalSusp} Suspendidos`;
+      // Récord de temporada (PJ, G, E, P, Puntos) y Líder de Goleo
+      let wCnt = 0, dCnt = 0, lCnt = 0;
+      (team.events || []).forEach(item => {
+        if (item.resultType === 'W') wCnt++;
+        else if (item.resultType === 'D') dCnt++;
+        else if (item.resultType === 'L') lCnt++;
+      });
+      const totalPts = wCnt * 3 + dCnt;
+      const topScorer = [...players].sort((a, b) => Number(b.goals || 0) - Number(a.goals || 0))[0];
+
+      document.getElementById('pillOpponent').textContent = `🆚 ${ev.venue || 'Local'} vs ${ev.opponent || 'Por definir'}${ev.scoreText ? ` (${ev.scoreText})` : ''}`;
+      const mapsLink = document.getElementById('pillFieldMaps');
+      mapsLink.textContent = `📍 ${ev.field || 'Cancha'} · Abrir GPS ↗`;
+      mapsLink.href = getMapsUrl(ev.field);
+      document.getElementById('pillUniform').textContent = `👕 ${ev.uniform || 'Uniforme Oficial'}`;
+      document.getElementById('pillRecordPts').textContent = `🏆 ${wCnt + dCnt + lCnt} PJ (${wCnt}G-${dCnt}E-${lCnt}P) · ${totalPts} Pts`;
 
       document.getElementById('kpiTotal').textContent = String(players.length);
       document.getElementById('kpiPresent').textContent = String(available.length);
       document.getElementById('kpiAbsent').textContent = String(absent.length);
       document.getElementById('kpiCash').textContent = `$${collectedCash}`;
-      document.getElementById('kpiSavedCount').textContent = `${savedJornadasCount} / ${totalJ}`;
+      document.getElementById('kpiTopScorer').textContent = topScorer ? `${topScorer.name.split(' ')[0]} (${topScorer.goals}⚽)` : '-';
 
       const pct = Math.min(100, Math.round((available.length / 11) * 100));
       document.getElementById('quorumFill').style.width = `${pct}%`;
       document.getElementById('quorumCount').textContent = available.length >= 11
-        ? `✅ ${available.length} SÍ VINIERON en ${ev.weekLabel} (11 titulares + ${available.length - 11} cambios)`
-        : `⚠️ ${available.length} confirmados en ${ev.weekLabel} (Faltan ${11 - available.length} para 11)`;
+        ? `✅ ${available.length} SÍ VIENEN contra ${ev.opponent} (11 titulares + ${available.length - 11} cambios)`
+        : `⚠️ ${available.length} confirmados contra ${ev.opponent} (Faltan ${11 - available.length} para 11)`;
 
       const rsvpSel = document.getElementById('rsvpPlayerSelect');
       if (rsvpSel) rsvpSel.innerHTML = players.map(p => `<option value="${esc(p.id)}">#${esc(p.number)} ${esc(p.name)} (${esc(p.position)})</option>`).join('');
 
-      renderAttendanceView(team, ev, present, late, absent, doubt, totalJ, paidPlayersCount, collectedCash);
-      renderHistoryView(team, totalJ);
+      updateFieldWeather(ev.field);
+      renderAttendanceView(team, ev, present, late, absent, pending, totalJ, paidPlayersCount, collectedCash);
+      renderCalendarView(team, ev, totalJ);
       renderConstancyView(team, totalJ);
       renderTacticsView(team, ev, available);
       renderMatchLiveView(team, ev);
@@ -1100,12 +1223,12 @@
       renderSettingsView(team, totalJ);
     }
 
-    function renderAttendanceView(team, ev, present, late, absent, doubt, totalJ, paidPlayersCount, collectedCash) {
+    function renderAttendanceView(team, ev, present, late, absent, pending, totalJ, paidPlayersCount, collectedCash) {
       const isAmerica = team.id === 'america_vet';
       document.getElementById('jornadasHeaderEyebrow').textContent = isAmerica
-        ? `CLUB AMÉRICA VETERANOS 35+ · REGISTRO INDEPENDIENTE DE LAS ${totalJ} JORNADAS`
-        : `ATLÉTICO LA LUZ · 11 JORNADAS OFICIALES + JORNADA ${totalJ} DE NUEVOS JUGADORES`;
-      document.getElementById('jornadasHeaderTitle').textContent = `Registro de ${ev.weekLabel || 'Jornada 1'} · ¿Quién Vino y Quién No Vino?`;
+        ? `CLUB AMÉRICA VETERANOS 35+ · CALENDARIO DE ${totalJ} SÁBADOS`
+        : `ATLÉTICO LA LUZ · CALENDARIO DE 11 DOMINGOS + JORNADA ${totalJ} DE NUEVOS`;
+      document.getElementById('jornadasHeaderTitle').textContent = `${ev.weekLabel} (${shortDateEs(ev.date)} · ${ev.time}) vs ${ev.opponent}`;
 
       const strip = document.getElementById('jornadasStrip');
       if (strip) {
@@ -1117,25 +1240,27 @@
           const noCnt = recs.filter(r => r.status === 'absent').length;
           return `
             <button type="button" class="j-pill ${isExtra ? 'extra-new' : ''} ${item.savedAt ? 'is-saved' : ''} ${item.id === ev.id ? 'active' : ''}" data-select-event="${esc(item.id)}">
-              <small><span>${isExtra ? `🌟 J${jNum} NUEVOS` : `JORNADA ${jNum}`}</span> <span>${item.savedAt ? '💾' : '○'}</span></small>
-              <strong>${esc(item.opponent || `Jornada ${jNum}`)}</strong>
-              <span class="j-mini-stat">${item.savedAt ? `✅ ${yesCnt} · ❌ ${noCnt}` : 'Sin pasar lista'}</span>
+              <small><span>${isExtra ? `🌟 J${jNum} NUEVOS` : `JORNADA ${jNum}`}</span> <span>${item.savedAt ? '💾' : '📅'}</span></small>
+              <strong>vs ${esc(item.opponent || `Rival J${jNum}`)}</strong>
+              <span class="j-date-lbl">📅 ${esc(shortDateEs(item.date))} · ${esc(item.time)}</span>
+              <span class="j-mini-stat">${item.savedAt ? `✅ ${yesCnt} vienen · ❌ ${noCnt} faltan` : 'Toque para pasar lista'}</span>
             </button>
           `;
         }).join('');
       }
 
-      const savedBanner = document.getElementById('savedStatusBanner');
-      if (savedBanner) {
-        savedBanner.innerHTML = ev.savedAt
-          ? `<div><strong style="color:var(--green-neon)">💾 Registro de ${esc(ev.weekLabel)} GUARDADO</strong><div style="font-size:12px;color:var(--text-muted)">Último guardado: ${esc(ev.savedAt)} · Cualquier toque se guarda automáticamente en esta jornada.</div></div>
-             <button type="button" class="btn-danger" id="btnClearJornadaRecord">🗑️ Limpiar solo esta Jornada</button>`
-          : `<div><strong style="color:var(--gold)">📅 ${esc(ev.weekLabel)} abierta (Aún sin pase de lista guardado)</strong><div style="font-size:12px;color:var(--text-muted)">Marca abajo quién vino o toca "Marcar Todos SÍ VINIERON" para iniciar el registro de esta jornada.</div></div>
-             <button type="button" class="btn-green" id="btnQuickStartJornada">⚡ Iniciar con Todos Presentes</button>`;
-      }
+      document.getElementById('savedStatusBanner').innerHTML = ev.savedAt
+        ? `<div><strong style="color:var(--green-neon)">💾 Registro Guardado · ${esc(ev.weekLabel)} vs ${esc(ev.opponent)}</strong><div style="font-size:12px;color:var(--text-muted)">Guardado: ${esc(ev.savedAt)} · 📍 ${esc(ev.field)}</div></div>
+           <div style="display:flex;gap:7px;flex-wrap:wrap">
+             <a href="${getMapsUrl(ev.field)}" target="_blank" rel="noopener" class="btn-ghost">🗺️ Mapa GPS Cancha</a>
+             <button type="button" class="btn-danger" id="btnClearJornadaRecord">🗑️ Reiniciar Jornada</button>
+           </div>`
+        : `<div><strong style="color:var(--gold)">📅 ${esc(ev.weekLabel)} vs ${esc(ev.opponent)} (${esc(shortDateEs(ev.date))} · ${esc(ev.time)})</strong><div style="font-size:12px;color:var(--text-muted)">Aún sin pase de lista guardado. Toca el botón verde para iniciar con todos presentes y luego pasa a "No Viene" solo a quienes falten.</div></div>
+           <button type="button" class="btn-green" id="btnQuickStartJornada">⚡ Iniciar Lista (Todos Vienen)</button>`;
 
       [['matchOpponent', ev.opponent || ''], ['matchDate', ev.date || ''], ['matchTime', ev.time || ''],
-       ['matchField', ev.field || ''], ['matchScoreInput', ev.scoreText || ''],
+       ['matchVenueType', ev.venue || '🏠 Local'], ['matchField', ev.field || ''], ['matchUniform', ev.uniform || ''],
+       ['matchResultType', ev.resultType || ''], ['matchScoreInput', ev.scoreText || ''],
        ['refereeCostInput', ev.refereeCost ?? 550], ['playerFeeInput', ev.playerFee ?? 50],
        ['matchCoachNotes', ev.coachNotes || '']].forEach(([id, val]) => {
         const el = document.getElementById(id); if (el && document.activeElement !== el) el.value = val;
@@ -1144,23 +1269,59 @@
       const refCost = Number(ev.refereeCost ?? 550);
       const diffCash = collectedCash - refCost;
       document.getElementById('cashSummaryBox').innerHTML = `
-        <div><small style="color:var(--text-muted);font-size:11px;font-weight:800">COOPERACIÓN RECAUDADA (${esc(ev.weekLabel)})</small><div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:var(--green-electric)">$${collectedCash} MXN <small style="font-size:11.5px;color:var(--text-muted)">(${paidPlayersCount} pagaron)</small></div></div>
-        <div><small style="color:var(--text-muted);font-size:11px;font-weight:800">COSTO DE ARBITRAJE</small><div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#fff">$${refCost} MXN</div></div>
-        <div><small style="color:var(--text-muted);font-size:11px;font-weight:800">BALANCE / CAJA CHICA</small><div style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:${diffCash >= 0 ? 'var(--gold)' : 'var(--danger)'}">${diffCash >= 0 ? `✅ Cubierto (+$${diffCash} Caja)` : `⚠️ Faltan $${Math.abs(diffCash)}`}</div></div>
+        <div><small style="color:var(--text-muted);font-size:11px;font-weight:800">COOPERACIÓN RECAUDADA</small><div style="font-family:'Sora',sans-serif;font-size:19px;font-weight:800;color:var(--green-electric)">$${collectedCash} MXN <small style="font-size:11.5px;color:var(--text-muted)">(${paidPlayersCount} pagaron)</small></div></div>
+        <div><small style="color:var(--text-muted);font-size:11px;font-weight:800">ARBITRAJE DEL JUEGO</small><div style="font-family:'Sora',sans-serif;font-size:19px;font-weight:800;color:#fff">$${refCost} MXN</div></div>
+        <div><small style="color:var(--text-muted);font-size:11px;font-weight:800">CAJA CHICA</small><div style="font-family:'Sora',sans-serif;font-size:19px;font-weight:800;color:${diffCash >= 0 ? 'var(--gold)' : 'var(--danger)'}">${diffCash >= 0 ? `✅ Cubierto (+$${diffCash})` : `⚠️ Faltan $${Math.abs(diffCash)}`}</div></div>
       `;
 
+      // TABLERO INTERACTIVO DOBLE: JUGADORES QUE SÍ VIENEN vs JUGADORES QUE NO VIENEN
       const comingAll = [...present, ...late];
       document.getElementById('whoComesBanner').innerHTML = `
-        <h4><span>✅ SÍ VINIERON EN ${esc(ev.weekLabel).toUpperCase()}</span> <span>${comingAll.length}</span></h4>
-        <div class="tag-list">
-          ${comingAll.length ? comingAll.map(p => `<span class="yes-tag">#${esc(p.number)} ${esc(p.name)}${Number(p.joinWeek || 1) > 1 ? ` (🆕 J${p.joinWeek})` : ''}${getRecord(ev, p).status === 'late' ? ' (⏰ Tarde)' : ''}</span>`).join('') : `<span style="font-size:12px;color:var(--text-muted)">Aún nadie marcado como presente en ${esc(ev.weekLabel)}.</span>`}
+        <h4><span>✅ JUGADORES QUE SÍ VIENEN (${comingAll.length})</span> <small style="font-size:11px;color:#dcf2e5">vs ${esc(ev.opponent)}</small></h4>
+        <div class="interactive-roster-list">
+          ${comingAll.length ? comingAll.map(p => `
+            <div class="roster-row-yes">
+              <span>#${esc(p.number)} ${esc(p.name)} <small style="color:var(--text-muted)">(${esc(p.position)})${getRecord(ev, p).status === 'late' ? ' · ⏰ Tarde' : ''}</small></span>
+              <button type="button" class="btn-danger" style="padding:4px 8px;font-size:10.5px" data-set-status="absent" data-id="${esc(p.id)}" title="Pasar a No Viene">❌ Pasar a No Viene</button>
+            </div>
+          `).join('') : `<p style="font-size:12px;color:var(--text-muted)">Nadie confirmado aún en ${esc(ev.weekLabel)}.</p>`}
         </div>`;
 
       document.getElementById('whoNotComesBanner').innerHTML = `
-        <h4><span>❌ NO VINIERON EN ${esc(ev.weekLabel).toUpperCase()}</span> <span>${absent.length}</span></h4>
-        <div class="tag-list">
-          ${absent.length ? absent.map(p => { const r = getRecord(ev, p); return `<span class="absent-tag">#${esc(p.number)} ${esc(p.name)} — <b>${esc(r.reason || 'Sin avisar')}</b>${r.note ? ` (${esc(r.note)})` : ''}</span>`; }).join('') : `<span style="font-size:12px;color:var(--text-muted)">Sin ausencias registradas en ${esc(ev.weekLabel)}.</span>`}
+        <h4><span>❌ JUGADORES QUE NO VIENEN / FALTARON (${absent.length})</span> <small style="font-size:11px;color:#fecdd3">Bajas de la jornada</small></h4>
+        <div class="interactive-roster-list">
+          ${absent.length ? absent.map(p => {
+            const r = getRecord(ev, p);
+            return `
+              <div class="roster-row-no">
+                <span>#${esc(p.number)} ${esc(p.name)} — <b style="color:#fef08a">${esc(r.reason || 'Sin avisar')}</b></span>
+                <button type="button" class="btn-green" style="padding:4px 8px;font-size:10.5px" data-set-status="present" data-id="${esc(p.id)}" title="Pasar a Sí Viene">✅ Sí Viene</button>
+              </div>
+            `;
+          }).join('') : `<p style="font-size:12px;color:var(--text-muted)">Ninguna falta registrada en ${esc(ev.weekLabel)}.</p>`}
         </div>`;
+
+      const pendBox = document.getElementById('pendingConfirmBox');
+      if (!pending.length) {
+        pendBox.style.display = 'none';
+      } else {
+        pendBox.style.display = 'block';
+        pendBox.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px">
+            <strong style="color:var(--gold);font-size:13px">⏳ FALTAN POR CONFIRMAR EN ${esc(ev.weekLabel).toUpperCase()} (${pending.length} jugadores)</strong>
+            <span style="font-size:11.5px;color:var(--text-muted)">Toca ✅ o ❌ para clasificarlos rápidamente:</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            ${pending.map(p => `
+              <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);padding:5px 9px;border-radius:10px;font-size:12px;font-weight:700">
+                #${esc(p.number)} ${esc(p.name)}
+                <button type="button" class="btn-green" style="padding:3px 7px;font-size:10.5px" data-set-status="present" data-id="${esc(p.id)}">✅ Viene</button>
+                <button type="button" class="btn-danger" style="padding:3px 7px;font-size:10.5px" data-set-status="absent" data-id="${esc(p.id)}">❌ Falta</button>
+              </span>
+            `).join('')}
+          </div>
+        `;
+      }
 
       document.querySelectorAll('[data-att-filter]').forEach(b => b.classList.toggle('active', b.dataset.attFilter === currentFilter));
 
@@ -1173,7 +1334,6 @@
       else if (currentFilter === 'absent') list = list.filter(p => getRecord(ev, p).status === 'absent');
       else if (currentFilter === 'unpaid') list = list.filter(p => !getRecord(ev, p).feePaid && getRecord(ev, p).status !== 'new_later');
       else if (currentFilter === 'new') list = list.filter(p => Number(p.joinWeek || 1) > 1);
-      else if (currentFilter === 'discard') list = list.filter(p => getPlayerStats(p, team).discard);
 
       list.sort((a, b) => {
         if (sortMode === 'constancy') return getPlayerStats(b, team).rate - getPlayerStats(a, team).rate;
@@ -1197,32 +1357,30 @@
                 <div class="p-badges">
                   <span class="pos-badge">${esc(p.position)}</span>
                   ${isNewSigning ? `<span class="new-badge">🆕 Entró J${esc(p.joinWeek)}</span>` : ''}
-                  <span class="${st.rate >= 85 ? 'constancy-Constant' : 'rate-badge'}">📊 ${st.rate}% (${st.attended}/${st.playedJornadas || 0} J jugadas)</span>
+                  <span class="${st.rate >= 85 ? 'constancy-Constant' : 'rate-badge'}">📊 ${st.rate}% (${st.attended}/${st.playedJornadas || 0}J)</span>
                   ${p.suspended ? `<span class="discard-badge">🚫 SUSPENDIDO</span>` : ''}
                   ${p.injured ? `<span class="phone-badge">🩹 LESIONADO</span>` : ''}
-                  ${st.discard ? `<span class="discard-badge">⚠️ ${st.absences} faltas</span>` : ''}
                   ${p.phone ? `<span class="phone-badge">📱 ${esc(p.phone)}</span>` : ''}
                 </div>
               </div>
             </div>
             <div style="display:flex;gap:5px">
               <button type="button" class="btn-ghost" style="padding:5px 8px" data-ping-player="${esc(p.id)}" title="WhatsApp directo">📲</button>
-              <button type="button" class="btn-danger" data-delete-player="${esc(p.id)}" title="Descartar de plantilla">✕</button>
+              <button type="button" class="btn-danger" data-delete-player="${esc(p.id)}" title="Baja">✕</button>
             </div>
           </div>
 
           ${notJoinedYet
-            ? `<div style="padding:8px 10px;border-radius:10px;background:rgba(247,201,72,0.14);border:1px solid var(--border-gold);font-size:12px;color:#fef08a;font-weight:700">🆕 Este jugador ingresó hasta la Jornada ${esc(p.joinWeek)} (no aplica falta en ${esc(ev.weekLabel)}).</div>`
+            ? `<div style="padding:8px 10px;border-radius:10px;background:rgba(247,201,72,0.14);border:1px solid var(--border-gold);font-size:12px;color:#fef08a;font-weight:700">🆕 Ingresó hasta la Jornada ${esc(p.joinWeek)}.</div>`
             : `<div class="status-grid-main">
-                <button type="button" class="st-btn ${rec.status === 'present' ? 'on-present' : ''}" data-set-status="present" data-id="${esc(p.id)}">✅ SÍ VINO</button>
-                <button type="button" class="st-btn ${rec.status === 'absent' ? 'on-absent' : ''}" data-set-status="absent" data-id="${esc(p.id)}">❌ NO VINO</button>
+                <button type="button" class="st-btn ${rec.status === 'present' ? 'on-present' : ''}" data-set-status="present" data-id="${esc(p.id)}">✅ SÍ VIENE</button>
+                <button type="button" class="st-btn ${rec.status === 'absent' ? 'on-absent' : ''}" data-set-status="absent" data-id="${esc(p.id)}">❌ NO VIENE</button>
                 <button type="button" class="st-btn ${rec.status === 'late' ? 'on-late' : ''}" data-set-status="late" data-id="${esc(p.id)}">⏰ Tarde</button>
                 <button type="button" class="st-btn ${rec.status === 'doubt' ? 'on-doubt' : ''}" data-set-status="doubt" data-id="${esc(p.id)}">⏳ Duda</button>
               </div>`
           }
 
-          <!-- Mini tira sincronizada con el registro real de cada jornada -->
-          <div class="p-mini-weeks" title="Resumen rápido por jornada (toca cualquiera para ir o cambiar)">
+          <div class="p-mini-weeks">
             ${(team.events || []).map((item, idx) => {
               const rJ = getRecord(item, p);
               const cls = rJ.status === 'present' ? 'j-P' : rJ.status === 'late' ? 'j-L' : rJ.status === 'absent' ? 'j-A' : rJ.status === 'new_later' ? 'j-N' : '';
@@ -1233,9 +1391,9 @@
 
           <div class="absence-row">
             <select data-absence-reason="${esc(p.id)}">
-              ${SOCIAL_REASONS.map(r => `<option value="${esc(r)}" ${rec.reason === r ? 'selected' : ''}>${r ? 'Razón: ' + esc(r) : 'Razón Social (si no vino)...'}</option>`).join('')}
+              ${SOCIAL_REASONS.map(r => `<option value="${esc(r)}" ${rec.reason === r ? 'selected' : ''}>${r ? 'Razón: ' + esc(r) : 'Motivo si no viene...'}</option>`).join('')}
             </select>
-            <input type="text" data-player-note="${esc(p.id)}" value="${esc(rec.note || '')}" placeholder="Nota de esta jornada..." />
+            <input type="text" data-player-note="${esc(p.id)}" value="${esc(rec.note || '')}" placeholder="Nota en esta jornada..." />
           </div>
 
           <div class="p-foot">
@@ -1253,29 +1411,45 @@
       }).join('');
     }
 
-    function renderHistoryView(team, totalJ) {
-      document.getElementById('historyTitle').textContent = `Bitácora de Jornadas Guardadas · ${team.name} (${totalJ} Jornadas)`;
-      const grid = document.getElementById('savedHistoryGrid');
+    // VISTA DE CALENDARIO SEMANAL COMPLETO CON EDICIÓN DE RIVALES Y FECHAS
+    function renderCalendarView(team, activeEv, totalJ) {
+      document.getElementById('calendarTitle').textContent = `Calendario Semanal de Juegos · ${team.name} (${totalJ} Jornadas)`;
+      const startInput = document.getElementById('autoStartDateInput');
+      if (startInput && document.activeElement !== startInput && team.events?.[0]?.date) {
+        startInput.value = team.events[0].date;
+      }
+
+      const grid = document.getElementById('weeklyCalendarGrid');
       if (!grid) return;
       grid.innerHTML = (team.events || []).map((item, idx) => {
         const players = team.players || [];
-        const yesList = players.filter(p => ['present', 'late'].includes(getRecord(item, p).status));
-        const noList = players.filter(p => getRecord(item, p).status === 'absent');
-        const paidCnt = players.filter(p => getRecord(item, p).feePaid).length;
-        const cash = paidCnt * Number(item.playerFee ?? 50);
+        const yesCnt = players.filter(p => ['present', 'late'].includes(getRecord(item, p).status)).length;
+        const noCnt = players.filter(p => getRecord(item, p).status === 'absent').length;
         return `
-          <article class="saved-log-card" style="border-color:${item.savedAt ? 'rgba(30,232,122,0.55)' : 'rgba(255,255,255,0.12)'}">
+          <article class="cal-card ${item.id === activeEv.id ? 'current-j' : ''}">
             <div style="display:flex;justify-content:space-between;align-items:center">
-              <span class="badge-coach">${esc(item.weekLabel)} ${item.scoreText ? `· ${esc(item.scoreText)}` : ''}</span>
-              <span style="font-size:11px;color:${item.savedAt ? 'var(--green-neon)' : 'var(--text-muted)'};font-weight:800">${item.savedAt ? '💾 Guardada' : '⏳ Sin registrar'}</span>
+              <span class="badge-coach">${esc(item.weekLabel)} · ${esc(shortDateEs(item.date))}</span>
+              <span style="font-size:11px;font-weight:800;color:${item.savedAt ? 'var(--green-neon)' : 'var(--gold)'}">${item.savedAt ? '💾 Lista Guardada' : '📅 Programado'}</span>
             </div>
-            <h4 style="font-family:'Sora',sans-serif;font-size:15px;color:#fff">🆚 ${esc(item.opponent || `Jornada ${idx + 1}`)}</h4>
-            <div style="font-size:12px;color:var(--text-muted)">📅 ${esc(item.date)} · 📍 ${esc(item.field)} · 💲 Recaudado: <b style="color:var(--gold)">$${cash}</b></div>
-            <div style="font-size:12px;color:#dcf2e5">✅ <b>Vinieron (${yesList.length}):</b> ${yesList.length ? yesList.map(p => p.name).slice(0, 6).join(', ') + (yesList.length > 6 ? ` +${yesList.length - 6} más` : '') : 'Sin registro aún'}</div>
-            <div style="font-size:12px;color:#fda4af">❌ <b>No vinieron (${noList.length}):</b> ${noList.length ? noList.map(p => `${p.name} (${getRecord(item, p).reason || 'S/A'})`).join(', ') : 'Ninguno'}</div>
-            <div style="display:flex;gap:6px;margin-top:4px">
-              <button type="button" class="btn-ghost" style="flex:1;padding:7px" data-open-history-j="${esc(item.id)}">✏️ Abrir Jornada</button>
-              <button type="button" class="btn-green" style="flex:1;padding:7px" data-wa-history-j="${esc(item.id)}">📲 WhatsApp</button>
+            <div class="field">
+              <label>🆚 Equipo Rival</label>
+              <input type="text" list="rivalsDatalist" data-cal-edit="opponent" data-ev-id="${esc(item.id)}" value="${esc(item.opponent || '')}" />
+            </div>
+            <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:8px">
+              <div class="field"><label>📅 Fecha</label><input type="date" data-cal-edit="date" data-ev-id="${esc(item.id)}" value="${esc(item.date || '')}" /></div>
+              <div class="field"><label>🕒 Hora</label><input type="time" data-cal-edit="time" data-ev-id="${esc(item.id)}" value="${esc(item.time || '')}" /></div>
+            </div>
+            <div class="field">
+              <label>📍 Cancha Oficial</label>
+              <input type="text" list="fieldsDatalist" data-cal-edit="field" data-ev-id="${esc(item.id)}" value="${esc(item.field || '')}" />
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);padding-top:2px">
+              <span>✅ Vienen: <b style="color:var(--green-neon)">${yesCnt}</b> · ❌ Faltan: <b style="color:var(--danger)">${noCnt}</b></span>
+              <a href="${getMapsUrl(item.field)}" target="_blank" rel="noopener" style="color:#fef08a;font-weight:800;text-decoration:none">🗺️ GPS ↗</a>
+            </div>
+            <div style="display:flex;gap:7px;margin-top:4px">
+              <button type="button" class="btn-green" style="flex:1;padding:8px" data-open-cal-j="${esc(item.id)}">📋 Pasar Lista</button>
+              <button type="button" class="btn-gold" style="flex:1;padding:8px" data-png-cal-j="${esc(item.id)}">🖼️ PNG</button>
             </div>
           </article>
         `;
@@ -1288,11 +1462,11 @@
       const discards = players.filter(p => getPlayerStats(p, team).discard);
 
       document.getElementById('discardAlertBox').innerHTML = !discards.length
-        ? `<h4 style="color:var(--green-electric)">🏆 Ningún jugador supera el límite de faltas en las jornadas registradas</h4>`
-        : `<h4><span>⚠️ JUGADORES INCONSTANTES EN JORNADAS REGISTRADAS (${discards.length})</span></h4><div class="tag-list">${discards.map(p => { const s = getPlayerStats(p, team); return `<span class="absent-tag">#${esc(p.number)} ${esc(p.name)} (${s.absences} faltas en ${s.playedJornadas}J · ${esc(s.lastReason || 'Sin avisar')}) <button type="button" class="btn-danger" style="padding:2px 6px;margin-left:6px" data-delete-player="${esc(p.id)}">Descartar</button></span>`; }).join('')}</div>`;
+        ? `<h4 style="color:var(--green-electric)">🏆 Todo el plantel cumple en las jornadas registradas</h4>`
+        : `<h4><span>⚠️ JUGADORES INCONSTANTES (${discards.length})</span></h4><div style="display:flex;flex-wrap:wrap;gap:7px">${discards.map(p => { const s = getPlayerStats(p, team); return `<span class="roster-row-no">#${esc(p.number)} ${esc(p.name)} (${s.absences} faltas) <button type="button" class="btn-danger" style="padding:2px 6px" data-delete-player="${esc(p.id)}">Baja</button></span>`; }).join('')}</div>`;
 
       let hCols = `<tr style="border-bottom:1px solid var(--border-green);text-align:left;color:var(--green-neon)"><th style="padding:8px 5px">#</th><th style="padding:8px 6px;min-width:140px">Jugador</th>`;
-      for (let j = 1; j <= totalJ; j++) hCols += `<th style="padding:6px 3px;text-align:center">${team.id === 'atletico_luz' && j === 12 ? 'J12🆕' : `J${j}`}</th>`;
+      for (let j = 1; j <= totalJ; j++) hCols += `<th style="padding:6px 3px;text-align:center" title="vs ${esc(team.events[j-1]?.opponent || '')}">J${j}</th>`;
       hCols += `<th style="padding:8px 6px">% Real</th><th style="padding:8px 6px">Última Razón</th><th style="padding:8px 6px">Veredicto</th></tr>`;
       document.getElementById('constancyTableHead').innerHTML = hCols;
 
@@ -1301,12 +1475,12 @@
         return `
           <tr style="border-bottom:1px solid rgba(255,255,255,0.07);background:${st.discard ? 'rgba(255,71,105,0.1)' : 'transparent'}">
             <td style="padding:6px 5px;font-weight:800;color:var(--green-electric)">#${esc(p.number)}</td>
-            <td style="padding:6px;font-weight:800;color:#fff">${esc(p.name)} ${Number(p.joinWeek || 1) > 1 ? `<span class="new-badge">J${p.joinWeek}</span>` : ''}</td>
+            <td style="padding:6px;font-weight:800;color:#fff">${esc(p.name)}</td>
             ${(team.events || []).map((item, idx) => {
               const rJ = getRecord(item, p);
               const cls = rJ.status === 'present' ? 'wk-present' : rJ.status === 'late' ? 'wk-late' : rJ.status === 'absent' ? 'wk-absent' : rJ.status === 'new_later' ? 'wk-new' : '';
               const sym = rJ.status === 'present' ? '✅' : rJ.status === 'late' ? '⏰' : rJ.status === 'absent' ? '❌' : rJ.status === 'new_later' ? '🆕' : '➖';
-              return `<td style="padding:2px;text-align:center"><button type="button" class="wk-btn ${cls}" data-toggle-week="${esc(p.id)}" data-wk-idx="${idx}" title="${esc(item.weekLabel)}">${sym}</button></td>`;
+              return `<td style="padding:2px;text-align:center"><button type="button" class="wk-btn ${cls}" data-toggle-week="${esc(p.id)}" data-wk-idx="${idx}" title="${esc(item.weekLabel)} vs ${esc(item.opponent)}">${sym}</button></td>`;
             }).join('')}
             <td style="padding:6px;font-weight:800;white-space:nowrap;color:${st.rate >= 80 ? 'var(--green-neon)' : 'var(--danger)'}">${st.rate}% (${st.attended}/${st.playedJornadas})</td>
             <td style="padding:6px;font-size:11.5px;color:var(--text-muted)">${esc(st.lastReason || 'Cumple')}</td>
@@ -1393,11 +1567,11 @@
             <span class="slot-badge">${idx + 1}·${esc(pos.code)}</span>
             <select data-lineup-slot="${idx}">
               <option value="">-- Vacío --</option>
-              <optgroup label="✅ Aptos que SÍ VINIERON (${eligible.length})">
+              <optgroup label="✅ Aptos que SÍ VIENEN (${eligible.length})">
                 ${eligible.map(p => `<option value="${esc(p.id)}" ${p.id === cur ? 'selected' : ''}>#${esc(p.number)} ${esc(p.name)}</option>`).join('')}
               </optgroup>
-              <optgroup label="❌ No vinieron / 🚫 Suspendidos / 🩹 Lesionados">
-                ${all.filter(p => !eligible.includes(p)).map(p => `<option value="${esc(p.id)}" ${p.id === cur ? 'selected' : ''}>${p.suspended ? '🚫 [SUSP]' : p.injured ? '🩹 [LESIÓN]' : '❌ [NO VINO]'} #${esc(p.number)} ${esc(p.name)}</option>`).join('')}
+              <optgroup label="❌ No vienen / 🚫 Suspendidos / 🩹 Lesionados">
+                ${all.filter(p => !eligible.includes(p)).map(p => `<option value="${esc(p.id)}" ${p.id === cur ? 'selected' : ''}>${p.suspended ? '🚫 [SUSP]' : p.injured ? '🩹 [LESIÓN]' : '❌ [NO VIENE]'} #${esc(p.number)} ${esc(p.name)}</option>`).join('')}
               </optgroup>
             </select>
           </div>`;
@@ -1460,80 +1634,184 @@
       const cash = paidCnt * Number(ev.playerFee ?? 50);
 
       return [
-        `⚽ *REGISTRO OFICIAL ${ev.weekLabel.toUpperCase()} (DE ${totalJ}) — ${team.name.toUpperCase()}*`,
-        `👑 *Dueño:* ${team.ownerName || ''} · 👨‍💼 *DT:* ${team.coachName}`,
-        `🆚 *Rival:* ${ev.opponent || 'Por definir'}${ev.scoreText ? ` · *Marcador:* ${ev.scoreText}` : ''}`,
-        `📅 *Fecha:* ${ev.date} · 🕒 ${ev.time} · 📍 ${ev.field}`,
-        `💲 *Caja Arbitraje:* $${cash} recaudados (${paidCnt} pagaron) de $${ev.refereeCost ?? 550}`,
+        `⚽ *ROL SEMANAL Y ASISTENCIA · ${ev.weekLabel.toUpperCase()} (DE ${totalJ})*`,
+        `🏆 *${team.name.toUpperCase()}* (${ev.venue || 'Local'}) vs *${(ev.opponent || 'Por definir').toUpperCase()}*`,
+        `📅 *Fecha:* ${shortDateEs(ev.date)} (${ev.date}) · 🕒 *Hora:* ${ev.time}`,
+        `📍 *Cancha:* ${ev.field} · 👕 *Uniforme:* ${ev.uniform || 'Oficial'}`,
+        `🗺️ *Mapa GPS:* ${getMapsUrl(ev.field)}`,
+        `💲 *Arbitraje:* $${cash} recaudados de $${ev.refereeCost ?? 550}`,
         ``,
-        `✅ *SÍ VINIERON A JUGAR (${present.length + late.length}):*`,
-        ...present.map(p => `  • #${p.number} ${p.name}${Number(p.joinWeek || 1) > 1 ? ` [Nuevo J${p.joinWeek}]` : ''}`),
+        `✅ *JUGADORES QUE SÍ VIENEN (${present.length + late.length}):*`,
+        ...present.map(p => `  • #${p.number} ${p.name}`),
         ...late.map(p => `  • #${p.number} ${p.name} (⏰ Tarde)`),
         ``,
-        `❌ *NO VINIERON A JUGAR (${absent.length}):*`,
-        ...(absent.length ? absent.map(p => { const r = getRecord(ev, p); return `  • #${p.number} ${p.name} — Razón: ${r.reason || 'Sin avisar'}${r.note ? ' (' + r.note + ')' : ''}`; }) : ['  • Sin faltas en esta jornada'])
+        `❌ *JUGADORES QUE NO VIENEN / FALTARON (${absent.length}):*`,
+        ...(absent.length ? absent.map(p => { const r = getRecord(ev, p); return `  • #${p.number} ${p.name} — Motivo: ${r.reason || 'Sin avisar'}${r.note ? ' (' + r.note + ')' : ''}`; }) : ['  • Sin faltas en esta jornada'])
       ].join('\n');
     }
 
-    // GENERADOR DE PÓSTER PNG HD PARA COMPARTIR EN WHATSAPP
-    function generateMatchdayPosterPng() {
+    // GENERADOR DE IMAGEN PNG HD (QUIÉNES SÍ VINIERON Y QUIÉNES FALTARON + ESCUDO + RIVAL + FECHA)
+    function generateWhoCameAndMissedPng(targetEv = null) {
       const team = activeTeam();
-      const ev = activeEvent(team);
+      const ev = targetEv || activeEvent(team);
+      const players = team.players || [];
+      const coming = players.filter(p => ['present', 'late'].includes(getRecord(ev, p).status));
+      const missing = players.filter(p => getRecord(ev, p).status === 'absent');
+      const paidCnt = players.filter(p => getRecord(ev, p).feePaid).length;
+      const cash = paidCnt * Number(ev.playerFee ?? 50);
+
+      const rowsNeeded = Math.max(coming.length, missing.length, 10);
+      const listHeight = Math.max(660, rowsNeeded * 48 + 95);
+      const totalHeight = 400 + listHeight + 130;
+
       const canvas = document.createElement('canvas');
-      canvas.width = 1080; canvas.height = 1350;
+      canvas.width = 1200;
+      canvas.height = totalHeight;
       const ctx = canvas.getContext('2d');
 
-      const grad = ctx.createLinearGradient(0, 0, 1080, 1350);
-      grad.addColorStop(0, '#041c11'); grad.addColorStop(0.55, '#072a19'); grad.addColorStop(1, '#020b06');
-      ctx.fillStyle = grad; ctx.fillRect(0, 0, 1080, 1350);
+      // Fondo estadio oscuro esmeralda y dorado
+      const grad = ctx.createLinearGradient(0, 0, 1200, totalHeight);
+      grad.addColorStop(0, '#03170e'); grad.addColorStop(0.5, '#072818'); grad.addColorStop(1, '#020a06');
+      ctx.fillStyle = grad; ctx.fillRect(0, 0, 1200, totalHeight);
 
-      ctx.strokeStyle = 'rgba(30,232,122,0.35)'; ctx.lineWidth = 6;
-      ctx.strokeRect(36, 36, 1008, 1278);
+      // Marco doble dorado/verde
+      ctx.strokeStyle = '#f7c948'; ctx.lineWidth = 5;
+      ctx.strokeRect(26, 26, 1148, totalHeight - 52);
+      ctx.strokeStyle = 'rgba(30,232,122,0.4)'; ctx.lineWidth = 2;
+      ctx.strokeRect(38, 38, 1124, totalHeight - 76);
 
-      ctx.fillStyle = '#f7c948'; ctx.font = '800 30px sans-serif';
-      ctx.fillText(`⚽ CONVOCATORIA Y ASISTENCIA · ${ev.weekLabel.toUpperCase()}`, 76, 105);
+      // Dibujar el escudo real si está cargado en el DOM
+      const heroImg = document.getElementById('heroTeamLogo');
+      let textLeft = 72;
+      if (heroImg && heroImg.complete && heroImg.naturalWidth > 0) {
+        try {
+          ctx.save();
+          ctx.fillStyle = '#070b08';
+          ctx.strokeStyle = '#f7c948';
+          ctx.lineWidth = 4;
+          ctx.strokeRect(68, 68, 150, 150);
+          ctx.fillRect(68, 68, 150, 150);
+          ctx.drawImage(heroImg, 74, 74, 138, 138);
+          ctx.restore();
+          textLeft = 244;
+        } catch (_) {}
+      }
 
-      ctx.fillStyle = '#ffffff'; ctx.font = '900 64px sans-serif';
-      ctx.fillText(team.name.toUpperCase(), 76, 182);
+      // Encabezado del Partido Semanal
+      ctx.fillStyle = '#f7c948'; ctx.font = '800 26px sans-serif';
+      ctx.fillText(`⚽ REPORTE OFICIAL · ${ev.weekLabel.toUpperCase()} · ${(ev.venue || 'LOCAL').toUpperCase()}`, textLeft, 102);
 
-      ctx.fillStyle = '#5bf59e'; ctx.font = '700 28px sans-serif';
-      ctx.fillText(`🆚 ${ev.opponent || 'Rival'}  |  📅 ${ev.date} ${ev.time}  |  📍 ${ev.field}`, 76, 235);
-      ctx.fillStyle = '#fef08a'; ctx.font = '700 24px sans-serif';
-      ctx.fillText(`👑 ${team.ownerName}   ·   👨‍💼 DT: ${team.coachName}   ·   Sistema: ${team.formation.split('').join('-')}`, 76, 278);
+      ctx.fillStyle = '#ffffff'; ctx.font = '900 52px sans-serif';
+      ctx.fillText(team.name.toUpperCase(), textLeft, 160);
 
-      const coming = (team.players || []).filter(p => ['present', 'late'].includes(getRecord(ev, p).status));
-      const missing = (team.players || []).filter(p => getRecord(ev, p).status === 'absent');
-
-      ctx.fillStyle = 'rgba(30,232,122,0.12)'; ctx.fillRect(70, 320, 940, 660);
-      ctx.strokeStyle = '#1ee87a'; ctx.lineWidth = 2; ctx.strokeRect(70, 320, 940, 660);
       ctx.fillStyle = '#1ee87a'; ctx.font = '800 32px sans-serif';
-      ctx.fillText(`✅ SÍ VINIERON / CONFIRMADOS (${coming.length})`, 98, 372);
+      ctx.fillText(`🆚 RIVAL: ${(ev.opponent || 'POR DEFINIR').toUpperCase()}${ev.scoreText ? `  (${ev.scoreText})` : ''}`, textLeft, 206);
 
-      ctx.fillStyle = '#f4fbf7'; ctx.font = '700 27px sans-serif';
-      coming.slice(0, 18).forEach((p, i) => {
-        const col = i < 9 ? 98 : 550;
-        const row = 428 + (i % 9) * 58;
-        ctx.fillText(`#${p.number}  ${p.name.slice(0, 22)}`, col, row);
-      });
+      // Cinta de Fecha, Hora, Cancha y Uniforme
+      ctx.fillStyle = 'rgba(255,255,255,0.07)';
+      ctx.fillRect(68, 244, 1064, 96);
+      ctx.strokeStyle = 'rgba(247,201,72,0.45)'; ctx.lineWidth = 2;
+      ctx.strokeRect(68, 244, 1064, 96);
 
-      ctx.fillStyle = 'rgba(255,71,105,0.14)'; ctx.fillRect(70, 1010, 940, 260);
-      ctx.strokeStyle = '#ff4769'; ctx.strokeRect(70, 1010, 940, 260);
-      ctx.fillStyle = '#fda4af'; ctx.font = '800 28px sans-serif';
-      ctx.fillText(`❌ NO VINIERON / BAJAS (${missing.length})`, 98, 1058);
-      ctx.fillStyle = '#ffe4e6'; ctx.font = '600 24px sans-serif';
-      missing.slice(0, 5).forEach((p, i) => {
-        const r = getRecord(ev, p);
-        ctx.fillText(`• #${p.number} ${p.name} (${r.reason || 'Sin avisar'})`, 98, 1102 + i * 38);
-      });
+      ctx.fillStyle = '#fef08a'; ctx.font = '800 24px sans-serif';
+      ctx.fillText(`📅 ${shortDateEs(ev.date).toUpperCase()} (${ev.date})   |   🕒 ${ev.time} HRS   |   📍 ${ev.field}`, 92, 284);
+      ctx.fillStyle = '#dcf2e5'; ctx.font = '700 22px sans-serif';
+      ctx.fillText(`👕 Uniforme: ${ev.uniform || 'Oficial'}   |   👨‍💼 DT: ${team.coachName}   |   💲 Arbitraje: $${cash} recaudados`, 92, 322);
 
-      const a = document.createElement('a');
-      a.href = canvas.toDataURL('image/png');
-      a.download = `poster-${team.id}-${ev.id}.png`;
-      a.click();
-      showToast('📸 Póster PNG descargado para WhatsApp');
+      const topY = 368;
+      const colW = 518;
+
+      // COLUMNA IZQUIERDA (VERDE): JUGADORES QUE SÍ VINIERON
+      ctx.fillStyle = 'rgba(10, 48, 29, 0.92)';
+      ctx.fillRect(68, topY, colW, listHeight);
+      ctx.strokeStyle = '#1ee87a'; ctx.lineWidth = 3;
+      ctx.strokeRect(68, topY, colW, listHeight);
+
+      ctx.fillStyle = '#1ee87a';
+      ctx.fillRect(68, topY, colW, 58);
+      ctx.fillStyle = '#021c0f'; ctx.font = '900 25px sans-serif';
+      ctx.fillText(`✅ SÍ VINIERON A JUGAR (${coming.length})`, 90, topY + 38);
+
+      if (!coming.length) {
+        ctx.fillStyle = '#9abaa9'; ctx.font = '600 22px sans-serif';
+        ctx.fillText('Sin jugadores confirmados aún.', 92, topY + 108);
+      } else {
+        coming.forEach((p, idx) => {
+          const y = topY + 96 + idx * 46;
+          const r = getRecord(ev, p);
+          ctx.fillStyle = idx % 2 === 0 ? 'rgba(30,232,122,0.1)' : 'rgba(255,255,255,0.03)';
+          ctx.fillRect(80, y - 30, colW - 24, 38);
+          ctx.fillStyle = '#5bf59e'; ctx.font = '800 22px sans-serif';
+          ctx.fillText(`#${p.number}`, 92, y - 4);
+          ctx.fillStyle = '#ffffff'; ctx.font = '700 22px sans-serif';
+          const tag = r.status === 'late' ? ' (Tarde)' : (Number(p.joinWeek || 1) > 1 ? ` [J${p.joinWeek}]` : '');
+          ctx.fillText(`${p.name.slice(0, 23)}${tag}`, 152, y - 4);
+        });
+      }
+
+      // COLUMNA DERECHA (ROJA): JUGADORES QUE FALTARON / NO VINIERON
+      const rightX = 614;
+      ctx.fillStyle = 'rgba(52, 11, 22, 0.92)';
+      ctx.fillRect(rightX, topY, colW, listHeight);
+      ctx.strokeStyle = '#ff4769'; ctx.lineWidth = 3;
+      ctx.strokeRect(rightX, topY, colW, listHeight);
+
+      ctx.fillStyle = '#ff4769';
+      ctx.fillRect(rightX, topY, colW, 58);
+      ctx.fillStyle = '#ffffff'; ctx.font = '900 25px sans-serif';
+      ctx.fillText(`❌ FALTARON / NO VINIERON (${missing.length})`, rightX + 22, topY + 38);
+
+      if (!missing.length) {
+        ctx.fillStyle = '#fecdd3'; ctx.font = '700 22px sans-serif';
+        ctx.fillText('🎉 Ninguna falta registrada hoy.', rightX + 24, topY + 108);
+      } else {
+        missing.forEach((p, idx) => {
+          const y = topY + 96 + idx * 46;
+          const r = getRecord(ev, p);
+          ctx.fillStyle = idx % 2 === 0 ? 'rgba(255,71,105,0.14)' : 'rgba(255,255,255,0.03)';
+          ctx.fillRect(rightX + 12, y - 30, colW - 24, 38);
+          ctx.fillStyle = '#fda4af'; ctx.font = '800 21px sans-serif';
+          ctx.fillText(`#${p.number}`, rightX + 22, y - 4);
+          ctx.fillStyle = '#ffffff'; ctx.font = '700 20px sans-serif';
+          const reasonShort = (r.reason || 'Sin avisar').split('/')[0].trim();
+          ctx.fillText(`${p.name.slice(0, 16)} · ${reasonShort.slice(0, 14)}`, rightX + 78, y - 4);
+        });
+      }
+
+      // Pie oficial
+      const footY = topY + listHeight + 52;
+      ctx.fillStyle = '#9abaa9'; ctx.font = '700 21px sans-serif';
+      ctx.fillText(`Quórum: ${coming.length >= 11 ? `Completo (${coming.length} disponibles)` : `Incompleto (${coming.length}/11)`}   ·   Control Oficial DT Manager Pro`, 72, footY);
+
+      const dataUrl = canvas.toDataURL('image/png');
+      canvas.toBlob(blob => { lastPngBlob = blob; }, 'image/png');
+
+      const previewImg = document.getElementById('pngPreviewElement');
+      const dlLink = document.getElementById('btnDownloadPngDirect');
+      const fileName = `asistencia-${team.id}-${ev.id}-vs-${(ev.opponent || 'rival').replace(/\s+/g, '_')}.png`;
+      previewImg.src = dataUrl;
+      dlLink.href = dataUrl;
+      dlLink.download = fileName;
+      document.getElementById('pngModal').classList.add('open');
+      showToast('🖼️ Imagen PNG de Vinieron vs Faltaron generada');
     }
 
-    // GENERADOR DE CÉDULA OFICIAL IMPRIMIBLE / PDF
+    document.getElementById('btnShareNativePng')?.addEventListener('click', async () => {
+      const team = activeTeam(); const ev = activeEvent(team);
+      if (lastPngBlob && navigator.canShare) {
+        const file = new File([lastPngBlob], `asistencia-${ev.id}.png`, { type: 'image/png' });
+        if (navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({ files: [file], title: `${team.name} · ${ev.weekLabel}`, text: `${team.name} · ${ev.weekLabel} vs ${ev.opponent}` });
+            return;
+          } catch (_) {}
+        }
+      }
+      document.getElementById('btnDownloadPngDirect')?.click();
+      showToast('Imagen descargada: envíala como foto en WhatsApp');
+    });
+    document.getElementById('btnClosePngModal')?.addEventListener('click', () => document.getElementById('pngModal')?.classList.remove('open'));
+
     function printOfficialCedula() {
       const team = activeTeam(); const ev = activeEvent(team);
       const rowsHtml = (team.players || []).map(p => {
@@ -1545,61 +1823,33 @@
       if (!w) return;
       w.document.write(`<!doctype html><html><head><title>Cédula ${esc(team.name)} - ${esc(ev.weekLabel)}</title>
         <style>body{font-family:Arial,sans-serif;padding:24px;color:#111}table{width:100%;border-collapse:collapse;margin-top:16px}th,td{border:1px solid #999;padding:7px 9px;font-size:12.5px;text-align:left}th{background:#0b3822;color:#fff}</style></head>
-        <body><h2>⚽ CÉDULA Y REGISTRO DE ASISTENCIA — ${esc(team.name.toUpperCase())}</h2>
-        <p><b>${esc(ev.weekLabel)}</b> vs <b>${esc(ev.opponent)}</b> | Fecha: ${esc(ev.date)} ${esc(ev.time)} | Cancha: ${esc(ev.field)} | DT: ${esc(team.coachName)}</p>
-        <table><thead><tr><th>#</th><th>Jugador</th><th>Posición</th><th>Asistencia</th><th>Razón Social</th><th>Arbitraje</th></tr></thead><tbody>${rowsHtml}</tbody></table>
-        <script>window.onload=()=>window.print();<\/script>
-<!-- JR_V38_FIX43_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix43-category-row.css?v=38-43-r2">
-<script defer src="./assets/jr-v38-fix43-category-row.js?v=38-43-r2"></script>
-
-
-<!-- JR_V38_FIX44_DIRECT -->
-<script defer src="./assets/jr-v38-fix44-category-replace.js?v=38-44-r1"></script>
-
-
-<!-- JR_V38_FIX45_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix45-stability.css?v=38-48-r1">
-<script defer src="./assets/jr-v38-fix45-stability.js?v=38-48-r1"></script>
-
-
-<!-- JR_V38_FIX48_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix48-america-card.css?v=38-51-r1">
-<script defer src="./assets/jr-v38-fix48-america-card.js?v=38-54"></script>
-
-
-<!-- JR_V38_FIX50_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix50-buttons.css?v=38-50-r1">
-<script defer src="./assets/jr-v38-fix50-buttons.js?v=38-50-r1"></script>
-
-
-<!-- JR_V38_FIX59_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix59.css?v=38-59">
-<script defer src="./assets/jr-v38-fix59.js?v=38-59"></script>
-</body></html>`);
+        <body><h2>⚽ CÉDULA SEMANAL — ${esc(team.name.toUpperCase())}</h2>
+        <p><b>${esc(ev.weekLabel)}</b> vs <b>${esc(ev.opponent)}</b> | Fecha: ${esc(ev.date)} ${esc(ev.time)} | Cancha: ${esc(ev.field)} | Uniforme: ${esc(ev.uniform || '-')} | DT: ${esc(team.coachName)}</p>
+        <table><thead><tr><th>#</th><th>Jugador</th><th>Posición</th><th>¿Vino?</th><th>Motivo si faltó</th><th>Arbitraje</th></tr></thead><tbody>${rowsHtml}</tbody></table>
+        <script>window.onload=()=>window.print();<\/script></body></html>`);
       w.document.close();
     }
 
     function exportAttendanceCsv() {
       const team = activeTeam(); const totalJ = teamJornadas(team);
-      const header = ['Dorsal', 'Jugador', 'Telefono_WhatsApp', 'Posicion', 'Jornada_Ingreso'];
-      for (let j = 1; j <= totalJ; j++) header.push(`J${j}`);
-      header.push('Constancia_Real', 'Faltas', 'Goles', 'Asistencias', 'Amarillas');
+      const header = ['Dorsal', 'Jugador', 'Telefono_WhatsApp', 'Posicion', 'Ingreso'];
+      for (let j = 1; j <= totalJ; j++) header.push(`J${j}_${team.events[j-1]?.opponent || ''}`);
+      header.push('Constancia_Real', 'Faltas', 'Goles', 'Asistencias');
       const rows = [header];
       (team.players || []).forEach(p => {
         const st = getPlayerStats(p, team);
         const r = [p.number, p.name, p.phone || '', p.position, `J${p.joinWeek || 1}`];
         (team.events || []).forEach(ev => {
           const rec = getRecord(ev, p);
-          r.push(rec.status === 'present' ? 'VINO' : rec.status === 'late' ? 'TARDE' : rec.status === 'absent' ? `NO VINO (${rec.reason || 'S/A'})` : '-');
+          r.push(rec.status === 'present' ? 'SI VINO' : rec.status === 'late' ? 'TARDE' : rec.status === 'absent' ? `FALTO (${rec.reason || 'S/A'})` : '-');
         });
-        r.push(`${st.rate}%`, st.absences, p.goals || 0, p.assists || 0, p.yellows || 0);
+        r.push(`${st.rate}%`, st.absences, p.goals || 0, p.assists || 0);
         rows.push(r);
       });
       const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
       const url = URL.createObjectURL(new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' }));
-      const a = document.createElement('a'); a.href = url; a.download = `registro-jornadas-${team.id}-${TODAY}.csv`; a.click();
-      setTimeout(() => URL.revokeObjectURL(url), 1000); showToast('📊 Excel/CSV de todas las jornadas descargado');
+      const a = document.createElement('a'); a.href = url; a.download = `calendario-asistencia-${team.id}-${TODAY}.csv`; a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000); showToast('📊 Excel/CSV descargado');
     }
 
     document.addEventListener('click', e => {
@@ -1609,15 +1859,15 @@
       if (nv) { switchView(nv.dataset.navView); return; }
 
       const evCard = e.target.closest('[data-select-event]');
-      if (evCard) { activeTeam().activeEventId = evCard.dataset.selectEvent; saveState(`${activeEvent().weekLabel} abierta`); renderAll(); return; }
+      if (evCard) { activeTeam().activeEventId = evCard.dataset.selectEvent; saveState(`${activeEvent().weekLabel} seleccionada`); renderAll(); return; }
 
-      const openHist = e.target.closest('[data-open-history-j]');
-      if (openHist) { activeTeam().activeEventId = openHist.dataset.openHistoryJ; switchView('attendance'); renderAll(); return; }
+      const openCal = e.target.closest('[data-open-cal-j]');
+      if (openCal) { activeTeam().activeEventId = openCal.dataset.openCalJ; switchView('attendance'); renderAll(); return; }
 
-      const waHist = e.target.closest('[data-wa-history-j]');
-      if (waHist) {
-        const team = activeTeam(); const targetEv = (team.events || []).find(x => x.id === waHist.dataset.waHistoryJ);
-        if (targetEv) window.open('https://wa.me/?text=' + encodeURIComponent(buildJornadaReport(team, targetEv)), '_blank', 'noopener');
+      const pngCal = e.target.closest('[data-png-cal-j]');
+      if (pngCal) {
+        const targetEv = (activeTeam().events || []).find(x => x.id === pngCal.dataset.pngCalJ);
+        if (targetEv) generateWhoCameAndMissedPng(targetEv);
         return;
       }
 
@@ -1629,13 +1879,13 @@
           }
         });
         ev.savedAt = nowStamp();
-        saveState(`💾 ${ev.weekLabel} iniciada y guardada`); renderAll(); return;
+        saveState(`💾 Todos marcados en SÍ VIENEN (${ev.weekLabel})`); renderAll(); return;
       }
 
       if (e.target.id === 'btnClearJornadaRecord') {
         const ev = activeEvent();
-        if (confirm(`¿Limpiar el pase de lista únicamente de ${ev.weekLabel}? (Las demás jornadas no se tocan)`)) {
-          ev.records = {}; ev.savedAt = null; saveState(`Registro de ${ev.weekLabel} reiniciado`); renderAll();
+        if (confirm(`¿Reiniciar la lista únicamente de ${ev.weekLabel} vs ${ev.opponent}?`)) {
+          ev.records = {}; ev.savedAt = null; saveState(`Lista de ${ev.weekLabel} reiniciada`); renderAll();
         }
         return;
       }
@@ -1653,7 +1903,7 @@
           if (rec.status === 'absent' && !rec.reason) rec.reason = 'Sin avisar / Falta injustificada';
           if (rec.status === 'present') rec.reason = '';
           targetEv.savedAt = nowStamp();
-          saveState(`💾 ${targetEv.weekLabel} guardada para ${p.name}`); renderAll();
+          saveState(`💾 ${targetEv.weekLabel} guardada`); renderAll();
         }
         return;
       }
@@ -1668,7 +1918,7 @@
           if (rec.status === 'present') rec.reason = '';
           if (rec.status === 'absent' && !rec.reason) rec.reason = 'Sin avisar / Falta injustificada';
           ev.savedAt = nowStamp();
-          saveState(`💾 Guardado en ${ev.weekLabel}: ${p.name} (${rec.status === 'present' ? 'SÍ VINO' : rec.status === 'absent' ? 'NO VINO' : rec.status})`);
+          saveState(`💾 ${p.name}: ${rec.status === 'present' ? '✅ SÍ VIENE' : rec.status === 'absent' ? '❌ NO VIENE' : rec.status}`);
           renderAll();
         }
         return;
@@ -1678,17 +1928,16 @@
       if (fee) {
         const team = activeTeam(); const ev = activeEvent(team);
         const p = (team.players || []).find(x => x.id === fee.dataset.toggleFee);
-        if (p) { const rec = getRecord(ev, p); rec.feePaid = !rec.feePaid; ev.savedAt = nowStamp(); saveState(`💲 Pago en ${ev.weekLabel} actualizado`); renderAll(); }
+        if (p) { const rec = getRecord(ev, p); rec.feePaid = !rec.feePaid; ev.savedAt = nowStamp(); saveState(`💲 Pago actualizado`); renderAll(); }
         return;
       }
 
       const yBtn = e.target.closest('[data-add-yellow]');
-      if (yBtn) { const p = (activeTeam().players || []).find(x => x.id === yBtn.dataset.addYellow); if (p) { p.yellows = Number(p.yellows || 0) + 1; saveState(`🟨 Amarilla registrada a ${p.name}`); renderAll(); } return; }
+      if (yBtn) { const p = (activeTeam().players || []).find(x => x.id === yBtn.dataset.addYellow); if (p) { p.yellows = Number(p.yellows || 0) + 1; saveState(`🟨 Amarilla a ${p.name}`); renderAll(); } return; }
       const sBtn = e.target.closest('[data-toggle-susp]');
-      if (sBtn) { const p = (activeTeam().players || []).find(x => x.id === sBtn.dataset.toggleSusp); if (p) { p.suspended = !p.suspended; saveState(`${p.name}: ${p.suspended ? '🚫 Suspendido' : 'Habilitado'}`); renderAll(); } return; }
+      if (sBtn) { const p = (activeTeam().players || []).find(x => x.id === sBtn.dataset.toggleSusp); if (p) { p.suspended = !p.suspended; saveState(); renderAll(); } return; }
       const iBtn = e.target.closest('[data-toggle-inj]');
-      if (iBtn) { const p = (activeTeam().players || []).find(x => x.id === iBtn.dataset.toggleInj); if (p) { p.injured = !p.injured; saveState(`${p.name}: ${p.injured ? '🩹 Lesionado' : 'Al 100%'}`); renderAll(); } return; }
-
+      if (iBtn) { const p = (activeTeam().players || []).find(x => x.id === iBtn.dataset.toggleInj); if (p) { p.injured = !p.injured; saveState(); renderAll(); } return; }
       const drBtn = e.target.closest('[data-toggle-drill]');
       if (drBtn) { const d = (activeTeam().drills || []).find(x => x.id === drBtn.dataset.toggleDrill); if (d) { d.done = !d.done; saveState(); renderAll(); } return; }
       const delLog = e.target.closest('[data-del-log]');
@@ -1698,7 +1947,7 @@
         const team = activeTeam(); const ev = activeEvent(team); const p = (team.players || []).find(x => x.id === ping.dataset.pingPlayer);
         if (p) {
           const rsvpUrl = `${location.origin}${location.pathname}?team=${team.id}&rsvp=1`;
-          const msg = `Hola *${p.name}* (#${p.number}), confirma si vienes o no vienes en *${team.name}* para ${ev.weekLabel} vs *${ev.opponent}* (${ev.date} · ${ev.time} en ${ev.field}): ${rsvpUrl}`;
+          const msg = `Hola *${p.name}* (#${p.number}), juego de *${team.name}* en ${ev.weekLabel} vs *${ev.opponent}* el ${shortDateEs(ev.date)} (${ev.date}) a las ${ev.time} en *${ev.field}* (Uniforme: ${ev.uniform || 'Oficial'}). Confirma si vienes aquí: ${rsvpUrl}`;
           const digits = cleanPhone(p.phone); window.open(`${digits ? `https://wa.me/${digits}` : 'https://wa.me/'}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
         }
         return;
@@ -1706,7 +1955,18 @@
       const gBtn = e.target.closest('[data-add-goal]');
       if (gBtn) { const p = (activeTeam().players || []).find(x => x.id === gBtn.dataset.addGoal); if (p) { p.goals = Number(p.goals || 0) + 1; saveState(`⚽ Gol para ${p.name}`); renderAll(); } return; }
       const del = e.target.closest('[data-delete-player]');
-      if (del) { const team = activeTeam(); const idx = (team.players || []).findIndex(x => x.id === del.dataset.deletePlayer); if (idx >= 0) { const rem = team.players.splice(idx, 1)[0]; saveState(`Descartado: ${rem.name}`); renderAll(); } }
+      if (del) { const team = activeTeam(); const idx = (team.players || []).findIndex(x => x.id === del.dataset.deletePlayer); if (idx >= 0) { const rem = team.players.splice(idx, 1)[0]; saveState(`Baja: ${rem.name}`); renderAll(); } }
+    });
+
+    // Recalcular automáticamente las fechas semanales (+7 días cada jornada)
+    document.getElementById('btnRecalcWeeklyDates')?.addEventListener('click', () => {
+      const team = activeTeam();
+      const baseDate = document.getElementById('autoStartDateInput')?.value || TODAY;
+      (team.events || []).forEach((ev, idx) => {
+        ev.date = addDaysIso(baseDate, idx * 7);
+      });
+      saveState('✅ Fechas semanales recalculadas (+7 días por jornada)');
+      renderAll();
     });
 
     document.getElementById('btnCopyPrevJornada')?.addEventListener('click', () => {
@@ -1716,7 +1976,7 @@
       ev.records = JSON.parse(JSON.stringify(prev.records || {}));
       Object.values(ev.records).forEach(r => { r.feePaid = false; });
       ev.savedAt = nowStamp();
-      saveState(`📋 Lista copiada de ${prev.weekLabel} a ${ev.weekLabel}`); renderAll();
+      saveState(`📋 Lista copiada de ${prev.weekLabel}`); renderAll();
     });
 
     document.getElementById('btnAddOneJornada')?.addEventListener('click', () => {
@@ -1728,7 +1988,7 @@
     });
     document.getElementById('btnSaveWeekSnapshot')?.addEventListener('click', () => {
       const ev = activeEvent(); ev.savedAt = nowStamp();
-      saveState(`💾 Registro de ${ev.weekLabel} guardado en Bitácora (${ev.savedAt})`); renderAll();
+      saveState(`💾 Registro guardado (${ev.weekLabel} vs ${ev.opponent})`); renderAll();
     });
 
     document.getElementById('playerSearchInput')?.addEventListener('input', e => { searchQuery = e.target.value; renderAll(); });
@@ -1736,10 +1996,17 @@
 
     document.addEventListener('change', e => {
       const team = activeTeam(); const ev = activeEvent(team);
+      if (e.target.matches('[data-cal-edit]')) {
+        const targetEv = (team.events || []).find(x => x.id === e.target.dataset.evId);
+        if (targetEv) { targetEv[e.target.dataset.calEdit] = e.target.value; saveState('Calendario actualizado'); renderAll(); }
+        return;
+      }
       if (e.target.id === 'evWeekLabel') { const matchEv = (team.events || []).find(x => x.weekLabel === e.target.value); if (matchEv) { team.activeEventId = matchEv.id; saveState(); renderAll(); return; } }
+      if (e.target.id === 'matchVenueType') { ev.venue = e.target.value; saveState(); renderAll(); return; }
+      if (e.target.id === 'matchResultType') { ev.resultType = e.target.value; saveState('Resultado actualizado'); renderAll(); return; }
       if (e.target.matches('[data-absence-reason]')) {
         const p = (team.players || []).find(x => x.id === e.target.dataset.absenceReason);
-        if (p) { const rec = getRecord(ev, p); rec.reason = e.target.value; if (rec.reason) rec.status = 'absent'; ev.savedAt = nowStamp(); saveState(`💾 Razón guardada en ${ev.weekLabel}`); renderAll(); }
+        if (p) { const rec = getRecord(ev, p); rec.reason = e.target.value; if (rec.reason) rec.status = 'absent'; ev.savedAt = nowStamp(); saveState(`💾 Motivo guardado`); renderAll(); }
         return;
       }
       if (e.target.matches('[data-player-note]')) {
@@ -1769,13 +2036,14 @@
       }
     });
 
-    ['matchOpponent', 'matchDate', 'matchTime', 'matchField', 'matchScoreInput', 'refereeCostInput', 'playerFeeInput', 'matchCoachNotes'].forEach(id => {
+    ['matchOpponent', 'matchDate', 'matchTime', 'matchField', 'matchUniform', 'matchScoreInput', 'refereeCostInput', 'playerFeeInput', 'matchCoachNotes'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', e => {
         const ev = activeEvent();
         if (id === 'matchOpponent') ev.opponent = e.target.value;
         if (id === 'matchDate') ev.date = e.target.value;
         if (id === 'matchTime') ev.time = e.target.value;
         if (id === 'matchField') ev.field = e.target.value;
+        if (id === 'matchUniform') ev.uniform = e.target.value;
         if (id === 'matchScoreInput') ev.scoreText = e.target.value;
         if (id === 'refereeCostInput') ev.refereeCost = Math.max(0, Number(e.target.value || 0));
         if (id === 'playerFeeInput') ev.playerFee = Math.max(0, Number(e.target.value || 0));
@@ -1784,10 +2052,10 @@
       });
     });
 
-    document.getElementById('btnGeneratePosterPng')?.addEventListener('click', generateMatchdayPosterPng);
-    document.getElementById('btnGeneratePosterTactics')?.addEventListener('click', generateMatchdayPosterPng);
+    document.getElementById('btnGeneratePosterPng')?.addEventListener('click', () => generateWhoCameAndMissedPng());
+    document.getElementById('btnGeneratePosterTop')?.addEventListener('click', () => generateWhoCameAndMissedPng());
+    document.getElementById('btnGeneratePosterTactics')?.addEventListener('click', () => generateWhoCameAndMissedPng());
     document.getElementById('btnPrintCedula')?.addEventListener('click', printOfficialCedula);
-    document.getElementById('btnPrintAllHistory')?.addEventListener('click', printOfficialCedula);
     document.getElementById('btnShareConstancyWa')?.addEventListener('click', () => window.open('https://wa.me/?text=' + encodeURIComponent(buildJornadaReport()), '_blank', 'noopener'));
     document.getElementById('tacticsStyleInput')?.addEventListener('input', e => { activeTeam().tacticalStyle = e.target.value; saveState(); });
     document.getElementById('btnToggleMotion')?.addEventListener('click', () => { state.motionEnabled = state.motionEnabled === false ? true : false; saveState(); renderAll(); });
@@ -1810,7 +2078,7 @@
         joinEv.savedAt = nowStamp();
         team.activeEventId = joinEv.id;
       }
-      e.target.reset(); saveState(`🆕 Nuevo jugador registrado en Jornada ${joinWeek}: #${number} ${name}`); renderAll();
+      e.target.reset(); saveState(`🆕 Agregado en Jornada ${joinWeek}: #${number} ${name}`); renderAll();
     });
 
     function updateTimerDisplay() { document.getElementById('matchTimerDisplay').textContent = `${String(Math.floor(timerSeconds / 60)).padStart(2, '0')}:${String(timerSeconds % 60).padStart(2, '0')}`; }
@@ -1833,12 +2101,12 @@
     });
     document.getElementById('btnRemindDoubtWa')?.addEventListener('click', () => {
       const team = activeTeam(); const ev = activeEvent(team);
-      window.open('https://wa.me/?text=' + encodeURIComponent(`🔔 *CONFIRMAR ASISTENCIA EN ${ev.weekLabel.toUpperCase()} (${team.name})*\nvs ${ev.opponent} (${ev.date} ${ev.time}): ${location.origin}${location.pathname}?team=${team.id}&rsvp=1`), '_blank', 'noopener');
+      window.open('https://wa.me/?text=' + encodeURIComponent(`🔔 *CONFIRMAR SI VIENES O NO VIENES (${team.name})*\n${ev.weekLabel} vs *${ev.opponent}* el ${shortDateEs(ev.date)} a las ${ev.time} en ${ev.field}:\n${location.origin}${location.pathname}?team=${team.id}&rsvp=1`), '_blank', 'noopener');
     });
     document.getElementById('btnExportCsv')?.addEventListener('click', exportAttendanceCsv);
     document.getElementById('btnExportCsvSquad')?.addEventListener('click', exportAttendanceCsv);
     document.getElementById('btnShareWa')?.addEventListener('click', () => window.open('https://wa.me/?text=' + encodeURIComponent(buildJornadaReport()), '_blank', 'noopener'));
-    document.getElementById('btnCopyReport')?.addEventListener('click', async () => { try { await navigator.clipboard.writeText(buildJornadaReport()); showToast('Registro copiado al portapapeles'); } catch (_) {} });
+    document.getElementById('btnCopyReport')?.addEventListener('click', async () => { try { await navigator.clipboard.writeText(buildJornadaReport()); showToast('Lista copiada'); } catch (_) {} });
 
     const rsvpModal = document.getElementById('rsvpModal');
     document.getElementById('btnOpenRsvpModal')?.addEventListener('click', () => rsvpModal?.classList.add('open'));
@@ -1846,19 +2114,19 @@
     document.getElementById('btnRsvpYes')?.addEventListener('click', () => {
       const team = activeTeam(); const ev = activeEvent(team);
       const p = (team.players || []).find(x => x.id === document.getElementById('rsvpPlayerSelect')?.value);
-      if (p) { const rec = getRecord(ev, p); rec.status = 'present'; rec.reason = ''; ev.savedAt = nowStamp(); saveState(`✅ ${p.name} guardado en ${ev.weekLabel}`); rsvpModal?.classList.remove('open'); renderAll(); }
+      if (p) { const rec = getRecord(ev, p); rec.status = 'present'; rec.reason = ''; ev.savedAt = nowStamp(); saveState(`✅ ${p.name} SÍ VIENE`); rsvpModal?.classList.remove('open'); renderAll(); }
     });
     document.getElementById('btnRsvpNo')?.addEventListener('click', () => {
       const team = activeTeam(); const ev = activeEvent(team);
       const p = (team.players || []).find(x => x.id === document.getElementById('rsvpPlayerSelect')?.value);
       const reason = document.getElementById('rsvpReasonInput')?.value.trim() || 'Compromiso familiar / Personal';
-      if (p) { const rec = getRecord(ev, p); rec.status = 'absent'; rec.reason = reason; ev.savedAt = nowStamp(); saveState(`❌ Baja de ${p.name} guardada en ${ev.weekLabel}`); rsvpModal?.classList.remove('open'); renderAll(); }
+      if (p) { const rec = getRecord(ev, p); rec.status = 'absent'; rec.reason = reason; ev.savedAt = nowStamp(); saveState(`❌ ${p.name} NO VIENE`); rsvpModal?.classList.remove('open'); renderAll(); }
     });
 
     document.getElementById('btnAutoFillPresent')?.addEventListener('click', () => {
       const team = activeTeam(); const ev = activeEvent(team);
       const avail = [...(team.players || [])].filter(p => ['present', 'late'].includes(getRecord(ev, p).status) && !p.suspended && !p.injured).sort((a, b) => getPlayerStats(b, team).rate - getPlayerStats(a, team).rate);
-      team.lineupSlots = {}; avail.slice(0, 11).forEach((p, idx) => { team.lineupSlots[idx] = p.id; }); saveState('11 titular armado con presentes aptos'); renderAll();
+      team.lineupSlots = {}; avail.slice(0, 11).forEach((p, idx) => { team.lineupSlots[idx] = p.id; }); saveState('11 titular armado'); renderAll();
     });
     document.getElementById('btnResetPitchCoords')?.addEventListener('click', () => { const team = activeTeam(); if (team.customCoords?.[team.formation]) delete team.customCoords[team.formation]; saveState(); renderAll(); });
     document.getElementById('btnDownloadPitchSvg')?.addEventListener('click', () => {
@@ -1879,15 +2147,15 @@
     });
     document.getElementById('btnExportBackup')?.addEventListener('click', () => {
       const url = URL.createObjectURL(new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' }));
-      const a = document.createElement('a'); a.href = url; a.download = `respaldo-manager-v17-${TODAY}.json`; a.click();
+      const a = document.createElement('a'); a.href = url; a.download = `respaldo-manager-v18-${TODAY}.json`; a.click();
     });
     document.getElementById('inputImportBackup')?.addEventListener('change', e => {
       const f = e.target.files?.[0]; if (!f) return; const r = new FileReader();
-      r.onload = () => { try { const parsed = JSON.parse(String(r.result || '')); if (parsed?.teams) { state = parsed; saveState('Respaldo completo cargado'); renderAll(); } } catch (_) {} };
+      r.onload = () => { try { const parsed = JSON.parse(String(r.result || '')); if (parsed?.teams) { state = parsed; saveState('Respaldo cargado'); renderAll(); } } catch (_) {} };
       r.readAsText(f);
     });
     document.getElementById('btnResetFactory')?.addEventListener('click', () => {
-      if (confirm('¿Restaurar plantillas iniciales (Atlético La Luz 12J y Club América 8J)?')) {
+      if (confirm('¿Restaurar calendario semanal precargado y plantillas oficiales?')) {
         state = clone(DEFAULT_STATE); saveState('Datos restaurados'); renderAll();
       }
     });
@@ -1900,33 +2168,5 @@
     const stage = document.getElementById('mgrBallStage');
     if (stage && window.JRBallModelV38?.fallback) { try { const fb = window.JRBallModelV38.fallback(stage); window.addEventListener('resize', () => fb.draw()); } catch (_) {} }
   </script>
-
-<!-- JR_V38_FIX43_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix43-category-row.css?v=38-43-r2">
-<script defer src="./assets/jr-v38-fix43-category-row.js?v=38-43-r2"></script>
-
-
-<!-- JR_V38_FIX44_DIRECT -->
-<script defer src="./assets/jr-v38-fix44-category-replace.js?v=38-44-r1"></script>
-
-
-<!-- JR_V38_FIX45_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix45-stability.css?v=38-48-r1">
-<script defer src="./assets/jr-v38-fix45-stability.js?v=38-48-r1"></script>
-
-
-<!-- JR_V38_FIX48_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix48-america-card.css?v=38-51-r1">
-<script defer src="./assets/jr-v38-fix48-america-card.js?v=38-54"></script>
-
-
-<!-- JR_V38_FIX50_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix50-buttons.css?v=38-50-r1">
-<script defer src="./assets/jr-v38-fix50-buttons.js?v=38-50-r1"></script>
-
-
-<!-- JR_V38_FIX59_DIRECT -->
-<link rel="stylesheet" href="./assets/jr-v38-fix59.css?v=38-59">
-<script defer src="./assets/jr-v38-fix59.js?v=38-59"></script>
 </body>
 </html>

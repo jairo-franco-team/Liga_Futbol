@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dt-manager-franco-v17-full';
+const CACHE_NAME = 'dt-manager-franco-v18-calendar-png';
 self.addEventListener('install', event => {
   self.skipWaiting();
 });
